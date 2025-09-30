@@ -90,9 +90,10 @@ CREATE TABLE circuitos (
 'Alava','Albacete','Alicante','Almeria','Asturias','Avila','Badajoz','Barcelona','Burgos','Caceres','Cadiz','Cantabria','Castellon','Comunidad Valenciana','Ciudad Real','Cordoba',
 'Cuenca','Girona','Granada','Guadalajara','Gipuzkoa','Huelva','Huesca','Islas Baleares','Jaen','A Coruña','La Rioja','Las Palmas','Leon','Lleida','Lugo','Madrid','Malaga','Murcia',
 'Navarra','Orense','Palencia','Pontevedra','Salamanca','Santa Cruz de Tenerife','Segovia','Sevilla','Soria','Tarragona','Teruel','Toledo','Valencia','Valladolid','Bizkaia','Zamora','Zaragoza') NOT NULL,
-                web_circuito VARCHAR(60),
+                web_circuito VARCHAR(100),
                 direccion_circuito VARCHAR(60),
-                telefono_circuito VARCHAR(15)
+                telefono_circuito VARCHAR(15),
+                localidad VARCHAR(30) NOT NULL
  );
 
 CREATE TABLE carreras (
