@@ -99,7 +99,6 @@ CREATE TABLE circuitos (
 CREATE TABLE carreras (
                 id_carrera INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 fecha_carrera DATE NOT NULL,
-                vueltas TINYINT,
                 dia ENUM('Despejado','Ligeramente nublado','Muy nublado','Nublado'),
                 temperatura TINYINT,
                 humedad TINYINT,
