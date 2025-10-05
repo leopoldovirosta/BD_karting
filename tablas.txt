@@ -113,13 +113,13 @@ CREATE TABLE carreras (
                 FOREIGN KEY (cto_id) REFERENCES campeonatos(id_cto)
 );
 
-CREATE TABLE carreras_piloto (
+CREATE TABLE carreras_pilotos (
                 id_carrera_piloto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 piloto_id INT NOT NULL,
                 categoria_id TINYINT NOT NULL,
                 carrera_id INT NOT NULL,
-                tiempo_total TIME,
-                mejor_vuelta TIME,
+                tiempo_total TIME(3),
+                mejor_vuelta TIME(3),
                 num_vueltas TINYINT,
                 posicion TINYINT,
                 puntos TINYINT,
