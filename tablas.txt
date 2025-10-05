@@ -12,27 +12,22 @@ CREATE TABLE sponsors (
                 nombre_sponsor VARCHAR(50) NOT NULL,
                 web_sponsor VARCHAR(60));
 
-CREATE TABLE marcas (
-                id_marca INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                nombre_marca VARCHAR(50) NOT NULL,
-                web_marca VARCHAR(60));
-
 CREATE TABLE chasis (
                 id_chasis INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                marca_id INT NOT NULL,
                 modelo_chasis VARCHAR(30) NOT NULL,
+                marca_chasis VARCHAR(30) NOT NULL,
+                web_marca_chasis VARCHAR(100) NOT NULL,
                 foto_chasis VARCHAR(50),
                 homologacion_chasis VARCHAR(50),
-                FOREIGN KEY (marca_id) REFERENCES marcas(id_marca)
 );
 
 CREATE TABLE motores (
                 id_motor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                marca_id INT NOT NULL,
                 modelo_motor VARCHAR(30) NOT NULL,
+                marca_motores VARCHAR(30) NOT NULL,
+                web_marca_motores VARCHAR(100),
                 foto_motor VARCHAR(50),
                 homologacion_motor VARCHAR(50),
-                FOREIGN KEY (marca_id) REFERENCES marcas(id_marca)
 );
 
 CREATE TABLE pilotos (
