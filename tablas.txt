@@ -71,7 +71,7 @@ CREATE TABLE historico_pilotos (
 
 CREATE TABLE categorias (
                 id_categoria TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                nombre_cat ENUM('Senior','Mini','Junior','Rotax DD2','KZ')  NOT NULL
+                nombre_cat ENUM('Senior','Mini','Junior','Rotax DD2','KZ','KZ2')  NOT NULL
  );
 
 CREATE TABLE campeonatos (
