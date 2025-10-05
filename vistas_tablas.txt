@@ -1,0 +1,44 @@
+create view vista_pilotos_federaciones as
+select p.nombre_piloto, p.apellido_piloto, f.nombre_federacion
+from pilotos p
+join federaciones f on p.federacion_id = f.id_federacion;
+
+create view vista_pilotos_escuderias as
+select p.nombre_piloto, p.apellido_piloto, e.nombre_escuderia
+from pilotos p
+join escuderias e on p.escuderia_id = e.id_escuderia;
+
+create view vista_pilotos_sponsors as
+select p.nombre_piloto, p.apellido_piloto, s.nombre_sponsor
+from pilotos p
+join sponsors s on p.sponsor_id = s.id_sponsor;
+
+create view vista_pilotos as
+select p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.dorsal, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto,  f.nombre_federacion, e.nombre_escuderia, s.nombre_sponsor, ch.modelo_chasis, ch.marca_chasis, mo.modelo_motor, mo.marca_motores
+from pilotos p
+join federaciones f on p.federacion_id = f.id_federacion
+join escuderias e on p.escuderia_id = e.id_escuderia
+join sponsors s on p.sponsor_id = s.id_sponsor
+join chasis ch on p.chasis_id = ch.id_chasis
+join motores mo on p.motor_id = mo.id_motor;
+
+create view vista_carreras as
+select c.id_carrera, c.fecha_carrera, c.dia, c.temperatura, c.humedad, c.presion, c.pista, c.viento, ct.tipo_carrera, ci.nombre_circuito, ca.nombre_cto
+from carreras c
+join carrera_tipo ct on c.tipo_carrera_id = ct.id_carrera_tipo
+join circuitos ci on c.circuito_id = ci.id_circuito
+join campeonatos ca on c.cto_id = ca.id_cto;
+
+create view vista_carreras_pilotos as
+select vp.nombre_piloto, vp.apellido_piloto,cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, cp.puntos, ca.nombre_cat, vc.nombre_circuito, vc.tipo_carrera, vc.fecha_carrera, vc.dia, vc.pista, vc.nombre_cto
+from carreras_pilotos cp
+join categorias ca on cp.categoria_id = ca.id_categoria
+join vista_carreras vc on cp.carrera_id = vc.id_carrera
+join vista_pilotos vp on cp.piloto_id = vp.id_piloto;
+
+create view vista_carreras_pilotos1 as
+select vp.nombre_piloto, vp.apellido_piloto,cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, cp.puntos, ca.nombre_cat, vc.nombre_circuito, vc.tipo_carrera, vc.fecha_carrera, vc.dia, vc.pista, vc.nombre_cto, vp.modelo_chasis, vp.marca chasis
+from carreras_pilotos cp
+join categorias ca on cp.categoria_id = ca.id_categoria
+join vista_carreras vc on cp.carrera_id = vc.id_carrera
+join vista_pilotos vp on cp.piloto_id = vp.id_piloto;
