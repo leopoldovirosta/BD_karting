@@ -17,8 +17,8 @@ CREATE TABLE chasis (
                 modelo_chasis VARCHAR(30) NOT NULL,
                 marca_chasis VARCHAR(30) NOT NULL,
                 web_marca_chasis VARCHAR(100) NOT NULL,
-                foto_chasis VARCHAR(50),
-                homologacion_chasis VARCHAR(50),
+                foto_chasis VARCHAR(70),
+                homologacion_chasis VARCHAR(70),
 );
 
 CREATE TABLE motores (
@@ -26,8 +26,8 @@ CREATE TABLE motores (
                 modelo_motor VARCHAR(30) NOT NULL,
                 marca_motores VARCHAR(30) NOT NULL,
                 web_marca_motores VARCHAR(100),
-                foto_motor VARCHAR(50),
-                homologacion_motor VARCHAR(50),
+                foto_motor VARCHAR(70),
+                homologacion_motor VARCHAR(70),
 );
 
 CREATE TABLE pilotos (
@@ -36,9 +36,9 @@ CREATE TABLE pilotos (
                 apellido_piloto VARCHAR(50),
                 dorsal SMALLINT,
                 fecha_nacimiento DATE,
-                web_piloto VARCHAR(60),
-                email_piloto VARCHAR(30),
-                foto_piloto VARCHAR(50),
+                web_piloto VARCHAR(100),
+                email_piloto VARCHAR(60),
+                foto_piloto VARCHAR(70),
                 federacion_id TINYINT NOT NULL,
                 escuderia_id INT NOT NULL,
                 sponsor_id INT NOT NULL,
@@ -46,37 +46,13 @@ CREATE TABLE pilotos (
                 motor_id INT NOT NULL,
                 FOREIGN KEY (federacion_id) REFERENCES federaciones(id_federacion),
                 FOREIGN KEY (escuderia_id) REFERENCES escuderias(id_escuderia),
-                FOREIGN KEY (sponsor_id) REFERENCES sponsors(id_sponsor),
-                FOREIGN KEY (chasis_id) REFERENCES chasis(id_chasis),
-                FOREIGN KEY (motor_id) REFERENCES motores(id_motor)
+                FOREIGN KEY (sponsor_id) REFERENCES sponsors(id_sponsor)
 );
 
-CREATE TABLE historico_pilotos (
-                id_historico INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                fecha_inicio DATE,
-                fecha_final DATE,
-                piloto_id INT NOT NULL,
-                chasis_id INT NOT NULL,
-                motor_id INT NOT NULL,
-                foto_historico VARCHAR(50),
-                FOREIGN KEY (piloto_id) REFERENCES pilotos(id_piloto),
-                FOREIGN KEY (chasis_id) REFERENCES chasis(id_chasis),
-                FOREIGN KEY (motor_id) REFERENCES motores(id_motor)
-);
-
-CREATE TABLE categorias (
-                id_categoria TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                nombre_cat ENUM('Senior','Mini','Junior','Rotax DD2','KZ','KZ2')  NOT NULL
- );
 
 CREATE TABLE campeonatos (
                 id_cto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 nombre_cto VARCHAR(50) NOT NULL);
-
-CREATE TABLE carrera_tipo (
-                id_carrera_tipo TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                tipo_carrera ENUM('Clasificacion','Carrera 1','Carrera 2','Test') NOT NULL
-);
 
 CREATE TABLE circuitos (
                 id_circuito INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -92,33 +68,35 @@ CREATE TABLE circuitos (
  );
 
 CREATE TABLE carreras (
-                id_carrera INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                fecha_carrera DATE NOT NULL,
-                dia ENUM('Despejado','Ligeramente nublado','Muy nublado','Nublado'),
-                temperatura TINYINT,
-                humedad TINYINT,
-                presion SMALLINT,
-                viento TINYINT,
-                pista ENUM('Seco','Mojado'),
-                tipo_carrera_id TINYINT NOT NULL,
-                circuito_id INT,
-                cto_id INT,
-                FOREIGN KEY (tipo_carrera_id) REFERENCES carrera_tipo(id_carrera_tipo),
-                FOREIGN KEY (circuito_id) REFERENCES circuitos(id_circuito),
-                FOREIGN KEY (cto_id) REFERENCES campeonatos(id_cto)
+                id_carrera INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                fecha_carrera DATE NOT NULL,
+                dia ENUM('Despejado','Ligeramente nublado','Muy nublado','Nublado'),
+                temperatura TINYINT,
+                humedad TINYINT,
+                presion SMALLINT,
+                viento TINYINT,
+                pista ENUM('Seco','Mojado'),
+                tipo_carrera ENUM('Clasificacion','Carrera 1','Carrera 2','Test') NOT NULL,
+                circuito_id INT,
+                cto_id INT,
+                FOREIGN KEY (circuito_id) REFERENCES circuitos(id_circuito),
+                FOREIGN KEY (cto_id) REFERENCES campeonatos(id_cto)
 );
 
 CREATE TABLE carreras_pilotos (
-                id_carrera_piloto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                piloto_id INT NOT NULL,
-                categoria_id TINYINT NOT NULL,
-                carrera_id INT NOT NULL,
-                tiempo_total TIME(3),
-                mejor_vuelta TIME(3),
-                num_vueltas TINYINT,
-                posicion TINYINT,
-                puntos TINYINT,
-                FOREIGN KEY (piloto_id) REFERENCES pilotos(id_piloto),
-                FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria),
-                FOREIGN KEY (carrera_id) REFERENCES carreras(id_carrera)
+id_carrera_piloto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+piloto_id INT NOT NULL,
+carrera_id INT NOT NULL,
+chasis_id INT NOT NULL,
+motor_id INT NOT NULL,
+categoria ENUM('Senior','Mini','Junior','Rotax DD2','KZ','KZ2','Tillotson T4')  NOT NULL,
+tiempo_total TIME(3),
+mejor_vuelta TIME(3),
+num_vueltas TINYINT,
+posicion TINYINT,
+puntos TINYINT,
+FOREIGN KEY (piloto_id) REFERENCES pilotos(id_piloto),
+FOREIGN KEY (carrera_id) REFERENCES carreras(id_carrera),
+FOREIGN KEY (chasis_id) REFERENCES chasis(id_chasis),
+FOREIGN KEY (motor_id) REFERENCES motores(id_motor)
 );
