@@ -78,7 +78,6 @@ CREATE TABLE carreras (
                 pista ENUM('Seco','Mojado'),
                 tipo_carrera ENUM('Clasificacion','Carrera 1','Carrera 2','Test') NOT NULL,
                 circuito_id INT,
-                cto_id INT,
                 FOREIGN KEY (circuito_id) REFERENCES circuitos(id_circuito),
                 FOREIGN KEY (cto_id) REFERENCES campeonatos(id_cto)
 );
