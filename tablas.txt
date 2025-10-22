@@ -95,7 +95,6 @@ CREATE TABLE carreras_pilotos (
                 mejor_vuelta TIME(3),
                 num_vueltas TINYINT,
                 posicion TINYINT,
-                puntos TINYINT,
                 FOREIGN KEY (piloto_id) REFERENCES pilotos(id_piloto),
                 FOREIGN KEY (carrera_id) REFERENCES carreras(id_carrera),
                 FOREIGN KEY (chasis_id) REFERENCES chasis(id_chasis),
