@@ -14,25 +14,56 @@ from pilotos p
 join sponsors s on p.sponsor_id = s.id_sponsor;
 
 create view vista_pilotos as
-select p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.dorsal, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto,  f.nombre_federacion, e.nombre_escuderia, s.nombre_sponsor, ch.modelo_chasis, ch.marca_chasis, mo.modelo_motor, mo.marca_motores
+select p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto,  f.nombre_federacion, e.nombre_escuderia, s.nombre_sponsor
 from pilotos p
 join federaciones f on p.federacion_id = f.id_federacion
 join escuderias e on p.escuderia_id = e.id_escuderia
-join sponsors s on p.sponsor_id = s.id_sponsor
-join chasis ch on p.chasis_id = ch.id_chasis
-join motores mo on p.motor_id = mo.id_motor;
+join sponsors s on p.sponsor_id = s.id_sponsor;
 
 create view vista_carreras as
-select c.id_carrera, c.fecha_carrera, c.dia, c.temperatura, c.humedad, c.presion, c.pista, c.viento, ct.tipo_carrera, ci.nombre_circuito, ca.nombre_cto
+select c.id_carrera, c.fecha_carrera, c.dia, c.temperatura, c.humedad, c.presion, c.viento, c.pista, c.tipo_carrera, ci.nombre_circuito
 from carreras c
-join carrera_tipo ct on c.tipo_carrera_id = ct.id_carrera_tipo
-join circuitos ci on c.circuito_id = ci.id_circuito
-join campeonatos ca on c.cto_id = ca.id_cto;
+join circuitos ci on c.circuito_id = ci.id_circuito;
+
+create view vista_chasis as
+select id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, homologacion_chasis
+from chasis;
+
+create view vista_federaciones as
+select  id_federacion, nombre_federacion
+from federaciones;
+
+create view vista_motores as
+select id_motor, modelo_motor, marca_motores, web_marca_motores, foto_motor, homologacion_motor
+from motores;
+
+create view vista_escuderias as
+select  id_escuderia, nombre_escuderia, web_escuderia
+from escuderias;
+
+create view vista_sponsors as
+select  id_sponsor, nombre_sponsor, web_sponsor
+from sponsors;
+
+create view vista_campeonatos as
+select id_cto, nombre_cto
+from campeonatos;
+
+create view vista_circuitos as
+select id_circuito, nombre_circuito, provincia_circuito, web_circuito, direccion_circuito, telefono_circuito
+from circuitos;
+
+create view vista_carreras_cto as
+select cc.carrera_id, cc.cto_id, cam.nombre_cto, cc.carrera_piloto_id, cc.puntos, car.fecha_carrera, car.tipo_carrera, car.circuito_id, cir.nombre_circuito
+from carreras_cto cc
+join campeonatos cam on cc.cto_id = cam.id_cto
+join carreras car on cc.carrera_id = car.id_carrera
+join carreras_pilotos cp on cc.carrera_piloto_id = cp.id_carrera_piloto
+join circuitos cir on car.circuito_id = cir.id_circuito;
 
 create view vista_carreras_pilotos as
-select vp.nombre_piloto, vp.apellido_piloto,cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, cp.puntos, ca.nombre_cat, vc.nombre_circuito, vc.tipo_carrera, vc.fecha_carrera, vc.dia, vc.pista, vc.nombre_cto
+select p.nombre_piloto, p.apellido_piloto, cp.dorsal, vcc.carrera_id, vcc.nombre_cto, vcc., cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, vcc.puntos
 from carreras_pilotos cp
-join categorias ca on cp.categoria_id = ca.id_categoria
-join vista_carreras vc on cp.carrera_id = vc.id_carrera
-join vista_pilotos vp on cp.piloto_id = vp.id_piloto;
+join pilotos p on cp.piloto_id = p.id_piloto
+join vista_carreras_cto vcc on cp.id_carrera_piloto = vcc.carrera_piloto_id;
 
