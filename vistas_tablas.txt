@@ -53,20 +53,13 @@ create view vista_circuitos as
 select id_circuito, nombre_circuito, provincia_circuito, web_circuito, direccion_circuito, telefono_circuito
 from circuitos;
 
-create view vista_carreras_cto as
-select cc.carrera_id, cc.cto_id, cam.nombre_cto, cc.carrera_piloto_id, cc.puntos, car.fecha_carrera, car.tipo_carrera, car.circuito_id, cir.nombre_circuito
-from carreras_cto cc
-join campeonatos cam on cc.cto_id = cam.id_cto
-join carreras car on cc.carrera_id = car.id_carrera
-join carreras_pilotos cp on cc.carrera_piloto_id = cp.id_carrera_piloto
-join circuitos cir on car.circuito_id = cir.id_circuito;
-
 create view vista_carreras_pilotos as
-select p.nombre_piloto, p.apellido_piloto, cp.dorsal, vcc.carrera_id, vcc.nombre_cto, vcc.fecha_carrera, vcc.nombre_circuito,  vcc.tipo_carrera, cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, vcc.puntos, ch.marca_chasis, ch.modelo_chasis, mo.marca_motores, mo.modelo_motor
+select vcar.id_carrera, vcar.fecha_carrera, vcar.tipo_carrera, vcar.nombre_circuito,  p.nombre_piloto, p.apellido_piloto, cp.dorsal, cam.nombre_cto, cp.tiempo_total, cp.mejor_vuelta, cp.num_vueltas, cp.posicion, cp.puntos, ch.marca_chasis, ch.modelo_chasis, mo.marca_motores, mo.modelo_motor
 from carreras_pilotos cp
 join pilotos p on cp.piloto_id = p.id_piloto
-join vista_carreras_cto vcc on cp.id_carrera_piloto = vcc.carrera_piloto_id
+join vista_carreras vcar on cp.carrera_id = vcar.id_carrera
 join chasis ch on cp.chasis_id = ch.id_chasis
-join motores mo on cp.motor_id = mo.id_motor;
+join motores mo on cp.motor_id = mo.id_motor
+join campeonatos cam on cp.cto_id = cam.id_cto;
 
 
