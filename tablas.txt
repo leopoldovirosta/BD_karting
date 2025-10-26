@@ -1,6 +1,6 @@
 CREATE TABLE federaciones (
                 id_federacion INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                nombre_federacion ENUM('No federado','Andaluza','Aragonesa','Asturias','Canaria','Cantabra','Castilla La Mancha','Castilla y Leon','Catalana','Ceuta','Extremeña','Gallega','Islas Canarias','Islas Baleares','Las Palmas','La Rioja','Madrileña','Melilla','Murcia','Navarra','Tenerife','Valenciana') NOT NULL);
+                nombre_federacion ENUM('Privado','Andaluza','Aragonesa','Asturias','Canaria','Cantabra','Castilla La Mancha','Castilla y Leon','Catalana','Ceuta','Extremeña','Gallega','Islas Canarias','Islas Baleares','Las Palmas','La Rioja','Madrileña','Melilla','Murcia','Navarra','Tenerife','Valenciana') NOT NULL);
 
 CREATE TABLE escuderias (
                 id_escuderia INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -85,8 +85,8 @@ CREATE TABLE carreras_pilotos (
 carrera_id INT UNSIGNED NOT NULL,
 piloto_id INT UNSIGNED NOT NULL,
 cto_id INT UNSIGNED NOT NULL,
-chasis_id INT UNSIGNED NOT NULL,
-motor_id INT UNSIGNED NOT NULL,
+chasis_id INT UNSIGNED,
+motor_id INT UNSIGNED,
 categoria ENUM('Senior','Mini','Junior','Rotax DD2','KZ','KZ2','Tillotson T4')  NOT NULL,
 dorsal SMALLINT,
 tiempo_total TIME(3),
