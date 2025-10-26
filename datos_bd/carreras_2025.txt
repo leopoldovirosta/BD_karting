@@ -4,3 +4,9 @@ insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2
 insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/04/27','Despejado','Seco','Clasificacion',4);
 insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/04/27','Despejado','Seco','Carrera 1',4);
 insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/04/27','Despejado','Seco','Carrera 2',4);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/06/08','Despejado','Seco','Clasificacion',3);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/06/08','Despejado','Seco','Carrera 1',3);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/06/08','Despejado','Seco','Carrera 2',3);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/10/19','Despejado','Seco','Clasificacion',2);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/10/19','Despejado','Seco','Carrera 1',2);
+insert into carreras(fecha_carrera,dia,pista,tipo_carrera,circuito_id) values('2025/10/19','Despejado','Seco','Carrera 2',2);
