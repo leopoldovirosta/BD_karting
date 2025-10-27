@@ -4,7 +4,7 @@ insert into sponsors(nombre_sponsor,web_sponsor) values ('Macisa Motorsports','h
 insert into escuderias(nombre_escuderia) values('Privado');
 insert into escuderias(nombre_escuderia,web_escuderia) values('SRP Engines','https://www.srp-engines.com/');
 
-insert into federaciones(nombre_federacion) values('No federado');
+insert into federaciones(nombre_federacion) values('Privado');
 insert into federaciones(nombre_federacion) values('Andaluza');
 insert into federaciones(nombre_federacion) values('Aragonesa');
 insert into federaciones(nombre_federacion) values('Asturias');
