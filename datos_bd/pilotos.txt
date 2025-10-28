@@ -75,3 +75,25 @@ insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sp
 insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Ferran','Bogallo Romera',1,1,1);
 insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Jorge','Vivas Moro',1,1,1);
 insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Daniel','Vila',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Max','Landaluce',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Adrián','Benítez-Davila',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Fran Manuel','Alaminos Ardila',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Iván','Oliver Abizanda',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Bruno','García Garus',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Sergi','Torres Tuku',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Mark','Ugarte Lopez',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Eric','González Mosquera',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Leo','Corcoles',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Darío','Vélez Calvo',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Marc','Cruz Romacho',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Jordi','Yaskov',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('David','Parra Agudo',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Hugo','Pérez Gómez',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Nil','Numbru Chavete',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Micky','González',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Ian','Hortal Anglés',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Julen','Gutierrez Ceanuri',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Axel','Iborra Veliz',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Lola','Pérez Galindo',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,federacion_id,escuderia_id,sponsor_id) values ('Gordey','Ganea',1,1,1);
+

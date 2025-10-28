@@ -114,3 +114,27 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,45,1,'Senior',33,'0:1:07.269',32);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,45,2,'Senior',33,'0:1:07.269',32);
 
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,78,2,'Junior',15,'0:1:05.388',1,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,79,2,'Junior',155,'0:1:05.413',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,80,2,'Junior',913,'0:1:06.023',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,81,2,'Junior',11,'0:1:06.503',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,82,2,'Junior',76,'0:1:06.572',5);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,43,2,'Junior',25,'0:1:07.332',6);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,83,2,'Junior',5,'0:1:09.434',7);
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,84,2,'Mini Rotax',44,'0:1:10.189',1,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,85,2,'Mini 85 Aire',48,'0:1:11.105',1,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,86,2,'Mini 60 Agua',140,'0:1:11.469',1,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,87,2,'Mini 60 Agua',111,'0:1:11.484',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,88,2,'Mini 85 Aire',81,'0:1:11.495',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,89,2,'Mini 85 Aire',2,'0:1:11.509',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,90,2,'Mini 60 Agua',18,'0:1:12.280',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,91,2,'Mini 85 Aire',55,'0:1:12.492',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,92,2,'Pre-Mini 60 Agua',99,'0:1:13.434',1,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,93,2,'Pre-Mini 60 Agua',99,'0:1:13.808',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,94,2,'Pre-Mini 60 Agua',19,'0:1:14.062',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,95,2,'Pre-Mini 64 Aire',114,'0:1:14.610',2,1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,96,2,'Mini 85 Aire',16,'0:1:15.636',5);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,97,2,'Mini 60 Agua',10,'0:1:15.844',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,98,2,'Pre-Mini 60 Agua',600,'0:1:15.952',4);
+
