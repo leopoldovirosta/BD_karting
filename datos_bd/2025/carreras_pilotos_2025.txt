@@ -215,4 +215,21 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,14,1,'KZ',95,'0:1:04.335',13,8,8);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,14,2,'KZ',95,'0:1:04.335',13,8,11);
 
+Zuera Carrera 2 KZ
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,8,1,'KZ',96,'0:1:01.643',13,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,8,2,'KZ',96,'0:1:01.643',13,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,2,1,'KZ',191,'0:1:01.473',13,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,2,2,'KZ',191,'0:1:01.473',13,2,23);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,3,1,'KZ',320,'0:1:01.803',13,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,3,2,'KZ',320,'0:1:01.803',13,3,21);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,7,1,'KZ',49,'0:1:01.915',13,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,7,2,'KZ',49,'0:1:01.915',13,4,19);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,10,1,'KZ',40,'0:1:01.551',13,5,11);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,10,2,'KZ',40,'0:1:01.551',13,5,17);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,14,1,'KZ',95,'0:1:04.443',13,6,10);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,14,2,'KZ',95,'0:1:04.443',13,6,15);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,13,1,'KZ',222,'0:1:02.085',9,7,9);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,13,2,'KZ',222,'0:1:02.085',9,7,0);
+
 
