@@ -76,7 +76,7 @@ CREATE TABLE carreras (
                 presion SMALLINT,
                 viento TINYINT,
                 pista ENUM('Seco','Mojado'),
-                tipo_carrera ENUM('Clasificacion','Carrera 1','Carrera 2','Test') NOT NULL,
+                tipo_carrera ENUM('Clasificacion','Carrera 1','Carrera 2','Warm Up','Test') NOT NULL,
                 circuito_id INT,
                 FOREIGN KEY (circuito_id) REFERENCES circuitos(id_circuito)
 );
