@@ -394,3 +394,87 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,71,1,'Senior',87,'0:1:06.429',4,29,0);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,71,2,'Senior',87,'0:1:06.429',4,29,0);
 
+Torremocha Clasificacion
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,9,1,'KZ',93,'0:0:52.970',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,24,1,'Rotax DD2',1,'0:0:53.830',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,34,1,'Senior',400,'0:0:54.090',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,4,1,'KZ',355,'0:0:54.500',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,25,1,'Rotax DD2',821,'0:0:54.510',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,27,1,'Rotax DD2',89,'0:0:54.530',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,38,1,'Senior',12,'0:0:54.660',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,30,1,'Rotax DD2',322,'0:0:55.570',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,41,1,'Senior',11,'0:0:55.660',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,44,1,'Senior',328,'0:0:55.830',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,15,1,'KZ',129,'0:0:56.100',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,49,1,'Senior',28,'0:0:56.330',5);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,45,1,'Senior',33,'0:1:00.000',6);
+
+Torremocha Carrera 1
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,num_vueltas,posicion,puntos) values(5,4,1,'KZ',355,17,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,15,1,'KZ',129,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,9,1,'KZ',93,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,24,1,'Rotax DD2',1,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,27,1,'Rotax DD2',89,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,30,1,'Rotax DD2',322,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,25,1,'Rotax DD2',821,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,34,1,'Senior',400,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,38,1,'Senior',12,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,41,1,'Senior',11,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,44,1,'Senior',328,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,49,1,'Senior',28,5,11);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,45,1,'Senior',33,6,10);
+
+Torremocha Carrera 2
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,9,1,'KZ',93,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,4,1,'KZ',355,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,15,1,'KZ',129,4,0);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,24,1,'Rotax DD2',1,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,25,1,'Rotax DD2',821,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,27,1,'Rotax DD2',89,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,30,1,'Rotax DD2',322,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,34,1,'Senior',400,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,38,1,'Senior',12,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,41,1,'Senior',11,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,49,1,'Senior',28,4,13);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,44,1,'Senior',328,5,11);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,45,1,'Senior',33,6,10);
+
+Samper Clasificacion
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,5,1,'KZ','0:0:58.030',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(7,24,1,'Rotax DD2',1,'0:0:59.770',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(7,38,1,'Senior',12,'0:1:00.050',1);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,34,1,'Senior','0:1:00.600',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,51,1,'Senior','0:1:01.160',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(7,25,1,'Rotax DD2',821,'0:1:01.300',2);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,47,1,'Senior','0:1:01.710',4);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,33,1,'Rotax DD2','0:1:02.090',3);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,55,1,'Senior','0:1:02.110',5);
+
+Samper Carrera 1
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,5,1,'KZ',1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(8,24,1,'Rotax DD2',1,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,34,1,'Senior',1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(8,38,1,'Senior',12,2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,33,1,'Rotax DD2',2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,47,1,'Senior',3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(8,25,1,'Rotax DD2',821,3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,55,1,'Senior',4,13);
+
+Samper Carrera 2
+
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,5,1,'KZ',1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(9,24,1,'Rotax DD2',1,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(9,38,1,'Senior',12,1,25);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,51,1,'Senior',2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,34,1,'Rotax DD2',2,20);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,47,1,'Senior',3,16);
+insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(9,25,1,'Rotax DD2',821,3,16)
+
+
+
+
