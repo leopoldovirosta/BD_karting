@@ -31,24 +31,21 @@ CREATE TABLE motores (
 );
 
 CREATE TABLE pilotos (
-                id_piloto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                nombre_piloto VARCHAR(30) NOT NULL,
-                apellido_piloto VARCHAR(50),
-                dorsal SMALLINT,
-                fecha_nacimiento DATE,
-                web_piloto VARCHAR(100),
-                email_piloto VARCHAR(60),
-                foto_piloto VARCHAR(70),
-                federacion_id TINYINT NOT NULL,
-                escuderia_id INT NOT NULL,
-                sponsor_id INT NOT NULL,
-                chasis_id INT NOT NULL,
-                motor_id INT NOT NULL,
-                FOREIGN KEY (federacion_id) REFERENCES federaciones(id_federacion),
-                FOREIGN KEY (escuderia_id) REFERENCES escuderias(id_escuderia),
-                FOREIGN KEY (sponsor_id) REFERENCES sponsors(id_sponsor)
+id_piloto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nombre_piloto VARCHAR(30) NOT NULL,
+apellido_piloto VARCHAR(50),
+fecha_nacimiento DATE,
+web_piloto VARCHAR(100),
+email_piloto VARCHAR(60),
+foto_piloto VARCHAR(70),
+pais ENUM(Alemania, Bélgica, Croacia, Dinamarca, España, Francia, Irlanda, Letonia, Luxemburgo, Países Bajos, Suecia, Bulgaria, Eslovaquia, Estonia, Grecia, Malta, Polonia, República Checa, Austria, Chipre, Eslovenia, Finlandia, Hungría, Italia, Lituania, Portugal, Rumanía),
+federacion_id INT UNSIGNED NOT NULL,
+escuderia_id INT UNSIGNED NOT NULL,
+sponsor_id INT UNSIGNED NOT NULL,
+FOREIGN KEY (federacion_id) REFERENCES federaciones(id_federacion),
+FOREIGN KEY (escuderia_id) REFERENCES escuderias(id_escuderia),
+FOREIGN KEY (sponsor_id) REFERENCES sponsors(id_sponsor)
 );
-
 
 CREATE TABLE campeonatos (
                 id_cto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
