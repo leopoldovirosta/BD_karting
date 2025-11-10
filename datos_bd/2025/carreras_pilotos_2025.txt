@@ -1,4 +1,4 @@
-**LEO**
+LEO;
 insert into carreras_pilotos(carrera_id,piloto_id,cto_id,chasis_id,motor_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion) values(1,1,1,2,2,'KZ',2,'0:1:05.181',6,8);
 insert into carreras_pilotos(carrera_id,piloto_id,cto_id,chasis_id,motor_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion) values(1,1,2,2,2,'KZ',2,'0:1:05.181',6,8);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,chasis_id,motor_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,1,1,2,2,'KZ',2,'0:1:05.970',2,9,7);
@@ -13,7 +13,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,chasis_id,motor_id,cat
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,chasis_id,motor_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(11,1,1,3,3,'KZ',133,'0:1:01.460',13,7,9);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,chasis_id,motor_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(12,1,1,3,3,'KZ',133,'0:1:01.630',15,7,9);
 
-**Zuera Qualy**
+Zuera Qualy;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,10,1,'KZ',40,'0:1:00.702',1);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion,puntos) values(1,10,2,'KZ',40,'0:1:00.702',1,1);
@@ -138,7 +138,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,97,2,'Mini 60 Agua',10,'0:1:15.844',4);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(1,98,2,'Pre-Mini 60 Agua',600,'0:1:15.952',4);
 
-Zuera Carrera 1 DD2
+Zuera Carrera 1 DD2;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,26,1,'Rotax DD2',501,'0:1:03.398',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,26,2,'Rotax DD2',501,'0:1:03.398',13,1,25);
@@ -157,7 +157,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,36,1,'Rotax DD2',500,'0:1:05.105',13,8,8);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,36,2,'Rotax DD2',500,'0:1:05.105',13,8,11);
 
-Zuera Carrera 2 DD2
+Zuera Carrera 2 DD2;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,26,1,'Rotax DD2',501,'0:1:03.634',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,26,2,'Rotax DD2',501,'0:1:03.398',13,1,25);
@@ -176,7 +176,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,37,1,'Rotax DD2',46,'0:1:06.103',4,8,8);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,37,2,'Rotax DD2',46,'0:1:06.103',4,8,0);
 
-Zuera Carrera 1 Junior
+Zuera Carrera 1 Junior;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,78,2,'Junior',15,'0:1:05.717',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,80,2,'Junior',913,'0:1:05.967',13,2,23);
@@ -186,7 +186,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,43,2,'Junior',25,'0:1:06.200',13,6,15);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,83,2,'Junior',5,'0:1:08.345',13,7,13);
 
-Zuera Carrera 2 Junior
+Zuera Carrera 2 Junior;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,80,2,'Junior',913,'0:1:05.882',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,78,2,'Junior',15,'0:1:06.065',13,2,23);
@@ -196,7 +196,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,43,2,'Junior',25,'0:1:06.420',13,6,15);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,83,2,'Junior',5,'0:1:07.951',13,7,13);
 
-Zuera Carrera 1 KZ
+Zuera Carrera 1 KZ;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,2,1,'KZ',191,'0:1:01.224',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,2,2,'KZ',191,'0:1:01.224',13,1,25);
@@ -215,7 +215,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,14,1,'KZ',95,'0:1:04.335',13,8,8);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,14,2,'KZ',95,'0:1:04.335',13,8,11);
 
-Zuera Carrera 2 KZ
+Zuera Carrera 2 KZ;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,8,1,'KZ',96,'0:1:01.643',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,8,2,'KZ',96,'0:1:01.643',13,1,25);
@@ -232,7 +232,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,13,1,'KZ',222,'0:1:02.085',9,7,9);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,13,2,'KZ',222,'0:1:02.085',9,7,0);
 
-Zuera Carrera 1 Mini
+Zuera Carrera 1 Mini;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,86,2,'Mini 60 Agua',140,'0:1:11.636',8,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,90,2,'Mini 60 Agua',18,'0:1:12.041',8,2,23);
@@ -250,7 +250,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,98,2,'Pre-Mini 60 Agua',600,'0:1:16.232',8,4,19);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,95,2,'Pre-Mini 64 Aire',114,'0:1:14.224',8,1,25);
 
-Zuera Carrera 2 Mini
+Zuera Carrera 2 Mini;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,86,2,'Mini 60 Agua',140,'0:1:11.091',9,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,87,2,'Mini 60 Agua',111,'0:1:12.361',9,2,23);
@@ -268,7 +268,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,98,2,'Pre-Mini 60 Agua',600,'0:1:16.050',9,4,19);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,95,2,'Pre-Mini 64 Aire',114,'0:1:14.747',9,1,25);
 
-Zuera Carrera 1 Senior
+Zuera Carrera 1 Senior;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,40,1,'Senior',7,'0:1:03.271',13,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,40,2,'Senior',7,'0:1:03.271',13,1,25);
@@ -333,7 +333,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,76,1,'Senior',71,'0:1:06.786',3,31,0);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(2,76,2,'Senior',71,'0:1:06.786',3,31,0);
 
-Zuera Carrera 2 Senior
+Zuera Carrera 2 Senior;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,40,1,'Senior',7,'0:1:03.652',9,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,40,2,'Senior',7,'0:1:03.652',9,1,25);
@@ -394,7 +394,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,71,1,'Senior',87,'0:1:06.429',4,29,0);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,num_vueltas,posicion,puntos) values(3,71,2,'Senior',87,'0:1:06.429',4,29,0);
 
-Torremocha Clasificacion
+Torremocha Clasificacion;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,9,1,'KZ',93,'0:0:52.970',1);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,24,1,'Rotax DD2',1,'0:0:53.830',1);
@@ -410,7 +410,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,49,1,'Senior',28,'0:0:56.330',5);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(4,45,1,'Senior',33,'0:1:00.000',6);
 
-Torremocha Carrera 1
+Torremocha Carrera 1;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,num_vueltas,posicion,puntos) values(5,4,1,'KZ',355,17,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,15,1,'KZ',129,3,16);
@@ -426,7 +426,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posic
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,49,1,'Senior',28,5,11);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(5,45,1,'Senior',33,6,10);
 
-Torremocha Carrera 2
+Torremocha Carrera 2;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,9,1,'KZ',93,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,4,1,'KZ',355,2,20);
@@ -442,7 +442,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posic
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,44,1,'Senior',328,5,11);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(6,45,1,'Senior',33,6,10);
 
-Samper Clasificacion
+Samper Clasificacion;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,5,1,'KZ','0:0:58.030',1);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(7,24,1,'Rotax DD2',1,'0:0:59.770',1);
@@ -454,7 +454,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,33,1,'Rotax DD2','0:1:02.090',3);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,mejor_vuelta,posicion) values(7,55,1,'Senior','0:1:02.110',5);
 
-Samper Carrera 1
+Samper Carrera 1;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,5,1,'KZ',1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(8,24,1,'Rotax DD2',1,1,25);
@@ -465,7 +465,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,pun
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(8,25,1,'Rotax DD2',821,3,16);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(8,55,1,'Senior',4,13);
 
-Samper Carrera 2
+Samper Carrera 2;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,5,1,'KZ',1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(9,24,1,'Rotax DD2',1,1,25);
@@ -475,7 +475,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,pun
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,posicion,puntos) values(9,47,1,'Senior',3,16);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(9,25,1,'Rotax DD2',821,3,16)
 
-Motorland Clasificacion
+Motorland Clasificacion;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(10,39,1,'Senior',27,'0:1:02.360',1);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor_vuelta,posicion) values(10,43,1,'Senior',4,'0:1:02.800',2);
@@ -510,7 +510,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,mejor
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion) values(10,22,1,'KZ',22,15);
 
 
-Motorland Carrera 1
+Motorland Carrera 1;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(11,39,1,'Senior',27,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(11,43,1,'Senior',4,2,20);
@@ -545,7 +545,7 @@ insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,num_v
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(11,23,1,'KZ',42,15,1);
 
 
-Motorland Carrera 2
+Motorland Carrera 2;
 
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(12,39,1,'Senior',27,1,25);
 insert into carreras_pilotos (carrera_id,piloto_id,cto_id,categoria,dorsal,posicion,puntos) values(12,43,1,'Senior',4,2,20);
