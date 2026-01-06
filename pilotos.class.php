@@ -65,23 +65,30 @@ class Piloto extends DataObject {
             return [[], 0]; // Devolvemos array vacío en caso de error
         }
     }
-/*
+
     public static function getPiloto($id_piloto) {
         $conn = parent::connect();
+        if (!$conn) return null;
+
         $sql = "SELECT * FROM " . VIEW_PILOTOS . " WHERE id_piloto = :id_piloto";
 
         try {
             $st = $conn->prepare($sql);
-            $st->bindValue(":id_piloto", $id_piloto, PDO::PARAM_INT);
+            $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
             $st->execute();
             $row = $st->fetch();
             parent::disconnect($conn);
-            if ($row) return new Piloto($row);
+            if ($row) {
+                return new Piloto($row);
+            } else {
+                return null;
+            }
         } catch (PDOException $e) {
             parent::disconnect($conn);
-            die("Query failed: " . $e->getMessage());
+            error_log("Error en getPiloto: " . $e->getMessage());
+            return null;
+            }
         }
-    }
-*/
+
 }
 ?>
