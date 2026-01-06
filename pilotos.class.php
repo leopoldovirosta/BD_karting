@@ -35,29 +35,49 @@ class Piloto extends DataObject {
             $whereClause = " WHERE nombre_piloto LIKE :search OR apellido_piloto LIKE :search ";
         }
         
-        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM " . VIEW_PILOTOS . " $whereClause ORDER BY $order LIMIT :startRow, :numRows";
+//        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM " . VIEW_PILOTOS . " $whereClause ORDER BY $order LIMIT :startRow, :numRows";
     
         try {
-            $st = $conn->prepare($sql);
+            // --- PRIMERA CONSULTA: Obtener el total de filas (COUNT) ---
+            $sqlCount = "SELECT COUNT(*) FROM " . VIEW_PILOTOS . " $whereClause";
+            $stCount = $conn->prepare($sqlCount);
 
-        // Si hay búsqueda, vinculamos el parámetro con comodines %
+            // Si hay búsqueda, vinculamos el parámetro con comodines %
             if (!empty($search)) {
-                $st->bindValue(":search", "%" . $search . "%", PDO::PARAM_STR);
+                $stCount->bindValue(":search", "%" . $search . "%", PDO::PARAM_STR);
             }
 
-            $st->bindValue(":startRow", (int)$startRow, PDO::PARAM_INT);
-            $st->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
-            $st->execute();
+            $stCount->execute();
+            $totalRows = $stCount->fetchColumn();
+
+            // Si el conteo es 0, podemos terminar aquí para ahorrar recursos
+            if ($totalRows == 0) {
+                parent::disconnect($conn);
+                        return [[], 0];
+            }
+
+            // --- SEGUNDA CONSULTA: Obtener los datos reales (SELECT *) ---
+            $sqlData = "SELECT * FROM " . VIEW_PILOTOS . " 
+                        $whereClause 
+                        ORDER BY $order 
+                        LIMIT :startRow, :numRows";
+            
+            $stData = $conn->prepare($sqlData);
+            
+            if (!empty($search)) {
+                $stData->bindValue(":search", "%" . $search . "%", PDO::PARAM_STR);
+            }
+
+            $stData->bindValue(":startRow", (int)$startRow, PDO::PARAM_INT);
+            $stData->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
+            $stData->execute();
             $pilotos = array();
-            foreach ($st->fetchAll() as $row) {
+            foreach ($stData->fetchAll() as $row) {
                 $pilotos[] = new Piloto($row);
             }
-        // Obtener el total de filas para la paginación
-        $res = $conn->query("SELECT FOUND_ROWS() AS totalRows");
-        $totalRows = $res->fetchColumn();
 
-        parent::disconnect($conn);
-        return array($pilotos, $totalRows);
+            parent::disconnect($conn);
+            return array($pilotos, $totalRows);
 
         } catch (PDOException $e) {
             parent::disconnect($conn);
