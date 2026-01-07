@@ -6,6 +6,5 @@ define("PAGE_SIZE", 20);
 define("IMAGE_PILOT_DIRECTORY", "/cloud/images/piloto/");
 define("VIEW_PILOTOS", "vista_pilotos");
 define("VIEW_CARRERAS", "vista_carreras");
-
 ?>
 

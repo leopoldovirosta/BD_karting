@@ -99,13 +99,13 @@ displayPageHeader("Lista de pilotos");
         Mostrando <?php echo $start + 1 ?>-<?php echo min($start + $pageSize, $totalRows) ?> de <?php echo $totalRows ?>
     </p>
         <?php if ($start > 0 ): ?>
-            <a href="view_pilotos.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">&laquo; Página anterior</a>
+            <a href="view_pilotos.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">&laquo; Página anterior</a>
         <?php endif; ?>
         
         &nbsp;
         
         <?php if ($start + $pageSize < $totalRows): ?>
-            <a href="view_pilotos.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">Página siguiente &raquo;</a>
+            <a href="view_pilotos.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">Página siguiente &raquo;</a>
         <?php endif; ?>
     </div> 
 <?php

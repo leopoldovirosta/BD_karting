@@ -35,8 +35,6 @@ class Piloto extends DataObject {
             $whereClause = " WHERE nombre_piloto LIKE :search OR apellido_piloto LIKE :search ";
         }
         
-//        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM " . VIEW_PILOTOS . " $whereClause ORDER BY $order LIMIT :startRow, :numRows";
-    
         try {
             // --- PRIMERA CONSULTA: Obtener el total de filas (COUNT) ---
             $sqlCount = "SELECT COUNT(*) FROM " . VIEW_PILOTOS . " $whereClause";
