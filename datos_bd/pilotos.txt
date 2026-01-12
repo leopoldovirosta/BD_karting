@@ -1,4 +1,4 @@
-insert into pilotos (nombre_piloto,apellido_piloto,fecha_nacimiento,web_piloto,email_piloto,foto_piloto,pais,federacion_id,escuderia_id,sponsor_id) values ('Leo','Virosta','1970/12/25','https://leovirosta.blog/', 'lvirosta@outlook.es', '/home/leo/ionos/BD_karting/images/piloto/leovirosta.jpg','España',1,1,1);
+insert into pilotos (nombre_piloto,apellido_piloto,fecha_nacimiento,web_piloto,email_piloto,foto_piloto,pais,federacion_id,escuderia_id,sponsor_id) values ('Leo','Virosta','1970/12/25','https://leovirosta.blog/', 'lvirosta@outlook.es', 'leovirosta.jpg','España',1,1,1);
 insert into pilotos (nombre_piloto,apellido_piloto,pais,federacion_id,escuderia_id,sponsor_id) values ('Arnau','Safont Bruix','España',1,1,1);
 insert into pilotos (nombre_piloto,apellido_piloto,pais,federacion_id,escuderia_id,sponsor_id) values ('Alejandro','Español Merino','España',1,1,1);
 insert into pilotos (nombre_piloto,apellido_piloto,pais,federacion_id,escuderia_id,sponsor_id) values ('Sergio','Abenoza','España',1,1,1);

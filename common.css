@@ -1,4 +1,4 @@
-<style>
+<styee>
 
     th {
         background-color: green;
@@ -55,55 +55,55 @@
     }
 
     .foto {
-    width: 30px;          /* Ancho fijo */
-    height: 30px;         /* Alto fijo */
-    object-fit: cover;    /* Recorta la imagen para que llene el espacio sin deformarse */
-    border-radius: 50%;   /* Hace la foto circular (estilo moderno) */
-    border: 2px solid #ddd;
-    display: block;
-    margin: 0 auto;       /* Centra la imagen en la celda */
+        width: 30px;          /* Ancho fijo */
+        height: 30px;         /* Alto fijo */
+        object-fit: cover;    /* Recorta la imagen para que llene el espacio sin deformarse */
+        border-radius: 50%;   /* Hace la foto circular (estilo moderno) */
+        border: 2px solid #ddd;
+        display: block;
+        margin: 0 auto;       /* Centra la imagen en la celda */
     }
 
 /* CSS para fotos. El fondo del modal */
 /*-----------------------------------------------------------------------------------*/
     .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    padding-top: 100px; 
-    left: 0; top: 0; width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.9); 
+        display: none; 
+        position: fixed; 
+        z-index: 1000;
+        padding-top: 100px;
+        left: 0; top: 0; width: 100%; height: 100%; 
+        background-color: rgba(0,0,0,0.9);
     }
 
     /* La imagen dentro del modal */
     .modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 400px;
-    animation-name: zoom;
-    animation-duration: 0.6s;
+        margin: auto;
+        display: block;
+        width: 20%;
+        max-width: 100%;
+        animation-name: zoom;
+        animation-duration: 0.6s;
     }
 
     @keyframes zoom {
-    from {transform:scale(0)} to {transform:scale(1)}
+        from {transform:scale(0)} to {transform:scale(1)}
     }
 
     /* Botón de cerrar */
     .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
     }
 
     /* Cambiamos el cursor al pasar sobre la foto de la tabla */
     .foto-click {
-    cursor: zoom-in;
-    transition: 0.3s;
+        cursor: zoom-in;
+        transition: 0.3s;
     }
 
     .foto-click:hover {opacity: 0.7;}

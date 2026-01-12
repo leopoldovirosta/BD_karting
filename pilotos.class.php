@@ -1,5 +1,4 @@
 <?php
-require_once "pdo.php";
 require_once "DataObject.class.php";
 require_once "config.php";
 
@@ -51,14 +50,11 @@ class Piloto extends DataObject {
             // Si el conteo es 0, podemos terminar aquí para ahorrar recursos
             if ($totalRows == 0) {
                 parent::disconnect($conn);
-                        return [[], 0];
+                return [[], 0];
             }
 
             // --- SEGUNDA CONSULTA: Obtener los datos reales (SELECT *) ---
-            $sqlData = "SELECT * FROM " . VIEW_PILOTOS . " 
-                        $whereClause 
-                        ORDER BY $order 
-                        LIMIT :startRow, :numRows";
+            $sqlData = "SELECT * FROM " . VIEW_PILOTOS . " $whereClause ORDER BY $order LIMIT :startRow, :numRows";
             
             $stData = $conn->prepare($sqlData);
             

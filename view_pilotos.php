@@ -24,7 +24,7 @@ displayPageHeader("Lista de pilotos");
         <label for="pageSize">Pilotos por página:</label>
         <select name="pageSize" id="pageSize" onchange="this.form.submit()">
             <?php foreach (array(5, 10, 20, 50) as $value): ?>
-                <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
+               <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
                     <?php echo $value ?>
                 </option>
             <?php endforeach; ?>
