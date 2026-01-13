@@ -12,8 +12,17 @@ function displayPageHeader($pageTitle) {
     </head>
     <body>
         <header>
-            <h1><?php echo $pageTitle ?></h1>
+           <h1><?php echo $pageTitle ?></h1>
         </header>
+        <nav>
+            <div class="card-header-side">
+                <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
+                <a href="http://localhost:8080/cloud/view_pilotos.php">Pilotos</a> 
+                <a href="http://localhost:8080/cloud/view_carreras.php">Carreras</a>
+                </div>
+            </div>
+
+        </nav>
 <?php
 }
 
