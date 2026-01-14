@@ -14,15 +14,25 @@ function displayPageHeader($pageTitle) {
         <header>
            <h1><?php echo $pageTitle ?></h1>
         </header>
-        <nav>
-            <div class="card-header-side">
-                <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
-                <a href="http://localhost:8080/cloud/view_pilotos.php">Pilotos</a> 
-                <a href="http://localhost:8080/cloud/view_carreras.php">Carreras</a>
-                </div>
-            </div>
+<nav>
+  <ul class="nav-links">
+    <li><a href="view_pilotos.php">Pilotos</a></li>
+    <li><a href="view_carreras.php">Carreras</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Campeonato ▾</a>
+      <div class="dropdown-content">
+        <a href="#circuitos">Circuitos</a>
+        <a href="#circuitos">Campeonatos</a>
+        <a href="#circuitos">Chasis</a>
+        <a href="#circuitos">Motores</a>
+        <a href="#escuderias">Escuderías</a>
+        <a href="#pilotos">Patrocinadores</a>
+      </div>
+    </li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
 
-        </nav>
 <?php
 }
 

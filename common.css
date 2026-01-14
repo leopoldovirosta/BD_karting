@@ -1,4 +1,4 @@
-<styee>
+<style>
 
     th {
         background-color: green;
@@ -185,7 +185,59 @@
         font-weight: bold;
     }
 
+    /* Estilo base del contenedor de navegación */
+    /*-------------------------------------------------*/
+    .nav-links {
+    list-style-type: none;
+    display: flex;
+    background-color: #2c3e50;
+    padding: 0;
+    }
 
+    .nav-links li {
+    position: relative; /* Importante para posicionar el despliegue */
+    }
+
+    .nav-links li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    }
+
+    .nav-links li a:hover, .dropdown:hover .dropbtn {
+    background-color: #e10600; /* Rojo F1 */
+    /*color: #38443e;*/
+    }
+
+    /* Contenedor del menú desplegable (oculto) */
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2c3e50;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    }
+
+    /* Enlaces dentro del desplegable */
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    }
+
+    .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    }
+
+    /* Mostrar el menú al pasar el ratón */
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
 
 
 </style>
