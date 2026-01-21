@@ -37,7 +37,7 @@ select id_region, nombre_region
 from regiones;
 
 create view vista_motores as
-select id_motor, modelo_motor, marca_motores, web_marca_motores, foto_motor, homologacion_motor
+select id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, homologacion_motor
 from motores;
 
 create view vista_escuderias as
@@ -57,12 +57,12 @@ select id_circuito, nombre_circuito, provincia_circuito, web_circuito, direccion
 from circuitos;
 
 create view vista_resultados as
-select r.carrera_id, vcar.fecha_carrera, vcar.nombre_carrera_tipo, cat.nombre_categoria, vcar.nombre_circuito, p.id_piloto, p.nombre_piloto, p.apellido_piloto, r.dorsal, vcar.id_cto, vcar.nombre_cto, r.tiempo_total, r.mejor_vuelta, r.num_vueltas, r.posicion, r.puntos, ch.id_chasis, ch.marca_chasis, ch.modelo_chasis, mo.id_motor, mo.marca_motor, mo.modelo_motor
+select r.carrera_id, vcar.fecha_carrera, vcar.nombre_carrera_tipo, cat.nombre_categoria, vcar.nombre_circuito, p.id_piloto, p.nombre_piloto, p.apellido_piloto, r.dorsal, vcar.id_cto, vcar.nombre_cto, r.tiempo_total, r.mejor_vuelta, r.num_vueltas, r.posicion, r.comentario_posicion, r.puntos, ch.id_chasis, ch.marca_chasis, ch.modelo_chasis, mo.id_motor, mo.marca_motor, mo.modelo_motor
 from resultados r
 join pilotos p on r.piloto_id = p.id_piloto
 join vista_carreras vcar on r.carrera_id = vcar.id_carrera
-left join chasis ch on cp.chasis_id = ch.id_chasis
-left join motores mo on cp.motor_id = mo.id_motor
+left join chasis ch on r.chasis_id = ch.id_chasis
+left join motores mo on r.motor_id = mo.id_motor
 join categorias cat on r.categoria_id = cat.id_categoria;
 
 
