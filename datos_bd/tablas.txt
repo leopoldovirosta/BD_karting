@@ -2,6 +2,10 @@ CREATE TABLE regiones (
     id_region INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_region VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+CREATE TABLE areas (
+    id_area INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_area VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
 CREATE TABLE escuderias (
     id_escuderia INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_escuderia VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -16,7 +20,7 @@ CREATE TABLE patrocinadores (
 
 CREATE TABLE categorias (
     id_categoria INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_categoria VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    nombre_categoria VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE campeonatos (
     id_cto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -59,14 +63,13 @@ CREATE TABLE pilotos (
 CREATE TABLE circuitos (
     id_circuito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_circuito VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-    provincia_circuito ENUM(
-    'Alava','Albacete','Alicante','Almeria','Asturias','Avila','Badajoz','Barcelona','Burgos','Caceres','Cadiz','Cantabria','Castellon','Ciudad Real','Cordoba',
-    'Cuenca','Girona','Granada','Guadalajara','Gipuzkoa','Huelva','Huesca','Islas Baleares','Jaen','A Coruña','La Rioja','Las Palmas','Leon','Lleida','Lugo','Madrid','Malaga','Murcia',
-    'Navarra','Ourense','Palencia','Pontevedra','Salamanca','Santa Cruz de Tenerife','Segovia','Sevilla','Soria','Tarragona','Teruel','Toledo','Valencia','Valladolid','Bizkaia','Zamora','Zaragoza') COLLATE utf8mb4_spanish_ci NOT NULL,
     web_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci,
     direccion_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci,
-    telefono_circuito VARCHAR(15) COLLATE utf8mb4_spanish_ci,
-    localidad_circuito VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    localidad_circuito VARCHAR(30) COLLATE utf8mb4_spanish_ci,
+    telefono_circuito VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL,
+    area_id INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_area FOREIGN KEY (area_id) REFERENCES areas(id_area)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE carreras_tipo (
     id_carrera_tipo INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -82,6 +85,7 @@ CREATE TABLE carreras (
     humedad TINYINT UNSIGNED,
     presion SMALLINT UNSIGNED,
     viento TINYINT UNSIGNED,
+    tasfalto TINYINT,
     carrera_tipo_id INT UNSIGNED NOT NULL,
     circuito_id INT UNSIGNED NOT NULL,
     CONSTRAINT fk_carrera_tipo FOREIGN KEY (carrera_tipo_id) REFERENCES carreras_tipo(id_carrera_tipo), 
