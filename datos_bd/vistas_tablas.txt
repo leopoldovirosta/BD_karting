@@ -1,69 +1,88 @@
-create view vista_pilotos_regiones as
-select p.nombre_piloto, p.apellido_piloto, r.id_region, r.nombre_region
-from pilotos p
-join regiones r on p.region_id = r.id_region;
+CREATE VIEW vista_pilotos_regiones AS
+SELECT p.nombre_piloto, p.apellido_piloto, r.id_region, r.nombre_region
+FROM pilotos p
+JOIN regiones r ON p.region_id = r.id_region;
 
-create view vista_pilotos_escuderias as
-select p.nombre_piloto, p.apellido_piloto, e.id_escuderia, e.nombre_escuderia
-from pilotos p
-join escuderias e on p.escuderia_id = e.id_escuderia;
+CREATE VIEW vista_pilotos_escuderias AS
+SELECT p.nombre_piloto, p.apellido_piloto, e.id_escuderia, e.nombre_escuderia
+FROM pilotos p
+JOIN escuderias e ON p.escuderia_id = e.id_escuderia;
 
-create view vista_pilotos_patrocinadores as
-select p.nombre_piloto, p.apellido_piloto, pa.id_patrocinador, pa.nombre_patrocinador
-from pilotos p
-join patrocinadores pa on p.patrocinador_id = pa.id_patrocinador;
+CREATE VIEW vista_pilotos_patrocinadores AS
+SELECT p.nombre_piloto, p.apellido_piloto, pa.id_patrocinador, pa.nombre_patrocinador
+FROM pilotos p
+JOIN patrocinadores pa ON p.patrocinador_id = pa.id_patrocinador;
 
-create view vista_pilotos as
-select p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto, r.id_region, r.nombre_region, e.id_escuderia, e.nombre_escuderia, pa.id_patrocinador, pa.nombre_patrocinador
-from pilotos p
-join regiones r on p.region_id = r.id_region
-join escuderias e on p.escuderia_id = e.id_escuderia
-join patrocinadores pa on p.patrocinador_id = pa.id_patrocinador;
+CREATE VIEW vista_pilotos AS
+SELECT p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto, r.id_region, r.nombre_region, e.id_escuderia, e.nombre_escuderia, pa.id_patrocinador, pa.nombre_patrocinador
+FROM pilotos p
+JOIN regiones r ON p.region_id = r.id_region
+JOIN escuderias e ON p.escuderia_id = e.id_escuderia
+JOIN patrocinadores pa ON p.patrocinador_id = pa.id_patrocinador;
 
-create view vista_carreras as
-select c.id_carrera, c.fecha_carrera, c.dia, c.num_vueltas, c.pista, c.temperatura, c.humedad, c.presion, c.viento, c.tasfalto, ctipo.id_carrera_tipo, ctipo.nombre_carrera_tipo, ci.id_circuito, ci.nombre_circuito, ct.id_cto, ct.nombre_cto
-from carreras c
-join campeonatos_carreras cc on c.id_carrera = cc.carrera_id
-join campeonatos ct on cc.cto_id = ct.id_cto
-join carreras_tipo ctipo on c.carrera_tipo_id = ctipo.id_carrera_tipo
-join circuitos ci on c.circuito_id = ci.id_circuito;
+CREATE VIEW vista_carreras AS
+SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, ci.id_circuito, ci.nombre_circuito, cp.id_cto, cp.nombre_cto
+FROM carreras ca
+JOIN carreras_tipo ct ON ca.carrera_tipo_id = ct.id_carrera_tipo
+JOIN circuitos ci ON ca.circuito_id = ci.id_circuito
+LEFT JOIN campeonatos_carreras cc ON ca.id_carrera = cc.carrera_id
+LEFT JOIN campeonatos cp ON cc.cto_id = cp.id_cto;
 
-create view vista_chasis as
-select id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, homologacion_chasis
-from chasis;
+CREATE VIEW vista_chasis AS
+SELECT id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, homologacion_chasis
+FROM chasis;
 
-create view vista_regiones as
-select id_region, nombre_region
-from regiones;
+CREATE VIEW vista_regiones AS
+SELECT id_region, nombre_region
+FROM regiones;
 
-create view vista_motores as
-select id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, homologacion_motor
-from motores;
+CREATE VIEW vista_motores AS
+SELECT id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, homologacion_motor
+FROM motores;
 
-create view vista_escuderias as
-select id_escuderia, nombre_escuderia, web_escuderia
-from escuderias;
+CREATE VIEW vista_escuderias AS
+SELECT id_escuderia, nombre_escuderia, web_escuderia
+FROM escuderias;
 
-create view vista_patrocinadores as
-select id_patrocinador, nombre_patrocinador, web_patrocinador
-from patrocinadores;
+CREATE VIEW vista_patrocinadores AS
+SELECT id_patrocinador, nombre_patrocinador, web_patrocinador
+FROM patrocinadores;
 
-create view vista_campeonatos as
-select id_cto, nombre_cto
-from campeonatos;
+CREATE VIEW vista_campeonatos AS
+SELECT id_cto, nombre_cto
+FROM campeonatos;
 
-create view vista_circuitos as
-select id_circuito, nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, a.nombre_area
-from circuitos c
-join areas a on c.area_id = a.id_area;
+CREATE VIEW vista_circuitos AS
+SELECT id_circuito, nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, a.nombre_area
+FROM circuitos c
+JOIN areas a ON c.area_id = a.id_area;
 
-create view vista_resultados as
-select r.carrera_id, vcar.fecha_carrera, vcar.nombre_carrera_tipo, cat.nombre_categoria, vcar.nombre_circuito, p.id_piloto, p.nombre_piloto, p.apellido_piloto, r.dorsal, vcar.id_cto, vcar.nombre_cto, r.tiempo_total, r.mejor_vuelta, r.num_vueltas, r.posicion, r.comentario_posicion, r.puntos, ch.id_chasis, ch.marca_chasis, ch.modelo_chasis, mo.id_motor, mo.marca_motor, mo.modelo_motor
-from resultados r
-join pilotos p on r.piloto_id = p.id_piloto
-join vista_carreras vcar on r.carrera_id = vcar.id_carrera
-left join chasis ch on r.chasis_id = ch.id_chasis
-left join motores mo on r.motor_id = mo.id_motor
-join categorias cat on r.categoria_id = cat.id_categoria;
+CREATE VIEW vista_resultados AS
+SELECT DISTINCT r.carrera_id, vcar.fecha_carrera, vcar.nombre_carrera_tipo, cat.nombre_categoria, vcar.nombre_circuito, p.id_piloto, p.nombre_piloto, p.apellido_piloto, r.dorsal, vcar.id_cto, vcar.nombre_cto, r.tiempo_total, r.mejor_vuelta, r.num_vueltas, r.posicion, r.comentario_posicion, r.puntos, ch.id_chasis, ch.marca_chasis, ch.modelo_chasis, mo.id_motor, mo.marca_motor, mo.modelo_motor
+FROM resultados r
+JOIN pilotos p ON r.piloto_id = p.id_piloto
+JOIN vista_carreras vcar ON r.carrera_id = vcar.id_carrera
+JOIN categorias cat ON r.categoria_id = cat.id_categoria
+LEFT JOIN chasis ch ON r.chasis_id = ch.id_chasis
+LEFT JOIN motores mo ON r.motor_id = mo.id_motor;
 
+CREATE OR REPLACE VIEW vista_ranking AS
+SELECT
+    nombre_cto,
+    nombre_categoria,
+    id_piloto,
+    nombre_piloto,
+    apellido_piloto,
+    SUM(puntos) AS puntos_totales,
+    COUNT(carrera_id) AS carreras_disputadas,
+    MIN(posicion) AS mejor_resultado -- Tu mejor posición (ej. un 1º)
+FROM vista_resultados
+GROUP BY
+    id_cto,
+    nombre_cto,
+    nombre_categoria,
+    id_piloto,
+    nombre_piloto,
+    apellido_piloto
+ORDER BY puntos_totales DESC;
 
