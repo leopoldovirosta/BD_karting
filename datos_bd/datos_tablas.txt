@@ -80,8 +80,6 @@ insert into campeonatos(nombre_cto) values('Campeonato Social Karting Aragon');
 insert into campeonatos(nombre_cto) values('Copa Catalana de KDDAS');
 
 insert into categorias(nombre_categoria) values('Senior');
-insert into categorias(nombre_categoria) values('Pre-Mini 64 Aire');
-insert into categorias(nombre_categoria) values('Pre-Mini 60 Agua');
 insert into categorias(nombre_categoria) values('Mini 85 Aire');
 insert into categorias(nombre_categoria) values('Mini 60 Agua');
 insert into categorias(nombre_categoria) values('Mini Rotax');
@@ -91,6 +89,8 @@ insert into categorias(nombre_categoria) values('KZ');
 insert into categorias(nombre_categoria) values('KZ Master');
 insert into categorias(nombre_categoria) values('KZ2');
 insert into categorias(nombre_categoria) values('Tillotson T4');
+insert into categorias(nombre_categoria) values('Pre-Mini 64 Aire');
+insert into categorias(nombre_categoria) values('Pre-Mini 60 Agua');
 
 insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, area_id) values('Circuito Internacional de Zuera','https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 50);
 insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, area_id) values('Circuito de karting Motorland Aragon','https://www.motorlandaragon.com/es/motorland/circuito-de-karting', 'Carretera A-2404, km. 1', 'Alcañiz', '978835548', 44);
@@ -110,7 +110,13 @@ insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 2');
 
-INSERT INTO sistemas_puntuacion (id_cto, posicion, puntos_asignados) VALUES (1,1,25),(1,2,20),(1,3,16),(1,4,13),(1,5,11),(1,6,10),(1,7,9),(1,8,8),(1,9,7),(1,10,6),(1,11,5),(1,12,4),(1,13,3),(1,14,2),(1,15,1);
-INSERT INTO sistemas_puntuacion (id_cto, posicion, puntos_asignados) VALUES (2,1,25),(2,2,23),(2,3,21),(2,4,19),(2,5,17),(2,6,15),(2,7,13),(2,8,11),(2,9,10),(2,10,8),(2,11,6),(2,12,4),(2,13,3),(2,14,2),(2,15,1);
+INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (1,2,1,25),(1,2,2,20),(1,2,3,16),(1,2,4,13),(1,2,5,11),(1,2,6,10),(1,2,7,9),(1,2,8,8),(1,2,9,7),(1,2,10,6),(1,2,11,5),(1,2,12,4),(1,2,13,3),(1,2,14,2),(1,2,15,1);
+INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (1,3,1,25),(1,3,2,20),(1,3,3,16),(1,3,4,13),(1,3,5,11),(1,3,6,10),(1,3,7,9),(1,3,8,8),(1,3,9,7),(1,3,10,6),(1,3,11,5),(1,3,12,4),(1,3,13,3),(1,3,14,2),(1,3,15,1);
+INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,2,1,25),(2,2,2,23),(2,2,3,21),(2,2,4,19),(2,2,5,17),(2,2,6,15),(2,2,7,13),(2,2,8,11),(2,2,9,10),(2,2,10,8),(2,2,11,6),(2,2,12,4),(2,2,13,3),(2,2,14,2),(2,2,15,1);
+INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,3,1,25),(2,3,2,23),(2,3,3,21),(2,3,4,19),(2,3,5,17),(2,3,6,15),(2,3,7,13),(2,3,8,11),(2,3,9,10),(2,3,10,8),(2,3,11,6),(2,3,12,4),(2,3,13,3),(2,3,14,2),(2,3,15,1);
+INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,1,1,1);
+
+INSERT INTO campeonatos_categorias (id_cto, id_categoria) VALUES (1,1),(1,6),(1,7);
+INSERT INTO campeonatos_categorias (id_cto, id_categoria) VALUES (2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,10),(2,11);
 
 

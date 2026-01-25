@@ -32,7 +32,7 @@ CREATE TABLE chasis (
     marca_chasis VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
     web_marca_chasis VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     foto_chasis VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    homologacion_chasis VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
+    ficha_tecnica_chasis VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
     UNIQUE (marca_chasis, modelo_chasis))  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE motores (
@@ -41,7 +41,7 @@ CREATE TABLE motores (
     marca_motor VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
     web_marca_motores VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     foto_motor VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    homologacion_motor VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
+    ficha_tecnica_motor VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
     UNIQUE (marca_motor, modelo_motor)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE pilotos (
@@ -79,7 +79,7 @@ CREATE TABLE carreras (
     id_carrera INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fecha_carrera DATE NOT NULL,
     dia ENUM('Despejado','Parcialmente nublado','Nublado') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'Despejado',
-    num_vueltas TINYINT UNSIGNED NOT NULL,
+    num_vueltas TINYINT UNSIGNED NULL,
     pista ENUM('Seco','Mojado') COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'Seco',
     temperatura TINYINT NULL,
     humedad TINYINT UNSIGNED NULL,
@@ -109,7 +109,7 @@ CREATE TABLE resultados (
     comentario_posicion ENUM('Normal', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'Normal',
     tiempo_total TIME(3) NULL,
     mejor_vuelta TIME(3) NULL,
-    num_vueltas TINYINT UNSIGNED,
+    num_vueltas_completadas TINYINT UNSIGNED,
     chasis_id INT UNSIGNED NULL,
     motor_id INT UNSIGNED NULL,
     PRIMARY KEY (id_resultado),
@@ -124,9 +124,20 @@ CREATE TABLE resultados (
 
 CREATE TABLE sistemas_puntuacion (
     id_cto INT UNSIGNED NOT NULL,
-    posicion TINYINT UNSIGNED NULL,
+    id_tipo_carrera INT UNSIGNED NOT NULL,
+    posicion TINYINT UNSIGNED NOT NULL,
     puntos_asignados TINYINT UNSIGNED NULL,
-    PRIMARY KEY (id_cto, posicion),
-    CONSTRAINT fk_sp_campeonato FOREIGN KEY (id_cto) REFERENCES campeonatos (id_cto) ON DELETE CASCADE
+    PRIMARY KEY (id_cto, id_tipo_carrera, posicion),
+    CONSTRAINT fk_sp_campeonato FOREIGN KEY (id_cto) REFERENCES campeonatos (id_cto) ON DELETE CASCADE,
+    CONSTRAINT fk_sp_tipo_carrera FOREIGN KEY (id_tipo_carrera) REFERENCES carreras_tipo(id_carrera_tipo) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE campeonatos_categorias (
+    id_cto INT UNSIGNED NOT NULL,
+    id_categoria INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_cto, id_categoria),
+    CONSTRAINT fk_cto_rel FOREIGN KEY (id_cto) REFERENCES campeonatos(id_cto) ON DELETE CASCADE,
+    CONSTRAINT fk_cat_rel FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
 

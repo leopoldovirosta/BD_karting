@@ -29,7 +29,7 @@ LEFT JOIN campeonatos_carreras cc ON ca.id_carrera = cc.carrera_id
 LEFT JOIN campeonatos cp ON cc.cto_id = cp.id_cto;
 
 CREATE VIEW vista_chasis AS
-SELECT id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, homologacion_chasis
+SELECT id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, ficha_tecnica_chasis
 FROM chasis;
 
 CREATE VIEW vista_regiones AS
@@ -37,7 +37,7 @@ SELECT id_region, nombre_region
 FROM regiones;
 
 CREATE VIEW vista_motores AS
-SELECT id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, homologacion_motor
+SELECT id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, ficha_tecnica_motor
 FROM motores;
 
 CREATE VIEW vista_escuderias AS
@@ -48,9 +48,11 @@ CREATE VIEW vista_patrocinadores AS
 SELECT id_patrocinador, nombre_patrocinador, web_patrocinador
 FROM patrocinadores;
 
-CREATE VIEW vista_campeonatos AS
-SELECT id_cto, nombre_cto
-FROM campeonatos;
+CREATE VIEW vista_campeonatos_categorias AS
+SELECT caca.id_cto, cam.nombre_cto, cat.nombre_categoria
+FROM campeonatos_categorias caca
+JOIN categorias cat ON caca.id_categoria = cat.id_categoria
+JOIN campeonatos cam ON caca.id_cto = cam.id_cto;
 
 CREATE VIEW vista_circuitos AS
 SELECT id_circuito, nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, a.nombre_area
@@ -58,24 +60,66 @@ FROM circuitos c
 JOIN areas a ON c.area_id = a.id_area;
 
 CREATE VIEW vista_resultados AS
-SELECT DISTINCT r.carrera_id, vcar.fecha_carrera, vcar.nombre_carrera_tipo, cat.nombre_categoria, vcar.nombre_circuito, p.id_piloto, p.nombre_piloto, p.apellido_piloto, r.dorsal, vcar.id_cto, vcar.nombre_cto, r.tiempo_total, r.mejor_vuelta, r.num_vueltas, r.posicion, r.comentario_posicion, r.puntos, ch.id_chasis, ch.marca_chasis, ch.modelo_chasis, mo.id_motor, mo.marca_motor, mo.modelo_motor
+SELECT
+    r.carrera_id,
+    vcar.fecha_carrera,
+    vcar.nombre_carrera_tipo,
+    cat.nombre_categoria,
+    vcar.nombre_circuito,
+    p.id_piloto,
+    p.nombre_piloto,
+    p.apellido_piloto,
+    r.dorsal,
+    vcar.id_cto,
+    vcar.nombre_cto,
+    r.tiempo_total,
+    r.mejor_vuelta,
+    r.num_vueltas_completadas,
+    vcar.num_vueltas,
+    r.posicion,
+    r.comentario_posicion,
+    -- LÓGICA DE PROTECCIÓN DE PUNTOS
+    CASE 
+        WHEN r.comentario_posicion IN ('DNS', 'DSQ') THEN 0
+        WHEN r.comentario_posicion = 'DNF' THEN
+            CASE 
+                WHEN vcar.id_cto = 1 THEN IFNULL(sp.puntos_asignados, 0) -- Campeonato 1: SÍ puntúa
+                WHEN vcar.id_cto = 2 THEN 0                             -- Campeonato 2: NO puntúa
+                ELSE IFNULL(sp.puntos_asignados, 0)                     -- Otros: Por defecto sí (o cámbialo a 0)
+            END
+        ELSE IFNULL(sp.puntos_asignados, 0)
+    END AS puntos,
+    ch.id_chasis,
+    ch.marca_chasis,
+    ch.modelo_chasis,
+    mo.id_motor,
+    mo.marca_motor,
+    mo.modelo_motor
 FROM resultados r
 JOIN pilotos p ON r.piloto_id = p.id_piloto
 JOIN vista_carreras vcar ON r.carrera_id = vcar.id_carrera
 JOIN categorias cat ON r.categoria_id = cat.id_categoria
 LEFT JOIN chasis ch ON r.chasis_id = ch.id_chasis
-LEFT JOIN motores mo ON r.motor_id = mo.id_motor;
+LEFT JOIN motores mo ON r.motor_id = mo.id_motor
+LEFT JOIN sistemas_puntuacion sp ON vcar.id_cto = sp.id_cto
+                                 AND vcar.id_carrera_tipo = sp.id_tipo_carrera
+                                 AND r.posicion = sp.posicion;
 
 CREATE OR REPLACE VIEW vista_ranking AS
 SELECT
+    id_cto,
     nombre_cto,
     nombre_categoria,
     id_piloto,
     nombre_piloto,
     apellido_piloto,
     SUM(puntos) AS puntos_totales,
-    COUNT(carrera_id) AS carreras_disputadas,
-    MIN(posicion) AS mejor_resultado -- Tu mejor posición (ej. un 1º)
+    COUNT(DISTINCT carrera_id) AS carreras_disputadas,
+    -- Calculamos cuántas victorias (P1) tiene cada uno para desempates
+    SUM(CASE WHEN posicion = 1 AND nombre_carrera_tipo LIKE 'Carrera%' THEN 1 ELSE 0 END) AS victorias,
+    -- Contamos cuántas veces ha subido al cajón (1º, 2º o 3º)
+    SUM(CASE WHEN posicion <= 3 AND nombre_carrera_tipo LIKE 'Carrera%' THEN 1 ELSE 0 END) AS podios,
+    MIN(posicion) AS mejor_resultado
 FROM vista_resultados
 GROUP BY
     id_cto,
@@ -84,5 +128,5 @@ GROUP BY
     id_piloto,
     nombre_piloto,
     apellido_piloto
-ORDER BY puntos_totales DESC;
+ORDER BY id_cto, puntos_totales DESC;
 
