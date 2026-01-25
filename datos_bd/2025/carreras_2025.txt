@@ -11,8 +11,8 @@ insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, 
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/10/19','Despejado',22,52,1017,11,'Oeste/Noroeste',13,'Seco',2,2);
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/10/19','Despejado',22,52,1017,11,'Oeste/Noroeste',15,'Seco',3,2);
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, carrera_tipo_id, circuito_id) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste','Seco',1,5);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',1,5);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',1,5);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',2,5);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, carrera_tipo_id, circuito_id) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',3,5);
 
 
 
