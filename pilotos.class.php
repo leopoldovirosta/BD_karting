@@ -12,9 +12,9 @@ class Piloto extends DataObject {
         "web_piloto" => "",
         "email_piloto" => "",
         "foto_piloto" => "",
-        "nombre_federacion" => "",
+        "nombre_region" => "",
         "nombre_escuderia" => "",
-        "nombre_sponsor" => ""
+        "nombre_patrocinador" => ""
     );
 
 

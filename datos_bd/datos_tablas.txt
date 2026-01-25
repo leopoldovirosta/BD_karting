@@ -99,12 +99,12 @@ insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, locali
 insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, area_id) values('Karting Zuera', 'https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 50);
 
 insert into chasis(modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis) values('MC-01','Mad-Croc Motorsoprt','https://madcrocmotorsport.com/karting.html', 'madcrock_MC01.jpg');
-insert into chasis(modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis,homologacion_chasis) values('RS10','Maranello Racing Kart','https://maranellokart.com/', 'maranello_RS10.jpg','maranello_RS10.pdf');
-insert into chasis(modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis,homologacion_chasis) values('Dragon EVO 3 XS1','Formula K','https://www.formulak.it/', 'formulaK_fighter-xs3.jpg','IPK006-CH-80-Fighter.pdf');
+insert into chasis(modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis,ficha_tecnica_chasis) values('RS10','Maranello Racing Kart','https://maranellokart.com/', 'maranello_RS10.jpg','maranello_RS10.pdf');
+insert into chasis(modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis,ficha_tecnica_chasis) values('Dragon EVO 3 XS1','Formula K','https://www.formulak.it/', 'formulaK_fighter-xs3.jpg','IPK006-CH-80-Fighter.pdf');
 
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,homologacion_motor) values('X30 125cc','IAME','https://www.iamekarting.com/', 'iame_X30_125cc.jpg','iame_X30_125cc.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,homologacion_motor) values('KK1','Modena Engines','https://modenaengines.it/', 'modena_kk1r.jpg','modena_KK1R.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,homologacion_motor) values('KZ-R2','TM Kart','https://www.tmkart.it/', 'tm_kz-r2_srp.jpg','TM-KZ-R2_2022.pdf');
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('X30 125cc','IAME','https://www.iamekarting.com/', 'iame_X30_125cc.jpg','iame_X30_125cc.pdf');
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KK1','Modena Engines','https://modenaengines.it/', 'modena_kk1r.jpg','modena_KK1R.pdf');
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KZ-R2','TM Kart','https://www.tmkart.it/', 'tm_kz-r2_srp.jpg','TM-KZ-R2_2022.pdf');
 
 insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');

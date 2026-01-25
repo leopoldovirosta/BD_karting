@@ -6,14 +6,18 @@ require_once "config.php";
 class Carrera extends DataObject {
     protected $data = array(
         "id_carrera" => "",
+        "nombre_cto" => "",
         "fecha_carrera" => "",
         "dia" => "",
+        "num_vueltas" => "",
         "temperatura" => "",
         "humedad" => "",
         "presion" => "",
         "viento" => "",
+        "orientacion" => "",
+        "tasfalto" => "",
         "pista" => "",
-        "tipo_carrera" => "",
+        "nombre_carrera_tipo" => "",
         "nombre_circuito" => ""
     );
 

@@ -85,6 +85,7 @@ CREATE TABLE carreras (
     humedad TINYINT UNSIGNED NULL,
     presion SMALLINT UNSIGNED NULL,
     viento TINYINT UNSIGNED NULL,
+    orientacion ENUM('Norte','Sur','Este','Oeste','Noreste','Noroeste','Sureste','Suroeste','Oeste/Noroeste','Norte/Noroeste','Norte/Noreste','Este/Noreste','Este/Sureste','Sur/Sureste','Sur/Suroeste','Oeste/Suroeste') COLLATE utf8mb4_spanish_ci NOT NULL,
     tasfalto TINYINT NULL,
     carrera_tipo_id INT UNSIGNED NOT NULL,
     circuito_id INT UNSIGNED NOT NULL,
@@ -100,11 +101,11 @@ CREATE TABLE campeonatos_carreras (
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE resultados (
-    id_resultado INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_resultado INT UNSIGNED NOT NULL AUTO_INCREMENT,
     carrera_id INT UNSIGNED NOT NULL,
     piloto_id INT UNSIGNED NOT NULL,
     categoria_id INT UNSIGNED NOT NULL,
-    dorsal SMALLINT NOT NULL,
+    dorsal SMALLINT,
     posicion TINYINT UNSIGNED NOT NULL,
     comentario_posicion ENUM('Normal', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'Normal',
     tiempo_total TIME(3) NULL,

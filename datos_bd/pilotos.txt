@@ -96,4 +96,11 @@ insert into pilotos (nombre_piloto,apellido_piloto) values ('Julen','Gutierrez C
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Axel','Iborra Veliz');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Lola','Pérez Galindo');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Gordey','Ganea');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Cristian','Bueno');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Eliseo','Diez');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Bogdan','Brie');
+
+
+
+
 

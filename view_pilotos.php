@@ -49,9 +49,9 @@ displayPageHeader("Lista de pilotos");
             "web_piloto" => "Página web",
             "email_piloto" => "Email",
             "foto_piloto" => "Foto",
-            "nombre_federacion" => "Federación",
+            "nombre_region" => "Region",
             "nombre_escuderia" => "Escudería",
-            "nombre_sponsor" => "Patrocinador"
+            "nombre_patrocinador" => "Patrocinador"
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -86,9 +86,9 @@ displayPageHeader("Lista de pilotos");
             <td>
             <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
             </td>
-            <td><?php echo $piloto->getValueEncoded("nombre_federacion") ?></td>
+            <td><?php echo $piloto->getValueEncoded("nombre_region") ?></td>
             <td><?php echo $piloto->getValueEncoded("nombre_escuderia") ?></td>
-            <td><?php echo $piloto->getValueEncoded("nombre_sponsor") ?></td>
+            <td><?php echo $piloto->getValueEncoded("nombre_patrocinador") ?></td>
         </tr>
 <?php
     endforeach;

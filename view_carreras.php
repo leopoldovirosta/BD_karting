@@ -36,16 +36,20 @@ displayPageHeader("Lista de carreras");
         <?php
         // Definimos las columnas que queremos mostrar
         $columns = array(
-            "id_carrera" => "ID Carrera",
+            "id_carrera" => "ID",
+            "nombre_cto" => "Campeonato",
             "fecha_carrera" => "Fecha",
+            "num_vueltas" => "Vueltas",
             "dia" => "Día",
-            "pista" => "Estado pista",
-            "tipo_carrera" => "Carrera",
+            "pista" => "Pista",
+            "nombre_carrera_tipo" => "Carrera",
             "nombre_circuito" => "Circuito",
-            "temperatura" => "Temperatura",
+            "temperatura" => "Tª",
             "humedad" => "Humedad",
             "presion" => "Presión atmosférica",
-            "viento" => "Viento Km/h"
+            "viento" => "Viento",
+            "orientacion" => "Orientacion",
+            "tasfalto" => "Tª asfalto"
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -72,15 +76,19 @@ displayPageHeader("Lista de carreras");
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
             <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValueEncoded('id_carrera') ?>"><?php echo $carrera->getValueEncoded("id_carrera")?></a></td>
+            <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
+            <td><?php echo $carrera->getValueEncoded("num_vueltas") ?></td>
             <td><?php echo $carrera->getValueEncoded("dia") ?></td>
             <td><?php echo $carrera->getValueEncoded("pista") ?></td>
-            <td><?php echo $carrera->getValueEncoded("tipo_carrera") ?></td>
+            <td><?php echo $carrera->getValueEncoded("nombre_carrera_tipo") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_circuito") ?></td>
             <td><?php echo $carrera->getValueEncoded("temperatura") ?></td>
             <td><?php echo $carrera->getValueEncoded("humedad") ?></td>
             <td><?php echo $carrera->getValueEncoded("presion") ?></td>
             <td><?php echo $carrera->getValueEncoded("viento") ?></td>
+            <td><?php echo $carrera->getValueEncoded("orientacion") ?></td>
+            <td><?php echo $carrera->getValueEncoded("tasfalto") ?></td>
         </tr>
 <?php
     endforeach;
