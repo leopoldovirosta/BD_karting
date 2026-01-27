@@ -21,7 +21,7 @@ class Piloto extends DataObject {
     public static function getPilotos($startRow, $numRows, $order, $search = "") {
 
         $conn = parent::connect();
-        if (!$conn) return[[], 0]; // Retorno consistente
+        if (!$conn) return [[], 0]; // Retorno consistente
         
         // Limpieza de seguridad para el ORDER BY
         $order = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);

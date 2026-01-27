@@ -36,7 +36,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             </div>
             <div class="info-item">
                 <label>Carrera</label>
-                <span><?php echo $carrera->getValueEncoded("tipo_carrera") ?></span>
+                <span><?php echo $carrera->getValueEncoded("nombre_carrera_tipo") ?></span>
             </div>
             <div class="info-item">
                 <label>Temperatura Ambiente</label>
@@ -56,7 +56,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             </div>
             <div class="info-item">
                 <label>Temperatura</label>
-                <span><?php echo $carrera->getValueEncoded("temperatura") ?></span>
+                <span><?php echo $carrera->getValueEncoded("tasfalto") ?></span>
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Circuito</label>

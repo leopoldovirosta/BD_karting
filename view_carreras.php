@@ -46,7 +46,7 @@ displayPageHeader("Lista de carreras");
             "nombre_circuito" => "Circuito",
             "temperatura" => "Tª",
             "humedad" => "Humedad",
-            "presion" => "Presión atmosférica",
+            "presion" => "Presión",
             "viento" => "Viento",
             "orientacion" => "Orientacion",
             "tasfalto" => "Tª asfalto"
@@ -78,17 +78,17 @@ displayPageHeader("Lista de carreras");
             <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValueEncoded('id_carrera') ?>"><?php echo $carrera->getValueEncoded("id_carrera")?></a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
-            <td><?php echo $carrera->getValueEncoded("num_vueltas") ?></td>
+            <td class="text-center"><?php echo $carrera->getValueEncoded("num_vueltas") ?></td>
             <td><?php echo $carrera->getValueEncoded("dia") ?></td>
             <td><?php echo $carrera->getValueEncoded("pista") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_carrera_tipo") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_circuito") ?></td>
-            <td><?php echo $carrera->getValueEncoded("temperatura") ?></td>
-            <td><?php echo $carrera->getValueEncoded("humedad") ?></td>
-            <td><?php echo $carrera->getValueEncoded("presion") ?></td>
-            <td><?php echo $carrera->getValueEncoded("viento") ?></td>
+            <td><?php echo $carrera->getValueEncoded("temperatura") ?> ºC</td>
+            <td class="text-center"><?php echo $carrera->getValueEncoded("humedad") ?> %</td>
+            <td><?php echo $carrera->getValueEncoded("presion") ?> hPa</td>
+            <td><?php echo $carrera->getValueEncoded("viento") ?> Km/h</td>
             <td><?php echo $carrera->getValueEncoded("orientacion") ?></td>
-            <td><?php echo $carrera->getValueEncoded("tasfalto") ?></td>
+            <td class="text-center"><?php echo $carrera->getValueEncoded("tasfalto") ?> ºC</td>
         </tr>
 <?php
     endforeach;

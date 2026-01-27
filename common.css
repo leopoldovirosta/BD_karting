@@ -1,5 +1,5 @@
 <style>
-
+    
     th {
         background-color: green;
         transition: all 0.2s;
@@ -24,6 +24,11 @@
     }
 
     tr.alt td { background: #ddd; }
+
+    /* Clase de utilidad para centrar */
+    .text-center {
+        text-align: center;
+    }
 
     .pagination-container {
         margin: 20px 0;

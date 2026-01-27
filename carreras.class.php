@@ -25,7 +25,7 @@ class Carrera extends DataObject {
     public static function getCarreras($startRow, $numRows, $order) {
 
         $conn = parent::connect();
-        if (!$conn) return[[], 0]; // Retorno consistente
+        if (!$conn) return [[], 0]; // Retorno consistente
         
         // Limpieza de seguridad para el ORDER BY
         $order = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
