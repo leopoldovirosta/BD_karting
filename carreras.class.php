@@ -6,6 +6,7 @@ require_once "config.php";
 class Carrera extends DataObject {
     protected $data = array(
         "id_carrera" => "",
+        "id_cto" => "",
         "nombre_cto" => "",
         "fecha_carrera" => "",
         "dia" => "",
@@ -67,15 +68,16 @@ class Carrera extends DataObject {
         }
     }
 
-    public static function getCarrera($id_carrera) {
+    public static function getCarrera($id_carrera, $id_cto) {
         $conn = parent::connect();
         if (!$conn) return null;
 
-        $sql = "SELECT * FROM " . VIEW_CARRERAS . " WHERE id_carrera = :id_carrera";
+        $sql = "SELECT * FROM " . VIEW_CARRERAS . " WHERE id_carrera = :id_carrera AND id_cto = :id_cto";
 
         try {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_carrera", (int)$id_carrera, PDO::PARAM_INT);
+            $st->bindValue(":id_cto", (int)$id_cto, PDO::PARAM_INT);
             $st->execute();
             $row = $st->fetch();
             parent::disconnect($conn);

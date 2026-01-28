@@ -75,7 +75,7 @@ displayPageHeader("Lista de carreras");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValueEncoded('id_carrera') ?>"><?php echo $carrera->getValueEncoded("id_carrera")?></a></td>
+            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValueEncoded('id_carrera') ?>&id_cto=<?php echo $carrera->getValueEncoded("id_cto")?>">Ver</a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
             <td class="text-center"><?php echo $carrera->getValueEncoded("num_vueltas") ?></td>

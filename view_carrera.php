@@ -3,8 +3,9 @@ require_once "common.inc.php";
 require_once "config.php";
 require_once "carreras.class.php";
 
-$id = isset($_GET["id_carrera"]) ? (int)$_GET["id_carrera"] : 0;
-$carrera = Carrera::getCarrera($id);
+$id_carrera = isset($_GET["id_carrera"]) ? (int)$_GET["id_carrera"] : 0;
+$id_cto = isset($_GET["id_cto"]) ? (int)$_GET["id_cto"] : 0;
+$carrera = Carrera::getCarrera($id_carrera, $id_cto);
 
 if (!$carrera) {
     displayPageHeader("Error");
@@ -24,6 +25,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
         <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
             <?php echo $carrera->getValueEncoded("pista") ?>
         </div>
+        <p style="color: #3498db; font-weight: bold;"><?php echo $carrera->getValueEncoded("nombre_cto") ?></p>
     </div>
 
     <div class="card-body">
@@ -43,6 +45,10 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
                 <span><?php echo $carrera->getValueEncoded("temperatura") ?> ºC</span>
             </div>
             <div class="info-item">
+                <label>Temperatura Asfalto</label>
+                <span><?php echo $carrera->getValueEncoded("tasfalto") ?> ºC</span>
+            </div>
+            <div class="info-item">
                 <label>Humedad Relativa</label>
                 <span><?php echo $carrera->getValueEncoded("humedad") ?> %</span>
             </div>
@@ -55,8 +61,8 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
                 <span><?php echo $carrera->getValueEncoded("viento") ?> Km/h</span>
             </div>
             <div class="info-item">
-                <label>Temperatura</label>
-                <span><?php echo $carrera->getValueEncoded("tasfalto") ?></span>
+                <label>Orientación</label>
+                <span><?php echo $carrera->getValueEncoded("orientacion") ?></span>
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Circuito</label>
