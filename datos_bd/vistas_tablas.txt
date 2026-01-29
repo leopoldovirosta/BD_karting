@@ -62,13 +62,17 @@ JOIN areas a ON c.area_id = a.id_area;
 CREATE VIEW vista_resultados AS
 SELECT
     r.carrera_id,
+    r.categoria_id,
     vcar.fecha_carrera,
     vcar.nombre_carrera_tipo,
+    cat.id_categoria,
     cat.nombre_categoria,
+    vcar.id_circuito,
     vcar.nombre_circuito,
     p.id_piloto,
     p.nombre_piloto,
     p.apellido_piloto,
+    p.foto_piloto,
     r.dorsal,
     vcar.id_cto,
     vcar.nombre_cto,
