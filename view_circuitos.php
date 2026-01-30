@@ -1,0 +1,118 @@
+<?php
+
+require_once "common.inc.php";
+require_once "config.php";
+require_once "circuitos.class.php";
+ 
+// 1. Detectamos el sentido (por defecto ASC)
+$type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
+
+// 2. Limpiamos las variables
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+$start = isset($_GET["start"]) ? (int)$_GET["start"] : 0;
+$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_circuito";
+$pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
+
+// 3. Llamamos al método (asegúrate de que tu SQL en Piloto ahora use $order y $type)
+list($circuitos, $totalRows) = Circuito::getCircuitos($start, $pageSize, $order . " " . $type);
+
+displayPageHeader("Lista de circuitos");
+
+?>
+    <form action="view_circuitos.php" method="get" class="search-form">
+        <input type="hidden" name="order" value="<?php echo $order ?>" />
+        <label for="pageSize">Circuitos por página:</label>
+        <select name="pageSize" id="pageSize" onchange="this.form.submit()">
+            <?php foreach (array(5, 10, 20, 50) as $value): ?>
+               <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
+                    <?php echo $value ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <br><br>
+        <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar circuito..." />
+        <button type="submit" class="btn-nav">Buscar</button>
+            <?php if (!empty($search)): ?>
+                <a href="view_circuitos.php">Limpiar filtro</a>
+            <?php endif; ?>
+    </form>
+    <br>
+    <table>
+    <tr>
+        <?php
+        // Definimos las columnas que queremos mostrar
+        $columns = array(
+            "id_circuito" => "ID",
+            "nombre_circuito" => "Circuito",
+            "web_circuito" => "Web",
+            "direccion_circuito" => "Dirección",
+            "localidad_circuito" => "Localidad",
+            "telefono_circuito" => "Teléfono",
+            "area_id" => "Area",
+            "altitud" => "Altitud",
+            "longitud" => "Longitud",
+            "curvas" => "Curvas",
+            "velocidadmax" => "Velocidad Max",
+            "silueta" => "Trazado"
+        );
+
+        foreach ($columns as $colKey => $colName): 
+                // Si la columna es la actual, el siguiente clic debe ser el opuesto
+                $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
+                $icon = ($type == "ASC") ? "▲" : "▼";
+            ?>
+                <th>
+                    <a href="view_circuitos.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>">
+                        <?php echo $colName ?>
+                        <?php if ($order == $colKey): ?>
+                            <span class="sort-icon"><?php echo $icon ?></span>
+                        <?php endif; ?>
+                    </a>
+                </th>
+            <?php endforeach; ?>
+        </tr>
+
+<?php
+    $rowCount = 0;
+    
+    foreach($circuitos as $circuito):
+        $rowCount++;
+?>
+        <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
+            <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValueEncoded('id_circuito') ?>"><?php echo $circuito->getValueEncoded("id_circuito")?></a></td>
+            <td><?php echo $circuito->getValueEncoded("nombre_circuito") ?></td>
+            <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Página web</a></td>
+            <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
+            <td><?php echo $circuito->getValueEncoded("localidad_nacimiento") ?></td>
+            <td><?php echo $circuito->getValueEncoded("telefono_nacimiento") ?></td>
+            <td><?php echo $circuito->getValueEncoded("area_id") ?></td>
+            <td><?php echo $circuito->getValueEncoded("altitud") ?></td>
+            <td><?php echo $circuito->getValueEncoded("longitud") ?></td>
+            <td><?php echo $circuito->getValueEncoded("curvas") ?></td>
+            <td><?php echo $circuito->getValueEncoded("velocidadmax") ?></td>
+            <td>
+            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValueEncoded('silueta') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
+            </td>
+        </tr>
+<?php
+    endforeach;
+?>
+    </table>
+    <div class="pagination-container">
+    <p class="info-text">
+        Mostrando <?php echo $start + 1 ?>-<?php echo min($start + $pageSize, $totalRows) ?> de <?php echo $totalRows ?>
+    </p>
+        <?php if ($start > 0 ): ?>
+            <a href="view_circuito.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">&laquo; Página anterior</a>
+        <?php endif; ?>
+        
+        &nbsp;
+        
+        <?php if ($start + $pageSize < $totalRows): ?>
+            <a href="view_circuito.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">Página siguiente &raquo;</a>
+        <?php endif; ?>
+    </div> 
+<?php
+
+    displayPageFooter();
+?>

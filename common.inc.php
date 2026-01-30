@@ -12,7 +12,7 @@ function displayPageHeader($pageTitle) {
     </head>
     <body>
         <header>
-           <h1><?php echo $pageTitle ?></h1>
+<!--           <h1><?php echo $pageTitle ?></h1>  -->
         </header>
 <nav>
   <ul class="nav-links">
