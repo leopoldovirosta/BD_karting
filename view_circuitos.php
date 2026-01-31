@@ -48,10 +48,11 @@ displayPageHeader("Lista de circuitos");
             "direccion_circuito" => "Dirección",
             "localidad_circuito" => "Localidad",
             "telefono_circuito" => "Teléfono",
-            "area_id" => "Area",
+            "nombre_area" => "Area",
             "altitud" => "Altitud",
             "longitud" => "Longitud",
-            "curvas" => "Curvas",
+            "curvasizd" => "Curvas IZD",
+            "curvasdcha" => "Curvas DCHA",
             "velocidadmax" => "Velocidad Max",
             "silueta" => "Trazado"
         );
@@ -79,17 +80,17 @@ displayPageHeader("Lista de circuitos");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValueEncoded('id_circuito') ?>"><?php echo $circuito->getValueEncoded("id_circuito")?></a></td>
+            <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValue('id_circuito') ?>"><?php echo $circuito->getValue("id_circuito")?></a></td>
             <td><?php echo $circuito->getValueEncoded("nombre_circuito") ?></td>
             <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Página web</a></td>
             <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
-            <td><?php echo $circuito->getValueEncoded("localidad_nacimiento") ?></td>
-            <td><?php echo $circuito->getValueEncoded("telefono_nacimiento") ?></td>
-            <td><?php echo $circuito->getValueEncoded("area_id") ?></td>
-            <td><?php echo $circuito->getValueEncoded("altitud") ?></td>
-            <td><?php echo $circuito->getValueEncoded("longitud") ?></td>
-            <td><?php echo $circuito->getValueEncoded("curvas") ?></td>
-            <td><?php echo $circuito->getValueEncoded("velocidadmax") ?></td>
+            <td><?php echo $circuito->getValueEncoded("localidad_circuito") ?></td>
+            <td><?php echo $circuito->getValueEncoded("telefono_circuito") ?></td>
+            <td><?php echo $circuito->getValueEncoded("nombre_area") ?></td>
+            <td><?php echo $circuito->getValue("altitud") ?></td>
+            <td><?php echo $circuito->getValue("longitud") ?></td>
+            <td><?php echo $circuito->getValue("curvas") ?></td>
+            <td><?php echo $circuito->getValue("velocidadmax") ?></td>
             <td>
             <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValueEncoded('silueta') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
             </td>

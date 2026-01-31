@@ -89,20 +89,19 @@ class Carrera extends DataObject {
             error_log("Error en getCarrera: " . $e->getMessage());
             return null;
             }
-        }
-
+    }
 
     public static function getEstadisticasGanadores($id_circuito) {
         $conn = parent::connect();
         if (!$conn) return null;
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(*) as victorias 
-                FROM " . VIEW_RESULTADOS . " 
+        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(*) as victorias
+                FROM " . VIEW_RESULTADOS . "
                 WHERE id_circuito = :id_circuito AND posicion = 1 AND id_categoria=1
-                GROUP BY id_piloto 
-                ORDER BY victorias DESC 
+                GROUP BY id_piloto
+                ORDER BY victorias DESC
                 LIMIT 3"; // Top 3 ganadores históricos
-        
+
         try {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_circuito", (int)$id_circuito, PDO::PARAM_INT);
@@ -114,9 +113,8 @@ class Carrera extends DataObject {
         }
     }
 
+
+
 }
-
-
-
 
 ?>

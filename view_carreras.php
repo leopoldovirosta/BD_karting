@@ -75,20 +75,20 @@ displayPageHeader("Lista de carreras");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValueEncoded('id_carrera') ?>&id_cto=<?php echo $carrera->getValueEncoded("id_cto")?>">Ver</a></td>
+            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_cto=<?php echo $carrera->getValue("id_cto")?>">Ver</a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
-            <td class="text-center"><?php echo $carrera->getValueEncoded("num_vueltas") ?></td>
+            <td class="text-center"><?php echo $carrera->getValue("num_vueltas") ?></td>
             <td><?php echo $carrera->getValueEncoded("dia") ?></td>
             <td><?php echo $carrera->getValueEncoded("pista") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_carrera_tipo") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_circuito") ?></td>
-            <td><?php echo $carrera->getValueEncoded("temperatura") ?> ºC</td>
-            <td class="text-center"><?php echo $carrera->getValueEncoded("humedad") ?> %</td>
-            <td><?php echo $carrera->getValueEncoded("presion") ?> hPa</td>
-            <td><?php echo $carrera->getValueEncoded("viento") ?> Km/h</td>
+            <td><?php echo $carrera->getValue("temperatura") ?> ºC</td>
+            <td class="text-center"><?php echo $carrera->getValue("humedad") ?> %</td>
+            <td><?php echo $carrera->getValue("presion") ?> hPa</td>
+            <td><?php echo $carrera->getValue("viento") ?> Km/h</td>
             <td><?php echo $carrera->getValueEncoded("orientacion") ?></td>
-            <td class="text-center"><?php echo $carrera->getValueEncoded("tasfalto") ?> ºC</td>
+            <td class="text-center"><?php echo $carrera->getValue("tasfalto") ?> ºC</td>
         </tr>
 <?php
     endforeach;

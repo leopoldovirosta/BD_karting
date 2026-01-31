@@ -12,9 +12,11 @@ class Circuito extends DataObject {
         "localidad_circuito" => "",
         "telefono_circuito" => "",
         "area_id" => "",
+        "nombre_area" => "",
         "altitud" => "",
         "longitud" => "",
-        "curvas" => "",
+        "curvasizd" => "",
+        "curvasdcha" => "",
         "velocidadmax" => "",
         "silueta" => ""
     );
@@ -104,29 +106,8 @@ class Circuito extends DataObject {
             error_log("Error en getCircuito: " . $e->getMessage());
             return null;
             }
-        }
-
-    public static function getEstadisticasGanadores($id_circuito) {
-        $conn = parent::connect();
-        if (!$conn) return null;
-        // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(*) as victorias 
-                FROM " . VIEW_RESULTADOS . " 
-                WHERE id_circuito = :id_circuito AND posicion = 1 AND id_categoria=1
-                GROUP BY id_piloto 
-                ORDER BY victorias DESC 
-                LIMIT 3"; // Top 3 ganadores históricos
-
-        try {
-            $st = $conn->prepare($sql);
-            $st->bindValue(":id_circuito", (int)$id_circuito, PDO::PARAM_INT);
-            $st->execute();
-            return $st->fetchAll();
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
-            return [];
-        }
     }
+
 
 
 }

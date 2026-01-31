@@ -26,8 +26,8 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             <?php echo $carrera->getValueEncoded("pista") ?>
         </div>
         <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
-            <?php if ($carrera->getValueEncoded("num_vueltas")) {
-                     echo $carrera->getValueEncoded("num_vueltas") . " Vueltas";
+            <?php if ($carrera->getValue("num_vueltas")) {
+                     echo $carrera->getValue("num_vueltas") . " Vueltas";
                 } else {
                     echo "Clasificación";
                 } ?>
@@ -49,23 +49,23 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             </div>
             <div class="info-item">
                 <label>Temperatura Ambiente</label>
-                <span><?php echo $carrera->getValueEncoded("temperatura") ?> ºC</span>
+                <span><?php echo $carrera->getValue("temperatura") ?> ºC</span>
             </div>
             <div class="info-item">
                 <label>Temperatura Asfalto</label>
-                <span><?php echo $carrera->getValueEncoded("tasfalto") ?> ºC</span>
+                <span><?php echo $carrera->getValue("tasfalto") ?> ºC</span>
             </div>
             <div class="info-item">
                 <label>Humedad Relativa</label>
-                <span><?php echo $carrera->getValueEncoded("humedad") ?> %</span>
+                <span><?php echo $carrera->getValue("humedad") ?> %</span>
             </div>
             <div class="info-item">
                 <label>Presión atmosférica</label>
-                <span><?php echo $carrera->getValueEncoded("presion") ?> hPa</span>
+                <span><?php echo $carrera->getValue("presion") ?> hPa</span>
             </div>
             <div class="info-item">
                 <label>Viento</label>
-                <span><?php echo $carrera->getValueEncoded("viento") ?> Km/h</span>
+                <span><?php echo $carrera->getValue("viento") ?> Km/h</span>
             </div>
             <div class="info-item">
                 <label>Orientación</label>
@@ -81,24 +81,5 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
     </div>
 </div>
 
-<?php 
-$ganadores = Carrera::getEstadisticasGanadores($carrera->getValueEncoded("id_circuito")); 
-if (count($ganadores) > 0):
-?>
-
-<section class="carrera-stats">
-    <h2>Récords del Circuito</h2>
-    <div class="stats-container">
-        <?php foreach ($ganadores as $g): ?>
-            <div class="stat-card">
-                <img src="images/piloto/<?php echo $g['foto_piloto'] ?>" class="foto-mini">
-                <div class="victoria-count"><?php echo $g['victorias'] ?></div>
-                <div class="label">Victorias</div>
-                <p><strong><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></strong></p>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-<?php endif; ?>
 
 <?php displayPageFooter(); ?>

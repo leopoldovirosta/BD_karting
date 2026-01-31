@@ -18,7 +18,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
 ?>
 <div class="card-piloto">
     <div class="card-header-side">
-        <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValue("foto_piloto") ?: 'default.jpg') ?>" 
+        <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded("foto_piloto") ?: 'default.jpg') ?>" 
              alt="Foto de <?php echo $piloto->getValueEncoded('nombre_piloto') ?>" 
              class="foto-perfil" />
         <h3><?php echo $piloto->getValueEncoded("nombre_piloto") ?></h3>

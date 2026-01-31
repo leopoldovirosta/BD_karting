@@ -55,7 +55,7 @@ JOIN categorias cat ON caca.id_categoria = cat.id_categoria
 JOIN campeonatos cam ON caca.id_cto = cam.id_cto;
 
 CREATE VIEW vista_circuitos AS
-SELECT id_circuito, nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, a.nombre_area
+SELECT c.id_circuito, c.nombre_circuito, c.web_circuito, c.direccion_circuito, c.localidad_circuito, c.telefono_circuito, c.altitud, c.longitud, c.curvasizd, c.curvasdcha, c.velocidadmax, c.silueta, a.nombre_area
 FROM circuitos c
 JOIN areas a ON c.area_id = a.id_area;
 

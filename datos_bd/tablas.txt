@@ -68,6 +68,12 @@ CREATE TABLE circuitos (
     localidad_circuito VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
     telefono_circuito VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL,
     area_id INT UNSIGNED NOT NULL,
+    altitud SMALLINT NOT NULL,
+    longitud SMALLINT UNSIGNED NOT NULL,
+    curvasizd TINYINT UNSIGNED NOT NULL,
+    curvasdcha TINYINT UNSIGNED NOT NULL,
+    velocidadmax TINYINT UNSIGNED NOT NULL,
+    silueta VARCHAR(70) COLLATE utf8mb4_spanish_ci NOT NULL,
     CONSTRAINT fk_area FOREIGN KEY (area_id) REFERENCES areas(id_area)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 

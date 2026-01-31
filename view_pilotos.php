@@ -77,7 +77,7 @@ displayPageHeader("Lista de pilotos");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_piloto.php?id_piloto=<?php echo $piloto->getValueEncoded('id_piloto') ?>"><?php echo $piloto->getValueEncoded("id_piloto")?></a></td>
+            <td><a href="view_piloto.php?id_piloto=<?php echo $piloto->getValue('id_piloto') ?>"><?php echo $piloto->getValue("id_piloto")?></a></td>
             <td><?php echo $piloto->getValueEncoded("nombre_piloto") ?></td>
             <td><?php echo $piloto->getValueEncoded("apellido_piloto") ?></td>
             <td><?php echo $piloto->getValueEncoded("fecha_nacimiento") ?></td>

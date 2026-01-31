@@ -9,6 +9,7 @@ function displayPageHeader($pageTitle) {
         <meta charset="UTF-8">
         <title><?php echo $pageTitle ?></title>
         <link rel="stylesheet" type="text/css" href="common.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     </head>
     <body>
         <header>
@@ -21,7 +22,7 @@ function displayPageHeader($pageTitle) {
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn">Campeonato ▾</a>
       <div class="dropdown-content">
-        <a href="#circuitos">Circuitos</a>
+        <a href="view_circuitos.php">Circuitos</a>
         <a href="#circuitos">Campeonatos</a>
         <a href="#circuitos">Chasis</a>
         <a href="#circuitos">Motores</a>
