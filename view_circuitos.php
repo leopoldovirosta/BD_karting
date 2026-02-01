@@ -89,7 +89,8 @@ displayPageHeader("Lista de circuitos");
             <td><?php echo $circuito->getValueEncoded("nombre_area") ?></td>
             <td><?php echo $circuito->getValue("altitud") ?></td>
             <td><?php echo $circuito->getValue("longitud") ?></td>
-            <td><?php echo $circuito->getValue("curvas") ?></td>
+            <td><?php echo $circuito->getValue("curvasizd") ?></td>
+            <td><?php echo $circuito->getValue("curvasdcha") ?></td>
             <td><?php echo $circuito->getValue("velocidadmax") ?></td>
             <td>
             <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValueEncoded('silueta') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />

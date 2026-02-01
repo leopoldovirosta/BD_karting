@@ -95,9 +95,9 @@ class Carrera extends DataObject {
         $conn = parent::connect();
         if (!$conn) return null;
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(*) as victorias
+        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT carrera_id) as victorias
                 FROM " . VIEW_RESULTADOS . "
-                WHERE id_circuito = :id_circuito AND posicion = 1 AND id_categoria=1
+                WHERE id_circuito = :id_circuito AND posicion = 1 AND nombre_carrera_tipo != 'Clasificacion'
                 GROUP BY id_piloto
                 ORDER BY victorias DESC
                 LIMIT 3"; // Top 3 ganadores históricos
@@ -113,7 +113,55 @@ class Carrera extends DataObject {
         }
     }
 
+    public static function getRecordVuelta($id_circuito) {
+        $conn = parent::connect();
+        // Buscamos el tiempo más rápido, su piloto y el año en que ocurrió
+        $sql = "SELECT p.nombre_piloto, p.apellido_piloto, r.mejor_vuelta, c.fecha_carrera
+                FROM " . VIEW_RESULTADOS . " r
+                JOIN " . VIEW_PILOTOS . " p ON r.id_piloto = p.id_piloto
+                JOIN " . VIEW_CARRERAS . " c ON r.carrera_id = c.id_carrera
+                WHERE c.id_circuito = :id_circuito 
+                AND r.mejor_vuelta > 0 
+                ORDER BY r.mejor_vuelta ASC
+                LIMIT 1";
 
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_circuito", (int)$id_circuito, PDO::PARAM_INT);
+            $st->execute();
+            $record = $st->fetch();
+            parent::disconnect($conn);
+            return $record;
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            return null;
+        }
+    }
+
+    public static function calcularVelocidadMedia($longitud_m, $tiempo_str) {
+        if (empty($tiempo_str) || $longitud_m <= 0) return 0;
+
+        // Limpiamos posibles espacios y separamos por ":"
+        $partes = explode(':', trim($tiempo_str));
+
+        // 2. Procesamos según lo que recibamos (Horas:Minutos:Segundos)
+        if (count($partes) === 3) {
+                $horas = (int)$partes[0];
+                $minutos = (int)$partes[1];
+                $segundos = (float)$partes[2]; // Esto captura los decimales (.500)
+
+                $segundos_totales = ($horas * 3600) + ($minutos * 60) + $segundos;
+        } else {
+            return 0; // Formato inesperado
+        }
+
+        if ($segundos_totales <= 0) return 0;
+        // Fórmula: (Distancia / Tiempo) * 3600 para pasar de km/s a km/h
+        $longitud_km = $longitud_m / 1000;
+        $velocidad = ($longitud_km / $segundos_totales) * 3600;
+        return round($velocidad, 2);    
+    
+    }
 
 }
 
