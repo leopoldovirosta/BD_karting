@@ -81,7 +81,14 @@ displayPageHeader("Lista de pilotos");
             <td><?php echo $piloto->getValueEncoded("nombre_piloto") ?></td>
             <td><?php echo $piloto->getValueEncoded("apellido_piloto") ?></td>
             <td><?php echo $piloto->getValueEncoded("fecha_nacimiento") ?></td>
-            <td><a href="<?php echo $piloto->getValueEncoded('web_piloto') ?>" target="_blank" alt="Página web"><?php echo $piloto->getValueEncoded("web_piloto") ?></a></td>
+            <?php
+                $url = $piloto->getValueEncoded("web_piloto"); 
+                if (!empty($url)): // Si la URL no está vacía...
+            ?>
+                    <td><a href="<?php echo $url ?>" target="_blank" alt="Página web">Visitar
+                    <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></td>
+            <?php else: ?><td class="text-center">---</td>
+            <?php endif; ?>
             <td><a href="mailto:<?php echo $piloto->getValueEncoded('email_piloto') ?>"><?php echo $piloto->getValueEncoded("email_piloto") ?></a></td>
             <td>
             <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />

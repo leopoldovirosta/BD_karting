@@ -22,7 +22,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
              alt="Foto de <?php echo $piloto->getValueEncoded('nombre_piloto') ?>" 
              class="foto-perfil" />
         <h3><?php echo $piloto->getValueEncoded("nombre_piloto") ?></h3>
-        <p style="color: #3498db;"><?php echo $piloto->getValueEncoded("nombre_escuderia") ?></p>
+        <p style="color: #3498db;"><?php echo $piloto->getValueEncoded("nombre_region") ?></p>
     </div>
 
     <div class="card-body">
@@ -38,12 +38,12 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                 <span><?php echo $piloto->getValueEncoded("fecha_nacimiento") ?></span>
             </div>
             <div class="info-item">
-                <label>Federación</label>
-                <span><?php echo $piloto->getValueEncoded("nombre_federacion") ?></span>
+                <label>Escudería</label>
+                <span><?php echo $piloto->getValueEncoded("nombre_escuderia") ?></span>
             </div>
             <div class="info-item">
                 <label>Patrocinador</label>
-                <span><?php echo $piloto->getValueEncoded("nombre_sponsor") ?></span>
+                <span><?php echo $piloto->getValueEncoded("nombre_patrocinador") ?></span>
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Email de contacto</label>
@@ -51,7 +51,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Página web</label>
-                <span><a href="<?php echo $piloto->getValueEncoded('web_piloto') ?>" style="color: inherit; text-decoration: none;"><?php echo $piloto->getValueEncoded("web_piloto") ?></a></span>
+                <span><a href="<?php echo $piloto->getValueEncoded('web_piloto') ?>" style="color: inherit; text-decoration: none;" target="_blank">Visitar<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></span>
             </div>
         </div>
 

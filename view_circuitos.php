@@ -82,7 +82,7 @@ displayPageHeader("Lista de circuitos");
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
             <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValue('id_circuito') ?>"><?php echo $circuito->getValue("id_circuito")?></a></td>
             <td><?php echo $circuito->getValueEncoded("nombre_circuito") ?></td>
-            <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Página web</a></td>
+            <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Visitar</a></td>
             <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("localidad_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("telefono_circuito") ?></td>
