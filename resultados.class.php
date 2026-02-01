@@ -26,7 +26,7 @@ class Resultado extends DataObject {
         "num_vueltas" => "",
         "num_vueltas_completadas" => "",
         "posicion" => "",
-        "commentario_posicion" => "",
+        "comentario_posicion" => "",
         "puntos" => "",
         "id_chasis" => "",
         "nombre_chasis" => "",
@@ -77,7 +77,7 @@ class Resultado extends DataObject {
 
         } catch (PDOException $e) {
             parent::disconnect($conn);
-            error_log("Error en getCarreras: " . $e->getMessage());
+            error_log("Error en getResultados: " . $e->getMessage());
             return [[], 0]; // Devolvemos array vacío en caso de error
         }
     }

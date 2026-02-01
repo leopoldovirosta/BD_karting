@@ -3,13 +3,14 @@
 require_once "common.inc.php";
 require_once "config.php";
 require_once "resultados.class.php";
+require_once "pilotos.class.php";
  
 // 1. Detectamos el sentido (por defecto ASC)
 $type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
 
 // 2. Limpiamos las variables
 $start = isset($_GET["start"]) ? (int)$_GET["start"] : 0;
-$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "fecha_carrera";
+$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_resultado";
 $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 
 // 3. Llamamos al método (asegúrate de que tu SQL en Piloto ahora use $order y $type)
@@ -35,12 +36,13 @@ displayPageHeader("Lista de Resultados");
     <tr>
         <?php
         // Definimos las columnas que queremos mostrar
-        $columns = array(
+    $columns = array(
+            "id_resultado" => "ID",
             "fecha_carrera" => "Fecha",
+            "nombre_cto" => "Campeonato",
+            "nombre_circuito" => "Circuito",
             "nombre_carrera_tipo" => "Carrera",
             "nombre_categoria" => "Categoría",
-            "nombre_circuito" => "Circuito",
-            "nombre_cto" => "Campeonato",
             "nombre_piloto" => "Nombre",
             "apellido_piloto" => "Apellido",
             "foto_piloto" => "Foto",
@@ -55,7 +57,7 @@ displayPageHeader("Lista de Resultados");
             "marca_chasis" => "Chasis",
             "modelo_chasis" => "Modelo",
             "marca_motor" => "Motor",
-            "marca_motor" => "Modelo"
+            "modelo_motor" => "Modelo"
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -81,20 +83,27 @@ displayPageHeader("Lista de Resultados");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_resultado.php?carrera_id=<?php echo $resultado->getValue('carrera_id') ?>&id_cto=<?php echo $resultado>getValue("id_cto")?>&id_piloto=<?php echo $resultado>getValue("id_cto")?>">Ver</a></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_cto") ?></td>
+            <td><a href="view_resultado.php?id_resultado=<?php echo $resultado->getValue('id_resultado') ?>&id_piloto=<?php echo $resultado->getValue("id_piloto")?>&id_cto=<?php echo $resultado->getValue("id_cto")?>"><?php echo $resultado->getValue('id_resultado') ?></a></td>
             <td><?php echo $resultado->getValueEncoded("fecha_carrera") ?></td>
-            <td class="text-center"><?php echo $carrera->getValue("num_vueltas") ?></td>
-            <td><?php echo $resultado->getValueEncoded("dia") ?></td>
-            <td><?php echo $resultado->getValueEncoded("pista") ?></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_") ?></td>
+            <td><?php echo $resultado->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $resultado->getValueEncoded("nombre_circuito") ?></td>
-            <td><?php echo $resultado->getValue("temperatura") ?> ºC</td>
-            <td class="text-center"><?php echo $resultado->getValue("humedad") ?> %</td>
-            <td><?php echo $resultado->getValue("presion") ?> hPa</td>
-            <td><?php echo $resultado->getValue("viento") ?> Km/h</td>
-            <td><?php echo $resultado->getValueEncoded("orientacion") ?></td>
-            <td class="text-center"><?php echo $resultado->getValue("tasfalto") ?> ºC</td>
+            <td><?php echo $resultado->getValueEncoded("nombre_carrera_tipo") ?></td>
+            <td><?php echo $resultado->getValueEncoded("nombre_categoria") ?></td>
+            <td><?php echo $resultado->getValueEncoded("nombre_piloto") ?></td>
+            <td><?php echo $resultado->getValueEncoded("apellido_piloto") ?></td>
+            <td><img src="<?php echo IMAGE_PILOT_DIRECTORY . ($resultado->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" /></td>
+            <td class="text-center"><?php echo $resultado->getValue("dorsal") ?></td>
+            <td><?php echo $resultado->getValueEncoded("tiempo_total") ?></td>
+            <td><?php echo $resultado->getValueEncoded("mejor_vuelta") ?></td>
+            <td><?php echo $resultado->getValue("num_vueltas") ?></td>
+            <td><?php echo $resultado->getValue("num_vueltas_completadas") ?></td>
+            <td><?php echo $resultado->getValue("posicion") ?></td>
+            <td><?php echo $resultado->getValueEncoded("comentario_posicion") ?></td>
+            <td class="text-center"><?php echo $resultado->getValue("puntos") ?></td>
+            <td><?php echo $resultado->getValueEncoded("marca_chasis") ?></td>
+            <td><?php echo $resultado->getValueEncoded("modelo_chasis") ?></td>
+            <td><?php echo $resultado->getValueEncoded("marca_motor") ?></td>
+            <td><?php echo $resultado->getValueEncoded("modelo_motor") ?></td>
         </tr>
 <?php
     endforeach;
@@ -105,13 +114,13 @@ displayPageHeader("Lista de Resultados");
         Mostrando <?php echo $start + 1 ?>-<?php echo min($start + $pageSize, $totalRows) ?> de <?php echo $totalRows ?>
     </p>
         <?php if ($start > 0 ): ?>
-            <a href="view_resultado.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">&laquo; Página anterior</a>
+            <a href="view_resultados.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">&laquo; Página anterior</a>
         <?php endif; ?>
         
         &nbsp;
         
         <?php if ($start + $pageSize < $totalRows): ?>
-            <a href="view_resultado.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">Página siguiente &raquo;</a>
+            <a href="view_resultados.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>" class="btn-nav">Página siguiente &raquo;</a>
         <?php endif; ?>
     </div> 
 <?php
