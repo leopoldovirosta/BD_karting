@@ -1,48 +1,78 @@
 CREATE TABLE regiones (
     id_region INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_region VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    nombre_region VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE areas (
     id_area INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_area VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    nombre_area VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE escuderias (
     id_escuderia INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_escuderia VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_escuderia VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     web_escuderia VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    UNIQUE (nombre_escuderia)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE patrocinadores (
     id_patrocinador INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_patrocinador VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_patrocinador VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     web_patrocinador VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    UNIQUE (nombre_patrocinador)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE categorias (
     id_categoria INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_categoria VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    nombre_categoria VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE campeonatos (
     id_cto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_cto VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    nombre_cto VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_cto VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE marcas (
+    id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_marca VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+    pais_origen VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_marca VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+    pagina_web VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+    es_fabricante_chasis TINYINT(1) DEFAULT 0,
+    es_fabricante_motor TINYINT(1) DEFAULT 0
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE chasis (
     id_chasis INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     modelo_chasis VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    marca_chasis VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    web_marca_chasis VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    foto_chasis VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    ficha_tecnica_chasis VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    UNIQUE (marca_chasis, modelo_chasis))  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    tubo_diametro VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
+    distancia_ejes SMALLINT UNSIGNED,
+    eje_trasero SMALLINT UNSIGNED,
+    sistema_frenado VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    categoria_objetivo VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
+    año_homologacion YEAR,
+    foto_chasis VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    ficha_homologacion VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    id_marca INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca),
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE motores (
     id_motor INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     modelo_motor VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    marca_motor VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    web_marca_motores VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    foto_motor VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    ficha_tecnica_motor VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
-    UNIQUE (marca_motor, modelo_motor)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    cilindrada SMALLINT UNSIGNED NULL,
+    ciclo ENUM('2T', '4T') DEFAULT '2T',
+    potencia DECIMAL(5,2) UNSIGNED NULL, 
+    refrigeracion ENUM('Aire', 'Agua') DEFAULT 'Agua',
+    admision VARCHAR(70) COLLATE utf8mb4_spanish_ci NULL,
+    num_marchas TINYINT UNSIGNED DEFAULT 0,
+    regimen_max_rpm INT UNSIGNED NULL,
+    foto_motor VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    ficha_homologacion VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    id_marca INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca),
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE pilotos (
     id_piloto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -51,30 +81,31 @@ CREATE TABLE pilotos (
     fecha_nacimiento DATE NULL,
     web_piloto VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     email_piloto VARCHAR(60) COLLATE utf8mb4_spanish_ci NULL,
-    foto_piloto VARCHAR(70) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.jpg',
-    region_id INT UNSIGNED NOT NULL DEFAULT 1,
-    escuderia_id INT UNSIGNED NOT NULL DEFAULT 1,
-    patrocinador_id INT UNSIGNED NOT NULL DEFAULT 1,
-    CONSTRAINT fk_region FOREIGN KEY (region_id) REFERENCES regiones(id_region),
-    CONSTRAINT fk_escuderia FOREIGN KEY (escuderia_id) REFERENCES escuderias(id_escuderia),
-    CONSTRAINT fk_patrocinador FOREIGN KEY (patrocinador_id) REFERENCES patrocinadores(id_patrocinador)
+    foto_piloto VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.jpg',
+    id_region INT UNSIGNED NOT NULL DEFAULT 1,
+    id_escuderia INT UNSIGNED NOT NULL DEFAULT 1,
+    id_patrocinador INT UNSIGNED NOT NULL DEFAULT 1,
+    CONSTRAINT fk_region FOREIGN KEY (id_region) REFERENCES regiones(id_region),
+    CONSTRAINT fk_escuderia FOREIGN KEY (id_escuderia) REFERENCES escuderias(id_escuderia),
+    CONSTRAINT fk_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES patrocinadores(id_patrocinador)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE circuitos (
     id_circuito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_circuito VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_circuito VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     web_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     direccion_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     localidad_circuito VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
     telefono_circuito VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL,
-    area_id INT UNSIGNED NOT NULL,
+    id_area INT UNSIGNED NOT NULL,
     altitud SMALLINT NOT NULL,
     longitud SMALLINT UNSIGNED NOT NULL,
     curvasizd TINYINT UNSIGNED NOT NULL,
     curvasdcha TINYINT UNSIGNED NOT NULL,
     velocidadmax TINYINT UNSIGNED NOT NULL,
-    silueta VARCHAR(70) COLLATE utf8mb4_spanish_ci NOT NULL,
-    CONSTRAINT fk_area FOREIGN KEY (area_id) REFERENCES areas(id_area)
+    silueta VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+    CONSTRAINT fk_area FOREIGN KEY (id_area) REFERENCES areas(id_area)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE carreras_tipo (
@@ -93,14 +124,14 @@ CREATE TABLE carreras (
     viento TINYINT UNSIGNED NULL,
     orientacion ENUM('Norte','Sur','Este','Oeste','Noreste','Noroeste','Sureste','Suroeste','Oeste/Noroeste','Norte/Noroeste','Norte/Noreste','Este/Noreste','Este/Sureste','Sur/Sureste','Sur/Suroeste','Oeste/Suroeste') COLLATE utf8mb4_spanish_ci NOT NULL,
     tasfalto TINYINT NULL,
-    carrera_tipo_id INT UNSIGNED NOT NULL,
-    circuito_id INT UNSIGNED NOT NULL,
+    id_carrera_tipo INT UNSIGNED NOT NULL,
+    id_circuito INT UNSIGNED NOT NULL,
     CONSTRAINT fk_carrera_tipo FOREIGN KEY (carrera_tipo_id) REFERENCES carreras_tipo(id_carrera_tipo), 
     CONSTRAINT fk_circuito FOREIGN KEY (circuito_id) REFERENCES circuitos(id_circuito)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE campeonatos_carreras (
-    cto_id INT UNSIGNED NOT NULL,
-    carrera_id INT UNSIGNED NOT NULL,
+    id_cto INT UNSIGNED NOT NULL,
+    id_carrera INT UNSIGNED NOT NULL,
     PRIMARY KEY (cto_id, carrera_id),
     CONSTRAINT fk_rel_cto FOREIGN KEY (cto_id) REFERENCES campeonatos(id_cto),
     CONSTRAINT fk_rel_carrera FOREIGN KEY (carrera_id) REFERENCES carreras(id_carrera)
@@ -108,25 +139,25 @@ CREATE TABLE campeonatos_carreras (
 
 CREATE TABLE resultados (
     id_resultado INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    carrera_id INT UNSIGNED NOT NULL,
-    piloto_id INT UNSIGNED NOT NULL,
-    categoria_id INT UNSIGNED NOT NULL,
+    id_carrera INT UNSIGNED NOT NULL,
+    id_piloto INT UNSIGNED NOT NULL,
+    id_categoria INT UNSIGNED NOT NULL,
     dorsal SMALLINT,
     posicion TINYINT UNSIGNED NOT NULL,
     comentario_posicion ENUM('Normal', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'Normal',
     tiempo_total TIME(3) NULL,
     mejor_vuelta TIME(3) NULL,
     num_vueltas_completadas TINYINT UNSIGNED,
-    chasis_id INT UNSIGNED NULL,
-    motor_id INT UNSIGNED NULL,
+    id_chasis INT UNSIGNED NULL,
+    id_motor INT UNSIGNED NULL,
     PRIMARY KEY (id_resultado),
-    INDEX idx_resultado_carrera (carrera_id),
-    INDEX idx_resultado_piloto (piloto_id),
-    CONSTRAINT fk_res_carrera FOREIGN KEY (carrera_id) REFERENCES carreras(id_carrera),
-    CONSTRAINT fk_res_piloto FOREIGN KEY (piloto_id) REFERENCES pilotos(id_piloto),
-    CONSTRAINT fk_res_categoria FOREIGN KEY (categoria_id) REFERENCES categorias(id_categoria),
-    CONSTRAINT fk_res_chasis FOREIGN KEY (chasis_id) REFERENCES chasis(id_chasis),
-    CONSTRAINT fk_res_motor FOREIGN KEY (motor_id) REFERENCES motores(id_motor)
+    INDEX idx_resultado_carrera (id_carrera),
+    INDEX idx_resultado_piloto (id_piloto),
+    CONSTRAINT fk_res_carrera FOREIGN KEY (id_carrera) REFERENCES carreras(id_carrera),
+    CONSTRAINT fk_res_piloto FOREIGN KEY (id_piloto) REFERENCES pilotos(id_piloto),
+    CONSTRAINT fk_res_categoria FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria),
+    CONSTRAINT fk_res_chasis FOREIGN KEY (id_chasis) REFERENCES chasis(id_chasis),
+    CONSTRAINT fk_res_motor FOREIGN KEY (id_motor) REFERENCES motores(id_motor)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE sistemas_puntuacion (
