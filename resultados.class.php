@@ -6,8 +6,8 @@ require_once "config.php";
 class Resultado extends DataObject {
     protected $data = array(
         "id_resultado" =>  "",
-        "carrera_id" => "",
-        "categoria_id" => "",
+        "id_carrera" => "",
+        "id_categoria" => "",
         "fecha_carrera" => "",
         "nombre_carrera_tipo" => "",
         "id_categoria" => "",
@@ -108,7 +108,7 @@ class Resultado extends DataObject {
         $conn = parent::connect();
         if (!$conn) return null;
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT carrera_id) as victorias
+        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT id_carrera) as victorias
                 FROM " . VIEW_RESULTADOS . "
                 WHERE id_circuito = :id_circuito AND posicion = 1 AND nombre_carrera_tipo != 'Clasificacion'
                 GROUP BY id_piloto
@@ -132,7 +132,7 @@ class Resultado extends DataObject {
         $sql = "SELECT p.nombre_piloto, p.apellido_piloto, r.mejor_vuelta, c.fecha_carrera
                 FROM " . VIEW_RESULTADOS . " r
                 JOIN " . VIEW_PILOTOS . " p ON r.id_piloto = p.id_piloto
-                JOIN " . VIEW_CARRERAS . " c ON r.carrera_id = c.id_carrera
+                JOIN " . VIEW_CARRERAS . " c ON r.id_carrera = c.id_carrera
                 WHERE c.id_circuito = :id_circuito 
                 AND r.mejor_vuelta > 0 
                 ORDER BY r.mejor_vuelta ASC

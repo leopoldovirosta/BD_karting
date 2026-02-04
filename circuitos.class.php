@@ -11,7 +11,7 @@ class Circuito extends DataObject {
         "direccion_circuito" => "",
         "localidad_circuito" => "",
         "telefono_circuito" => "",
-        "area_id" => "",
+        "id_area" => "",
         "nombre_area" => "",
         "altitud" => "",
         "longitud" => "",

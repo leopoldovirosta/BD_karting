@@ -119,7 +119,7 @@ class Carrera extends DataObject {
         $sql = "SELECT p.nombre_piloto, p.apellido_piloto, r.mejor_vuelta, c.fecha_carrera
                 FROM " . VIEW_RESULTADOS . " r
                 JOIN " . VIEW_PILOTOS . " p ON r.id_piloto = p.id_piloto
-                JOIN " . VIEW_CARRERAS . " c ON r.carrera_id = c.id_carrera
+                JOIN " . VIEW_CARRERAS . " c ON r.id_carrera = c.id_carrera
                 WHERE c.id_circuito = :id_circuito 
                 AND r.mejor_vuelta > 0 
                 ORDER BY r.mejor_vuelta ASC
