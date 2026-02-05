@@ -33,6 +33,15 @@ CREATE TABLE campeonatos (
     logo_cto VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+CREATE TABLE fabricantes (
+    id_fabricante INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_fabricante VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+    sector VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+    tamaño_fabricante VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    sede VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+    fundacion YEAR
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
 CREATE TABLE marcas (
     id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_marca VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -40,7 +49,9 @@ CREATE TABLE marcas (
     logo_marca VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL,
     pagina_web VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
     es_fabricante_chasis TINYINT(1) DEFAULT 0,
-    es_fabricante_motor TINYINT(1) DEFAULT 0
+    es_fabricante_motor TINYINT(1) DEFAULT 0,
+    es_fabricante_ruedas TINYINT(1) DEFAULT 0,
+    id_fabricante INT UNSIGNED NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE chasis (
