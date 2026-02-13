@@ -29,16 +29,22 @@ LEFT JOIN campeonatos_carreras cc ON ca.id_carrera = cc.id_carrera
 LEFT JOIN campeonatos cp ON cc.id_cto = cp.id_cto;
 
 CREATE VIEW vista_chasis AS
-SELECT id_chasis, modelo_chasis, marca_chasis, web_marca_chasis, foto_chasis, ficha_tecnica_chasis
-FROM chasis;
+SELECT ch.id_chasis, ch.id_marca, m.nombre_marca, m.logo_marca, ch.modelo_chasis, ch.tubo_diametro, ch.distancia_ejes, ch.eje_trasero, ch.sistema_frenado, ch.categoria_objetivo, ch.ano_homologacion, ch.foto_chasis
+FROM chasis ch
+JOIN marcas m ON ch.id_marca = m.id_marca;
 
 CREATE VIEW vista_regiones AS
 SELECT id_region, nombre_region
 FROM regiones;
 
 CREATE VIEW vista_motores AS
-SELECT id_motor, modelo_motor, marca_motor, web_marca_motores, foto_motor, ficha_tecnica_motor
-FROM motores;
+SELECT mo.id_motor, mo.id_marca, m.nombre_marca, m.logo_marca, mo.modelo_motor, mo.cilindrada, mo.ciclo, mo.potencia_cv, mo.refrigeracion, mo.admision, mo.num_marchas, mo.regimen_max_rpm, mo.ano_homologacion, mo.peso_motor, mo.foto_motor
+FROM motores mo
+JOIN marcas m ON mo.id_marca = m.id_marca;
+
+CREATE VIEW vista_marcas AS
+SELECT id_marca, nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis, es_marca_motor, es_marca_ruedas
+FROM marcas;
 
 CREATE VIEW vista_escuderias AS
 SELECT id_escuderia, nombre_escuderia, web_escuderia
@@ -105,7 +111,12 @@ SELECT
     -- DATOS DE MOTOR Y SU MARCA
     mo.modelo_motor,
     m_mo.nombre_marca AS marca_motor,
-    m_mo.logo_marca AS logo_motor
+    m_mo.logo_marca AS logo_motor,
+    
+    -- DATOS DE RUEDA Y SU MARCA
+    ru.modelo_motor,
+    m_ru.nombre_marca AS marca_rueda,
+    m_ru.logo_marca AS logo_rueda
     
 FROM resultados r
 JOIN pilotos p ON r.id_piloto = p.id_piloto
@@ -117,6 +128,9 @@ LEFT JOIN marcas m_ch ON ch.id_marca = m_ch.id_marca
 LEFT JOIN motores mo ON r.id_motor = mo.id_motor
 -- Unimos la marca del motor usando el alias 'm_mo'
 LEFT JOIN marcas m_mo ON mo.id_marca = m_mo.id_marca
+LEFT JOIN ruedas ru ON r.id_rueda = ru.id_rueda
+-- Unimos la marca de la rueda usando el alias 'm_ru'
+LEFT JOIN marcas m_ru ON ru.id_marca = m_ru.id_marca
 LEFT JOIN sistemas_puntuacion sp ON vcar.id_cto = sp.id_cto
                                  AND vcar.id_carrera_tipo = sp.id_tipo_carrera
                                  AND r.posicion = sp.posicion;

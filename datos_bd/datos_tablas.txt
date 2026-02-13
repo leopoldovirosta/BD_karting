@@ -98,56 +98,45 @@ insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, locali
 insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_area, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito de Torremocha', 'https://www.circuitodetorremocha.es/Neweb/', 'El Arcillar s/n', 'Torremocha del Jiloca', '635575220', 44, 1000, 1302, 125, 'torremocha.jpg', 7, 8);
 insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_area, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Zuera', 'https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 50, 300, 1075, 115, 'kartingzuera.jpg', 5, 8);
 
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('OTK KART GROUP SRL','Fabricación de vehículos de motor','51-200 empleados','Prevalle, Bs',1984);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('BIREL ART SRL','Fabricación de vehículos de motor','51-200 empleados','Lissone, Mb',1960);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('SODIKART','Fabricación de vehículos de motor','51-200 empleados','Saint-Herblain, Pays de la Loire',1981);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('CRG SRL','Proveedores de entretenimiento','51-200 empleados','Lonato del Garda, Lombardia',1986);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('PAROLIN RACING,'Sector automovilístico','11-50 empleados','Romano D Ezzelino, Vi',1994);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('BRP-ROTAX','Fabricación de vehículos de motor','1001-5000 empleados','Gunskirchen, Upper Austria',1920);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('TM KART','Fabricación de motores y equipos de transmisión de energía','11-50 empleados','Pesaro, Marches',2023);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('INNOVATIVE PRODUCTS FOR KARTING SRL','Fabricación de vehículos de motor','360 empleados','Salizzole VR',2011);
-insert into fabricantes(nombre_fabricante, sector, sede, fundacion) values('KART REPUBLIC','Sector automovilístico','Due Carrare, PD',2017);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('IAME SPA SU','Automoción','55 empleados','Zingonia, BG',1968);
-insert into fabricantes(nombre_fabricante, sector, sede) values('MODENA ENGINES','Fabricación de motores','Arce, FR');
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('TILLOTSON RACING','Fabricación de vehículos de motor','51-200 empleados','Tralee, Kerry');
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('LENZOKART','Sector automovilístico','11-50 empleados','Brolo, Sicilia',2000);
-insert into fabricantes(nombre_fabricante, sector, sede, fundacion) values('TBKART SRL','Sector automovilístico','Orsenigo, CO',1918);
-insert into fabricantes(nombre_fabricante, sector, tamaño_fabricante, sede, fundacion) values('LECONT','Fabricación de vehículos de motor','11-50 empleados','Rovereto, TN',1994);
 
-
-
-
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Tony Kart',1,'Italia','tonykart.jpg','https://www.tonykart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Formula K',8,'Italia','formulak.jpg','https://www.formulak.it',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Kart Republic',9,'Italia','kartrepublic.jpg','https://www.kartrepublic.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('IAME','Italia',10,'iame.jpg','https://www.iamekarting.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Birel ART',2,'Italia','birelart.jpg','https://www.birelart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Kubica Racing Kart',2,'Polonia','kubicaracingkart.jpg','https://www.kubicaracingkart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Charles Leclerc',2,'Italia','charlesleclerc.jpg','https://www.clkarting.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Barrichello Kart',2,'Brasil','barrichelokart.jpg','https://www.barrichellokart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('CRG','Italia',4,'crg.jpg','https://kartcrg.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('FA Alonso Kart',9,'España','fakart.jpg','https://dpkstore.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Maranello Racing Kart',4,'Italia','maranellokart.jpg','https://maranellokart.com',,1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('TM Kart',7,'Italia','tmkart.jpg','https://www.tmkart.it',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('Rotax Racing',6,'Austria','rotaxracing.jpg','https://www.rotax-racing.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Parolin Racing Kart',5,'Italia','parolin.jpg','https://www.parolinracing.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('Vortex Engines',1,'Italia','votexengines.jpg','https://vortex-engines.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('Modena Engines',11,'Italia','modenaengines.jpg','https://modenaengines.it',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Praga',8,'Italia','pragakarts.jpg','https://pragaglobal.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('RS',8,'Alemania','ralfschumacher.jpg','https://www.rskarting.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('OK1 Kart',8,'Italia','ok1.jpg','https://www.ok1karting.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Kosmic Racing Kart',1,'Italia','kosmic.jpg','https://www.kosmickart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('Tillotson',12,'EEUU','tillotson.jpg','https://tillotson.ie',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Sodikart',3,'Francia','sodikart.jpg','https://www.sodikart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Lenzokart',13,'Italia','lenzokart.jpg','https://www.lenzokart.it',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Exprit Racing Kart',1,'Italia','exprit.jpg','https://www.expritkart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('TBKART',14,'Italia','tbkart.jpg','https://tbkart.it/',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Gillard',1,'UK','gillard.jpg','https://gillardkart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('LN Racing kart',1,'UK','lnkart.jpg','https://lnracingkart.com/',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('Redspeed Racing kart',1,'Italia','redspeed.jpg','https://www.redspeedkart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_chasis) values('EOS Racing kart',1,'Italia','eosracingkart.jpg','https://www.eosracingkart.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_ruedas) values('LeCont',15,'Italia','lecont.jpg','https://www.lecont.com',1);
-insert into marcas(nombre_marca, id_fabricante, pais_origen, logo_marca, web_marca, es_fabricante_motor) values('LKE Engines',13,'Italia','lkengines.jpg','https://lkengines.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Tony Kart','Italia','tonykart.jpg','https://www.tonykart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Formula K','Italia','formulak.jpg','https://www.formulak.it',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Kart Republic','Italia','kartrepublic.jpg','https://www.kartrepublic.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('IAME','Italia','iame.jpg','https://www.iamekarting.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Birel ART','Italia','birelart.jpg','https://www.birelart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Kubica Racing Kart','Polonia','kubicaracingkart.jpg','https://www.kubicaracingkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Charles Leclerc','Italia','charlesleclerc.jpg','https://www.clkarting.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Barrichello Kart','Brasil','barrichelokart.jpg','https://www.barrichellokart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('CRG','Italia','crg.jpg','https://kartcrg.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('FA Alonso Kart','España','fakart.jpg','https://dpkstore.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Maranello Racing Kart','Italia','maranellokart.jpg','https://maranellokart.com',,1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('TM Kart','Italia','tmkart.jpg','https://www.tmkart.it',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('Rotax Racing','Austria','rotaxracing.jpg','https://www.rotax-racing.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Parolin Racing Kart','Italia','parolin.jpg','https://www.parolinracing.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('Vortex Engines','Italia','votexengines.jpg','https://vortex-engines.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('Modena Engines','Italia','modenaengines.jpg','https://modenaengines.it',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Praga','Italia','pragakarts.jpg','https://pragaglobal.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('RS Kart','Alemania','ralfschumacher.jpg','https://www.rskarting.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('OK1 Kart','Italia','ok1.jpg','https://www.ok1karting.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Kosmic Racing Kart','Italia','kosmic.jpg','https://www.kosmickart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('Tillotson','EEUU','tillotson.jpg','https://tillotson.ie',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Sodikart','Francia','sodikart.jpg','https://www.sodikart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Lenzokart','Italia','lenzokart.jpg','https://www.lenzokart.it',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Exprit Racing Kart','Italia','exprit.jpg','https://www.expritkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('TBKART','Italia','tbkart.jpg','https://tbkart.it',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Gillard','UK','gillard.jpg','https://gillardkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('LN Racing kart','UK','lnkart.jpg','https://lnracingkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Redspeed Racing kart','Italia','redspeed.jpg','https://www.redspeedkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('EOS Racing kart','Italia','eosracingkart.jpg','https://www.eosracingkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('LeCont','Italia','lecont.jpg','https://www.lecont.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('LKE Engines','Italia','lkengines.jpg','https://lkengines.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('TD Racing kart','Bélgica','tdracingkart.jpg','https://www.tdracingkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Vega','Italia','vegatyres.jpg','https://vegatyres.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('MG Tires','Brasil','mgtyres.jpg','https://mgtires.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Maxxis','China','maxxis.jpg','https://www.maxxis.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Komet Racing Tyres','Italia','komet.jpg','https://www.kometracingtyres.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Bridgestone','Japón','bridgestone.jpg','https://www.bridgestone.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Dunlop','Irlanda','dunlop.jpg','https://www.dunlop.com',1);
 
 
 
