@@ -54,8 +54,7 @@ CREATE TABLE chasis (
     sistema_frenado VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     categoria_objetivo VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
     ano YEAR,
-    accesorios VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    carroceria VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    homologacion VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     foto_chasis VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     id_marca INT UNSIGNED NOT NULL,
     CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
