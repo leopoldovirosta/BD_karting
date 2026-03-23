@@ -131,6 +131,7 @@ insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ch
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('LeCont','Italia','lecont.jpg','https://www.lecont.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_motor) values('LKE Engines','Italia','lkengines.jpg','https://lkengines.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('TD Racing kart','Bélgica','tdracingkart.jpg','https://www.tdracingkart.com',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Mach1 Kart','Alemania','mach1.png','https://en.mach1kart.com/',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Vega','Italia','vegatyres.jpg','https://vegatyres.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('MG Tires','Brasil','mgtyres.jpg','https://mgtires.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Maxxis','China','maxxis.jpg','https://www.maxxis.com',1);
@@ -262,6 +263,22 @@ insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_e
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(25,'S55M 2025','Cromo-Molibdeno 25Cr-Mo 4','30 mm','1045 mm','50mm x 1030mm','FIA Karting homologations 004-BRKF-10 e 004-BRKR-90','OK/Rotax',2025,'020-CH-04','tbkart_s55m-2025.jpg');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, categoria_objetivo, ano, homologacion, foto_chasis) values(25,'Monster 2025','Cromo-Molibdeno 25Cr-Mo 4','28 mm','950 mm','30 mm','Mini',2025,'020-CH-98','tbkart_monster-2025.jpg');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(25,'DD2','Cromo-Molibdeno 25Cr-Mo 4','32 mm or 30 mm','1045 mm','50mm x 1040mm','FIA Karting homologations 004-BRKF-10 e 004-BRKR-90','Rotax DD2',2025,'tbkart_DD2.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(26,'TG17 MY 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'gillard_tg17-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(26,'TDX MY2025','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'gillard_tdx-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(26,'Rookie MY2025','Molybdenum chrome steel','28 mm','950 mm','30 mm','BSM5 CIK-FIA homologated','Mini',2025,'gillard_rookie-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(27,'Four MY 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'ln_four-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(27,'TDX MY2025','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'ln_tdx-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(27,'Rookie MY2025','Molybdenum chrome steel','28 mm','950 mm','30 mm','BSM5 CIK-FIA homologated','Mini',2025,'ln_rookie-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(28,'RX T 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'redspeed_rxT-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(28,'TDX MY2025','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'redspeed_tdx-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(28,'Rookie MY2025','Molybdenum chrome steel','28 mm','950 mm','30 mm','BSM5 CIK-FIA homologated','Mini',2025,'redspeed_rookie-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(29,'Typhoon T 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'eos_typhoon-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(29,'TDX MY2025','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'eos_tdx-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(29,'Rookie MY2025','Molybdenum chrome steel','28 mm','950 mm','30 mm','BSM5 CIK-FIA homologated','Mini',2025,''eos_rookie-2025.jpg);
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(32,'TD Racing Kart','30 mm','1048 mm','v05/v10 brakingsystem','OK/X30/KZ/Rotax',2025,'TD_racing_kart-2025.png');
+insert into chasis(id_marca, modelo_chasis, distancia_ejes, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(33,'Mach1 Ares A04','950 mm','Hetschel-HRP EvoX-M Mini brake (025-B2-52)','Mini',2024,'mach1_ares-a04-2024.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(33,'Mach1 Zelos 2022','Molybdenum chrome steel','30 mm','1048 mm','Hetschel-HRP EvoX-M','KZ/OK/X30/Rotax',2022,'025-CH-05','mach1_zelos-2022.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(33,'Mach1 Zelos 2025','Molybdenum chrome steel','30 mm','1048 mm','Hetschel-HRP EvoX-M','KZ/OK/X30/Rotax',2025,'025-CH-05','mach1_zelos-2025.jpg');
 
 
 
@@ -269,9 +286,10 @@ insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_e
 
 
 
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('X30 125cc','IAME','https://www.iamekarting.com/', 'iame_X30_125cc.jpg','iame_X30_125cc.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KK1','Modena Engines','https://modenaengines.it/', 'modena_kk1r.jpg','modena_KK1R.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KZ-R2','TM Kart','https://www.tmkart.it/', 'tm_kz-r2_srp.jpg','TM-KZ-R2_2022.pdf');
+
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('X30 125cc','IAME','https://www.iamekarting.com/','iame_X30_125cc.jpg','iame_X30_125cc.pdf');
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KK1','Modena Engines','https://modenaengines.it/','modena_kk1r.jpg','modena_KK1R.pdf');
+insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KZ-R2','TM Kart','https://www.tmkart.it/','tm_kz-r2_srp.jpg','TM-KZ-R2_2022.pdf');
 
 insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');
