@@ -285,15 +285,17 @@ insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_e
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(40,'CS55 TDX','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2024,'012-CH-20','cs55_tdx-2024.jpg');
 
 
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, homologacion, foto_motor) values(4,'R60','FIA Karting Mini',41.80,42.10,43.00,59.00,'Admision por piston',2,'Digital con avance ajustable',13000,'Embrague centrífugo en seco','Aire','Arranque electrico','040-EM-12','Iame_R60.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, homologacion, foto_motor) values(4,'R125K','CIK/FIA – OK',53.89,54.08,54.40,124.08,'Caja de laminas',5,'Digital',16000,'Toma directa','Agua','Arranque a empujón','040-ES-01','iame_R125K.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, homologacion, foto_motor) values(4,'R125KJ','CIK/FIA – OKJ',53.89,54.08,54.40,125.00,'Caja de laminas',5,'Digital',14000,'Toma directa','Agua','Arranque a empujón','040-EJ-05','iame_R125KJ.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, refrigeracion, starter, homologacion, carburador, foto_motor) values(4,'R125Z','CIK/FIA – KZ/KZ2',54.00,54.08,54.40,125.00,'Caja de laminas',5,'Analogico','Caja de cambios de 6 velocidades','Agua','Arranque a empujón','040-EZ-10','Dell’Orto VHSH 30','iame_R125Z.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, homologacion, foto_motor) values(4,'Reedster V','CIK/FIA – OKN',53.89,54.08,54.40,124.08,'Caja de laminas',5,'Digital',15000,'Toma directa','Agua','Arranque a empujón','040-EN-66','iame_reedsterV.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max-diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, refrigeracion, starter, carburador, potencia_max, par_motor_max, foto_motor) values(4,'M1','Training – Stock Class',41.80,42.00,43.30,59.42,'Admision por piston',2,'Analogico','Embrague centrífugo en seco','Aire','Arranque por tirador','Tillotson HS323A',2.0,2.5,'Iame_M1.jpg');
 
 
 
 
 
-
-insert into motores (id_marca, modelo_motor, cilindrada, ciclo, potencia_cv, refrigeracion, admision, num_marchas, regimen_max_rpm, ano_homologacion, peso_motor, tipo_combustible, foto_motor) values('R60 040/EM/12','60','','iame_X30_125cc.jpg','iame_X30_125cc.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KK1','Modena Engines','https://modenaengines.it/','modena_kk1r.jpg','modena_KK1R.pdf');
-insert into motores (modelo_motor,marca_motor,web_marca_motores, foto_motor,ficha_tecnica_motor) values('KZ-R2','TM Kart','https://www.tmkart.it/','tm_kz-r2_srp.jpg','TM-KZ-R2_2022.pdf');
 
 insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');
