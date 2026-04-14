@@ -76,7 +76,7 @@ CREATE TABLE motores (
     regimen_max_rpm INT UNSIGNED NULL,
     transmision VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
     refrigeracion ENUM('Aire', 'Agua') DEFAULT 'Agua',
-    starter VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
+    starter VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
     homologacion VARCHAR(10) COLLATE utf8mb4_spanish_ci NULL,
     peso DECIMAL(4,2) UNSIGNED NULL, 
     carburador VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
