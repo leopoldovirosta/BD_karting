@@ -89,10 +89,15 @@ CREATE TABLE motores (
 
 CREATE TABLE ruedas (
     id_rueda INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    modelo_rueda VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    tam_delante VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
-    tam_atras VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
+    modelo VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+    tipo ENUM('Seco','Lluvia') DEFAULT 'Seco',
+    categoria VARCHAR(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+    tam_front VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    tam_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     max_velocidad TINYINT UNSIGNED NULL,
+    homo_front VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    homo_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    foto_rueda VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     id_marca INT UNSIGNED NOT NULL,
     CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
