@@ -140,6 +140,8 @@ insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ru
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Dunlop','Irlanda','dunlop.jpg','https://www.dunlop.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('CS55 Racing kart','España','cs55.jpg','https://www.cs55racingkart.com',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Mojo','Austria','mojotyres.jpg','https://www.rotax-racing.com/mojo-go-kart-tyres',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Hoosier','EEUU','hoosier.png','https://www.hoosiertire.com/',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ruedas) values('Yokohama','Japon','yokohama.png','https://www.y-yokohama.com/global/',1);
 
 
 
@@ -383,8 +385,10 @@ insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, 
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'LWR CIK','OK/KZ','Lluvia','10x4.20-5','11x6.00-5',160,'053-TW-24','053-TW-22','lecont_lwr_cik.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'SVB','Medio/Blando','OK/KZ','10x4.50-5','11x7.10-5',200,'053-TO-54','053-TO-11','lecont_svb.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'SVC','Blando','OK/KZ','10x4.50-5','11x7.10-5',200,'053-TP-01','053-TP-72','lecont_svc.jpg');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'SVA','Blando','Mini','10x4.00-5','11x5.00-5',150,'053-TM-97','053-TM-72','lecont_sva.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, foto_rueda) values(30,'MK','Medio/Blando','OK/KZ','10x4.50-5','11x7.10-5','lecont_mk.jpg');
-insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, foto_rueda) values(30,'SV1 CIK','OK/KZ','Lluvia','10x4.20-5','11x6.00-5','lecont_sv1.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'SV2','OK/KZ','Lluvia','10x4.00-5','11x5.00-5',150,'053-TMW-60','053-TMW-99','lecont_sv1.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(30,'SV1','OK/KZ','Lluvia','10x4.20-5','11x6.00-5',160,'053-TW-32','053-TW-63','lecont_sv2.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(34,'XM4 CIK Pime','Blando','OK/KZ','10x4.60-5','11x7.10-5',180,'047-TP-01','047-TP-02','vega_xm4.png');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(34,'XH4 CIK Option','Duro','OK/KZ','10x4.60-5','11x7.10-5',180,'047-TO-12','047-TO-14','vega_xh4.png');
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(34,'WM1 CIK Mini Rain','Mini','Lluvia','10x4.00-5','11x5.00-5',140,'047-TMW-58','047-TMW-69','vega_wm1.png');
@@ -394,7 +398,8 @@ insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, 
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'SL6','Duro','OK/KZ','10x4.60-5','11x7.10-5',200,'vega_sl6.png');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'SL4','Duro','OK/KZ','10x4.60-5','11x7.10-5',200,'vega_sl4.png');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'SL3','Medio/Duro','OK/KZ','10x4.60-5','11x7.10-5',200,'vega_sl3.png');
-insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'XM3','Blando','OK/KZ','10x4.60-5','11x7.10-5',180,'vega_xm3.png');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(34,'XM3 CIK Prime','Blando','OK/KZ','10x4.60-5','11x7.10-5',180,'047-TP-10','047-TP-34','vega_xm3.png');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(34,'XH3 CIK Option','Duro','OK/KZ','10x4.60-5','11x7.10-5',180,'047-TO-47','047-TO-99','vega_xh4.png');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'Cadetti','Duro','Cadete','10x4.00-5','11x5.00-5',150,'vega_cadetti.png');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'Mini','Medio/Blando','Mini','10x4.00-5','11x5.00-5',150,'vega_mini.png');
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, foto_rueda) values(34,'W2','OK/KZ','Lluvia','10x4.20-5','11x6.00-5',150,'vega_w2.png');
@@ -413,11 +418,11 @@ insert into ruedas(id_marca, modelo, compuesto, tam_front, tam_rear, max_velocid
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'RL1','Duro','Alquiler','10x4.60-5','11x7.10-5',160,'mg_rl1.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'RL2','Duro','Alquiler','10x4.60-5','11x7.10-5',160,'mg_rl2.jpg');
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'RL3','Duro','Alquiler','10x4.60-5','11x7.10-5',160,'mg_rl3.jpg');
-insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'SM','Medio','OK/KZ','10x4.60-5','11x7.10-5',201,'mg_sm.jpg');
-insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'SH','Duro','OK/KZ','10x4.60-5','11x7.10-5',185,'mg_sh.jpg');
-insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'SW','OK/KZ','Lluvia','10x4.20-5','11x6.00-5',160,'mg_sw.jpg');
-insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'SC','Duro','Mini','10x4.00-5','11x5.00-5',150,'mg_sc.jpg');
-insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, foto_rueda) values(35,'SCW','Mini','Lluvia','10x4.00-5','11x5.00-5',160,'mg_scw.jpg');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(35,'SM','Medio','OK/KZ','10x4.60-5','11x7.10-5',201,'048-TP-12','048-TP-77','mg_sm.jpg');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(35,'SH','Duro','OK/KZ','10x4.60-5','11x7.10-5',185,'048-TO-65','048-TO-93','mg_sh.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(35,'SW','OK/KZ','Lluvia','10x4.20-5','11x6.00-5',160,'048-TW-25','048-TW-59','mg_sw.jpg');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(35,'SC','Duro','Mini','10x4.00-5','11x5.00-5',150,'048-TM-24','048-TM-82','mg_sc.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(35,'SCW','Mini','Lluvia','10x4.00-5','11x5.00-5',160,'048-TMW-42','048-TMW-75','mg_scw.jpg');
 insert into ruedas(id_marca, modelo, compuesto, tam_front, tam_rear, foto_rueda) values(36,'EL M190','Duro','10.5x4.50-6','11x6.00-6','maxxis_elm190.jpg');
 insert into ruedas(id_marca, modelo, tam_front, tam_rear, foto_rueda) values(36,'HT3 M190','10.5x4.50-6','11x6.00-6','maxxis_ht3_m190.jpg');
 insert into ruedas(id_marca, modelo, compuesto, tam_front, tam_rear, foto_rueda) values(36,'Raptor R001','Duro','10x4.50-5','11x7.10-5','maxxis_raptor-r001.jpg');
@@ -442,6 +447,8 @@ insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_v
 insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(38,'DR15 YPB','OK/KZ','4.5/10.0-5','7.1/11.0-5',200,'044-TP-78','044-TP-32','bridgestone_ypm.jpg');
 insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(38,'DR15 YPC','OK/KZ','4.5/10.0-5','7.1/11.0-5',200,'044-TO-87','044-TO-23','bridgestone_ypm.jpg');
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(38,'WES YPP','OK/KZ','Lluvia','4.5/10.0-5','6.0/11.0-5',160,'044-TW-65','044-TW-22','bridgestone_yfd.jpg');
+insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(42,'R60B SK','Superkart','5.5/11.0-6','8.0/11.5-6',230,'046-T6-58','046-T6-97','hoosier_r60b-sk.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(42,'W3','Superkart','Lluvia','5.0/10.5-6','7.1/11.5-6',200,'046-T6W-11','046-T6W-54','hoosier_w3.png');
 
 
 
