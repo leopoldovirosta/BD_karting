@@ -449,6 +449,18 @@ insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocid
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(38,'WES YPP','OK/KZ','Lluvia','4.5/10.0-5','6.0/11.0-5',160,'044-TW-65','044-TW-22','bridgestone_yfd.jpg');
 insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(42,'R60B SK','Superkart','5.5/11.0-6','8.0/11.5-6',230,'046-T6-58','046-T6-97','hoosier_r60b-sk.jpg');
 insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(42,'W3','Superkart','Lluvia','5.0/10.5-6','7.1/11.5-6',200,'046-T6W-11','046-T6W-54','hoosier_w3.png');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'KT14-W14','OK/KZ','Lluvia','10x4.50-5','11x6.50-5',200,'051-TW-87','051-TW-45','dunlop_kt14.png');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'DGH','Option','OK/KZ','10x4.50-5','11x7.10-5',200,'051-TO-12','051-TO-43','dunlop_dgh.jpg');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'DGM','Prime','OK/KZ','10x4.50-5','11x7.10-5',200,'051-TP-39','051-TP-93','dunlop_dgh.jpg');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'KT14-W14 S','Superkart','Lluvia','11x5.00-6','11.5x7.10-6',200,'051-T6W-77','051-T6W-62','dunlop_kt14.png');
+insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'DGS','Superkart','11x5.50-6','11.5x8.00-6',220,'051-T6-22','051-T6-11','dunlop_dgs.webp');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'DHH','Option','OK/KZ','10x4.50-5','11x7.10-5',200,'051-TO-06','051-TO-08','dunlop_dhh.webp');
+insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'DHM','Prime','OK/KZ','10x4.50-5','11x7.10-5',200,'051-TP-02','051-TP-04','dunlop_dhm.webp');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, foto_rueda) values(39,'KT12-SLW2','Mini','Lluvia','10x4.50-5','11x6.50-5','dunlop_kt12-slw2.webp');
+insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, foto_rueda) values(39,'SL1A','OK/KZ','10x4.50-5','11x7.10-5','dunlop_sl1a.webp');
+insert into ruedas(id_marca, modelo, categoria, tipo, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, foto_rueda) values(39,'KT14-W15','OK/KZ','Lluvia','10x4.50-5','11x6.50-5',200,'051-TW-30','051-TW-32','dunlop_kt14-w15.webp');
+insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, foto_rueda) values(39,'DEM-DAU','Superkart','11x5.50-6','11x8.00-6','dunlop_dem-dau.webp');
+insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, foto_rueda) values(39,'DFM','OK/KZ','10x4.50-5','11x7.10-5',''dunlop_dhh.webp);
 
 
 
