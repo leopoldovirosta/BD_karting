@@ -55,6 +55,7 @@ CREATE TABLE chasis (
     categoria_objetivo VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
     ano YEAR,
     homologacion VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    url_homologacion VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     foto_chasis VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     id_marca INT UNSIGNED NOT NULL,
     CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
@@ -78,6 +79,7 @@ CREATE TABLE motores (
     refrigeracion ENUM('Aire', 'Agua') DEFAULT 'Agua',
     starter VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
     homologacion VARCHAR(10) COLLATE utf8mb4_spanish_ci NULL,
+    url_homologacion VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     peso DECIMAL(4,2) UNSIGNED NULL, 
     carburador VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
     potencia_max DECIMAL(4,2) UNSIGNED NULL,
@@ -97,7 +99,9 @@ CREATE TABLE ruedas (
     tam_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     max_velocidad TINYINT UNSIGNED NULL,
     homo_front VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    url_homo_front VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     homo_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    url_homo_rear VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     foto_rueda VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     id_marca INT UNSIGNED NOT NULL,
     CONSTRAINT fk_marca FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
