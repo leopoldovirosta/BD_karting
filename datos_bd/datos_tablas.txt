@@ -174,6 +174,7 @@ insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ch
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('BRM Racing','Italia','brm.png','https://brmracing.it/',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('EKS','Italia','eks.webp','https://ekskart-business.com/',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Jesolo','Italia','jesolo.webp','https://www.jp1.it/',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('MS Kart','Chequia','mskart.webp','https://mskart.cz/en/',1);
 
 
 
@@ -413,6 +414,12 @@ insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categ
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, foto_chasis) values(75,'Elia 2014','28 mm','950 mm','Mini','2014','jesolo_jp1-2016.webp');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, foto_chasis) values(75,'JP1','30/32 mm','1046 mm','OK/KZ','2021','jesolo_jp1_fly.webp');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(75,'JP1 Evo Fly','30 mm','1050 mm','50 mm','Hydraulic','OK/OKN/KZ','2026','056-CH-99','jesolo_jp1_fly.webp');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(76,'MS RZF 29','Cr-Mo4','32 mm','1050 mm','50 mm','Hydraulic K Kart','KF4/KF3/KF2/KZ2/KZ1/ICE','2012','35-CH-14','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20BR-CA-CH%20(2009-2014-2020-2021)%20/MSKART-MSKART%2035-CH-14.pdf','mskart_rxf29.webp');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(76,'Blue Falcon Evo','Cr-Mo4','30 mm','1040/1050 mm','50 mm','Hydraulic K Kart','KF/KZ/DD2','2017','006-CH-17','https://www.mskart.fi/files/u1/homologace/MSKART_6-CH-17.pdf','mskart_blue_falcon.webp');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(76,'Blue Swift','Cr-Mo4','32 mm','1050 mm','50 mm','Hydraulic K Kart','KF/KZ/DD2','2014','35-CH-14','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20BR-CA-CH%20(2009-2014-2020-2021)%20/MSKART-MSKART%2035-CH-14.pdf','mskart_blue_falcon.webp');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(76,'Mini','Cr-Mo4','28 mm','950 mm','30 mm','Hydraulic','Mini','2014','10-C-16','https://www.mskart.fi/files/u1/homologace/hf__10_c_16_mskart.pdf','mskart_blue_falcon.webp');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(76,'MS RCA 26','32 mm','1040 mm','ICAJ – ICA – ICC – SICC – ICE','2008','16-CH-11','https://www.mskart.fi/files/u1/homologace/MS_KART_16-CH-11.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(76,'MS RA','28/30/32 mm','1040 mm','ICAJ – ICA – ICC – SICC – ICE','2008','49-CH-08','https://www.mskart.fi/files/u1/homologace/MS_Kart_49-CH-08.pdf');
 
 
 
