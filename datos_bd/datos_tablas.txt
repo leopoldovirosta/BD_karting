@@ -184,6 +184,7 @@ insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_ch
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Arrow','Australia','arrow.webp','https://dpekartsuperstore.com/',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Italcorse','Italia','italcorse.webp','https://www.italcorsekart.com/',1);
 insert into marcas(nombre_marca, pais_origen, logo_marca, web_marca, es_marca_chasis) values('Gold Kart','Italia','goldkart.webp','https://www.goldkart.com/en',1);
+insert into marcas(nombre_marca, pais_origen, logo_marca, es_marca_chasis) values('NewTaifunKart','Alemania','newtaifunkart.webp',1);
 
 
 
