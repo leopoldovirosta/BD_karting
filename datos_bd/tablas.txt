@@ -1,6 +1,6 @@
-CREATE TABLE regiones (
-    id_region INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_region VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL
+CREATE TABLE paises (
+    id_pais INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_pais VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE areas (
@@ -115,10 +115,10 @@ CREATE TABLE pilotos (
     web_piloto VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     email_piloto VARCHAR(60) COLLATE utf8mb4_spanish_ci NULL,
     foto_piloto VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.jpg',
-    id_region INT UNSIGNED NOT NULL DEFAULT 1,
+    id_pais INT UNSIGNED NOT NULL DEFAULT 1,
     id_escuderia INT UNSIGNED NOT NULL DEFAULT 1,
     id_patrocinador INT UNSIGNED NOT NULL DEFAULT 1,
-    CONSTRAINT fk_region FOREIGN KEY (id_region) REFERENCES regiones(id_region),
+    CONSTRAINT fk_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
     CONSTRAINT fk_escuderia FOREIGN KEY (id_escuderia) REFERENCES escuderias(id_escuderia),
     CONSTRAINT fk_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES patrocinadores(id_patrocinador)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
