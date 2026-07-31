@@ -1,4 +1,4 @@
-insert into pilotos (nombre_piloto,apellido_piloto,fecha_nacimiento,web_piloto,email_piloto,foto_piloto) values ('Leo','Virosta','1970/12/25','https://leovirosta.blog/', 'lvirosta@outlook.es', 'leovirosta.jpg');
+insert into pilotos (nombre_piloto,apellido_piloto,fecha_nacimiento,web_piloto,email_piloto,foto_piloto,id_pais) values ('Leo','Virosta','1970/12/25','https://leovirosta.blog/', 'lvirosta@outlook.es', 'leovirosta.jpg',2);
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Arnau','Safont Bruix');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Alejandro','Español Merino');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Sergio','Abenoza');

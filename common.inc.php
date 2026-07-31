@@ -19,6 +19,7 @@ function displayPageHeader($pageTitle) {
   <ul class="nav-links">
     <li><a href="view_pilotos.php">Pilotos</a></li>
     <li><a href="view_carreras.php">Carreras</a></li>
+    <li><a href="view_resultados.php">Resultados</a></li>
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn">Campeonato ▾</a>
       <div class="dropdown-content">

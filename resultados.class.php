@@ -28,12 +28,12 @@ class Resultado extends DataObject {
         "posicion" => "",
         "comentario_posicion" => "",
         "puntos" => "",
-        "id_chasis" => "",
-        "nombre_chasis" => "",
+        "marca_chasis" => "",
         "modelo_chasis" => "",
-        "id_motor" => "",
         "marca_motor" => "",
-        "modelo_motor" => ""
+        "modelo_motor" => "",
+        "marca_rueda" => "",
+        "modelo_rueda" => ""
     );
 
 

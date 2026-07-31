@@ -57,7 +57,9 @@ displayPageHeader("Lista de Resultados");
             "marca_chasis" => "Chasis",
             "modelo_chasis" => "Modelo",
             "marca_motor" => "Motor",
-            "modelo_motor" => "Modelo"
+            "modelo_motor" => "Modelo",
+            "marca_rueda" => "Rueda",
+            "modelo_rueda" => "Modelo"
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -93,8 +95,14 @@ displayPageHeader("Lista de Resultados");
             <td><?php echo $resultado->getValueEncoded("apellido_piloto") ?></td>
             <td><img src="<?php echo IMAGE_PILOT_DIRECTORY . ($resultado->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" /></td>
             <td class="text-center"><?php echo $resultado->getValue("dorsal") ?></td>
-            <td><?php echo $resultado->getValueEncoded("tiempo_total") ?></td>
-            <td><?php echo $resultado->getValueEncoded("mejor_vuelta") ?></td>
+            <td><?php $tiempoRaw = $resultado->getValueEncoded("tiempo_total");
+                        // Corta los primeros 3 caracteres ("00:")
+                        echo !empty($tiempoRaw) ? substr($tiempoRaw, 3) : '---'; // Imprime: "01:23.456"
+                ?></td>
+            <td><?php $tiempoRaw = $resultado->getValueEncoded("mejor_vuelta");
+                        // Corta los primeros 3 caracteres ("00:")
+                        echo !empty($tiempoRaw) ? substr($tiempoRaw, 3) : '---';
+                ?></td>
             <td><?php echo $resultado->getValue("num_vueltas") ?></td>
             <td><?php echo $resultado->getValue("num_vueltas_completadas") ?></td>
             <td><?php echo $resultado->getValue("posicion") ?></td>
@@ -104,6 +112,8 @@ displayPageHeader("Lista de Resultados");
             <td><?php echo $resultado->getValueEncoded("modelo_chasis") ?></td>
             <td><?php echo $resultado->getValueEncoded("marca_motor") ?></td>
             <td><?php echo $resultado->getValueEncoded("modelo_motor") ?></td>
+            <td><?php echo $resultado->getValueEncoded("marca_rueda") ?></td>
+            <td><?php echo $resultado->getValueEncoded("modelo_rueda") ?></td>
         </tr>
 <?php
     endforeach;
