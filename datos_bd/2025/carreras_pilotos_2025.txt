@@ -68,13 +68,13 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,po
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,89,2,2,'00:1:11.509',3);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,90,3,18,'00:1:12.280',3);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,91,2,55,'00:1:12.492',4);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,92,11,99,'00:1:13.434',1);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,93,11,99,'00:1:13.808',2);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,94,11,19,'00:1:14.062',3);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,95,12,114,'00:1:14.610',2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,92,12,99,'00:1:13.434',1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,93,12,99,'00:1:13.808',2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,94,12,19,'00:1:14.062',3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,95,11,114,'00:1:14.610',2);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,96,2,16,'00:1:15.636',5);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,97,3,10,'00:1:15.844',4);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,98,11,600,'00:1:15.952',4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,98,12,600,'00:1:15.952',4);
 
 -- Zuera Carrera 1 DD2
 
@@ -153,11 +153,11 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,nu
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,91,2,55,'00:1:11.905',8,4);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,96,2,16,'00:1:14.497',8,5);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,84,4,44,'00:1:11.019',8,1);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,92,11,99,'00:1:12.778',8,1);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,93,11,22,'00:1:13.362',8,2);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,94,11,19,'00:1:13.759',8,3);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,98,11,600,'00:1:16.232',8,4);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,95,12,114,'00:1:14.224',8,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,92,12,99,'00:1:12.778',8,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,93,12,22,'00:1:13.362',8,2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,94,12,19,'00:1:13.759',8,3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,98,12,600,'00:1:16.232',8,4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(2,95,11,114,'00:1:14.224',8,1);
 
 -- Zuera Carrera 2 Mini
 
@@ -171,11 +171,11 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,nu
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,91,2,55,'00:1:12.690',9,4);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,96,2,16,'00:1:14.135',9,5);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,84,4,44,'00:1:10.693',9,1);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,92,11,99,'00:1:13.080',9,1);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,93,11,22,'00:1:13.502',9,2);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,94,11,19,'00:1:14.137',9,3);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,98,11,600,'00:1:16.050',9,4);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,95,12,114,'00:1:14.747',9,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,92,12,99,'00:1:13.080',9,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,93,12,22,'00:1:13.502',9,2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,94,12,19,'00:1:14.137',9,3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,98,12,600,'00:1:16.050',9,4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(3,95,11,114,'00:1:14.747',9,1);
 
 -- Zuera Carrera 1 Senior
   

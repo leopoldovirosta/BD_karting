@@ -82,33 +82,11 @@ class Resultado extends DataObject {
         }
     }
 
-    public static function getCarrera($id_carrera, $id_cto) {
-        $conn = parent::connect();
-        if (!$conn) return null;
-
-        $sql = "SELECT * FROM " . VIEW_CARRERAS . " WHERE id_carrera = :id_carrera AND id_cto = :id_cto";
-
-        try {
-            $st = $conn->prepare($sql);
-            $st->bindValue(":id_carrera", (int)$id_carrera, PDO::PARAM_INT);
-            $st->bindValue(":id_cto", (int)$id_cto, PDO::PARAM_INT);
-            $st->execute();
-            $row = $st->fetch();
-            parent::disconnect($conn);
-            return ($row) ? new Carrera($row) : null;
-            
-        } catch (PDOException $e) {
-            parent::disconnect($conn);
-            error_log("Error en getCarrera: " . $e->getMessage());
-            return null;
-            }
-    }
-
     public static function getEstadisticasGanadores($id_circuito) {
         $conn = parent::connect();
         if (!$conn) return null;
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT id_carrera) as victorias
+        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT carrera_id) as victorias
                 FROM " . VIEW_RESULTADOS . "
                 WHERE id_circuito = :id_circuito AND posicion = 1 AND nombre_carrera_tipo != 'Clasificacion'
                 GROUP BY id_piloto
@@ -177,5 +155,6 @@ class Resultado extends DataObject {
     }
 
 }
+
 
 ?>

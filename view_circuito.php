@@ -2,7 +2,7 @@
 require_once "common.inc.php";
 require_once "config.php";
 require_once "circuitos.class.php";
-require_once "carreras.class.php";
+require_once "resultados.class.php";
 
 $id = isset($_GET["id_circuito"]) ? (int)$_GET["id_circuito"] : 0;
 $circuito = Circuito::getCircuito($id);
@@ -20,7 +20,7 @@ displayPageHeader("Ficha del Circuito");
 <div class="circuito-card">
     <div class="circuito-header">
         <div class="header-info">
-            <span class="pais-badge"><?php echo $circuito->getValueEncoded("nombre_area") ?></span>
+            <span class="pais-badge"><?php echo $circuito->getValueEncoded("nombre_pais") ?></span>
             <h1><?php echo $circuito->getValue("nombre_circuito") ?></h1>
             <p class="nombre-oficial"><?php echo $circuito->getValue("direccion_circuito") . " (" . $circuito->getValue("localidad_circuito") .")" ?></p>
             <p class="nombre-oficial">Teléfono: <?php echo $circuito->getValue("telefono_circuito") ?></p>
@@ -59,11 +59,11 @@ displayPageHeader("Ficha del Circuito");
         </div>
     </div>
     <?php 
-    $record = Carrera::getRecordVuelta($id); 
+    $record = Resultado::getRecordVuelta($id); 
     if ($record):
         $tiempo_limpio = ltrim($record['mejor_vuelta'], '0:');
         // Llamamos a la función que acabamos de guardar
-        $v_media = Carrera::calcularVelocidadMedia(
+        $v_media = Resultado::calcularVelocidadMedia(
         $circuito->getValue("longitud"), 
         $record['mejor_vuelta']
         );
@@ -89,7 +89,7 @@ displayPageHeader("Ficha del Circuito");
 </div>
 
 <?php       
-$ganadores = Carrera::getEstadisticasGanadores($id);
+$ganadores = Resultado::getEstadisticasGanadores($id);
 if (count($ganadores) > 0):
 ?>  
              

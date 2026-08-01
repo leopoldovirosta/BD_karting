@@ -48,7 +48,7 @@ displayPageHeader("Lista de circuitos");
             "direccion_circuito" => "Dirección",
             "localidad_circuito" => "Localidad",
             "telefono_circuito" => "Teléfono",
-            "nombre_area" => "Area",
+            "nombre_pais" => "Pais",
             "altitud" => "Altitud",
             "longitud" => "Longitud",
             "curvasizd" => "Curvas IZD",
@@ -86,7 +86,7 @@ displayPageHeader("Lista de circuitos");
             <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("localidad_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("telefono_circuito") ?></td>
-            <td><?php echo $circuito->getValueEncoded("nombre_area") ?></td>
+            <td><?php echo $circuito->getValueEncoded("nombre_pais") ?></td>
             <td><?php echo $circuito->getValue("altitud") ?></td>
             <td><?php echo $circuito->getValue("longitud") ?></td>
             <td><?php echo $circuito->getValue("curvasizd") ?></td>
