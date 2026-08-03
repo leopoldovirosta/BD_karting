@@ -69,6 +69,15 @@
         margin: 0 auto;       /* Centra la imagen en la celda */
     }
 
+/* CSS para dibujar bandera pais */
+/* ----------------------------- */
+    .fi {
+    margin-right: 6px;
+    border-radius: 2px; /* Esquinas ligeramente redondeadas */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Sombra suave para destacar sobre el fondo */
+    vertical-align: middle;
+}
+
 /* CSS para fotos. El fondo del modal */
 /*-----------------------------------------------------------------------------------*/
     .modal {

@@ -1,25 +1,65 @@
 CREATE TABLE paises (
     id_pais INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_pais VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL
+    nombre_pais VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    codigo_iso VARCHAR(2) COLLATE utf8mb4_spanish_ci NOT NULL,
+    -- ÍNDICES Y RESTRICCIONES DE OPTIMIZACIÓN
+
+    -- 1. Unicidad del código ISO (ej: no puede haber dos filas con 'es')
+    --    Además acelera búsquedas directas por código ISO
+    UNIQUE INDEX uq_codigo_iso (codigo_iso),
+
+    -- 2. Unicidad del nombre del país (evita duplicados como dos 'España')
+    UNIQUE INDEX uq_nombre_pais (nombre_pais)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE escuderias (
     id_escuderia INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_escuderia VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-    logo_escuderia VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    web_escuderia VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL
+    logo_escuderia VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
+    web_escuderia VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
+    id_pais INT UNSIGNED NULL DEFAULT 1,
+    -- Clave Foránea (Relación con la tabla países)
+    CONSTRAINT fk_escuderia_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
+
+    -- ÍNDICES Y RESTRICCIONES DE OPTIMIZACIÓN
+
+    -- 1. Unicidad del nombre de la escudería (evita duplicados y acelera búsquedas)
+    UNIQUE INDEX uq_nombre_escuderia (nombre_escuderia),
+
+    -- 2. Índice para la Foreign Key del país (acelera los JOINs para mostrar la bandera del equipo)
+    INDEX idx_escuderia_pais (id_pais)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE patrocinadores (
     id_patrocinador INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_patrocinador VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-    logo_patrocinador VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    web_patrocinador VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL
+    logo_patrocinador VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
+    web_patrocinador VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
+    id_pais INT UNSIGNED NULL DEFAULT 1,
+    CONSTRAINT fk_patrocinador_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
+
+    -- ÍNDICES Y RESTRICCIONES
+    -- 1. Unicidad del nombre del patrocinador (evita duplicados y acelera búsquedas)
+    UNIQUE INDEX uq_nombre_patrocinador (nombre_patrocinador),
+
+    -- 2. Índice para la FK de país (acelera los JOINs con la tabla países)
+    INDEX idx_patrocinador_pais (id_pais)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE categorias (
     id_categoria INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_categoria VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL
+    nombre_categoria VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+    descripcion_categoria VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    orden TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    activa TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+
+    -- ÍNDICES Y RESTRICCIONES DE OPTIMIZACIÓN
+    -- 1. Unicidad en el nombre (evita crear dos veces la misma categoría)
+    UNIQUE INDEX uq_nombre_categoria (nombre_categoria),
+
+    -- 2. Índice de ordenación y estado (acelera listas desplegables y menús)
+    INDEX idx_categoria_orden (activa, orden, nombre_categoria)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE campeonatos (
@@ -117,6 +157,18 @@ CREATE TABLE pilotos (
     CONSTRAINT fk_pais_pilotos FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
     CONSTRAINT fk_escuderia FOREIGN KEY (id_escuderia) REFERENCES escuderias(id_escuderia),
     CONSTRAINT fk_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES patrocinadores(id_patrocinador)
+    -- ÍNDICES DE OPTIMIZACIÓN
+    -- 1. Búsquedas rápidas de pilotos por Nombre + Apellido (ej: Piloto::getByNombreCompleto)
+    INDEX idx_nombre_apellido (nombre_piloto, apellido_piloto),
+
+    -- 2. Búsquedas inversas o filtrado solo por Apellido (ej: ordenaciones o listas alfabéticas)
+    INDEX idx_apellido (apellido_piloto),
+
+    -- 3. Filtrados por Relaciones (acelera los JOINs y consultas por equipo/país)
+    INDEX idx_id_pais (id_pais),
+    INDEX idx_id_escuderia (id_escuderia),
+    INDEX idx_id_patrocinador (id_patrocinador)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE circuitos (
@@ -191,6 +243,25 @@ CREATE TABLE resultados (
     CONSTRAINT fk_res_chasis FOREIGN KEY (id_chasis) REFERENCES chasis(id_chasis),
     CONSTRAINT fk_res_motor FOREIGN KEY (id_motor) REFERENCES motores(id_motor),
     CONSTRAINT fk_res_rueda FOREIGN KEY (id_rueda) REFERENCES ruedas(id_rueda)
+    -- ÍNDICES DE OPTIMIZACIÓN EN CASCADA Y COMPUESTOS
+
+    -- 1. Clasificación de una carrera (Acelera cargar los resultados de un evento en orden)
+    INDEX idx_carrera_posicion (id_carrera, posicion),
+
+    -- 2. Estadísticas de victorias/podios (ej: Muro de Campeones con id_circuito + posicion = 1)
+    INDEX idx_posicion_piloto (posicion, id_piloto),
+
+    -- 3. Búsqueda de Récords de Vuelta por Carrera/Categoría (evita escanear tiempos NULL)
+    INDEX idx_carrera_categoria_vuelta (id_carrera, id_categoria, mejor_vuelta),
+
+    -- 4. Histórico y Ficha del Piloto (filtrar por categoría o por orden cronológico)
+    INDEX idx_piloto_categoria (id_piloto, id_categoria),
+
+    -- 5. Índices para Foreign Keys secundarias (Chasis, Motor, Neumáticos)
+    INDEX idx_resultado_categoria (id_categoria),
+    INDEX idx_resultado_chasis (id_chasis),
+    INDEX idx_resultado_motor (id_motor),
+    INDEX idx_resultado_rueda (id_rueda)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE sistemas_puntuacion (

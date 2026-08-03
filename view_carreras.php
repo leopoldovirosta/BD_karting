@@ -78,7 +78,7 @@ displayPageHeader("Lista de carreras");
             <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_cto=<?php echo $carrera->getValue("id_cto")?>">Ver</a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
-            <td class="text-center"><?php echo $carrera->getValue("num_vueltas") ?></td>
+            <td class="text-center"><?php echo mostrarValor($carrera->getValue("num_vueltas")); ?></td>
             <td><?php echo $carrera->getValueEncoded("dia") ?></td>
             <td><?php echo $carrera->getValueEncoded("pista") ?></td>
             <td><?php echo $carrera->getValueEncoded("nombre_carrera_tipo") ?></td>
@@ -88,7 +88,13 @@ displayPageHeader("Lista de carreras");
             <td><?php echo $carrera->getValue("presion") ?> hPa</td>
             <td><?php echo $carrera->getValue("viento") ?> Km/h</td>
             <td><?php echo $carrera->getValueEncoded("orientacion") ?></td>
-            <td class="text-center"><?php echo $carrera->getValue("tasfalto") ?> ºC</td>
+            <?php
+                $tasfalto = $carrera->getValue("tasfalto");
+                if (!empty($tasfalto)): // Si la URL no está vacía...
+            ?>
+                <td class="text-center"><?php echo $tasfalto ?> ºC</td>
+            <?php else: ?><td class="text-center">---</td>
+            <?php endif; ?>
         </tr>
 <?php
     endforeach;

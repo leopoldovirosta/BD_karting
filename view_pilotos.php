@@ -80,7 +80,7 @@ displayPageHeader("Lista de pilotos");
             <td><a href="view_piloto.php?id_piloto=<?php echo $piloto->getValue('id_piloto') ?>"><?php echo $piloto->getValue("id_piloto")?></a></td>
             <td><?php echo $piloto->getValueEncoded("nombre_piloto") ?></td>
             <td><?php echo $piloto->getValueEncoded("apellido_piloto") ?></td>
-            <td><?php echo $piloto->getValueEncoded("fecha_nacimiento") ?></td>
+            <td class="text-center"><?php echo mostrarValor($piloto->getValueEncoded("fecha_nacimiento")); ?></td>
             <?php
                 $url = $piloto->getValueEncoded("web_piloto"); 
                 if (!empty($url)): // Si la URL no está vacía...
@@ -89,7 +89,14 @@ displayPageHeader("Lista de pilotos");
                     <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></td>
             <?php else: ?><td class="text-center">---</td>
             <?php endif; ?>
-            <td><a href="mailto:<?php echo $piloto->getValueEncoded('email_piloto') ?>"><?php echo $piloto->getValueEncoded("email_piloto") ?></a></td>
+            <?php
+                $mail = $piloto->getValueEncoded("email_piloto"); 
+                if (!empty($mail)): // Si la URL no está vacía...
+            ?>
+                <td><a href="mailto:<?php echo $mail ?>"><?php echo $mail ?></a></td>
+            <?php else: ?><td class="text-center">---</td>
+            <?php endif; ?>
+            
             <td>
             <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
             </td>

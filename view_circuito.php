@@ -110,7 +110,6 @@ if (count($ganadores) > 0):
 
         <a href="view_circuitos.php" class="btn-back">&larr; Volver al panel de circuitos</a>
 </div>
-<?php endif; ?>
+<?php endif; 
 
-<?php displayPageFooter(); ?>
-
+displayPageFooter(); ?>

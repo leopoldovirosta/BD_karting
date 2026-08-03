@@ -26,6 +26,7 @@ function displayPageHeader($pageTitle) {
         <title><?php echo $pageTitle ?></title>
         <link rel="stylesheet" type="text/css" href="common.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
     </head>
     <body>
         <header>

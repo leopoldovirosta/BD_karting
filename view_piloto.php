@@ -22,7 +22,13 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
              alt="Foto de <?php echo $piloto->getValueEncoded('nombre_piloto') ?>" 
              class="foto-perfil" />
         <h3><?php echo $piloto->getValueEncoded("nombre_piloto") ?></h3>
-        <p style="color: #3498db;"><?php echo $piloto->getValueEncoded("nombre_region") ?></p>
+        <?php
+            $bandera = $piloto->getValue("codigo_iso");
+            if ($bandera != 'xx'):
+        ?>
+                <span class="fi fi-<?php echo $piloto->getValue("codigo_iso"); ?>"></span>
+        <?php endif; ?>
+        <p style="color: #3498db;"><?php echo $piloto->getValueEncoded("nombre_pais") ?></p>
     </div>
 
     <div class="card-body">
@@ -35,23 +41,35 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
             </div>
             <div class="info-item">
                 <label>Fecha de Nacimiento</label>
-                <span><?php echo $piloto->getValueEncoded("fecha_nacimiento") ?></span>
+                <span><?php echo mostrarValor($piloto->getValueEncoded("fecha_nacimiento")); ?></span>
             </div>
             <div class="info-item">
                 <label>Escudería</label>
-                <span><?php echo $piloto->getValueEncoded("nombre_escuderia") ?></span>
+                <span><?php echo mostrarValor($piloto->getValueEncoded("nombre_escuderia")); ?></span>
             </div>
             <div class="info-item">
                 <label>Patrocinador</label>
-                <span><?php echo $piloto->getValueEncoded("nombre_patrocinador") ?></span>
+                <span><?php echo mostrarValor($piloto->getValueEncoded("nombre_patrocinador")); ?></span>
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Email de contacto</label>
-                <span><a href="mailto:<?php echo $piloto->getValueEncoded('email_piloto') ?>" style="color: inherit; text-decoration: none;"><?php echo $piloto->getValueEncoded("email_piloto") ?></a></span>
+                <?php
+                    $mail = $piloto->getValueEncoded("email_piloto");
+                    if (!empty($mail)): // Si la URL no está vacía...
+                ?>
+                <span><a href="mailto:<?php echo $mail ?>" style="color: inherit; text-decoration: none;"><?php echo $mail ?></a></span>
+                <?php else: ?><td class="text-center">---</td>
+                <?php endif; ?>
             </div>
             <div class="info-item" style="grid-column: span 2;">
                 <label>Página web</label>
-                <span><a href="<?php echo $piloto->getValueEncoded('web_piloto') ?>" style="color: inherit; text-decoration: none;" target="_blank">Visitar<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></span>
+                <?php
+                    $url = $piloto->getValueEncoded("web_piloto");
+                    if (!empty($url)): // Si la URL no está vacía...
+                ?>
+                <span><a href="<?php echo $url ?>" style="color: inherit; text-decoration: none;" target="_blank">Visitar<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></span>
+                <?php else: ?><td class="text-center">---</td>
+                <?php endif; ?>
             </div>
         </div>
 

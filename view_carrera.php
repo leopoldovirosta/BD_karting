@@ -2,6 +2,8 @@
 require_once "common.inc.php";
 require_once "config.php";
 require_once "carreras.class.php";
+require_once "resultados.class.php";
+require_once "circuitos.class.php";
 
 $id_carrera = isset($_GET["id_carrera"]) ? (int)$_GET["id_carrera"] : 0;
 $id_cto = isset($_GET["id_cto"]) ? (int)$_GET["id_cto"] : 0;
@@ -13,6 +15,13 @@ if (!$carrera) {
     displayPageFooter();
     exit;
 }
+
+// --------------------------------------------------------------------------
+// CARGAR EL CIRCUITO: Obtenemos el circuito asociado a esta carrera para
+// obtener la longitud y calcula la velocidad media de la vuelta rapida
+// --------------------------------------------------------------------------
+$id_circuito = $carrera->getValue("id_circuito");
+$circuito = $id_circuito ? Circuito::getCircuito($id_circuito) : null;
 
 displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrera") . " " . $carrera->getValueEncoded("nombre_circuito"));
 
@@ -53,7 +62,13 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             </div>
             <div class="info-item">
                 <label>Temperatura Asfalto</label>
-                <span><?php echo $carrera->getValue("tasfalto") ?> ºC</span>
+                <?php
+                    $tasfalto = $carrera->getValue("tasfalto");
+                    if (!empty($tasfalto)): // Si la URL no está vacía...
+                ?>
+                <td class="text-center"><?php echo $tasfalto ?> ºC</td>
+                <?php else: ?><td class="text-center">---</td>
+                <?php endif; ?>
             </div>
             <div class="info-item">
                 <label>Humedad Relativa</label>
@@ -74,19 +89,25 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
 
             <?php
             $vr = Carrera::getVueltaRapida($id_carrera);
-
+            
             if ($vr):
                 $nombre   = is_object($vr) ? $vr->getValue('nombre_piloto') : $vr['nombre_piloto'];
                 $apellido = is_object($vr) ? $vr->getValue('apellido_piloto') : $vr['apellido_piloto'];
                 $tiempo   = is_object($vr) ? $vr->getValue('mejor_vuelta') : $vr['mejor_vuelta'];
-                
+
                 // Formato mm:ss.mmm (quitando los 3 primeros caracteres "00:")
-                $tiempoFormateado = !empty($tiempo) ? substr($tiempo, 3) : '---';
+                $tiempoFormateado = Resultado::formatearTiempo($tiempo);
+
+                // 2. Cálculo de velocidad media DENTRO del IF (solo si existe $vr)
+                $longitud = is_object($circuito) ? $circuito->getValue("longitud") : 0;
+                $v_media  = Resultado::calcularVelocidadMedia($longitud, $tiempo);
             ?>
                 <div class="info-item">
-                    <label>⚡ Vuelta Rápida:</label> 
+                    <label>⚡ Vuelta Rápida:</label>
                     <strong><?php echo htmlspecialchars($nombre . ' ' . $apellido); ?></strong> 
-                    (<?php echo $tiempoFormateado; ?>)
+                    <?php echo $tiempoFormateado; ?>
+                    <p class="avg-speed-tag">
+                    Velocidad media: <strong><?php echo $v_media; ?> <small>km/h</small></strong></p>
                 </div>
             <?php endif; ?>
 

@@ -13,6 +13,7 @@ class Piloto extends DataObject {
         "email_piloto" => "",
         "foto_piloto" => "",
         "nombre_pais" => "",
+        "codigo_iso" => "",
         "nombre_escuderia" => "",
         "nombre_patrocinador" => ""
     );
@@ -102,7 +103,8 @@ class Piloto extends DataObject {
             error_log("Error en getPiloto: " . $e->getMessage());
             return null;
             }
-        }
+    }
+
 
 }
 ?>
