@@ -14,6 +14,7 @@ class Resultado extends DataObject {
         "nombre_categoria" => "",
         "id_circuito" => "",
         "nombre_circuito" => "",
+        "longitud" => "",
         "id_piloto" => "",
         "nombre_piloto" => "",
         "apellido_piloto" => "",
@@ -82,11 +83,36 @@ class Resultado extends DataObject {
         }
     }
 
+    public static function getResultado($id_resultado, $id_piloto, $id_cto) {
+        $conn = parent::connect();
+        if (!$conn) return null;
+
+        $sql = "SELECT * FROM " . VIEW_RESULTADOS . " WHERE id_resultado = :id_resultado AND id_piloto = :id_piloto AND id_cto = :id_cto";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_resultado", (int)$id_resultado, PDO::PARAM_INT);
+            $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
+            $st->bindValue(":id_cto", (int)$id_cto, PDO::PARAM_INT);
+            $st->execute();
+            $row = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+            return ($row) ? new Resultado($row) : null;
+            
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getResultado: " . $e->getMessage());
+            return null;
+            }
+    }
+
+
+
     public static function getEstadisticasGanadores($id_circuito) {
         $conn = parent::connect();
         if (!$conn) return null;
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
-        $sql = "SELECT nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT carrera_id) as victorias
+        $sql = "SELECT id_piloto, nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT id_carrera) as victorias
                 FROM " . VIEW_RESULTADOS . "
                 WHERE id_circuito = :id_circuito AND posicion = 1 AND nombre_carrera_tipo != 'Clasificacion'
                 GROUP BY id_piloto
@@ -152,6 +178,55 @@ class Resultado extends DataObject {
         $velocidad = ($longitud_km / $segundos_totales) * 3600;
         return round($velocidad, 2);    
     
+    }
+
+    /**
+    * Calcula la velocidad media en km/h
+    * 
+    * @param float $longitudCircuitoKm Longitud del circuito en kilómetros (ej: 1.4)
+    * @param int $vueltas Número de vueltas completadas
+    * @param string $tiempoTotal Tiempo en formato "HH:MM:SS" o "MM:SS.mmm"
+    * @return float Velocidad media en km/h (redondeada a 2 decimales)
+    */
+    public static function calcularVelocidadMediaCarrera($longitudMetros, $vueltas, $tiempoTotal) {
+        if ($vueltas <= 0 || $longitudMetros <= 0 || empty($tiempoTotal)) {
+            return 0.0;
+        }
+
+        // 1. Distancia total en km
+        $distanciaTotalKm = $vueltas * ($longitudMetros / 1000);
+
+        // 2. Convertir HH:MM:SS.mmm a segundos
+        $partes = explode(':', $tiempoTotal);
+        if (count($partes) === 3) {
+            // Formato HH:MM:SS.mmm
+            $segundos = ($partes[0] * 3600) + ($partes[1] * 60) + (float)$partes[2];
+        } elseif (count($partes) === 2) {
+            // Formato MM:SS.mmm
+            $segundos = ($partes[0] * 60) + (float)$partes[1];
+        } else {
+            return 0.0;
+        }
+
+            if ($segundos <= 0) return 0.0;
+
+        // 3. Convertir segundos a horas y calcular km/h
+        $horas = $segundos / 3600;
+        $velocidadMedia = $distanciaTotalKm / $horas;
+
+        return round($velocidadMedia, 2);
+    }
+
+    /**
+    * Quita el prefijo "00:" de un tiempo en formato HH:MM:SS.mmm
+    * Ejemplo: "00:13:09.234" -> "13:09.234"
+    * Ejemplo: "01:13:09.234" -> "01:13:09.234" (Se mantiene si dura 1h o más)
+    */
+    public static function formatearTiempo($tiempo) {
+        if (empty($tiempo)) return '---';
+
+        // Si empieza por "00:", se los quitamos
+        return preg_replace('/^00:/', '', trim($tiempo));
     }
 
 }

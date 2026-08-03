@@ -602,11 +602,20 @@
     }
 
 
+/* CSS para enlace de piloto desde pagina de circuitos Muro campeones */
+/* ------------------------------------------------------------------ */
+.enlace-piloto {
+    color: inherit;               /* Conserva el color de texto del elemento padre */
+    text-decoration: none;        /* Quita el subrayado predeterminado */i
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
 
-
-
-
-
+.enlace-piloto:hover {
+    color: #e10600;               /* Cambia a color rojo (o tu color corporativo) al pasar el ratón */
+    text-decoration: underline;   /* Añade un sutil subrayado al hacer hover */
+}
 
 
 </style>

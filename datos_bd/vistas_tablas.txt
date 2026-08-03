@@ -21,7 +21,7 @@ JOIN escuderias e ON p.id_escuderia = e.id_escuderia
 JOIN patrocinadores pa ON p.id_patrocinador = pa.id_patrocinador;
 
 CREATE VIEW vista_carreras AS
-SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.orientacion, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, ci.id_circuito, ci.nombre_circuito,ci.logo_circuito, cp.id_cto, cp.nombre_cto
+SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.orientacion, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, ci.id_circuito, ci.nombre_circuito,ci.logo_circuito, ci.longitud, cp.id_cto, cp.nombre_cto
 FROM carreras ca
 JOIN carreras_tipo ct ON ca.id_carrera_tipo = ct.id_carrera_tipo
 JOIN circuitos ci ON ca.id_circuito = ci.id_circuito
@@ -75,6 +75,7 @@ SELECT
     vcar.id_circuito,
     vcar.nombre_circuito,
     vcar.logo_circuito,
+    vcar.longitud,
     p.id_piloto,
     p.nombre_piloto,
     p.apellido_piloto,

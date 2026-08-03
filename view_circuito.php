@@ -93,21 +93,23 @@ $ganadores = Resultado::getEstadisticasGanadores($id);
 if (count($ganadores) > 0):
 ?>  
              
-<section class="carrera-stats">
-    <h2>Muro de los Campeones</h2>
-    <div class="stats-container">
+<div class="contenedor-seccion-podios">
+    <h2 class="text-center">Muro de los Campeones</h2>
+    <div class="podium-container">
         <?php foreach ($ganadores as $g): ?>
-            <div class="stat-card">
-                <img src="images/piloto/<?php echo $g['foto_piloto'] ?: 'default.jpg' ?>" class="foto-mini">
-                <div class="victoria-count"><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></div> 
-                <div class="label">Victorias</div>
-                <p><strong><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></strong></p>
+            <div class="pilot-card">
+                <div>
+                    <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.jpg' ?>"
+                        class="foto-perfil">
+                    <h2><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></h2> 
+                    <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" class="enlace-piloto" target="_blank" rel="noopener noreferrer"><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></a>
+                </div>
             </div>
         <?php endforeach; ?>
      </div>
 
         <a href="view_circuitos.php" class="btn-back">&larr; Volver al panel de circuitos</a>
-</section>
+</div>
 <?php endif; ?>
 
 <?php displayPageFooter(); ?>

@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * Devuelve el valor escapado para HTML o '---' si está vacío/null.
+ * Respetando el 0 numérico o en texto.
+ * 
+ * @param mixed $valor El valor a comprobar e imprimir.
+ * @return string Texto listo para imprimir de forma segura.
+ */
+function mostrarValor($valor) {
+    // Comprobamos que no sea null ni cadena vacía, pero permitiendo el número 0 o "0"
+    if ($valor === null || trim((string)$valor) === '') {
+        return '---';
+    }
+    
+    return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
+}
+
 function displayPageHeader($pageTitle) {
 ?>
 
