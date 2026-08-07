@@ -10,7 +10,7 @@ $type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
 // 2. Limpiamos las variables
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 $start = isset($_GET["start"]) ? (int)$_GET["start"] : 0;
-$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_piloto";
+$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "apellido_piloto";
 $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 
 // 3. Llamamos al método (asegúrate de que tu SQL en Piloto ahora use $order y $type)

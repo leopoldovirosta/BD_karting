@@ -19,7 +19,7 @@ CREATE TABLE escuderias (
     web_escuderia VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     id_pais INT UNSIGNED NULL DEFAULT 1,
     -- Clave Foránea (Relación con la tabla países)
-    CONSTRAINT fk_escuderia_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
+    CONSTRAINT fk_escuderia_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
 
     -- ÍNDICES Y RESTRICCIONES DE OPTIMIZACIÓN
 
@@ -36,7 +36,7 @@ CREATE TABLE patrocinadores (
     logo_patrocinador VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
     web_patrocinador VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     id_pais INT UNSIGNED NULL DEFAULT 1,
-    CONSTRAINT fk_patrocinador_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
+    CONSTRAINT fk_patrocinador_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
 
     -- ÍNDICES Y RESTRICCIONES
     -- 1. Unicidad del nombre del patrocinador (evita duplicados y acelera búsquedas)
@@ -64,41 +64,69 @@ CREATE TABLE categorias (
 
 CREATE TABLE campeonatos (
     id_cto INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_cto VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-    logo_cto VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL
+    nombre_cto VARCHAR(80) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_cto VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    id_pais INT UNSIGNED NULL DEFAULT 1,
+    CONSTRAINT fk_campeonatos_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
+    
+    -- ÍNDICES Y RESTRICCIONES DE OPTIMIZACIÓN
+    UNIQUE INDEX uq_nombre_cto (nombre_cto)
+    
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE marcas (
     id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_marca VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
     id_pais INT UNSIGNED NOT NULL,
-    logo_marca VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL,
-    pagina_web VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+    logo_marca VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
+    pagina_web VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     es_marca_chasis TINYINT(1) DEFAULT 0,
     es_marca_motor TINYINT(1) DEFAULT 0,
     es_marca_ruedas TINYINT(1) DEFAULT 0,
-    CONSTRAINT fk_pais_marca FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
+    CONSTRAINT fk_pais_marca FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
+
+    -- ÍNDICES Y RESTRICCIONES DE ALTO RENDIMIENTO
+
+    -- 1. Unicidad en el nombre (evita crear dos veces marcas como "OTK", "Tony Kart" o "IAME")
+    UNIQUE INDEX uq_nombre_marca (nombre_marca),
+
+    -- 2. Índice para la Foreign Key del país (acelera los JOINs para pintar la bandera de la fábrica)
+    INDEX idx_marca_pais (id_pais),
+
+    -- 3. Índice compuesto para filtrado rápido en desplegables del panel de administración
+    -- (Ej: Cargar rápidamente solo los fabricantes de chasis o de motores)
+    INDEX idx_tipo_marca (es_marca_chasis, es_marca_motor, es_marca_ruedas, nombre_marca)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE chasis (
     id_chasis INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    modelo_chasis VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    material VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    tubo_diametro VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    distancia_ejes VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    eje_trasero VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    sistema_frenado VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
+    id_marca INT UNSIGNED NOT NULL,
+    modelo_chasis VARCHAR(60) COLLATE utf8mb4_spanish_ci NOT NULL,
+    material VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
+    tubo_diametro VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
+    distancia_ejes VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
+    eje_trasero VARCHAR(50) COLLATE utf8mb4_spanish_ci NULL,
+    sistema_frenado VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     categoria_objetivo VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
-    ano YEAR,
+    ano YEAR NULL,
     homologacion VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     url_homologacion VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     foto_chasis VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    id_marca INT UNSIGNED NOT NULL,
-    CONSTRAINT fk_marca_chasis FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
+    CONSTRAINT fk_marca_chasis FOREIGN KEY (id_marca) REFERENCES marcas(id_marca) ON DELETE RESTRICT,
+
+    -- RESTRICCIONES DE INTEGRIDAD Y RECTITUD
+    -- 1. Evita duplicar el mismo modelo de la misma marca y año
+    UNIQUE INDEX uq_marca_modelo_ano (id_marca, modelo_chasis, ano),
+
+    -- ÍNDICES DE ALTO RENDIMIENTO
+    -- 2. Búsqueda y filtrado directo por marca y modelo (desplegables en ficha técnica)
+    INDEX idx_chasis_marca_modelo (id_marca, modelo_chasis)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE motores (
     id_motor INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_marca INT UNSIGNED NOT NULL,
     modelo VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
     descripcion VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'Monocilíndrico de 2 tiempos',
     clase VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
@@ -121,26 +149,43 @@ CREATE TABLE motores (
     potencia_max DECIMAL(4,2) UNSIGNED NULL,
     par_motor_max DECIMAL(4,2) UNSIGNED NULL,
     foto_motor VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    id_marca INT UNSIGNED NOT NULL,
-    CONSTRAINT fk_marca_motores FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
+    CONSTRAINT fk_marca_motores FOREIGN KEY (id_marca) REFERENCES marcas(id_marca) ON DELETE RESTRICT,
+
+    -- RESTRICCIONES DE INTEGRIDAD
+    -- 1. Unicidad: Evita duplicar el mismo modelo de motor de la misma marca y código de homologación
+    UNIQUE INDEX uq_marca_modelo_homologacion (id_marca, modelo, homologacion),
+
+    -- ÍNDICES DE RENDIMIENTO
+    -- 2. Búsqueda directa por fabricante y modelo (para desplegables en formularios de carrera)
+    INDEX idx_motor_marca_modelo (id_marca, modelo)
+    
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE ruedas (
     id_rueda INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_marca INT UNSIGNED NOT NULL,
     modelo VARCHAR(30) COLLATE utf8mb4_spanish_ci NOT NULL,
-    tipo ENUM('Seco','Lluvia') DEFAULT 'Seco',
+    tipo ENUM('Seco','Lluvia') NOT NULL DEFAULT 'Seco',
     compuesto VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
     categoria VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
     tam_front VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     tam_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
-    max_velocidad TINYINT UNSIGNED NULL,
+    max_velocidad SMALLINT UNSIGNED NULL,
     homo_front VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     url_homo_front VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     homo_rear VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
     url_homo_rear VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     foto_rueda VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    id_marca INT UNSIGNED NOT NULL,
-    CONSTRAINT fk_marca_ruedas FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
+    CONSTRAINT fk_marca_ruedas FOREIGN KEY (id_marca) REFERENCES marcas(id_marca) ON DELETE RESTRICT,
+
+    -- RESTRICCIONES DE INTEGRIDAD Y ALTO RENDIMIENTO
+
+    -- 1. Unicidad: Evita duplicar el mismo modelo y compuesto de la misma marca
+    UNIQUE INDEX uq_marca_modelo_compuesto (id_marca, modelo, compuesto, tipo),
+
+    -- 2. Índice de filtrado rápido por fabricante y tipo (Seco / Lluvia)
+    INDEX idx_rueda_marca_tipo (id_marca, tipo, modelo)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE pilotos (
@@ -154,9 +199,14 @@ CREATE TABLE pilotos (
     id_pais INT UNSIGNED NOT NULL DEFAULT 1,
     id_escuderia INT UNSIGNED NULL DEFAULT 1,
     id_patrocinador INT UNSIGNED NULL DEFAULT 1,
-    CONSTRAINT fk_pais_pilotos FOREIGN KEY (id_pais) REFERENCES paises(id_pais),
-    CONSTRAINT fk_escuderia FOREIGN KEY (id_escuderia) REFERENCES escuderias(id_escuderia),
-    CONSTRAINT fk_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES patrocinadores(id_patrocinador)
+    CONSTRAINT fk_pais_pilotos FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
+    CONSTRAINT fk_escuderia FOREIGN KEY (id_escuderia) REFERENCES escuderias(id_escuderia) ON DELETE RESTRICT,
+    CONSTRAINT fk_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES patrocinadores(id_patrocinador) ON DELETE RESTRICT,
+
+    -- RESTRICCIONES DE INTEGRIDAD
+    -- 1. Unicidad: Evita registrar dos veces el mismo piloto
+    UNIQUE INDEX uq_nombre_piloto (nombre_piloto, apellido_piloto),
+
     -- ÍNDICES DE OPTIMIZACIÓN
     -- 1. Búsquedas rápidas de pilotos por Nombre + Apellido (ej: Piloto::getByNombreCompleto)
     INDEX idx_nombre_apellido (nombre_piloto, apellido_piloto),
@@ -173,25 +223,48 @@ CREATE TABLE pilotos (
 
 CREATE TABLE circuitos (
     id_circuito INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_circuito VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+    nombre_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci NOT NULL,
     logo_circuito VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
     web_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     direccion_circuito VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    localidad_circuito VARCHAR(30) COLLATE utf8mb4_spanish_ci NULL,
-    telefono_circuito VARCHAR(15) COLLATE utf8mb4_spanish_ci NULL,
+    localidad_circuito VARCHAR(60) COLLATE utf8mb4_spanish_ci NULL,
+    telefono_circuito VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
     id_pais INT UNSIGNED NOT NULL DEFAULT 2,
-    altitud SMALLINT NOT NULL,
+    altitud SMALLINT NULL,
     longitud SMALLINT UNSIGNED NOT NULL,
-    curvasizd TINYINT UNSIGNED NOT NULL,
-    curvasdcha TINYINT UNSIGNED NOT NULL,
-    velocidadmax TINYINT UNSIGNED NULL,
+    curvasizd TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    curvasdcha TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    velocidadmax SMALLINT UNSIGNED NULL,
     silueta VARCHAR(255) COLLATE utf8mb4_spanish_ci NULL,
-    CONSTRAINT fk_pais_circuitos FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
+    latitud DECIMAL(10,8) NULL,   -- Ej: 41.479421
+    longitud_gps DECIMAL(11,8) NULL,   -- Ej: -0.787123
+    CONSTRAINT fk_pais_circuitos FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
+
+    -- RESTRICCIONES DE INTEGRIDAD
+    -- 1. Unicidad: Evita registrar dos veces el mismo circuito en la misma localidad
+    UNIQUE INDEX uq_nombre_localidad (nombre_circuito, localidad_circuito),
+
+    -- ÍNDICES DE RENDIMIENTO
+    -- 2. Índice para acelerar búsquedas de circuitos por país y nombre
+    INDEX idx_circuito_pais_nombre (id_pais, nombre_circuito),
+
+    -- 3. Índice para filtros por longitud de cuerda o características del trazado
+    INDEX idx_circuito_longitud (longitud)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE carreras_tipo (
     id_carrera_tipo INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_carrera_tipo VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL
+    nombre_carrera_tipo VARCHAR(15) COLLATE utf8mb4_spanish_ci NOT NULL,
+
+    -- RESTRICCIONES DE INTEGRIDAD Y RECTITUD
+    -- 1. Unicidad: Evita registrar dos veces el mismo tipo de sesión
+    UNIQUE INDEX uq_nombre_carrera_tipo (nombre_carrera_tipo),
+
+    -- ÍNDICES DE RENDIMIENTO
+    -- 2. Índice para acelerar la carga de desplegables en el panel de administración
+    INDEX idx_carrera_tipo_nombre (nombre_carrera_tipo)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE carreras (
@@ -208,16 +281,42 @@ CREATE TABLE carreras (
     tasfalto TINYINT NULL,
     id_carrera_tipo INT UNSIGNED NOT NULL,
     id_circuito INT UNSIGNED NOT NULL,
-    CONSTRAINT fk_carrera_tipo FOREIGN KEY (id_carrera_tipo) REFERENCES carreras_tipo(id_carrera_tipo), 
-    CONSTRAINT fk_circuito FOREIGN KEY (id_circuito) REFERENCES circuitos(id_circuito)
+    CONSTRAINT fk_carrera_tipo FOREIGN KEY (id_carrera_tipo) REFERENCES carreras_tipo(id_carrera_tipo) ON DELETE RESTRICT, 
+    CONSTRAINT fk_carrera_circuito FOREIGN KEY (id_circuito) REFERENCES circuitos(id_circuito) ON DELETE RESTRICT,
+
+    -- ÍNDICES DE ALTO RENDIMIENTO
+    -- 1. Búsqueda directa de carreras por circuito y fecha
+    INDEX idx_carrera_circuito_fecha (id_circuito, fecha_carrera),
+
+    -- 2. Filtrado por tipo de carrera (Ej: consultar solo los resultados de Cronos o Finales)
+    INDEX idx_carrera_tipo (id_carrera_tipo)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-CREATE TABLE campeonatos_carreras (
+
+CREATE TABLE ediciones_campeonatos (
+    id_edicion INT UNSIGNED NOT NULL AUTO_INCREMENT,
     id_cto INT UNSIGNED NOT NULL,
+    anio YEAR NOT NULL,
+    PRIMARY KEY (id_edicion),
+    CONSTRAINT fk_campeonato FOREIGN KEY (id_cto) REFERENCES campeonatos (id_cto) ON DELETE RESTRICT,
+   
+    -- RESTRICCIONES DE INTEGRIDAD
+    -- Un mismo campeonato no tenga dos ediciones creadas para el mismo año
+    UNIQUE INDEX uq_cto_anio (id_cto, anio)
+
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+CREATE TABLE campeonatos_carreras (
+    id_edicion INT UNSIGNED NOT NULL,
     id_carrera INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_cto, id_carrera),
-    CONSTRAINT fk_rel_cto FOREIGN KEY (id_cto) REFERENCES campeonatos(id_cto),
-    CONSTRAINT fk_rel_carrera FOREIGN KEY (id_carrera) REFERENCES carreras(id_carrera)
+    PRIMARY KEY (id_edicion, id_carrera),
+    CONSTRAINT fk_cc_edicion FOREIGN KEY (id_edicion) REFERENCES ediciones_campeonatos(id_edicion) ON DELETE CASCADE,
+    CONSTRAINT fk_cc_carrera FOREIGN KEY (id_carrera) REFERENCES carreras(id_carrera) ON DELETE CASCADE,
+
+    -- Índices de búsqueda inversa (para saber qué campeonatos abarca una carrera concreta)
+    INDEX idx_carrera_edicion (id_carrera)
+    
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 CREATE TABLE resultados (
@@ -225,7 +324,7 @@ CREATE TABLE resultados (
     id_carrera INT UNSIGNED NOT NULL,
     id_piloto INT UNSIGNED NOT NULL,
     id_categoria INT UNSIGNED NOT NULL,
-    dorsal SMALLINT,
+    dorsal SMALLINT UNSIGNED NULL,
     posicion TINYINT UNSIGNED NOT NULL,
     comentario_posicion ENUM('Normal', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'Normal',
     tiempo_total TIME(3) NULL,
@@ -235,14 +334,13 @@ CREATE TABLE resultados (
     id_motor INT UNSIGNED NULL,
     id_rueda INT UNSIGNED NULL,
     PRIMARY KEY (id_resultado),
-    INDEX idx_resultado_carrera (id_carrera),
-    INDEX idx_resultado_piloto (id_piloto),
-    CONSTRAINT fk_res_carrera FOREIGN KEY (id_carrera) REFERENCES carreras(id_carrera),
-    CONSTRAINT fk_res_piloto FOREIGN KEY (id_piloto) REFERENCES pilotos(id_piloto),
-    CONSTRAINT fk_res_categoria FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria),
-    CONSTRAINT fk_res_chasis FOREIGN KEY (id_chasis) REFERENCES chasis(id_chasis),
-    CONSTRAINT fk_res_motor FOREIGN KEY (id_motor) REFERENCES motores(id_motor),
-    CONSTRAINT fk_res_rueda FOREIGN KEY (id_rueda) REFERENCES ruedas(id_rueda)
+    CONSTRAINT fk_res_carrera FOREIGN KEY (id_carrera) REFERENCES carreras(id_carrera) ON DELETE CASCADE,
+    CONSTRAINT fk_res_piloto FOREIGN KEY (id_piloto) REFERENCES pilotos(id_piloto) ON DELETE RESTRICT,
+    CONSTRAINT fk_res_categoria FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE RESTRICT,
+    CONSTRAINT fk_res_chasis FOREIGN KEY (id_chasis) REFERENCES chasis(id_chasis) ON DELETE SET NULL,
+    CONSTRAINT fk_res_motor FOREIGN KEY (id_motor) REFERENCES motores(id_motor) ON DELETE SET NULL,
+    CONSTRAINT fk_res_rueda FOREIGN KEY (id_rueda) REFERENCES ruedas(id_rueda) ON DELETE SET NULL,
+    
     -- ÍNDICES DE OPTIMIZACIÓN EN CASCADA Y COMPUESTOS
 
     -- 1. Clasificación de una carrera (Acelera cargar los resultados de un evento en orden)
@@ -262,24 +360,44 @@ CREATE TABLE resultados (
     INDEX idx_resultado_chasis (id_chasis),
     INDEX idx_resultado_motor (id_motor),
     INDEX idx_resultado_rueda (id_rueda)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+   
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-CREATE TABLE sistemas_puntuacion (
-    id_cto INT UNSIGNED NOT NULL,
-    id_tipo_carrera INT UNSIGNED NOT NULL,
+
+CREATE TABLE puntos_ediciones (
+    id_puntos INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_edicion INT UNSIGNED NOT NULL,
+    id_carrera_tipo INT UNSIGNED NOT NULL,
     posicion TINYINT UNSIGNED NOT NULL,
-    puntos_asignados TINYINT UNSIGNED NULL,
-    PRIMARY KEY (id_cto, id_tipo_carrera, posicion),
-    CONSTRAINT fk_sp_campeonato FOREIGN KEY (id_cto) REFERENCES campeonatos (id_cto) ON DELETE CASCADE,
-    CONSTRAINT fk_sp_tipo_carrera FOREIGN KEY (id_tipo_carrera) REFERENCES carreras_tipo(id_carrera_tipo) ON DELETE CASCADE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+    puntos_asignados TINYINT UNSIGNED NULL DEFAULT 0,
+    PRIMARY KEY (id_puntos),
 
-CREATE TABLE campeonatos_categorias (
-    id_cto INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_puntos_ediciones FOREIGN KEY (id_edicion) REFERENCES ediciones_campeonatos(id_edicion) ON DELETE CASCADE,
+    CONSTRAINT fk_puntos_carrera_tipo FOREIGN KEY (id_carrera_tipo) REFERENCES carreras_tipo(id_carrera_tipo) ON DELETE RESTRICT,
+
+    -- RESTRICCIÓN DE UNICIDAD
+    -- Impide tener registros duplicados para la misma posición, tipo de sesión y edición
+    UNIQUE INDEX uq_edicion_tipo_posicion (id_edicion, id_carrera_tipo, posicion),
+
+    -- ÍNDICE DE RENDIMIENTO
+    -- Acelera las consultas al calcular la clasificación general del campeonato
+    INDEX idx_edicion_tipo (id_edicion, id_carrera_tipo)
+
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+
+CREATE TABLE ediciones_categorias (
+    id_edicion INT UNSIGNED NOT NULL,
     id_categoria INT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_cto, id_categoria),
-    CONSTRAINT fk_cto_rel FOREIGN KEY (id_cto) REFERENCES campeonatos(id_cto) ON DELETE CASCADE,
-    CONSTRAINT fk_cat_rel FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE CASCADE
+    peso_minimo SMALLINT UNSIGNED NULL,
+    edad_minima TINYINT UNSIGNED NULL,
+    PRIMARY KEY (id_edicion, id_categoria),
+    CONSTRAINT fk_edicto_edicat FOREIGN KEY (id_edicion) REFERENCES ediciones_campeonatos(id_edicion) ON DELETE CASCADE,
+    CONSTRAINT fk_edicat_categoria FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE RESTRICT,
+
+    -- ÍNDICES DE RENDIMIENTO
+    INDEX idx_categoria_edicion (id_categoria, id_edicion)
+
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 

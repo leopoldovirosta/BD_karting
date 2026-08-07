@@ -6,21 +6,25 @@ require_once "config.php";
 class Carrera extends DataObject {
     protected $data = array(
         "id_carrera" => "",
-        "id_cto" => "",
-        "nombre_cto" => "",
         "fecha_carrera" => "",
         "dia" => "",
         "num_vueltas" => "",
+        "pista" => "",
         "temperatura" => "",
         "humedad" => "",
         "presion" => "",
         "viento" => "",
         "orientacion" => "",
         "tasfalto" => "",
-        "pista" => "",
+        "id_carrera_tipo" => "",
         "nombre_carrera_tipo" => "",
         "id_circuito" => "",
-        "nombre_circuito" => ""
+        "nombre_circuito" => "",
+        "longitud" => "",
+        "id_cto" => "",
+        "nombre_cto" => "",
+        "id_edicion" => "",
+        "anio_edicion" => ""
     );
 
 
@@ -69,16 +73,16 @@ class Carrera extends DataObject {
         }
     }
 
-    public static function getCarrera($id_carrera, $id_cto) {
+    public static function getCarrera($id_carrera, $id_edicion) {
         $conn = parent::connect();
         if (!$conn) return null;
 
-        $sql = "SELECT * FROM " . VIEW_CARRERAS . " WHERE id_carrera = :id_carrera AND id_cto = :id_cto";
+        $sql = "SELECT * FROM " . VIEW_CARRERAS . " WHERE id_carrera = :id_carrera AND id_edicion = :id_edicion";
 
         try {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_carrera", (int)$id_carrera, PDO::PARAM_INT);
-            $st->bindValue(":id_cto", (int)$id_cto, PDO::PARAM_INT);
+            $st->bindValue(":id_edicion", (int)$id_edicion, PDO::PARAM_INT);
             $st->execute();
             $row = $st->fetch();
             parent::disconnect($conn);
@@ -97,7 +101,7 @@ class Carrera extends DataObject {
      * @param int $id_carrera ID de la carrera a consultar
      * @return array Estructura: ['Nombre Categoria' => [ObjetoResultado, ObjetoResultado, ...]]
      */
-    public static function getPodiosPorCategoria($id_carrera) {
+    public static function getPodiosPorCategoria($id_carrera,$id_edicion) {
         $conn = parent::connect();
         if (!$conn) return [];
 
@@ -112,22 +116,25 @@ class Carrera extends DataObject {
                     FROM (
                         -- Subconsulta interna para eliminar duplicados del JOIN entre campeonatos
                         SELECT DISTINCT
-                            id_carrera,
-                            id_piloto,
-                            nombre_piloto,
-                            apellido_piloto,
-                            foto_piloto,
-                            id_categoria,
-                            nombre_categoria,
-                            posicion,
-                            mejor_vuelta,
-                            comentario_posicion,
-                            marca_chasis,
-                            marca_motor,
-                            marca_rueda
-                        FROM " . VIEW_RESULTADOS . "
-                        WHERE id_carrera = :id_carrera
-                            AND (comentario_posicion IS NULL OR comentario_posicion NOT IN ('DNS', 'DSQ'))
+                            vr.id_carrera,
+                            vr.id_piloto,
+                            vr.nombre_piloto,
+                            vr.apellido_piloto,
+                            vr.foto_piloto,
+                            vr.id_categoria,
+                            vr.nombre_categoria,
+                            vr.posicion,
+                            vr.mejor_vuelta,
+                            vr.comentario_posicion,
+                            vr.marca_chasis,
+                            vr.marca_motor,
+                            vr.marca_rueda
+                        FROM " . VIEW_RESULTADOS . " vr
+                        INNER JOIN ediciones_categorias ecat
+                            ON vr.id_categoria = ecat.id_categoria
+                        WHERE vr.id_carrera = :id_carrera
+                            AND ecat.id_edicion = :id_edicion -- 🎯 Solo categorías asociadas al campeonato
+                            AND (vr.comentario_posicion IS NULL OR vr.comentario_posicion NOT IN ('DNS', 'DSQ'))
                     ) AS sub
                 ) AS podios
                 WHERE ranking_cat <= 3
@@ -136,6 +143,7 @@ class Carrera extends DataObject {
         try {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_carrera", (int)$id_carrera, PDO::PARAM_INT);
+            $st->bindValue(":id_edicion", (int)$id_edicion, PDO::PARAM_INT);
             $st->execute();
 
             $podios = [];
@@ -148,8 +156,7 @@ class Carrera extends DataObject {
                     $podios[$cat] = [];
                 }
                 
-                // Si usas la clase Resultado:
-                $podios[$cat][] = class_exists('Resultado') ? new Resultado($row) : $row;
+                $podios[$cat][] = new Resultado($row);
             }
 
             parent::disconnect($conn);
@@ -194,9 +201,8 @@ class Carrera extends DataObject {
             if (!$row) {
                 return null;
             }
-
-            // Si existe la clase Resultado instanciamos el objeto, de lo contrario devolvemos el array
-            return class_exists('Resultado') ? new Resultado($row) : $row;
+            
+            return new Resultado($row);
 
         } catch (PDOException $e) {
             parent::disconnect($conn);
@@ -205,7 +211,71 @@ class Carrera extends DataObject {
         }
     }
 
+        
+    public static function getSiguienteId($id_edicion, $fecha_carrera, $id_carrera_tipo) {
+        $conn = parent::connect();
+        if (!$conn) return null;
 
+        $sql = "SELECT id_carrera 
+                FROM " . VIEW_CARRERAS . "
+                WHERE id_edicion = :id_edicion
+                  AND ((fecha_carrera = :fecha_carrera AND id_carrera_tipo > :id_carrera_tipo)
+                  OR (fecha_carrera > :fecha_carrera))
+                ORDER BY fecha_carrera ASC, id_Carrera_tipo ASC
+                LIMIT 1";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_edicion", (int)$id_edicion, PDO::PARAM_INT);
+            $st->bindValue(":fecha_carrera", $fecha_carrera, PDO::PARAM_STR);
+            $st->bindValue(":id_carrera_tipo", (int)$id_carrera_tipo, PDO::PARAM_INT);
+            $st->execute();
+            
+            $row = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+
+            // Retornamos directamente el ID entero si existe, o null
+            return $row ? (int)$row['id_carrera'] : null;
+
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getSiguienteId: " . $e->getMessage());
+            return null;
+        }
+    }
+
+
+    public static function getAnteriorId($id_edicion, $fecha_carrera, $id_carrera_tipo) {
+        $conn = parent::connect();
+        if (!$conn) return null;
+
+        $sql = "SELECT id_carrera 
+                FROM " . VIEW_CARRERAS . "
+                WHERE id_edicion = :id_edicion
+                  AND ((fecha_carrera = :fecha_carrera AND id_carrera_tipo < :id_carrera_tipo)
+                  OR (fecha_carrera < :fecha_carrera))
+                ORDER BY fecha_carrera DESC, id_Carrera_tipo DESC
+                LIMIT 1";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_edicion", (int)$id_edicion, PDO::PARAM_INT);
+            $st->bindValue(":fecha_carrera", $fecha_carrera, PDO::PARAM_STR);
+            $st->bindValue(":id_carrera_tipo", (int)$id_carrera_tipo, PDO::PARAM_INT);
+            $st->execute();
+            
+            $row = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+
+            // Retornamos directamente el ID entero si existe, o null
+            return $row ? (int)$row['id_carrera'] : null;
+
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getSiguienteId: " . $e->getMessage());
+            return null;
+        }
+    }
 
 }
 ?>

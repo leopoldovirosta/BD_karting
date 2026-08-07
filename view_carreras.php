@@ -38,6 +38,7 @@ displayPageHeader("Lista de carreras");
         $columns = array(
             "id_carrera" => "ID",
             "nombre_cto" => "Campeonato",
+            "anio_edicion" => "Temporada",
             "fecha_carrera" => "Fecha",
             "num_vueltas" => "Vueltas",
             "dia" => "Día",
@@ -75,8 +76,9 @@ displayPageHeader("Lista de carreras");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_cto=<?php echo $carrera->getValue("id_cto")?>">Ver</a></td>
+            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_edicion=<?php echo $carrera->getValue("id_edicion")?>">Ver</a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
+            <td><?php echo $carrera->getValueEncoded("anio_edicion") ?></td>
             <td><?php echo $carrera->getValueEncoded("fecha_carrera") ?></td>
             <td class="text-center"><?php echo mostrarValor($carrera->getValue("num_vueltas")); ?></td>
             <td><?php echo $carrera->getValueEncoded("dia") ?></td>

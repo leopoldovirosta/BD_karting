@@ -1,9 +1,3 @@
-insert into patrocinadores(nombre_patrocinador) values ('Privado',);
-insert into patrocinadores(nombre_patrocinador,logo_patrocinador,web_patrocinador,id_pais) values ('Macisa Motorsports','macisa_logo.webp','https://macisamotorsport.es/',2);
-
-insert into escuderias(nombre_escuderia) values('Privado');
-insert into escuderias(nombre_escuderia,logo_escuderis,web_escuderia,id_pais) values('SRP Engines','srp-racingshop-logo.webp','https://www.srp-engines.com/',5);
-
 insert into paises(nombre_pais,codigo_iso) values('Privado','xx');
 insert into paises(nombre_pais,codigo_iso) values('España','es');
 insert into paises(nombre_pais,codigo_iso) values('Marruecos','ma');
@@ -32,12 +26,11 @@ insert into paises(nombre_pais,codigo_iso) values('Hungría','hu');
 insert into paises(nombre_pais,codigo_iso) values('Irlanda','ie');
 insert into paises(nombre_pais,codigo_iso) values('Islandia','is');
 insert into paises(nombre_pais,codigo_iso) values('Italia','it');
-insert into paises(nombre_pais,codigo_iso) values('Kazajistán','kz');
 insert into paises(nombre_pais,codigo_iso) values('Letonia','lv');
 insert into paises(nombre_pais,codigo_iso) values('Liechtenstein','li');
 insert into paises(nombre_pais,codigo_iso) values('Lituania','lt');
 insert into paises(nombre_pais,codigo_iso) values('Luxemburgo','lu');
-insert into paises(nombre_pais,codigo_iso) values('Macedonia del Norte','mk);
+insert into paises(nombre_pais,codigo_iso) values('Macedonia del Norte','mk');
 insert into paises(nombre_pais,codigo_iso) values('Malta','mt');
 insert into paises(nombre_pais,codigo_iso) values('Moldavia','md');
 insert into paises(nombre_pais,codigo_iso) values('Mónaco','mc');
@@ -151,12 +144,12 @@ insert into paises(nombre_pais,codigo_iso) values('Bután','bt');
 insert into paises(nombre_pais,codigo_iso) values('India','in');
 insert into paises(nombre_pais,codigo_iso) values('Maldivas','mv');
 insert into paises(nombre_pais,codigo_iso) values('Nepal','np');
-insert into paises(nombre_pais,codigo_iso) values('Pakistán','pa');
+insert into paises(nombre_pais,codigo_iso) values('Pakistán','pk');
 insert into paises(nombre_pais,codigo_iso) values('Sri Lanka','lk');
 insert into paises(nombre_pais,codigo_iso) values('China','cn');
 insert into paises(nombre_pais,codigo_iso) values('Corea del Norte','kp');
 insert into paises(nombre_pais,codigo_iso) values('Corea del Sur','kr');
-insert into paises(nombre_pais,codigo_iso) values('Japón','kp');
+insert into paises(nombre_pais,codigo_iso) values('Japón','jp');
 insert into paises(nombre_pais,codigo_iso) values('Mongolia','mn');
 insert into paises(nombre_pais,codigo_iso) values('Taiwán','tw');
 insert into paises(nombre_pais,codigo_iso) values('Kazajistán','kz');
@@ -176,8 +169,13 @@ insert into paises(nombre_pais,codigo_iso) values('Tailandia','th');
 insert into paises(nombre_pais,codigo_iso) values('Timor Oriental','tl');
 insert into paises(nombre_pais,codigo_iso) values('Vietnam','vn');
 
-insert into campeonatos(nombre_cto) values('Campeonato Social Karting Aragon');
-insert into campeonatos(nombre_cto) values('Copa Catalana de KDDAS');
+
+insert into patrocinadores(nombre_patrocinador) values ('Privado');
+insert into patrocinadores(nombre_patrocinador,logo_patrocinador,web_patrocinador,id_pais) values ('Macisa Motorsports','macisa_logo.webp','https://macisamotorsport.es/',2);
+
+insert into escuderias(nombre_escuderia) values('Privado');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia,id_pais) values('SRP Engines','srp-racingshop-logo.webp','https://www.srp-engines.com/',5);
+
 
 insert into categorias(nombre_categoria,orden) values('Senior',8);
 insert into categorias(nombre_categoria,orden) values('Mini 85 Aire',4);
@@ -192,11 +190,16 @@ insert into categorias(nombre_categoria,orden) values('Tillotson T4',6);
 insert into categorias(nombre_categoria,orden) values('Pre-Mini 64 Aire',2);
 insert into categorias(nombre_categoria,orden) values('Pre-Mini 60 Agua',1);
 
-insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito Internacional de Zuera','https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 300, 1699, 160, 'zuera.jpg', 4, 7);
-insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito de karting Motorland Aragon','https://www.motorlandaragon.com/es/motorland/circuito-de-karting', 'Carretera A-2404, km. 1', 'Alcañiz', '978835548', 400, 1671, 145, 'motorland.jpg', 9, 10);
-insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito Samper', 'https://www.circuitosamper.com/', 'Camino caspe sin numero', 'Samper de Calanda', '627417449', 300, 1600, 145, 'samper.jpg', 5, 8);
-insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito de Torremocha', 'https://www.circuitodetorremocha.es/Neweb/', 'El Arcillar s/n', 'Torremocha del Jiloca', '635575220', 1000, 1302, 125, 'torremocha.jpg', 7, 8);
-insert into circuitos (nombre_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Zuera', 'https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 300, 1075, 115, 'kartingzuera.jpg', 5, 8);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito Internacional de Zuera','zuera_logo.webp','https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 2, 300, 1699, 160, 'zuera.jpg', 4, 7);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito de karting Motorland Aragon','motorland_logo.webp','https://www.motorlandaragon.com/es/motorland/circuito-de-karting', 'Carretera A-2404, km. 1', 'Alcañiz', '978835548', 2, 400, 1671, 145, 'motorland.jpg', 9, 10);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito Samper', 'samper_logo.webp', 'https://www.circuitosamper.com/', 'Camino caspe sin numero', 'Samper de Calanda', '627417449', 2, 300, 1600, 145, 'samper.jpg', 5, 8);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuito de Torremocha', 'torremocha_logo.webp', 'https://www.circuitodetorremocha.es/Neweb/', 'El Arcillar s/n', 'Torremocha del Jiloca', '635575220', 2, 1000, 1302, 125, 'torremocha.jpg', 7, 8);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Zuera', 'karting_zuera_logo.webp', 'https://circuitointernacionaldezuera.es/', 'Carretera N-330, km. 521', 'Zuera', '976697125', 2, 300, 1075, 115, 'kartingzuera.webp', 5, 8);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Vendrell', 'karting_vendrell_logo.webp', 'https://kartingvendrell.com/', 'Ctra. N-340 Km. 1.189', 'El Vendrell', '977663776', 2, 55, 1360, 120, 'elvendrell.webp', 6, 8);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuit d\'Osona', 'dosona_logo.webp', 'https://www.circuitosona.com/', 'C/Cabrerès, 2 Pol. Ind. Malloles', 'Vic', '938866036', 2, 484, 1263, 120, 'dosona.webp', 7, 10);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Sallent', 'sallent.webp', 'https://www.kartingsallent.com/', 'Ctra. Manresa – Berga C 16 km 58,5', 'Sallent', '666213495', 2, 278, 1450, 120, 'sallent.webp', 7, 4);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Circuit M\óra d\'Ebre', 'moradebre.webp', 'https://www.circuitmoradebre.com/', 'Carretera Nacional 420 PK 818', 'M\óra d\'Ebre', '660683765', 2, 160, 1400, 145, 'moradebre.webp', 9, 6);
+insert into circuitos (nombre_circuito, logo_circuito, web_circuito, direccion_circuito, localidad_circuito, telefono_circuito, id_pais, altitud, longitud, velocidadmax, silueta, curvasizd, curvasdcha) values('Karting Menarguens', 'menarguens.jpg', 'https://www.facebook.com/karting.menarguens/?locale=es_ES', 'Circuito 55-84, Polígono 505, Parcela 58', 'Menàrguens', '625244652', 2, 207, 1175, 110, 'menarguens.webp', 7, 8);
 
 
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Tony Kart',28,'tonykart.jpg','https://www.tonykart.com',1);
@@ -204,9 +207,9 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasi
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kart Republic',28,'kartrepublic.jpg','https://www.kartrepublic.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('IAME',28,'iame.jpg','https://www.iamekarting.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Birel ART',28,'birelart.jpg','https://www.birelart.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kubica Racing Kart',41,'kubicaracingkart.jpg','https://www.kubicaracingkart.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kubica Racing Kart',40,'kubicaracingkart.jpg','https://www.kubicaracingkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Charles Leclerc',28,'charlesleclerc.jpg','https://www.clkarting.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Barrichello Kart',65,'barrichelokart.jpg','https://www.barrichellokart.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Barrichello Kart',64,'barrichelokart.jpg','https://www.barrichellokart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('CRG',28,'crg.jpg','https://kartcrg.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('FA Alonso Kart',2,'fakart.jpg','https://dpkstore.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Maranello Racing Kart',28,'maranellokart.jpg','https://maranellokart.com',1);
@@ -219,13 +222,13 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasi
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('RS Kart',5,'ralfschumacher.jpg','https://www.rskarting.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('OK1 Kart',28,'ok1.jpg','https://www.ok1karting.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kosmic Racing Kart',28,'kosmic.jpg','https://www.kosmickart.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Tillotson',54,'tillotson.jpg','https://tillotson.ie',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Tillotson',53,'tillotson.jpg','https://tillotson.ie',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Sodikart',22,'sodikart.jpg','https://www.sodikart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Lenzokart',28,'lenzokart.jpg','https://www.lenzokart.it',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Exprit Racing Kart',28,'exprit.jpg','https://www.expritkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('TBKART',28,'tbkart.jpg','https://tbkart.it',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Gillard',43,'gillard.jpg','https://gillardkart.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('LN Racing kart',43,'lnkart.jpg','https://lnracingkart.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Gillard',42,'gillard.jpg','https://gillardkart.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('LN Racing kart',42,'lnkart.jpg','https://lnracingkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Redspeed Racing kart',28,'redspeed.jpg','https://www.redspeedkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('EOS Racing kart',28,'eosracingkart.jpg','https://www.eosracingkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('LeCont',28,'lecont.jpg','https://www.lecont.com',1);
@@ -233,21 +236,21 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('TD Racing kart',10,'tdracingkart.jpg','https://www.tdracingkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Mach1 Kart',5,'mach1.png','https://en.mach1kart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Vega',28,'vegatyres.jpg','https://vegatyres.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('MG Tires',65,'mgtyres.jpg','https://mgtires.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('MG Tires',64,'mgtyres.jpg','https://mgtires.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Maxxis',152,'maxxis.jpg','https://www.maxxis.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Komet Racing Tyres',28,'komet.jpg','https://www.kometracingtyres.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Bridgestone',155,'bridgestone.jpg','https://www.bridgestone.com',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Bridgestone',152,'bridgestone.jpg','https://www.bridgestone.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Dunlop',26,'dunlop.jpg','https://www.dunlop.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('CS55 Racing kart',2,'cs55.jpg','https://www.cs55racingkart.com',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Mojo',8,'mojotyres.jpg','https://www.rotax-racing.com/mojo-go-kart-tyres',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Hoosier',54,'hoosier.png','https://www.hoosiertire.com/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Yokohama',155,'yokohama.png','https://www.y-yokohama.com/global/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Shinko',154,'shinko.png','https://shinkokart.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Hoosier',53,'hoosier.png','https://www.hoosiertire.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Yokohama',152,'yokohama.png','https://www.y-yokohama.com/global/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_ruedas) values('Shinko',152,'shinko.png','https://shinkokart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Rexon Motors',5,'rexon.png','https://www.rexon-motors.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Motori Seven',28,'motoriseven.webp','https://www.motoriseven.it/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Honda',155,'honda.webp','https://www.honda-engines-eu.com/es',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('Honda',152,'honda.webp','https://www.honda-engines-eu.com/es',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('VM Motor',44,'vmmotor.webp','https://www.vmmotor.com',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Ricciardo kart',75,'ricciardoKart.png','http://www.ricciardokart.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Ricciardo kart',74,'ricciardoKart.png','http://www.ricciardokart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Compkart',54,'compkart.webp','https://compkart.co/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kosmos',5,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('HRK',1,'default.webp','',1);
@@ -255,12 +258,12 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasi
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Evokart',22,'evokart.webp','https://www.evokart-france.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Rosso Korsa',28,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Oberon Racing kart',28,'oberon_racing_kart.webp','https://www.oberonkart.com/en',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Fullerton kart',43,'fullerton.webp','https://terryfullerton.co.uk/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Fullerton kart',42,'fullerton.webp','https://terryfullerton.co.uk/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Vemme kart',28,'vemmekart.webp','https://vemmekart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Of Course',22,'ofcourse.webp','https://www.ofcourse.fr/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Top-Kart',28,'top-kart.webp','https://www.comer-topkart.it/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('ONS',65,'default.webp','',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Techspeed',65,'techspeed.webp','https://www.techspeedkart.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('ONS',64,'default.webp','',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Techspeed',64,'techspeed.webp','https://www.techspeedkart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('LH',43,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('GP Racing',28,'gpracing.webp','https://www.gpracingkarts.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Dino Kart',17,'dino_kart.webp','https://www.dino-kart.com/',1);
@@ -268,20 +271,20 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasi
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Intrepid',28,'intrepid.webp','https://www.intrepid-kart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Luxor',28,'luxor.webp','https://novaluxracing.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Energy Corse',28,'energy_corse.webp','https://energycorse.com/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Swiss Hutless',50,'swiss_hutless.webp','http://www.swisshutless.ch/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Swiss Hutless',49,'swiss_hutless.webp','http://www.swisshutless.ch/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('AMV',28,'amv.webp','https://www.amvkart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Bestkart',28,'bestkart.webp','https://www.bestkart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('BRM Racing',28,'brm.png','https://brmracing.it/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('EKS',28,'eks.webp','https://ekskart-business.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Jesolo',28,'jesolo.webp','https://www.jp1.it/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('MS Kart',44,'mskart.webp','https://mskart.cz/en/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('MS Kart',43,'mskart.webp','https://mskart.cz/en/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('PCR Factory Team',28,'pcr.png','https://www.pcrfactoryteam.it/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Ninar',21,'ninar.webp','https://www.ninar.fi/7',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('CKR',28,'ckr.webp','https://ckrgokart.it/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Seijokart',2,'seijokart.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Tecno',28,'tecno.webp','https://www.tecnokart.com/10/index.html',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('VRK Motorsport',28,'vrk.webp','https://www.vrkmotorsport.racing/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Arrow',75,'arrow.webp','https://dpekartsuperstore.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Arrow',74,'arrow.webp','https://dpekartsuperstore.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Italcorse',28,'italcorse.webp','https://www.italcorsekart.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Gold Kart',28,'goldkart.webp','https://www.goldkart.com/en',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('NewTaifunKart',5,'newtaifunkart.webp','',1);
@@ -290,13 +293,13 @@ insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasi
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Maddox',28,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Vorton',1,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, es_marca_chasis) values('Alpha Karting',22,'alpha_karting.webp',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Lotus Karts',43,'lotus_karts.webp','https://lotuskarts.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Lotus Karts',42,'lotus_karts.webp','https://lotuskarts.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Wildkart SRL',28,'wildkart.webp','https://www.wildkart.it/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Haase',28,'haase_logo.gif','https://www.haase.it',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('ART Grand Prix',22,'art_grand_prix.webp','https://www.art-grandprix.com/en/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kart Mini',65,'kart_mini.webp','https://kartmini.com.br/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Mega Kart',65,'mega_kart.webp','https://www.megakart.com.br/',1);
-insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Reinard Racings Karts',55,'rrkarts.webp','https://reynardkarts.com/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Kart Mini',64,'kart_mini.webp','https://kartmini.com.br/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Mega Kart',64,'mega_kart.webp','https://www.megakart.com.br/',1);
+insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Reinard Racings Karts',54,'rrkarts.webp','https://reynardkarts.com/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Velox',28,'velox.webp','https://www.sgm-velox-kart.com/gokart/index.php/en/',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_chasis) values('Bremer',28,'default.webp','',1);
 insert into marcas(nombre_marca, id_pais, logo_marca, pagina_web, es_marca_motor) values('SGM Engines',28,'sgm_engines.webp','https://www.sgm-velox-kart.com/gokart/index.php/en/',1);
@@ -473,9 +476,9 @@ insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, eje_t
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(23,'Cayman 2025','28 mm','950 mm','30 mm','Hydraulic LKF 12','Mini',2025,'033-CH-29','lenzokart_cayman.jpg');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(23,'FX1 Evo','Molybdenum chrome steel','30 mm','1052 mm','50 mm','93-95/FR/20','KZ/OK/OKJ',2018,'89-CH-20','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20CH-CA-FR%20(2015-2020-2021)/LENZOKART_LENZOKART%2089-CH-20.pdf#','lenzokart_xf1-evo.webp');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(23,'Mizar','32 mm','1045 mm','KF4/KF3/KF2/KZ2/KZ1/ICE',2014,'129-CH-14','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20BR-CA-CH%20(2009-2014-2020-2021)%20/LENZOKART-LENZOKART%20129-CH-14.pdf#');
-insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(24,'Noesis T 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm with CIK-FIA stamp for OK and KZ, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'expritkart_noesist-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(24,'Noesis T 2025','Molybdenum chrome steel','30 mm','1045 mm','50 mm OK/KZ, 40mm DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'expritkart_noesist-2025.jpg');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(24,'Noesis 2017','30 mm','1050 mm','OK/KZ/DD2',2017,'48-CH-14','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20BR-CA-CH%20(2009-2014-2020-2021)%20/TONY%20KART-EXPRIT%2048-CH-14.pdf#','exprit_noesis_2017.webp');
-insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(24,'TDX MY25','Molybdenum chrome steel','32 mm','1045 mm','50 mm with CIK-FIA stamp, 40mm for DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'012-CH-20','expritkart_noesist-2025.jpg');
+insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(24,'TDX MY25','Molybdenum chrome steel','32 mm','1045 mm','50 mm OK/KZ, 40mm DD2','BWD with stub axles evolution type and DOT 5.1 lubricant','OK/KZ/DD2',2025,'012-CH-20','expritkart_noesist-2025.jpg');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, foto_chasis) values(24,'Rookie MY25','Molybdenum chrome steel','28 mm','950 mm','30 mm','BSM5 CIK-FIA homologated','Mini',2025,'expritkart_rookie-2025.jpg');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(24,'Thoos','Molybdenum chrome','32 mm','OK/KZ',2014,'12-CH-20','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20CH-CA-FR%20(2015-2020-2021)/OTK-EXPRIT%2012-CH-20.pdf#','exprit_thoos.webp');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(25,'S197M 2025','Cromo-Molibdeno 25Cr-Mo 4','32 mm','1045 mm','50mm x 1040mm','FIA Karting homologations 004-BRKF-10 e 004-BRKR-90','OK/KZ',2025,'020-CH-32','tbkart_s197m-2025.jpg');
@@ -630,21 +633,21 @@ insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categ
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'412','30 mm','1042 mm','ICAJ/ICA/ICC/SICC/ICE','2008','33-CH-08','https://www.goldkart.com/cms-contents/uploads/33-ch-08.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'550','30/32 mm','1042 mm','ICAJ/ICA/ICC/SICC/ICE','2008','32-CH-08','https://www.goldkart.com/cms-contents/uploads/32-ch-08.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Eyrie','30 mm','1040 mm','ICAJ/ICA','2002','131-02','https://www.goldkart.com/cms-contents/uploads/131-02.pdf');
-insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Eyrie','30 mm','1040 mm','ICA','2002','132-02','https://www.goldkart.com/cms-contents/uploads/132-02.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Eyrie 1','30 mm','1040 mm','ICA','2002','132-02','https://www.goldkart.com/cms-contents/uploads/132-02.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Eyrie CIK 06','30 mm','1040 mm','ICA','1999','224-99','https://www.goldkart.com/cms-contents/uploads/224-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Eyrie CIK 03','30 mm','1040 mm','ICC','1999','225-99','https://www.goldkart.com/cms-contents/uploads/225-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Firefox','30/32 mm','1040 mm','ICC','2002','133-02','https://www.goldkart.com/cms-contents/uploads/133-02.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Firefox CIK 02','30/32 mm','1040 mm','ICC','1999','226-99','https://www.goldkart.com/cms-contents/uploads/226-99.pdf');
-insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Firefox CIK 02','30/32 mm','1040 mm','Intercontinental A-B-C','1996','94-153','https://www.goldkart.com/cms-contents/uploads/94-153.pdf');
-insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt','30 mm','1040 mm','ICC','2002','134-02','https://www.goldkart.com/cms-contents/uploads/134-02.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Firefox CIK 02 1996','30/32 mm','1040 mm','Intercontinental A-B-C','1996','94-153','https://www.goldkart.com/cms-contents/uploads/94-153.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt','30 mm','1040 mm','ICC','2001','134-02','https://www.goldkart.com/cms-contents/uploads/134-02.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt','30 mm','1040 mm','ICC','2002','135-02','https://www.goldkart.com/cms-contents/uploads/135-02.pdf');
-insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt','30 mm','1040 mm','ICA','2002','136-02','https://www.goldkart.com/cms-contents/uploads/136-02.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt','30 mm','1040 mm','ICA','2003','136-02','https://www.goldkart.com/cms-contents/uploads/136-02.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt CIK 07','30 mm','1040 mm','ICA','1999','227-99','https://www.goldkart.com/cms-contents/uploads/227-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt CIK 01','30 mm','1040 mm','ICAJ','1999','228-99','https://www.goldkart.com/cms-contents/uploads/228-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt CIK 05','30 mm','1040 mm','ICC','1999','229-99','https://www.goldkart.com/cms-contents/uploads/229-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Thunderbolt CIK 01','30 mm','1040 mm','Intercontinental A-B-C','1996','94-152','https://www.goldkart.com/cms-contents/uploads/94-152.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Typhoon','30 mm','1040 mm','ICC','2002','137-02','https://www.goldkart.com/cms-contents/uploads/137-02.pdf');
-insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Typhoon','30 mm','1040 mm','ICC','2002','138-02','https://www.goldkart.com/cms-contents/uploads/138-02.pdf');
+insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Typhoon','30 mm','1040 mm','ICC','2003','138-02','https://www.goldkart.com/cms-contents/uploads/138-02.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(85,'Typhoon CIK 04','28/30 mm','1040 mm','ICA','1999','230-99','https://www.goldkart.com/cms-contents/uploads/230-99.pdf');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(86,'121','32 mm','1060 mm','KF4/KF3/KF2/KZ2','2012','19-CH-17','https://www.crkart.fr/chassis/liste/cik19ch17.pdf','newtaifunkart_121.webp');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, url_homologacion, foto_chasis) values(87,'Mini','Chrome Molybdenum Steel','28 mm','950 mm','30 mm','Hydraulic / Ven 12','Mini','2025','002-CH-18','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20BR-CA-CH%20%282020-2023%29%20Mini%20Only/CRG/TGROUP%20(CRG)%20002-CH-18.pdf','kalikart_black_mirror-2026.webp');
@@ -943,13 +946,29 @@ insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');
 insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 2');
 
-INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (1,2,1,25),(1,2,2,20),(1,2,3,16),(1,2,4,13),(1,2,5,11),(1,2,6,10),(1,2,7,9),(1,2,8,8),(1,2,9,7),(1,2,10,6),(1,2,11,5),(1,2,12,4),(1,2,13,3),(1,2,14,2),(1,2,15,1);
-INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (1,3,1,25),(1,3,2,20),(1,3,3,16),(1,3,4,13),(1,3,5,11),(1,3,6,10),(1,3,7,9),(1,3,8,8),(1,3,9,7),(1,3,10,6),(1,3,11,5),(1,3,12,4),(1,3,13,3),(1,3,14,2),(1,3,15,1);
-INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,2,1,25),(2,2,2,23),(2,2,3,21),(2,2,4,19),(2,2,5,17),(2,2,6,15),(2,2,7,13),(2,2,8,11),(2,2,9,10),(2,2,10,8),(2,2,11,6),(2,2,12,4),(2,2,13,3),(2,2,14,2),(2,2,15,1);
-INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,3,1,25),(2,3,2,23),(2,3,3,21),(2,3,4,19),(2,3,5,17),(2,3,6,15),(2,3,7,13),(2,3,8,11),(2,3,9,10),(2,3,10,8),(2,3,11,6),(2,3,12,4),(2,3,13,3),(2,3,14,2),(2,3,15,1);
-INSERT INTO sistemas_puntuacion (id_cto, id_tipo_carrera, posicion, puntos_asignados) VALUES (2,1,1,1);
 
-INSERT INTO campeonatos_categorias (id_cto, id_categoria) VALUES (1,1),(1,6),(1,7);
-INSERT INTO campeonatos_categorias (id_cto, id_categoria) VALUES (2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,10),(2,11);
+insert into campeonatos(nombre_cto, id_pais) values('Campeonato Social Karting Aragon',2);
+insert into campeonatos(nombre_cto, id_pais) values('Copa Catalana de KDDAS',2);
 
+insert into ediciones_campeonatos(id_cto,anio) values(1,2021);
+insert into ediciones_campeonatos(id_cto,anio) values(1,2022);
+insert into ediciones_campeonatos(id_cto,anio) values(1,2023);
+insert into ediciones_campeonatos(id_cto,anio) values(2,2023);
+insert into ediciones_campeonatos(id_cto,anio) values(1,2024);
+insert into ediciones_campeonatos(id_cto,anio) values(2,2024);
+insert into ediciones_campeonatos(id_cto,anio) values(1,2025);
+insert into ediciones_campeonatos(id_cto,anio) values(2,2025);
+insert into ediciones_campeonatos(id_cto,anio) values(1,2026);
+insert into ediciones_campeonatos(id_cto,anio) values(2,2026);
+
+
+INSERT INTO puntos_ediciones (id_edicion, id_carrera_tipo, posicion, puntos_asignados) VALUES (7,2,1,25),(7,2,2,20),(7,2,3,16),(7,2,4,13),(7,2,5,11),(7,2,6,10),(7,2,7,9),(7,2,8,8),(7,2,9,7),(7,2,10,6),(7,2,11,5),(7,2,12,4),(7,2,13,3),(7,2,14,2),(7,2,15,1);
+INSERT INTO puntos_ediciones (id_edicion, id_carrera_tipo, posicion, puntos_asignados) VALUES (7,3,1,25),(7,3,2,20),(7,3,3,16),(7,3,4,13),(7,3,5,11),(7,3,6,10),(7,3,7,9),(7,3,8,8),(7,3,9,7),(7,3,10,6),(7,3,11,5),(7,3,12,4),(7,3,13,3),(7,3,14,2),(7,3,15,1);
+INSERT INTO puntos_ediciones (id_edicion, id_carrera_tipo, posicion, puntos_asignados) VALUES (8,2,1,25),(8,2,2,23),(8,2,3,21),(8,2,4,19),(8,2,5,17),(8,2,6,15),(8,2,7,13),(8,2,8,11),(8,2,9,10),(8,2,10,8),(8,2,11,6),(8,2,12,4),(8,2,13,3),(8,2,14,2),(8,2,15,1);
+INSERT INTO puntos_ediciones (id_edicion, id_carrera_tipo, posicion, puntos_asignados) VALUES (8,3,1,25),(8,3,2,23),(8,3,3,21),(8,3,4,19),(8,3,5,17),(8,3,6,15),(8,3,7,13),(8,3,8,11),(8,3,9,10),(8,3,10,8),(8,3,11,6),(8,3,12,4),(8,3,13,3),(8,3,14,2),(8,3,15,1);
+INSERT INTO puntos_ediciones (id_edicion, id_carrera_tipo, posicion, puntos_asignados) VALUES (8,1,1,1);
+
+
+INSERT INTO ediciones_categorias (id_edicion, id_categoria) VALUES (7,1),(7,6),(7,7);
+INSERT INTO ediciones_categorias (id_edicion, id_categoria) VALUES (8,1),(8,2),(8,3),(8,4),(8,5),(8,6),(8,7),(8,8),(8,10),(8,11);
 

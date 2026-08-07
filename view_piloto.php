@@ -4,6 +4,11 @@ require_once "config.php";
 require_once "pilotos.class.php";
 
 $id = isset($_GET["id_piloto"]) ? (int)$_GET["id_piloto"] : 0;
+
+// Valores para la funcion getNavegacionId
+$order_dir = (isset($_GET['dir']) && strtoupper($_GET['dir']) === 'DESC') ? 'DESC' : 'ASC';
+$sort_by   = isset($_GET['sort']) ? $_GET['sort'] : 'apellido_piloto';
+
 $piloto = Piloto::getPiloto($id);
 
 if (!$piloto) {
@@ -12,6 +17,11 @@ if (!$piloto) {
     displayPageFooter();
     exit;
 }
+
+// 5. Ahora que $piloto EXISTE, extraer el apellido para buscar Siguiente y Anterior
+$apellidoActual = $piloto->getValue('apellido_piloto');
+$idSiguiente = Piloto::getNavegacionId($id, $apellidoActual, $order_dir, 'siguiente');
+$idAnterior  = Piloto::getNavegacionId($id, $apellidoActual, $order_dir, 'anterior');
 
 displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto") . " " . $piloto->getValueEncoded("apellido_piloto"));
 
@@ -72,8 +82,32 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                 <?php endif; ?>
             </div>
         </div>
-
-        <a href="view_pilotos.php" class="btn-back">&larr; Volver al panel de pilotos</a>
+        
+        <div class="info-item" style="grid-column: span 2;">
+            <!-- Anterior Carrera -->
+            <?php if ($idAnterior): ?>
+                <a href="view_piloto.php?id_piloto=<?php echo $idAnterior; ?>&sort=<?php echo urlencode($sort_by); ?>&dir=<?php echo urlencode($order_dir); ?>" class="btn btn-nav">
+                    ← Anterior
+                </a>
+            <?php else: ?>
+                <span class="btn btn-nav deshabilitado">Primero</span>
+            <?php endif; ?>
+            <span></span>
+            <!-- Siguiente Carrera -->
+            <?php if ($idSiguiente): ?>
+                <a href="view_piloto.php?id_piloto=<?php echo $idSiguiente; ?>&sort=<?php echo urlencode($sort_by); ?>&dir=<?php echo urlencode($order_dir); ?>" class="btn btn-nav">
+                    Siguiente →
+                </a>
+            <?php else: ?>
+                <span class="btn btn-nav deshabilitado">Último</span>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+</div>
+<div class="contenedor-seccion-podios">
+    <div class="info-item" style="grid-column: span 2;">
+        <a href="http://localhost:8080/view_pilotos.php" class="btn btn-nav">Volver</a>
     </div>
 </div>
 

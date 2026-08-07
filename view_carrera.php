@@ -6,8 +6,8 @@ require_once "resultados.class.php";
 require_once "circuitos.class.php";
 
 $id_carrera = isset($_GET["id_carrera"]) ? (int)$_GET["id_carrera"] : 0;
-$id_cto = isset($_GET["id_cto"]) ? (int)$_GET["id_cto"] : 0;
-$carrera = Carrera::getCarrera($id_carrera, $id_cto);
+$id_edicion = isset($_GET["id_edicion"]) ? (int)$_GET["id_edicion"] : 0;
+$carrera = Carrera::getCarrera($id_carrera, $id_edicion);
 
 if (!$carrera) {
     displayPageHeader("Error");
@@ -15,6 +15,16 @@ if (!$carrera) {
     displayPageFooter();
     exit;
 }
+
+// Consultas para obtener los IDs y buscar la carrera siguiente y anterior
+// 1. Obtenemos la fecha de la carrera actual desde el objeto
+$fecha_carrera = $carrera->getValue("fecha_carrera"); 
+$id_carrera_tipo = $carrera->getValue("id_carrera_tipo"); 
+
+
+// 2. Llamada ESTÁTICA a la clase Carrera pasando los dos parámetros
+$idSiguiente = Carrera::getSiguienteId($id_edicion, $fecha_carrera, $id_carrera_tipo);
+$idAnterior  = Carrera::getAnteriorId($id_edicion, $fecha_carrera, $id_carrera_tipo);
 
 // --------------------------------------------------------------------------
 // CARGAR EL CIRCUITO: Obtenemos el circuito asociado a esta carrera para
@@ -29,6 +39,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
 <div class="card-piloto">
     <div class="card-header-side">
     <div style="font-size: 3rem; margin-bottom: 10px;">🏁</div>
+        <h3><?php echo $carrera->getValueEncoded("anio_edicion") ?></h3>
         <h3><?php echo $carrera->getValueEncoded("fecha_carrera") ?></h3>
         <p style="color: #3498db; font-weight: bold;"><?php echo $carrera->getValueEncoded("nombre_circuito") ?></p>
         <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
@@ -104,15 +115,32 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
             ?>
                 <div class="info-item">
                     <label>⚡ Vuelta Rápida:</label>
-                    <strong><?php echo htmlspecialchars($nombre . ' ' . $apellido); ?></strong> 
-                    <?php echo $tiempoFormateado; ?>
+                    <span><strong><?php echo htmlspecialchars($nombre . ' ' . $apellido); ?></strong></span><br>
+                    <span><?php echo $tiempoFormateado; ?></span>
                     <p class="avg-speed-tag">
                     Velocidad media: <strong><?php echo $v_media; ?> <small>km/h</small></strong></p>
                 </div>
             <?php endif; ?>
 
             <div class="info-item" style="grid-column: span 2;">
-                <a href="view_carreras.php" class="btn-back">&larr; Volver al panel de carrera</a>
+                <!-- Anterior Carrera -->
+                <?php if ($idAnterior): ?>
+                    <a href="view_carrera.php?id_carrera=<?php echo $idAnterior; ?>&id_edicion=<?php echo $id_edicion; ?>" class="btn btn-nav">
+                        ← Anterior
+                    </a>
+                <?php else: ?>
+                    <span class="btn btn-nav deshabilitado">Primera</span>
+                <?php endif; ?>
+                <span></span>
+                <!-- Siguiente Carrera -->
+                <?php if ($idSiguiente): ?>
+                    <a href="view_carrera.php?id_carrera=<?php echo $idSiguiente; ?>&id_edicion=<?php echo $id_edicion; ?>" class="btn btn-nav">
+                        Siguiente →
+                    </a>
+                <?php else: ?>
+                    <span class="btn btn-nav deshabilitado">Última</span>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
@@ -121,7 +149,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
 
 <?php
 // Obtener el podio de la carrera 
-$podiosPorCategoria = Carrera::getPodiosPorCategoria($id_carrera); 
+$podiosPorCategoria = Carrera::getPodiosPorCategoria($id_carrera,$id_edicion); 
 ?>
 
 <div class="contenedor-seccion-podios">
@@ -212,7 +240,9 @@ $podiosPorCategoria = Carrera::getPodiosPorCategoria($id_carrera);
         <?php endforeach; ?>
     <?php endif; ?>
 
-        <a href="view_carreras.php" class="btn-back">&larr; Volver al panel de carrera</a>
+            <div class="info-item" style="grid-column: span 2;">
+               <a href="http://localhost:8080/view_carreras.php" class="btn btn-nav">Volver</a>
+            </div>
 </div>
 
 <?php displayPageFooter(); ?>

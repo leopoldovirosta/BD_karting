@@ -38,7 +38,7 @@ function displayPageHeader($pageTitle) {
     <li><a href="view_carreras.php">Carreras</a></li>
     <li><a href="view_resultados.php">Resultados</a></li>
     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Campeonato ▾</a>
+      <span class="dropbtn">Anexos ▾</span>
       <div class="dropdown-content">
         <a href="view_circuitos.php">Circuitos</a>
         <a href="#circuitos">Campeonatos</a>
@@ -48,7 +48,8 @@ function displayPageHeader($pageTitle) {
         <a href="#pilotos">Patrocinadores</a>
       </div>
     </li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://karting.blog/events/" target="_blank">Eventos</a></li>
+    <li><a href="https://karting.blog/" target="_blank">Blog</a></li>
   </ul>
 </nav>
 

@@ -1,0 +1,54 @@
+*** Tabla campeonatos ***
+-------------------------
+Guardamos el id_cto y el nombre del campeonato
+1, Cto social Aragon
+2, KDD Catalana
+
+Campeonatos 1-------------->n Ediciones-campeonatos
+
+*** Tabla ediciones-campeonato ***
+------------------------------------
+Guardamos el id_edicion como clave primario y autoincremental, el id_cto para relacionar con la tabla campeonatos, el campo año es la temporada 2025, 2024...
+
+Un campeonato puede tener varias ediciones, relacion 1-n
+1(id_edicion), 1(Cto Aragon), 2021
+2(id_edicion), 1(Cto Aragon), 2022
+3(id_edicion), 1(Cto Aragon), 2023
+4(id_edicion), 2(KDD Cataluña), 2022
+5(id_edicion), 2(KDD Cataluña), 2023
+
+*** Tabla Puntos-ediciones ***
+------------------------------
+Esta tabla incluye el id_edicion, tipo_carrera (clasificacion, carrera 1 y carrera 2), la posicion y los puntos. De este modo cada edicion tiene su propia puntuacion y si de un año a otro cambia no afecta, el inconveniente es que hay que actualizar todos los años la tabla de puntuaciones (1º->25, 2º->20...). La clave principal es id_puntos
+
+
+1(id_puntos), 1(id_edicion), 1(Cto Aragon), 2(carrera 1), 1(posicion), 25(puntos)
+2(id_puntos), 1(id_edicion), 1(Cto Aragon), 2(carrera 1), 2(posicion), 20(puntos)
+3(id_puntos), 1(id_edicion), 1(Cto Aragon), 2(carrera 1), 3(posicion), 18(puntos)
+
+La relacion es una edicion tiene n puntos segun la posicion.
+
+*** Tabla Carreras ***
+----------------------
+Cada carrera tiene su id_carrera y su tipo de carrera (carrera 1, carrera 2, clasificacion).
+Una carrera puede pertenecer a varios campeonatos, en Zuera convergen una vez al año los campeonatos de Aragon y Cataluña y se celebran a la vez.
+
+*** Resultados ***
+------------------
+Cada resultado tiene un id_resultado, incluye el id_piloto y el id_categoria (KZ, Senior...) 
+
+
+*** Campeonatos-carreras ***
+----------------------------
+Guardamos el id_edicion y el id_carrera. Con esta tabla relacionamos las carreras con los campeonatos y las puntuaciones, a través de la tabla Ediciones-campeonatos, y tambien con la tabla Resultados.
+
+
+
+
+
+
+
+
+
+
+

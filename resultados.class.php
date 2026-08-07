@@ -5,23 +5,34 @@ require_once "config.php";
 
 class Resultado extends DataObject {
     protected $data = array(
+        // Resultado
         "id_resultado" =>  "",
         "id_carrera" => "",
-        "id_categoria" => "",
         "fecha_carrera" => "",
+        "id_carrera_tipo" => "",
         "nombre_carrera_tipo" => "",
+        
+        // Campeonato / Edición / Categoría
         "id_categoria" => "",
         "nombre_categoria" => "",
+        "id_edicion" => "",
+        "anio_edicion" => "",
+        "id_cto" => "",
+        "nombre_cto" => "",
+
+        // Circuito
         "id_circuito" => "",
         "nombre_circuito" => "",
         "longitud" => "",
+        
+        // Piloto
         "id_piloto" => "",
         "nombre_piloto" => "",
         "apellido_piloto" => "",
         "foto_piloto" => "",
         "dorsal" => "",
-        "id_cto" => "",
-        "nombre_cto" => "",
+
+        // Desempeño y puntuacion
         "tiempo_total" => "",
         "mejor_vuelta" => "",
         "num_vueltas" => "",
@@ -29,10 +40,15 @@ class Resultado extends DataObject {
         "posicion" => "",
         "comentario_posicion" => "",
         "puntos" => "",
+
+        // Material
+        "id_chasis" => "",
         "marca_chasis" => "",
         "modelo_chasis" => "",
+        "id_motor" => "",
         "marca_motor" => "",
         "modelo_motor" => "",
+        "id_rueda" => "",
         "marca_rueda" => "",
         "modelo_rueda" => ""
     );
@@ -83,17 +99,17 @@ class Resultado extends DataObject {
         }
     }
 
-    public static function getResultado($id_resultado, $id_piloto, $id_cto) {
+    public static function getResultado($id_resultado, $id_piloto, $id_edicion) {
         $conn = parent::connect();
         if (!$conn) return null;
 
-        $sql = "SELECT * FROM " . VIEW_RESULTADOS . " WHERE id_resultado = :id_resultado AND id_piloto = :id_piloto AND id_cto = :id_cto";
+        $sql = "SELECT * FROM " . VIEW_RESULTADOS . " WHERE id_resultado = :id_resultado AND id_piloto = :id_piloto AND id_edicion = :id_edicion";
 
         try {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_resultado", (int)$id_resultado, PDO::PARAM_INT);
             $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
-            $st->bindValue(":id_cto", (int)$id_cto, PDO::PARAM_INT);
+            $st->bindValue(":id_edicion", (int)$id_edicion, PDO::PARAM_INT);
             $st->execute();
             $row = $st->fetch(PDO::FETCH_ASSOC);
             parent::disconnect($conn);
@@ -229,7 +245,140 @@ class Resultado extends DataObject {
         return preg_replace('/^00:/', '', trim($tiempo));
     }
 
+    // Metodo para Siguiente y Anterior resultado de la vista de resultado
+    // -------------------------------------------------------------------
+    public static function getNavegacionResultadoId($id_piloto, $id_resultado, $sentido = 'siguiente') {
+        $conn = parent::connect();
+        if (!$conn) return null;
+
+        $esSiguiente = ($sentido === 'siguiente');
+
+        // Para "siguiente" buscamos carreras posteriores (> fecha/id actual) -> orden ASC para coger la primera.
+        // Para "anterior" buscamos carreras previas (< fecha/id actual) -> orden DESC para coger la inmediata anterior.
+        $operador = $esSiguiente ? '>' : '<';
+        $dirSQL   = $esSiguiente ? 'ASC' : 'DESC';
+
+        // Usamos VIEW_RESULTADOS para apoyarnos en fecha_carrera e id_carrera
+        // 🎯 Obtenemos directamente el id_resultado comparando contra el id_resultado actual
+        $sql = "SELECT r_destino.id_resultado
+            FROM " . VIEW_RESULTADOS . " r_destino
+            JOIN " . VIEW_RESULTADOS . " r_origen ON r_origen.id_resultado = :id_resultado
+            WHERE r_destino.id_piloto = :id_piloto
+              AND (
+                  r_destino.fecha_carrera {$operador} r_origen.fecha_carrera
+                  OR (
+                      r_destino.fecha_carrera = r_origen.fecha_carrera 
+                      AND r_destino.id_resultado {$operador} r_origen.id_resultado
+                  )
+              )
+            ORDER BY r_destino.fecha_carrera {$dirSQL}, r_destino.id_resultado {$dirSQL}
+            LIMIT 1";
+        
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
+            $st->bindValue(":id_resultado", (int)$id_resultado, PDO::PARAM_INT);
+            $st->execute();
+
+            $row = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+
+            return $row ? (int)$row['id_resultado'] : null;
+
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getNavegacionResultadoId: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+    * Obtiene resultados filtrados dinámicamente.
+    * 
+    * @param array $filtros Array con claves: id_edicion, id_carrera, piloto, id_categoria, posicion, chasis, motor
+    * @return Resultado[] Array de objetos Resultado
+    */
+    public static function getResultadosFiltrados(array $filtros = []) {
+        $conn = parent::connect();
+        if (!$conn) return [];
+
+        $tablaVista = defined('VIEW_RESULTADOS') ? VIEW_RESULTADOS : 'vista_resultados';
+        $whereClauses = [];
+        $params = [];
+
+        // 1. Filtro por Edición / Campeonato
+        if (!empty($filtros['id_edicion'])) {
+            $whereClauses[] = "id_edicion = :id_edicion";
+            $params[':id_edicion'] = (int)$filtros['id_edicion'];
+        }
+
+        // 2. Filtro por Carrera
+        if (!empty($filtros['id_carrera'])) {
+            $whereClauses[] = "id_carrera = :id_carrera";
+            $params[':id_carrera'] = (int)$filtros['id_carrera'];
+        }
+
+        // 3. Filtro por Piloto (nombre o apellido)
+        if (!empty($filtros['piloto'])) {
+            $whereClauses[] = "(nombre_piloto LIKE :piloto OR apellido_piloto LIKE :piloto)";
+            $params[':piloto'] = '%' . trim($filtros['piloto']) . '%';
+        }
+
+        // 4. Filtro por Categoría
+        if (!empty($filtros['id_categoria'])) {
+            $whereClauses[] = "id_categoria = :id_categoria";
+            $params[':id_categoria'] = (int)$filtros['id_categoria'];
+        }
+
+        // 5. Filtro por Posición (Top 3 o Ganador)
+        if (!empty($filtros['posicion'])) {
+            if ($filtros['posicion'] === 'top3') {
+                $whereClauses[] = "posicion <= 3 AND posicion > 0";
+            } elseif ($filtros['posicion'] === '1') {
+                $whereClauses[] = "posicion = 1";
+            }
+        }
+
+        // 6. Filtro por Chasis
+        if (!empty($filtros['chasis'])) {
+            $whereClauses[] = "marca_chasis LIKE :chasis";
+            $params[':chasis'] = '%' . trim($filtros['chasis']) . '%';
+        }
+
+        // 7. Filtro por Motor
+        if (!empty($filtros['motor'])) {
+            $whereClauses[] = "marca_motor LIKE :motor";
+            $params[':motor'] = '%' . trim($filtros['motor']) . '%';
+        }
+
+        // Excluir abandonos no válidos o descalificados si lo requiere tu negocio
+        $whereClauses[] = "(comentario_posicion IS NULL OR comentario_posicion NOT IN ('DNS', 'DSQ'))";
+
+        $sqlWhere = " WHERE " . implode(" AND ", $whereClauses);
+        $sql = "SELECT * FROM {$tablaVista} {$sqlWhere} ORDER BY fecha_carrera DESC, id_categoria ASC, posicion ASC";
+
+        try {
+            $st = $conn->prepare($sql);
+            foreach ($params as $param => $val) {
+                $st->bindValue($param, $val);
+            }
+            $st->execute();
+
+            $resultados = [];
+            foreach ($st->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                $resultados[] = new Resultado($row);
+            }
+
+            parent::disconnect($conn);
+            return $resultados;
+
+        } catch (Throwable $e) {
+            parent::disconnect($conn);
+            error_log("Error en getResultadosFiltrados: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
 }
-
-
 ?>

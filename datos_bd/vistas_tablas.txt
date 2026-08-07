@@ -1,13 +1,3 @@
-CREATE VIEW vista_pilotos_escuderias AS
-SELECT p.nombre_piloto, p.apellido_piloto, e.id_escuderia, e.nombre_escuderia
-FROM pilotos p
-JOIN escuderias e ON p.id_escuderia = e.id_escuderia;
-
-CREATE VIEW vista_pilotos_patrocinadores AS
-SELECT p.nombre_piloto, p.apellido_piloto, pa.id_patrocinador, pa.nombre_patrocinador
-FROM pilotos p
-JOIN patrocinadores pa ON p.id_patrocinador = pa.id_patrocinador;
-
 CREATE VIEW vista_pilotos AS
 SELECT p.id_piloto, p.nombre_piloto, p.apellido_piloto, p.fecha_nacimiento, p.web_piloto, p.email_piloto, p.foto_piloto, r.id_pais, r.nombre_pais, r.codigo_iso, e.id_escuderia, e.nombre_escuderia, pa.id_patrocinador, pa.nombre_patrocinador
 FROM pilotos p
@@ -15,44 +5,49 @@ JOIN paises r ON p.id_pais = r.id_pais
 JOIN escuderias e ON p.id_escuderia = e.id_escuderia
 JOIN patrocinadores pa ON p.id_patrocinador = pa.id_patrocinador;
 
+
 CREATE VIEW vista_carreras AS
-SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.orientacion, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, vc.id_circuito, vc.nombre_circuito, vc.longitud, cp.id_cto, cp.nombre_cto
+SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.orientacion, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, cir.id_circuito, cir.nombre_circuito, cir.longitud, cam.id_cto, cam.nombre_cto, ec.id_edicion, ec.anio AS anio_edicion
 FROM carreras ca
 JOIN carreras_tipo ct ON ca.id_carrera_tipo = ct.id_carrera_tipo
-JOIN vista_circuitos vc ON ca.id_circuito = vc.id_circuito
+JOIN circuitos cir ON ca.id_circuito = cir.id_circuito
 LEFT JOIN campeonatos_carreras cc ON ca.id_carrera = cc.id_carrera
-LEFT JOIN campeonatos cp ON cc.id_cto = cp.id_cto;
+LEFT JOIN ediciones_campeonatos ec ON cc.id_edicion= ec.id_edicion
+LEFT JOIN campeonatos cam ON ec.id_cto = cam.id_cto;
+
 
 CREATE VIEW vista_chasis AS
-SELECT ch.id_chasis, ch.id_marca, vm.nombre_marca, vm.logo_marca, vm.nombre_pais, vm.codigo_iso, ch.modelo_chasis, ch.material, ch.tubo_diametro, ch.distancia_ejes, ch.eje_trasero, ch.sistema_frenado, ch.categoria_objetivo, ch.ano, ch.homologacion, ch.url_homologacion, ch.foto_chasis
+SELECT ch.id_chasis, m.id_marca, m.nombre_marca, m.logo_marca, m.id_pais, p.nombre_pais, p.codigo_iso, ch.modelo_chasis, ch.material, ch.tubo_diametro, ch.distancia_ejes, ch.eje_trasero, ch.sistema_frenado, ch.categoria_objetivo, ch.ano, ch.homologacion, ch.url_homologacion, ch.foto_chasis
 FROM chasis ch
-JOIN vista_marcas vm ON ch.id_marca = vm.id_marca;
+JOIN marcas m ON ch.id_marca = m.id_marca
+LEFT JOIN paises p ON m.id_pais = p.id_pais;
+
 
 CREATE VIEW vista_motores AS
-SELECT mo.id_motor, mo.id_marca, vm.nombre_marca, vm.logo_marca, vm.nombre_pais, vm.codigo_iso, mo.modelo, mo.descripcion, mo.clase, mo.diametro, mo.max_diametro, mo.carrera, mo.cilindrada, mo.admision, mo.lubricacion, mo.lumbreras, mo.encendido, mo.regimen_max_rpm, mo.transmision, mo.refrigeracion, mo.starter, mo.homologacion, mo.url_homologacion, mo.peso, mo.carburador, mo.potencia_max, mo.par_motor_max, mo.foto_motor
+SELECT mo.id_motor, m.id_marca, m.nombre_marca, m.logo_marca, p.id_pais, p.nombre_pais, p.codigo_iso, mo.modelo, mo.descripcion, mo.clase, mo.diametro, mo.max_diametro, mo.carrera, mo.cilindrada, mo.admision, mo.lubricacion, mo.lumbreras, mo.encendido, mo.regimen_max_rpm, mo.transmision, mo.refrigeracion, mo.starter, mo.homologacion, mo.url_homologacion, mo.peso, mo.carburador, mo.potencia_max, mo.par_motor_max, mo.foto_motor
 FROM motores mo
-JOIN vista_marcas vm ON mo.id_marca = vm.id_marca;
+JOIN marcas m ON mo.id_marca = m.id_marca
+LEFT JOIN paises p ON m.id_pais = p.id_pais;
+
 
 CREATE VIEW vista_ruedas AS
-SELECT ru.id_rueda, ru.id_marca, vm.nombre_marca, vm.logo_marca, vm.nombre_pais, vm.codigo_iso, ru.modelo, ru.tipo, ru.compuesto, ru.categoria, ru.tam_front, ru.tam_rear, ru.max_velocidad, ru.homo_front, ru.url_homo_front, ru.homo_rear, ru.url_homo_rear, ru.foto_rueda
+SELECT ru.id_rueda, m.id_marca, m.nombre_marca, m.logo_marca, p.id_pais, p.nombre_pais, p.codigo_iso, ru.modelo, ru.tipo, ru.compuesto, ru.categoria, ru.tam_front, ru.tam_rear, ru.max_velocidad, ru.homo_front, ru.url_homo_front, ru.homo_rear, ru.url_homo_rear, ru.foto_rueda
 FROM ruedas ru
-JOIN vista_marcas vm ON ru.id_marca = vm.id_marca;
+JOIN marcas m ON ru.id_marca = m.id_marca
+LEFT JOIN paises p ON m.id_pais = p.id_pais;
+
 
 CREATE VIEW vista_marcas AS
-SELECT m.id_marca, m.nombre_marca, p.nombre_pais, p.codigo_iso, m.logo_marca, m.pagina_web, m.es_marca_chasis, m.es_marca_motor, m.es_marca_ruedas
+SELECT m.id_marca, m.nombre_marca, p.id_pais, p.nombre_pais, p.codigo_iso, m.logo_marca, m.pagina_web, m.es_marca_chasis, m.es_marca_motor, m.es_marca_ruedas
 FROM marcas m
-JOIN paises p ON m.id_pais = p.id_pais;
+LEFT JOIN paises p ON m.id_pais = p.id_pais;
 
-CREATE VIEW vista_campeonatos_categorias AS
-SELECT caca.id_cto, cam.nombre_cto, cat.nombre_categoria
-FROM campeonatos_categorias caca
-JOIN categorias cat ON caca.id_categoria = cat.id_categoria
-JOIN campeonatos cam ON caca.id_cto = cam.id_cto;
 
 CREATE VIEW vista_circuitos AS
-SELECT c.id_circuito, c.nombre_circuito, c.web_circuito, c.direccion_circuito, c.localidad_circuito, c.telefono_circuito, c.altitud, c.longitud, c.curvasizd, c.curvasdcha, c.velocidadmax, c.silueta, pa.nombre_pais
+SELECT c.id_circuito, c.nombre_circuito, c.web_circuito, c.direccion_circuito, c.localidad_circuito, c.telefono_circuito, c.altitud, c.longitud, c.curvasizd, c.curvasdcha, c.velocidadmax, c.silueta, pa.id_pais, pa.nombre_pais, pa.codigo_iso
 FROM circuitos c
 JOIN paises pa ON c.id_pais = pa.id_pais;
+
 
 CREATE VIEW vista_resultados AS
 SELECT
@@ -62,6 +57,8 @@ SELECT
     vcar.fecha_carrera,
     vcar.id_carrera_tipo,
     vcar.nombre_carrera_tipo,
+    vcar.id_edicion,
+    vcar.anio_edicion,
     cat.nombre_categoria,
     vcar.id_circuito,
     vcar.nombre_circuito,
@@ -84,24 +81,27 @@ SELECT
         WHEN r.comentario_posicion IN ('DNS', 'DSQ') THEN 0
         WHEN r.comentario_posicion = 'DNF' THEN
             CASE 
-                WHEN vcar.id_cto = 1 THEN IFNULL(sp.puntos_asignados, 0) -- Campeonato 1: SÍ puntúa
+                WHEN vcar.id_cto = 1 THEN IFNULL(pe.puntos_asignados, 0) -- Campeonato 1: SÍ puntúa
                 WHEN vcar.id_cto = 2 THEN 0                             -- Campeonato 2: NO puntúa
-                ELSE IFNULL(sp.puntos_asignados, 0)                     -- Otros: Por defecto sí (o cámbialo a 0)
+                ELSE IFNULL(pe.puntos_asignados, 0)                     -- Otros: Por defecto sí (o cámbialo a 0)
             END
-        ELSE IFNULL(sp.puntos_asignados, 0)
+        ELSE IFNULL(pe.puntos_asignados, 0)
     END AS puntos,
 
     -- DATOS DE CHASIS Y SU MARCA
+    r.id_chasis,
     ch.modelo_chasis,
     m_ch.nombre_marca AS marca_chasis,
     m_ch.logo_marca AS logo_chasis,
 
     -- DATOS DE MOTOR Y SU MARCA
+    r.id_motor,
     mo.modelo AS modelo_motor,
     m_mo.nombre_marca AS marca_motor,
     m_mo.logo_marca AS logo_motor,
     
     -- DATOS DE RUEDA Y SU MARCA
+    r.id_rueda,
     ru.modelo AS modelo_rueda,
     m_ru.nombre_marca AS marca_rueda,
     m_ru.logo_marca AS logo_rueda
@@ -119,9 +119,10 @@ LEFT JOIN marcas m_mo ON mo.id_marca = m_mo.id_marca
 LEFT JOIN ruedas ru ON r.id_rueda = ru.id_rueda
 -- Unimos la marca de la rueda usando el alias 'm_ru'
 LEFT JOIN marcas m_ru ON ru.id_marca = m_ru.id_marca
-LEFT JOIN sistemas_puntuacion sp ON vcar.id_cto = sp.id_cto
-                                 AND vcar.id_carrera_tipo = sp.id_tipo_carrera
-                                 AND r.posicion = sp.posicion;
+LEFT JOIN puntos_ediciones pe ON vcar.id_edicion = pe.id_edicion
+                                 AND vcar.id_carrera_tipo = pe.id_carrera_tipo
+                                 AND r.posicion = pe.posicion;
+
 
 CREATE OR REPLACE VIEW vista_ranking AS
 SELECT

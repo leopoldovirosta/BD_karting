@@ -12,9 +12,12 @@ class Piloto extends DataObject {
         "web_piloto" => "",
         "email_piloto" => "",
         "foto_piloto" => "",
+        "id_pais" => "",
         "nombre_pais" => "",
         "codigo_iso" => "",
+        "id_escuderia" => "",
         "nombre_escuderia" => "",
+        "id_patrocinador" => "",
         "nombre_patrocinador" => ""
     );
 
@@ -104,6 +107,53 @@ class Piloto extends DataObject {
             return null;
             }
     }
+
+    // Funcion para buscar el siguiente piloto o anterior en vista piloto
+    // ------------------------------------------------------------------
+    public static function getNavegacionId($id_piloto_actual, $apellido_actual, $direccion_listado = 'ASC', $sentido = 'siguiente') {
+        try {
+            $conn = parent::connect();
+            if (!$conn) return null;
+
+            // 1. Normalizar dirección original del listado (ASC / DESC)
+            $dirOriginal = (strtoupper($direccion_listado) === 'DESC') ? 'DESC' : 'ASC';
+            $esSiguiente = ($sentido === 'siguiente');
+
+            // 2. Definir operador y dirección SQL de forma limpia
+            if ($esSiguiente) {
+                $operador = ($dirOriginal === 'ASC') ? '>' : '<';
+                $dirSQL   = $dirOriginal; // Mantiene ASC o DESC
+            } else { // 'anterior'
+                $operador = ($dirOriginal === 'ASC') ? '<' : '>';
+                // Invertimos la ordenación para que LIMIT 1 capture el inmediatamente previo
+                $dirSQL   = ($dirOriginal === 'ASC') ? 'DESC' : 'ASC';
+            }
+
+            // 3. Consulta SQL con Tupla (apellido_piloto, id_piloto)
+            // MariaDB / MySQL evalúan el desempate por ID de forma nativa e impecable
+            $sql = "SELECT id_piloto 
+                    FROM " . VIEW_PILOTOS . "
+                    WHERE (apellido_piloto, id_piloto) {$operador} (:apellido_actual, :id_actual)
+                    ORDER BY apellido_piloto {$dirSQL}, id_piloto {$dirSQL} 
+                    LIMIT 1";
+
+            $st = $conn->prepare($sql);
+            $st->bindValue(":apellido_actual", trim((string)$apellido_actual), PDO::PARAM_STR);
+            $st->bindValue(":id_actual", (int)$id_piloto_actual, PDO::PARAM_INT);
+            $st->execute();
+
+            $row = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+
+            return $row ? (int)$row['id_piloto'] : null;
+
+        } catch (Throwable $e) {
+            error_log("Error en getNavegacionId: " . $e->getMessage());
+            return null;
+        }
+    }
+
+
 
 
 }

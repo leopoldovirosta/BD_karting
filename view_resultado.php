@@ -5,8 +5,8 @@ require_once "resultados.class.php";
 
 $id_resultado = isset($_GET["id_resultado"]) ? (int)$_GET["id_resultado"] : 0;
 $id_piloto = isset($_GET["id_piloto"]) ? (int)$_GET["id_piloto"] : 0;
-$id_cto = isset($_GET["id_cto"]) ? (int)$_GET["id_cto"] : 0;
-$resultado = Resultado::getResultado($id_resultado,$id_piloto,$id_cto);
+$id_edicion = isset($_GET["id_edicion"]) ? (int)$_GET["id_edicion"] : 0;
+$resultado = Resultado::getResultado($id_resultado,$id_piloto,$id_edicion);
 
 if (!$resultado) {
     displayPageHeader("Error");
@@ -29,10 +29,11 @@ $v_media_vuelta = Resultado::calcularVelocidadMedia(
     $resultado->getValue("mejor_vuelta")
 );
 
+
 displayPageHeader("Detalles de la carrera");
 
 ?>
-<div class="circuito-card">
+    <div class="circuito-card">
     <div class="circuito-header">
         <div class="header-info">
             <span class="pais-badge"><?php echo $resultado->getValueEncoded("nombre_cto") ?></span>
@@ -48,6 +49,11 @@ displayPageHeader("Detalles de la carrera");
             <span class="material-symbols-outlined">calendar_month</span>
             <label>Fecha</label>
             <div class="value"><?php echo $resultado->getValueEncoded("fecha_carrera") ?></div>
+        </div>
+        <div class="data-item">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <label>Temporada</label>
+            <div class="value"><?php echo $resultado->getValueEncoded("anio_edicion") ?></div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">flag</span>
@@ -149,10 +155,11 @@ displayPageHeader("Detalles de la carrera");
             <label>Modelo ruedas</label>
             <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_ruedas")); ?></div>
         </div>
+        
     </div>
     
-    <div class="circuito-grid" >
-        <a href="view_resultados.php" class="btn-back">&larr; Volver al panel de resultados</a>
+    <div class="circuito-header">
+         <a href="http://localhost:8080/view_resultados.php" class="btn btn-nav">Volver</a>   
     </div>
 
 </div>
