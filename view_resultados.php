@@ -3,6 +3,7 @@
 require_once "common.inc.php";
 require_once "config.php";
 require_once "resultados.class.php";
+require_once "carreras.class.php";
 require_once "pilotos.class.php";
  
 // 1. Detectamos el sentido (por defecto ASC)
@@ -10,28 +11,28 @@ $type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
 
 // 2. Limpiamos las variables
 $start = isset($_GET["start"]) ? (int)$_GET["start"] : 0;
-$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_resultado";
+$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_carrera";
 $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 
-// 3. Llamamos al método (asegúrate de que tu SQL en Piloto ahora use $order y $type)
-//list($resultados, $totalRows) = Resultado::getResultados($start, $pageSize, $order . " " . $type);
+// 3. OBTENER LOS DATOS PARA LOS DESPLEGABLES (AQUÍ DEFINES $carreras_opt)
+$carreras_opt = Carrera::getCarreras($start, $pageSize, $order . " " . $type);     // 👈 Llamada a la DB para traer carreras
+//$categorias_opt = Categoria::getCategorias(); // 👈 Llamada a la DB para traer categorías
 
 // Codigo para realizar las consultas
 // ----------------------------------
 // 1. Mapeamos las entradas recibidas por GET
 $filtros = [
     'id_edicion'   => $_GET['id_edicion']   ?? 0,
-    'id_carrera'   => $_GET['f_carrera']    ?? 0,
-    'piloto'       => $_GET['f_piloto']     ?? '',
+    'id_carrera'   => $_GET['id_carrera']    ?? 0,
+    'id_piloto'    => $_GET['f_piloto']     ?? '',
     'id_categoria' => $_GET['f_categoria']  ?? 0,
     'posicion'     => $_GET['f_posicion']   ?? '',
-    'chasis'       => $_GET['f_chasis']     ?? '',
-    'motor'        => $_GET['f_motor']      ?? ''
+    'id_chasis'    => $_GET['f_chasis']     ?? '',
+    'id_motor'     => $_GET['f_motor']      ?? ''
 ];
 
 // 2. Una sola llamada limpia a la clase
-//$lista_resultados = Resultado::getResultadosFiltrados($filtros);
-list($lista_resultados, $totalRows) = Resultado::getResultados($start, $pageSize, $order . " " . $type); 
+list($lista_resultados, $totalRows) = Resultado::getResultadosFiltrados($start, $pageSize, $order . " " . $type, $filtros);
 
 displayPageHeader("Lista de Resultados");
 
@@ -51,14 +52,15 @@ displayPageHeader("Lista de Resultados");
         <!-- Formulario de seleccion de campos para consulta -->
         <table>
         <thead>
+        <tr>
         <?php
         $columns = array(
             'id_carrera'    => 'Carrera',
-            'piloto'        => 'Piloto',
+            'id_piloto'     => 'Piloto',
             'id_categoria'  => 'Categoria',
             'posicion'      => 'Posicion',
-            'chasis'        => 'Chasis',
-            'motor'         => 'Motor'
+            'id_chasis'     => 'Chasis',
+            'id_motor'      => 'Motor'
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -67,7 +69,6 @@ displayPageHeader("Lista de Resultados");
             $icon = ($type == "ASC") ? "▲" : "▼";
         ?>
             <!-- Cabecera Normal de la Tabla -->
-            <tr>
                 <th>
                     <a href="view_resultados.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>">
                         <?php echo $colName ?>
@@ -77,18 +78,9 @@ displayPageHeader("Lista de Resultados");
                     </a>
                 </th>
         <?php endforeach; ?>
-            <!--
-                <th>Carrera</th>
-                <th>Piloto</th>
-                <th>Categoría</th>
-                <th>Posición</th>
-                <th>Chasis</th>
-                <th>Motor</th>
-                <th>Acciones</th>
-            -->
             </tr>
 
-            <!-- 🎯 FILA MAESTRA DE FILTROS -->
+            <!-- FILA MAESTRA DE FILTROS -->
             <tr class="bg-light">
                 <!-- Filtro por Carrera -->
                 <th>
@@ -169,97 +161,7 @@ displayPageHeader("Lista de Resultados");
             <?php endforeach; ?>
         </tbody>
     </table>
-
-
-
-
-
-        <br><br>
     </form>
-    <br>
-    <table>
-    <tr>
-        <?php
-        // Definimos las columnas que queremos mostrar
-    $columns = array(
-            "id_resultado" => "ID",
-            "fecha_carrera" => "Fecha",
-            "anio_edicion" => "Temporada",
-            "nombre_cto" => "Campeonato",
-            "nombre_circuito" => "Circuito",
-            "nombre_carrera_tipao" => "Tipo",
-            "nombre_categoria" => "Categoría",
-            "nombre_piloto" => "Nombre",
-            "apellido_piloto" => "Apellido",
-            "foto_piloto" => "Foto",
-            "dorsal" => "Dorsal",
-            "tiempo_total" => "Tiempo total",
-            "mejor_vuelta" => "Mejor vuelta",
-            "num_vueltas" => "Vueltas",
-            "num_vueltas_completadas" => "Completadas",
-            "posicion" => "Posición",
-            "comentario_posicion" => "Observaciones",
-            "puntos" => "Puntos",
-            "marca_chasis" => "Chasis",
-            "modelo_chasis" => "Modelo",
-            "marca_motor" => "Motor",
-            "modelo_motor" => "Modelo",
-            "marca_rueda" => "Rueda",
-            "modelo_rueda" => "Modelo"
-        );
-
-        foreach ($columns as $colKey => $colName): 
-                // Si la columna es la actual, el siguiente clic debe ser el opuesto
-                $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
-                $icon = ($type == "ASC") ? "▲" : "▼";
-            ?>
-                <th>
-                    <a href="view_resultados.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>">
-                        <?php echo $colName ?>
-                        <?php if ($order == $colKey): ?>
-                            <span class="sort-icon"><?php echo $icon ?></span>
-                        <?php endif; ?>
-                    </a>
-                </th>
-            <?php endforeach; ?>
-        </tr>
-
-<?php
-    $rowCount = 0;
-    
-    foreach($resultados as $resultado):
-        $rowCount++;
-?>
-        <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_resultado.php?id_resultado=<?php echo $resultado->getValue('id_resultado') ?>&id_piloto=<?php echo $resultado->getValue("id_piloto")?>&id_edicion=<?php echo $resultado->getValue("id_edicion")?>"><?php echo $resultado->getValue('id_resultado') ?></a></td>
-            <td><?php echo $resultado->getValueEncoded("fecha_carrera") ?></td>
-            <td class="text-center"><?php echo $resultado->getValueEncoded("anio_edicion") ?></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_cto") ?></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_circuito") ?></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_carrera_tipo") ?></td>
-            <td class="text-center"><?php echo $resultado->getValueEncoded("nombre_categoria") ?></td>
-            <td><?php echo $resultado->getValueEncoded("nombre_piloto") ?></td>
-            <td><?php echo $resultado->getValueEncoded("apellido_piloto") ?></td>
-            <td><img src="<?php echo IMAGE_PILOT_DIRECTORY . ($resultado->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" /></td>
-            <td class="text-center"><?php echo mostrarValor($resultado->getValue("dorsal")); ?></td>
-            <td class="text-center"><?php echo mostrarValor(Resultado::formatearTiempo($resultado->getValueEncoded("tiempo_total"))); ?></td>
-            <td class="text-center"><?php echo mostrarValor(Resultado::formatearTiempo($resultado->getValueEncoded("mejor_vuelta"))); ?></td>
-            <td class="text-center"><?php echo mostrarValor($resultado->getValue("num_vueltas")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($resultado->getValue("num_vueltas_completadas")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($resultado->getValue("posicion")); ?></td>
-            <td><?php echo $resultado->getValueEncoded("comentario_posicion") ?></td>
-            <td class="text-center"><?php echo mostrarValor($resultado->getValue("puntos")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("marca_chasis")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("modelo_chasis")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("marca_motor")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("modelo_motor")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("marca_rueda")); ?></td>
-            <td><?php echo mostrarValor($resultado->getValueEncoded("modelo_rueda")); ?></td>
-        </tr>
-<?php
-    endforeach;
-?>
-    </table>
     <div class="pagination-container">
     <p class="info-text">
         Mostrando <?php echo $start + 1 ?>-<?php echo min($start + $pageSize, $totalRows) ?> de <?php echo $totalRows ?>

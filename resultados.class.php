@@ -293,18 +293,23 @@ class Resultado extends DataObject {
     }
 
     /**
-    * Obtiene resultados filtrados dinámicamente.
-    * 
-    * @param array $filtros Array con claves: id_edicion, id_carrera, piloto, id_categoria, posicion, chasis, motor
-    * @return Resultado[] Array de objetos Resultado
+     * Obtiene resultados filtrados dinámicamente con soporte para paginación y ordenación.
+     * 
+     * @param int $startRow Índice de inicio para la paginación (LIMIT)
+     * @param int $numRows Número de filas a recuperar
+     * @param string $order Campo y sentido de ordenación (ej: "nombre_piloto ASC")
+     * @param array $filtros Array asociativo con las condiciones de búsqueda
+     * @return array [Array de objetos Resultado, int Total de filas que coinciden]
     */
-    public static function getResultadosFiltrados(array $filtros = []) {
+    public static function getResultadosFiltrados($startRow, $numRows, $order = "id_resultado DESC", array $filtros = []) {
         $conn = parent::connect();
-        if (!$conn) return [];
+        if (!$conn) return [[], 0];
 
         $tablaVista = defined('VIEW_RESULTADOS') ? VIEW_RESULTADOS : 'vista_resultados';
         $whereClauses = [];
         $params = [];
+
+        // --- CONSTRUCCIÓN DE CONDICIONES WHERE ---
 
         // 1. Filtro por Edición / Campeonato
         if (!empty($filtros['id_edicion'])) {
@@ -351,34 +356,63 @@ class Resultado extends DataObject {
             $params[':motor'] = '%' . trim($filtros['motor']) . '%';
         }
 
-        // Excluir abandonos no válidos o descalificados si lo requiere tu negocio
+        // Excluir abandonos no válidos o descalificados si aplica
         $whereClauses[] = "(comentario_posicion IS NULL OR comentario_posicion NOT IN ('DNS', 'DSQ'))";
 
+        // Ensamblar cláusula WHERE
         $sqlWhere = " WHERE " . implode(" AND ", $whereClauses);
-        $sql = "SELECT * FROM {$tablaVista} {$sqlWhere} ORDER BY fecha_carrera DESC, id_categoria ASC, posicion ASC";
+
+        // Limpieza de seguridad para el campo $order
+        $orderClean = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
+        if (empty($orderClean)) {
+            $orderClean = "id_resultado DESC";
+        }
 
         try {
-            $st = $conn->prepare($sql);
+            // --- 1. PRIMERA CONSULTA: Obtener total de registros filtrados ---
+            $sqlCount = "SELECT COUNT(*) FROM {$tablaVista} {$sqlWhere}";
+            $stCount = $conn->prepare($sqlCount);
             foreach ($params as $param => $val) {
-                $st->bindValue($param, $val);
+                $stCount->bindValue($param, $val);
             }
-            $st->execute();
+            $stCount->execute();
+            $totalRows = (int)$stCount->fetchColumn();
+
+            // Si no hay coincidencias, retornar array vacío de inmediato
+            if ($totalRows === 0) {
+                parent::disconnect($conn);
+                return [[], 0];
+            }
+
+            // --- 2. SEGUNDA CONSULTA: Obtener los datos paginados ---
+            $sqlData = "SELECT * FROM {$tablaVista} {$sqlWhere} ORDER BY {$orderClean} LIMIT :startRow, :numRows";
+            $stData = $conn->prepare($sqlData);
+
+            // Bindeamos los parámetros del WHERE
+            foreach ($params as $param => $val) {
+                $stData->bindValue($param, $val);
+            }
+
+            // Bindeamos la paginación (LIMIT)
+            $stData->bindValue(":startRow", (int)$startRow, PDO::PARAM_INT);
+            $stData->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
+
+            $stData->execute();
 
             $resultados = [];
-            foreach ($st->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            foreach ($stData->fetchAll(PDO::FETCH_ASSOC) as $row) {
                 $resultados[] = new Resultado($row);
             }
 
             parent::disconnect($conn);
-            return $resultados;
+            return [$resultados, $totalRows];
 
         } catch (Throwable $e) {
             parent::disconnect($conn);
             error_log("Error en getResultadosFiltrados: " . $e->getMessage());
-            return [];
+            return [[], 0];
         }
     }
-
 
 }
 ?>
