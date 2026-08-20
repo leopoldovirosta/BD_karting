@@ -93,8 +93,12 @@
     .modal-content {
         margin: auto;
         display: block;
-        width: 20%;
-        max-width: 100%;
+        width: auto;             /* Permite que la imagen use su ancho natural */
+        max-width: 85%;          /* No superará el 85% del ancho de la pantalla */
+        max-height: 80vh;        /* Evita que se salga por arriba o abajo verticalmente */
+        object-fit: contain;     /* Mantiene la relación de aspecto sin deformarse */
+        border-radius: 8px;      /* Opcional: suaviza los bordes */
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
         animation-name: zoom;
         animation-duration: 0.6s;
     }
@@ -405,81 +409,81 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-/* ==========================================================================
-   ALTURAS Y COLORES METÁLICOS (Oro, Plata, Bronce)
-   ========================================================================== */
+    /* ==========================================================================
+    ALTURAS Y COLORES METÁLICOS (Oro, Plata, Bronce)
+    ========================================================================== */
 
-/* 1º PUESTO (Oro - Centro) */
-.step-1 .pedestal {
-  height: 160px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
-}
-.badge-1 { 
-  background-color: #ffd700; 
-  color: #000000; 
-}
+    /* 1º PUESTO (Oro - Centro) */
+    .step-1 .pedestal {
+    height: 160px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+    }
+    .badge-1 { 
+    background-color: #ffd700; 
+    color: #000000; 
+    }
 
-/* 2º PUESTO (Plata - Izquierda) */
-.step-2 .pedestal {
-  height: 110px;
-  background: linear-gradient(135deg, #e0e0e0 0%, #9e9e9e 100%);
-}
-.badge-2 { 
-  background-color: #9e9e9e; 
-  color: #ffffff;
-}
+    /* 2º PUESTO (Plata - Izquierda) */
+    .step-2 .pedestal {
+    height: 110px;
+    background: linear-gradient(135deg, #e0e0e0 0%, #9e9e9e 100%);
+    }
+    .badge-2 { 
+    background-color: #9e9e9e; 
+    color: #ffffff;
+    }
 
-/* 3º PUESTO (Bronce - Derecha) */
-.step-3 .pedestal {
-  height: 80px;
-  background: linear-gradient(135deg, #cd7f32 0%, #8c521f 100%);
-}
-.badge-3 { 
-  background-color: #cd7f32; 
-  color: #ffffff;
-}
+    /* 3º PUESTO (Bronce - Derecha) */
+    .step-3 .pedestal {
+    height: 80px;
+    background: linear-gradient(135deg, #cd7f32 0%, #8c521f 100%);
+    }
+    .badge-3 { 
+    background-color: #cd7f32; 
+    color: #ffffff;
+    }
 
-/* ==========================================================================
-   DISEÑO RESPONSIVE (Móviles y Tablets pequeñas)
-   ========================================================================== */
-@media (max-width: 576px) {
-  .podium-container {
-    gap: 8px;
-    padding: 0;
-  }
+    /* ==========================================================================
+    DISEÑO RESPONSIVE (Móviles y Tablets pequeñas)
+    ========================================================================== */
+    @media (max-width: 576px) {
+    .podium-container {
+        gap: 8px;
+        padding: 0;
+    }
 
-  .pilot-name { 
-    font-size: 0.8rem; 
-  }
+    .pilot-name { 
+        font-size: 0.8rem; 
+    }
 
-  .pilot-team, 
-  .pilot-time { 
-    font-size: 0.68rem; 
-  }
+    .pilot-team, 
+    .pilot-time { 
+        font-size: 0.68rem; 
+    }
 
-  /* Reducimos ligeramente las alturas en móviles para ahorrar espacio vertical */
-  .step-1 .pedestal { height: 120px; }
-  .step-2 .pedestal { height: 85px; }
-  .step-3 .pedestal { height: 60px; }
+    /* Reducimos ligeramente las alturas en móviles para ahorrar espacio vertical */
+    .step-1 .pedestal { height: 120px; }
+    .step-2 .pedestal { height: 85px; }
+    .step-3 .pedestal { height: 60px; }
 
-  .step-number { 
-    font-size: 1.8rem; 
-  }
+    .step-number { 
+        font-size: 1.8rem; 
+    }
 
-  .step-1 .pilot-avatar {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .pilot-avatar {
-    width: 55px;
-    height: 55px;
-  }
-}
+    .step-1 .pilot-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .pilot-avatar {
+        width: 55px;
+        height: 55px;
+    }
+    }
 
 
-/* Diseño de la seccion de circuito en vista circuito */
-/* ----------------------------------------------------- */
+    /* Diseño de la seccion de circuito en vista circuito */
+    /* ----------------------------------------------------- */
     .circuito-card {
         background: #fff;
         border-radius: 15px;
@@ -611,20 +615,174 @@
     }
 
 
-/* CSS para enlace de piloto desde pagina de circuitos Muro campeones */
-/* ------------------------------------------------------------------ */
-.enlace-piloto {
-    color: inherit;               /* Conserva el color de texto del elemento padre */
-    text-decoration: none;        /* Quita el subrayado predeterminado */i
-    font-size: 1.3rem;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
+    /* CSS para enlace de piloto desde pagina de circuitos Muro campeones */
+    /* ------------------------------------------------------------------ */
+    .enlace-piloto {
+        color: inherit;               /* Conserva el color de texto del elemento padre */
+        text-decoration: none;        /* Quita el subrayado predeterminado */i
+        font-size: 1.3rem;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
 
-.enlace-piloto:hover {
-    color: #e10600;               /* Cambia a color rojo (o tu color corporativo) al pasar el ratón */
-    text-decoration: underline;   /* Añade un sutil subrayado al hacer hover */
-}
+    .enlace-piloto:hover {
+        color: #e10600;               /* Cambia a color rojo (o tu color corporativo) al pasar el ratón */
+        text-decoration: underline;   /* Añade un sutil subrayado al hacer hover */
+    }
+
+    /* Formulario de búsqueda y filtros */
+    /* ---------------------------------*/
+    .search-form {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .search-form label {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 0.9em;
+    }
+
+    .search-form input[type="text"],
+    .search-form select {
+        padding: 8px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 0.95em;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-form input[type="text"]:focus,
+    .search-form select:focus {
+        border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+
+    .search-form a {
+        color: #e10600; /* Rojo F1 */
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .search-form a:hover {
+        text-decoration: underline;
+    }
+
+    /* Fila de fondo claro para tablas o resúmenes */
+    tr.bg-light,
+    .bg-light {
+        background-color: #f8f9fa !important;
+        color: #2c3e50;
+        font-weight: 500;
+    }
+
+    /* Opcional: si la usas en el <thead> o filas de totales */
+    tr.bg-light td,
+    tr.bg-light th {
+        border-bottom: 2px solid #dee2e6;
+        padding: 10px 12px;
+    }
+
+    /* Estilo base para elementos de formulario (equivalente a Bootstrap) */
+    .form-control {
+        display: inline-block;
+        width: auto;
+        padding: 6px 12px;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #2c3e50;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        outline: none;
+        cursor: pointer;
+    }
+
+    /* Efecto al hacer foco/clic en el desplegable */
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* Versión compacta/pequeña (equivalente a form-control-sm) */
+    .form-control-sm {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+        border-radius: 3px;
+        height: auto;
+    }
+
+    /* Estilo base para todos los botones */
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 6px 12px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    /* Versión pequeña (btn-sm) */
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    border-radius: 3px;
+    }
+
+    /* Botón primario (Azul) */
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    /* Botón secundario (Gris) */
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    /* Efecto al hacer foco con el teclado o clic */
+    .btn:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+
 
 
 </style>

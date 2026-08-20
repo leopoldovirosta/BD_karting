@@ -326,7 +326,7 @@ CREATE TABLE resultados (
     id_categoria INT UNSIGNED NOT NULL,
     dorsal SMALLINT UNSIGNED NULL,
     posicion TINYINT UNSIGNED NOT NULL,
-    comentario_posicion ENUM('Normal', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'Normal',
+    comentario_posicion ENUM('OK', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'OK',
     tiempo_total TIME(3) NULL,
     mejor_vuelta TIME(3) NULL,
     num_vueltas_completadas TINYINT UNSIGNED,

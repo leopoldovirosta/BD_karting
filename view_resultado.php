@@ -29,7 +29,6 @@ $v_media_vuelta = Resultado::calcularVelocidadMedia(
     $resultado->getValue("mejor_vuelta")
 );
 
-
 displayPageHeader("Detalles de la carrera");
 
 ?>
@@ -159,7 +158,14 @@ displayPageHeader("Detalles de la carrera");
     </div>
     
     <div class="circuito-header">
-         <a href="http://localhost:8080/view_resultados.php" class="btn btn-nav">Volver</a>   
+        <?php 
+            // Definimos la URL de retorno (p. ej., usando HTTP_REFERER o una URL por defecto)
+            $url_retorno = $_SERVER['HTTP_REFERER'] ?? 'view_resultados.php';
+            ?>
+
+            <a href="<?php echo htmlspecialchars($url_retorno); ?>" class="btn btn-nav">
+                &laquo; Volver al listado
+            </a>
     </div>
 
 </div>

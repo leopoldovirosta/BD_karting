@@ -245,52 +245,6 @@ class Resultado extends DataObject {
         return preg_replace('/^00:/', '', trim($tiempo));
     }
 
-    // Metodo para Siguiente y Anterior resultado de la vista de resultado
-    // -------------------------------------------------------------------
-    public static function getNavegacionResultadoId($id_piloto, $id_resultado, $sentido = 'siguiente') {
-        $conn = parent::connect();
-        if (!$conn) return null;
-
-        $esSiguiente = ($sentido === 'siguiente');
-
-        // Para "siguiente" buscamos carreras posteriores (> fecha/id actual) -> orden ASC para coger la primera.
-        // Para "anterior" buscamos carreras previas (< fecha/id actual) -> orden DESC para coger la inmediata anterior.
-        $operador = $esSiguiente ? '>' : '<';
-        $dirSQL   = $esSiguiente ? 'ASC' : 'DESC';
-
-        // Usamos VIEW_RESULTADOS para apoyarnos en fecha_carrera e id_carrera
-        // 🎯 Obtenemos directamente el id_resultado comparando contra el id_resultado actual
-        $sql = "SELECT r_destino.id_resultado
-            FROM " . VIEW_RESULTADOS . " r_destino
-            JOIN " . VIEW_RESULTADOS . " r_origen ON r_origen.id_resultado = :id_resultado
-            WHERE r_destino.id_piloto = :id_piloto
-              AND (
-                  r_destino.fecha_carrera {$operador} r_origen.fecha_carrera
-                  OR (
-                      r_destino.fecha_carrera = r_origen.fecha_carrera 
-                      AND r_destino.id_resultado {$operador} r_origen.id_resultado
-                  )
-              )
-            ORDER BY r_destino.fecha_carrera {$dirSQL}, r_destino.id_resultado {$dirSQL}
-            LIMIT 1";
-        
-        try {
-            $st = $conn->prepare($sql);
-            $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
-            $st->bindValue(":id_resultado", (int)$id_resultado, PDO::PARAM_INT);
-            $st->execute();
-
-            $row = $st->fetch(PDO::FETCH_ASSOC);
-            parent::disconnect($conn);
-
-            return $row ? (int)$row['id_resultado'] : null;
-
-        } catch (PDOException $e) {
-            parent::disconnect($conn);
-            error_log("Error en getNavegacionResultadoId: " . $e->getMessage());
-            return null;
-        }
-    }
 
     /**
      * Obtiene resultados filtrados dinámicamente con soporte para paginación y ordenación.
@@ -309,21 +263,19 @@ class Resultado extends DataObject {
         $whereClauses = [];
         $params = [];
 
-        // --- CONSTRUCCIÓN DE CONDICIONES WHERE ---
-
         // 1. Filtro por Edición / Campeonato
-        if (!empty($filtros['id_edicion'])) {
+        if (isset($filtros['id_edicion']) && (int)$filtros['id_edicion'] > 0) {
             $whereClauses[] = "id_edicion = :id_edicion";
             $params[':id_edicion'] = (int)$filtros['id_edicion'];
         }
 
         // 2. Filtro por Carrera
-        if (!empty($filtros['id_carrera'])) {
+        if (isset($filtros['id_carrera']) && (int)$filtros['id_carrera'] > 0) {
             $whereClauses[] = "id_carrera = :id_carrera";
             $params[':id_carrera'] = (int)$filtros['id_carrera'];
         }
 
-        // 3. Filtro por Piloto (nombre o apellido)
+        // 3. Filtro por Piloto
         if (!empty($filtros['piloto'])) {
             $whereClauses[] = "(nombre_piloto LIKE :piloto OR apellido_piloto LIKE :piloto)";
             $params[':piloto'] = '%' . trim($filtros['piloto']) . '%';
@@ -335,7 +287,7 @@ class Resultado extends DataObject {
             $params[':id_categoria'] = (int)$filtros['id_categoria'];
         }
 
-        // 5. Filtro por Posición (Top 3 o Ganador)
+        // 5. Filtro por Posición
         if (!empty($filtros['posicion'])) {
             if ($filtros['posicion'] === 'top3') {
                 $whereClauses[] = "posicion <= 3 AND posicion > 0";
@@ -356,44 +308,60 @@ class Resultado extends DataObject {
             $params[':motor'] = '%' . trim($filtros['motor']) . '%';
         }
 
-        // Excluir abandonos no válidos o descalificados si aplica
-        $whereClauses[] = "(comentario_posicion IS NULL OR comentario_posicion NOT IN ('DNS', 'DSQ'))";
 
-        // Ensamblar cláusula WHERE
-        $sqlWhere = " WHERE " . implode(" AND ", $whereClauses);
+        $sqlWhere = (count($whereClauses) > 0) ? " WHERE " . implode(" AND ", $whereClauses) : "";
 
-        // Limpieza de seguridad para el campo $order
+        // Limpieza de seguridad del ordenamiento
         $orderClean = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
-        if (empty($orderClean)) {
+        // Si se pide ordenar por apellido, añadimos el nombre como criterio secundario
+        if (strpos($orderClean, 'apellido_piloto') !== false) {
+            // Si viene "apellido_piloto ASC", añadimos ", MIN(nombre_piloto) ASC"
+            $sentido = (strpos($orderClean, 'DESC') !== false) ? 'DESC' : 'ASC';
+            $orderClean = "apellido_piloto {$sentido}, nombre_piloto {$sentido}";
+        } elseif (empty($orderClean)) {
             $orderClean = "id_resultado DESC";
         }
-
-        try {
-            // --- 1. PRIMERA CONSULTA: Obtener total de registros filtrados ---
+    try {
+            // 1. CONTEO DE RESULTADOS ÚNICOS
             $sqlCount = "SELECT COUNT(*) FROM {$tablaVista} {$sqlWhere}";
             $stCount = $conn->prepare($sqlCount);
             foreach ($params as $param => $val) {
                 $stCount->bindValue($param, $val);
             }
+            
             $stCount->execute();
             $totalRows = (int)$stCount->fetchColumn();
 
-            // Si no hay coincidencias, retornar array vacío de inmediato
             if ($totalRows === 0) {
                 parent::disconnect($conn);
                 return [[], 0];
             }
 
-            // --- 2. SEGUNDA CONSULTA: Obtener los datos paginados ---
-            $sqlData = "SELECT * FROM {$tablaVista} {$sqlWhere} ORDER BY {$orderClean} LIMIT :startRow, :numRows";
+            // 2. CONSULTA DE DATOS COMPATIBLE CON ONLY_FULL_GROUP_BY
+            // Se obtienen primero los IDs únicos filtrados y luego sus registros completos
+            $sqlData = "SELECT 
+                            id_resultado,
+                            MIN(nombre_circuito) AS nombre_circuito,
+                            MIN(nombre_piloto) AS nombre_piloto,
+                            MIN(apellido_piloto) AS apellido_piloto,
+                            MIN(nombre_categoria) AS nombre_categoria,
+                            MIN(posicion) AS posicion,
+                            MIN(marca_chasis) AS marca_chasis,
+                            MIN(marca_motor) AS marca_motor,
+                            MIN(id_piloto) AS id_piloto,
+                            MIN(id_edicion) AS id_edicion
+                        FROM {$tablaVista}
+                        {$sqlWhere}
+                        GROUP BY id_resultado
+                        ORDER BY {$orderClean}
+                        LIMIT :startRow, :numRows";
+
             $stData = $conn->prepare($sqlData);
 
-            // Bindeamos los parámetros del WHERE
             foreach ($params as $param => $val) {
                 $stData->bindValue($param, $val);
             }
 
-            // Bindeamos la paginación (LIMIT)
             $stData->bindValue(":startRow", (int)$startRow, PDO::PARAM_INT);
             $stData->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
 
@@ -409,10 +377,61 @@ class Resultado extends DataObject {
 
         } catch (Throwable $e) {
             parent::disconnect($conn);
-            error_log("Error en getResultadosFiltrados: " . $e->getMessage());
+            echo "<div style='color:red; background:#fee; padding:10px; border:1px solid red;'>";
+            echo "<strong>Error SQL/PHP:</strong> " . htmlspecialchars($e->getMessage());
+            echo "</div>";
             return [[], 0];
         }
     }
+
+
+
+    /**
+    * Genera la URL para ordenar una columna manteniendo los filtros activos.
+    * Método específico para alternar el sentido de la ordenación (ASC/DESC) sobre las columnas de la tabla.
+    */
+    public static function buildSortUrl($orderField, $currentOrder, $currentType) {
+        // Copiamos todos los parámetros GET actuales (filtros incluidos)
+        $params = $_GET;
+
+        // Actualizamos los parámetros de ordenación
+        $params['order'] = $orderField;
+        
+        // Si ya estamos ordenando por esa columna, alternamos ASC / DESC
+        if ($currentOrder === $orderField) {
+            $params['type'] = ($currentType === 'ASC') ? 'DESC' : 'ASC';
+        } else {
+            $params['type'] = 'ASC';
+        }
+
+        // Reiniciamos a la primera página para no quedar en una página inexistente
+        $params['start'] = 0;
+
+        return 'view_resultados.php?' . http_build_query($params);
+
+    }
+
+    /**
+    * Método genérico que fusiona cualquier parámetro modificado (como la paginación con start) con los filtros de $_GET.
+    */
+    public static function buildUrl(array $newParams = []) {
+        // Tomamos todos los parámetros GET actuales
+        $params = $_GET;
+
+        // Sobrescribimos o añadimos los parámetros deseados (como 'start')
+        foreach ($newParams as $key => $value) {
+            if ($value === null) {
+                unset($params[$key]);
+            } else {
+                $params[$key] = $value;
+            }
+        }
+
+        return 'view_resultados.php?' . http_build_query($params);
+    }
+
+
+
 
 }
 ?>

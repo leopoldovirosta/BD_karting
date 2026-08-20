@@ -13,7 +13,7 @@ abstract class DataObject{
 
     public function getValue($field) {
         if (array_key_exists($field, $this->data)) {
-            return $this->data[$field];
+            return htmlspecialchars((string)($this->data[$field] ?? ''));
         } else {
             trigger_error("Campo no encontrado: $field", E_USER_NOTICE);
             return null;

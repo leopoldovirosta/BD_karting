@@ -41,8 +41,7 @@ function displayPageHeader($pageTitle) {
       <span class="dropbtn">Anexos ▾</span>
       <div class="dropdown-content">
         <a href="view_circuitos.php">Circuitos</a>
-        <a href="#circuitos">Campeonatos</a>
-        <a href="#circuitos">Chasis</a>
+        <a href="view_chasis.php">Chasis</a>
         <a href="#circuitos">Motores</a>
         <a href="#escuderias">Escuderías</a>
         <a href="#pilotos">Patrocinadores</a>
@@ -64,7 +63,7 @@ function displayPageFooter() {
         <div id="caption"></div>
     </div>
         <footer>
-            <p>&copy; 2026 <a href="https://leovirosta.blog" target="_blank">Leo Virosta</a></p>
+            <p>&copy; 2026 Leo Virosta</p>
         </footer>
     <script>
     function openModal(src, alt) {
