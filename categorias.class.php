@@ -15,6 +15,7 @@ class Categoria extends DataObject {
 
     public static function getCategorias(): array {
         $conn = parent::connect();
+        if (!$conn) return array(); // Control de fallo de conexión
         
         $sql = "SELECT * FROM " . TABLE_CATEGORIAS . " WHERE activa = 1 ORDER BY orden ASC";
 
@@ -27,7 +28,7 @@ class Categoria extends DataObject {
             // Convertimos cada fila asociativa en un objeto Categoria
             $list = array();
             foreach ($rows as $row) {
-                $list[] = new Categoria($row);
+                $list[] = new static($row);
             }
 
             return $list;

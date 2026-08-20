@@ -6,51 +6,51 @@ require_once "config.php";
 class Resultado extends DataObject {
     protected $data = array(
         // Resultado
-        "id_resultado" =>  "",
-        "id_carrera" => "",
-        "fecha_carrera" => "",
-        "id_carrera_tipo" => "",
-        "nombre_carrera_tipo" => "",
+        "id_resultado"          =>  "",
+        "id_carrera"            => "",
+        "fecha_carrera"         => "",
+        "id_carrera_tipo"       => "",
+        "nombre_carrera_tipo"   => "",
         
         // Campeonato / Edición / Categoría
-        "id_categoria" => "",
-        "nombre_categoria" => "",
-        "id_edicion" => "",
-        "anio_edicion" => "",
-        "id_cto" => "",
-        "nombre_cto" => "",
+        "id_categoria"          => "",
+        "nombre_categoria"      => "",
+        "id_edicion"            => "",
+        "anio_edicion"          => "",
+        "id_cto"                => "",
+        "nombre_cto"            => "",
 
         // Circuito
-        "id_circuito" => "",
-        "nombre_circuito" => "",
-        "longitud" => "",
+        "id_circuito"           => "",
+        "nombre_circuito"       => "",
+        "longitud"              => "",
         
         // Piloto
-        "id_piloto" => "",
-        "nombre_piloto" => "",
-        "apellido_piloto" => "",
-        "foto_piloto" => "",
-        "dorsal" => "",
+        "id_piloto"             => "",
+        "nombre_piloto"         => "",
+        "apellido_piloto"       => "",
+        "foto_piloto"           => "",
+        "dorsal"                => "",
 
         // Desempeño y puntuacion
-        "tiempo_total" => "",
-        "mejor_vuelta" => "",
-        "num_vueltas" => "",
+        "tiempo_total"          => "",
+        "mejor_vuelta"          => "",
+        "num_vueltas"           => "",
         "num_vueltas_completadas" => "",
-        "posicion" => "",
-        "comentario_posicion" => "",
-        "puntos" => "",
+        "posicion"              => "",
+        "comentario_posicion"   => "",
+        "puntos"                => "",
 
         // Material
-        "id_chasis" => "",
-        "marca_chasis" => "",
-        "modelo_chasis" => "",
-        "id_motor" => "",
-        "marca_motor" => "",
-        "modelo_motor" => "",
-        "id_rueda" => "",
-        "marca_rueda" => "",
-        "modelo_rueda" => ""
+        "id_chasis"             => "",
+        "marca_chasis"          => "",
+        "modelo_chasis"         => "",
+        "id_motor"              => "",
+        "marca_motor"           => "",
+        "modelo_motor"          => "",
+        "id_rueda"              => "",
+        "marca_rueda"           => "",
+        "modelo_rueda"          => ""
     );
 
 
@@ -86,7 +86,7 @@ class Resultado extends DataObject {
             $stData->execute();
             $resultados = array();
             foreach ($stData->fetchAll() as $row) {
-                $resultados[] = new Resultado($row);
+                $resultados[] = new static($row);
             }
 
             parent::disconnect($conn);
@@ -95,7 +95,7 @@ class Resultado extends DataObject {
         } catch (PDOException $e) {
             parent::disconnect($conn);
             error_log("Error en getResultados: " . $e->getMessage());
-            return [[], 0]; // Devolvemos array vacío en caso de error
+            return [[], 0];
         }
     }
 
@@ -113,7 +113,7 @@ class Resultado extends DataObject {
             $st->execute();
             $row = $st->fetch(PDO::FETCH_ASSOC);
             parent::disconnect($conn);
-            return ($row) ? new Resultado($row) : null;
+            return ($row) ? new static($row) : null;
             
         } catch (PDOException $e) {
             parent::disconnect($conn);
@@ -127,6 +127,7 @@ class Resultado extends DataObject {
     public static function getEstadisticasGanadores($id_circuito) {
         $conn = parent::connect();
         if (!$conn) return null;
+        
         // Esta consulta cuenta cuántas veces ha ganado cada piloto en este circuito
         $sql = "SELECT id_piloto, nombre_piloto, apellido_piloto, foto_piloto, COUNT(DISTINCT id_carrera) as victorias
                 FROM " . VIEW_RESULTADOS . "
@@ -141,13 +142,16 @@ class Resultado extends DataObject {
             $st->execute();
             return $st->fetchAll();
         } catch (PDOException $e) {
-            error_log($e->getMessage());
+            parent::disconnect($conn);
+            error_log("Error en getEstadisticasGanadores: " . $e->getMessage());
             return [];
         }
     }
 
     public static function getRecordVuelta($id_circuito) {
         $conn = parent::connect();
+        if (!$conn) return null;
+
         // Buscamos el tiempo más rápido, su piloto y el año en que ocurrió
         $sql = "SELECT p.nombre_piloto, p.apellido_piloto, r.mejor_vuelta, c.fecha_carrera
                 FROM " . VIEW_RESULTADOS . " r
@@ -277,7 +281,10 @@ class Resultado extends DataObject {
 
         // 3. Filtro por Piloto
         if (!empty($filtros['piloto'])) {
-            $whereClauses[] = "(nombre_piloto LIKE :piloto OR apellido_piloto LIKE :piloto)";
+            $whereClauses[] = "(nombre_piloto LIKE :piloto
+                                OR apellido_piloto LIKE :piloto
+                                OR CONCAT_WS(' ', nombre_piloto, apellido_piloto) LIKE :piloto
+                                OR CONCAT_WS(' ', apellido_piloto, nombre_piloto) LIKE :piloto)";
             $params[':piloto'] = '%' . trim($filtros['piloto']) . '%';
         }
 
@@ -339,7 +346,7 @@ class Resultado extends DataObject {
 
             // 2. CONSULTA DE DATOS COMPATIBLE CON ONLY_FULL_GROUP_BY
             // Se obtienen primero los IDs únicos filtrados y luego sus registros completos
-            $sqlData = "SELECT 
+            /*$sqlData = "SELECT 
                             id_resultado,
                             MIN(nombre_circuito) AS nombre_circuito,
                             MIN(nombre_piloto) AS nombre_piloto,
@@ -355,7 +362,8 @@ class Resultado extends DataObject {
                         GROUP BY id_resultado
                         ORDER BY {$orderClean}
                         LIMIT :startRow, :numRows";
-
+            */
+            $sqlData = "SELECT * FROM {$tablaVista} {$sqlWhere} ORDER BY {$orderClean} LIMIT :startRow, :numRows";
             $stData = $conn->prepare($sqlData);
 
             foreach ($params as $param => $val) {
@@ -369,7 +377,7 @@ class Resultado extends DataObject {
 
             $resultados = [];
             foreach ($stData->fetchAll(PDO::FETCH_ASSOC) as $row) {
-                $resultados[] = new Resultado($row);
+                $resultados[] = new static($row);
             }
 
             parent::disconnect($conn);
@@ -377,9 +385,7 @@ class Resultado extends DataObject {
 
         } catch (Throwable $e) {
             parent::disconnect($conn);
-            echo "<div style='color:red; background:#fee; padding:10px; border:1px solid red;'>";
-            echo "<strong>Error SQL/PHP:</strong> " . htmlspecialchars($e->getMessage());
-            echo "</div>";
+            error_log("Error en getResultadosFiltrados: " . $e->getMessage());
             return [[], 0];
         }
     }

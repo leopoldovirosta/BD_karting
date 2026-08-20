@@ -25,6 +25,14 @@
 
     tr.alt td { background: #ddd; }
 
+    /* Ajustar el espaciado interno de las celdas de la tabla */
+    /* ------------------------------------------------------ */
+    .tabla-resultados th, 
+    .tabla-resultados td {
+        /* padding-left: 16px !important;  /* Relleno a la izquierda */
+        padding-right: 15px !important; /* Relleno a la derecha */
+    }
+    
     /* Clase de utilidad para centrar */
     .text-center {
         text-align: center;
@@ -69,17 +77,33 @@
         margin: 0 auto;       /* Centra la imagen en la celda */
     }
 
-/* CSS para dibujar bandera pais */
-/* ----------------------------- */
-    .fi {
-    margin-right: 6px;
-    border-radius: 2px; /* Esquinas ligeramente redondeadas */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Sombra suave para destacar sobre el fondo */
-    vertical-align: middle;
-}
+    .nombre-oficial {
+        font-size: 1rem;
+        color: #666666;
+        margin: 5px 0 10px 0;
+        font-weight: 500;
+    }
 
-/* CSS para fotos. El fondo del modal */
-/*-----------------------------------------------------------------------------------*/
+    .nombre-marca {
+        display: flex;
+        font-size: 1.1rem;
+        font-weight: 700; /* Negrita pronunciada */
+        color: #1a1a1a;   /* Color oscuro/destacado */
+        letter-spacing: 0.3px;
+        margin: 6px 0 12px 0;
+    } 
+
+    /* CSS para dibujar bandera pais */
+    /* ----------------------------- */
+    .fi {
+        margin-right: 6px;
+        border-radius: 2px; /* Esquinas ligeramente redondeadas */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Sombra suave para destacar sobre el fondo */
+        vertical-align: middle;
+    }
+
+    /* CSS para fotos. El fondo del modal */
+    /*-----------------------------------------------------------------------------------*/
     .modal {
         display: none; 
         position: fixed; 
@@ -126,8 +150,8 @@
 
     .foto-click:hover {opacity: 0.7;}
 
-/* CSS para tarjeta profesional vista piloto */
-/*--------------------------------------------------------------------------------*/
+    /* CSS para tarjeta profesional vista piloto */
+    /*--------------------------------------------------------------------------------*/
     .card-piloto {
         max-width: 800px;
         margin: 40px auto;
@@ -257,9 +281,9 @@
     display: block;
     }
 
-/* Diseño de la seccion de ganadores en vista carrera */
-/* ---------------------------------------------------*/
-/* Contenedor general que envuelve todas las categorías de podios */
+    /* Diseño de la seccion de ganadores en vista carrera */
+    /* ---------------------------------------------------*/
+    /* Contenedor general que envuelve todas las categorías de podios */
     .contenedor-seccion-podios {
     max-width: 800px;
     margin: 0 auto;
@@ -318,6 +342,7 @@
     }
 
     /* --- TARJETA DEL PILOTO --- */
+    /* -------------------------- */
     .pilot-card {
     display: flex;
     flex-direction: column;
@@ -632,6 +657,7 @@
 
     /* Formulario de búsqueda y filtros */
     /* ---------------------------------*/
+
     .search-form {
         background-color: #f8f9fa;
         border: 1px solid #e9ecef;
@@ -782,7 +808,100 @@
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
 
+    /* Contenedor relativo para evitar que rompa el layout de la tabla */
+    /* Columna de filtrado de carreras extensible */
+    .select-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        max-width: 150px; /* Ancho en reposo/cerrado */
+        height: 31px;     /* Misma altura que tus inputs/selects (ajusta según tu theme) */
+        vertical-align: middle;
+    }
 
+    /* Estilo del select en estado normal */
+    .select-expansible {
+        width: 100%;
+        height: 100%;
+        text-overflow: ellipsis; /* Pone '...' si el texto es muy largo */
+        white-space: nowrap;
+        overflow: hidden;
+        transition: width 0.25s ease, box-shadow 0.25s ease;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    /* Al desplegar (hacer clic / focus) o al pasar el ratón (:hover) */
+    .select-expansible:focus,
+    .select-expansible:hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 380px; /* Ancho extendido suficiente para leer todo el texto */
+        height: 31px; /* Mantiene exactamente la misma altura */
+        z-index: 999; /* Se superpone a las demás columnas sin mover nada */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra elegante al desplegar */
+        outline: none;
+    }
+
+    /* Contenedor que agrupa el selector de filas por página y la paginación */
+    .tabla-controles {
+        display: flex;
+        flex-wrap: wrap;             /* Permite adaptarse si la pantalla es muy estrecha */
+        align-items: center;
+        justify-content: space-between; /* Distribuye el selector a un lado y la paginación al otro */
+        gap: 15px;
+        margin: 15px 0;
+        width: 100%;                 /* Ocupa el 100% del ancho disponible */
+    }
+
+    /* Fuerza a que el bloque de "Resultados por página" se mantenga horizontal */
+    .resultados-por-pagina {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;          /* Impide que el texto salte de línea */
+    }
+
+    /* Evita que los select dentro de los controles se deformen */
+    .resultados-por-pagina select {
+        width: auto !important;
+        min-width: 70px;
+    }
+
+
+    /* Presentacion de fotos en vista Chasis y motor */
+    /* --------------------------------------------- */
+    /* Contenedor principal de la foto de la ficha */
+    .foto-ficha-container {
+        width: 100%;
+        max-width: 450px; /* Ajusta el ancho máximo según el tamaño deseado */
+        height: 280px;    /* Un poco más grande que el estándar del mapa */
+        border-radius: 8px;
+        overflow: hidden; /* Evita que la imagen se salga del marco al ampliar */
+        box-shadow: 2px 0 4px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px; /* Pequeño margen interno para que la foto no toque el borde */
+        box-sizing: border-box;
+    }
+
+    /* Imagen con efecto de ampliación suave */
+    .foto-ficha-container img {
+        max-width: 90% !important;
+        max-height: 90% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important; 
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        cursor: pointer;
+    }
+
+    /* Efecto al pasar el ratón por encima */
+    .foto-ficha-container:hover img {
+        transform: scale(1.08); /* Amplía la imagen un 8% */
+    }
 
 
 </style>

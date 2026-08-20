@@ -34,6 +34,7 @@ define("VIEW_CARRERAS", "vista_carreras");
 define("VIEW_RESULTADOS", "vista_resultados");
 define("VIEW_CIRCUITOS", "vista_circuitos");
 define("VIEW_CHASIS", "vista_chasis");
+define("VIEW_MOTORES", "vista_motores");
 
 ?>
 

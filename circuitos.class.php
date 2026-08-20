@@ -5,19 +5,20 @@ require_once "config.php";
 
 class Circuito extends DataObject {
     protected $data = array(
-        "id_circuito" => "",
-        "nombre_circuito" => "",
-        "web_circuito" => "",
-        "direccion_circuito" => "",
-        "localidad_circuito" => "",
-        "telefono_circuito" => "",
-        "id_pais" => "",
-        "nombre_pais" => "",
-        "altitud" => "",
-        "longitud" => "",
-        "curvasizd" => "",
-        "curvasdcha" => "",
-        "velocidadmax" => "",
+        "id_circuito"           => "",
+        "nombre_circuito"       => "",
+        "web_circuito"          => "",
+        "logo_circuito"         => "",
+        "direccion_circuito"    => "",
+        "localidad_circuito"    => "",
+        "telefono_circuito"     => "",
+        "id_pais"               => "",
+        "nombre_pais"           => "",
+        "altitud"               => "",
+        "longitud"              => "",
+        "curvasizd"             => "",
+        "curvasdcha"            => "",
+        "velocidadmax"          => "",
         "silueta" => ""
     );
 
@@ -35,7 +36,9 @@ class Circuito extends DataObject {
         $whereClause = "";
         if (!empty($search)) {
             // Buscamos en nombre o apellido
-            $whereClause = " WHERE nombre_circuito LIKE :search";
+            $whereClause = " WHERE (nombre_circuito LIKE :search
+                                OR localidad_circuito LIKE :search 
+                                OR nombre_pais LIKE :search)";
         }
         
         try {
@@ -71,7 +74,7 @@ class Circuito extends DataObject {
             $stData->execute();
             $circuitos = array();
             foreach ($stData->fetchAll() as $row) {
-                $circuitos[] = new Circuito($row);
+                $circuitos[] = new static($row);
             }
 
             parent::disconnect($conn);
@@ -96,8 +99,9 @@ class Circuito extends DataObject {
             $st->execute();
             $row = $st->fetch();
             parent::disconnect($conn);
+
             if ($row) {
-                return new Circuito($row);
+                return new static($row);
             } else {
                 return null;
             }

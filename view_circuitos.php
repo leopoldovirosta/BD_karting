@@ -14,7 +14,7 @@ $order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]
 $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 
 // 3. Llamamos al método (asegúrate de que tu SQL en Piloto ahora use $order y $type)
-list($circuitos, $totalRows) = Circuito::getCircuitos($start, $pageSize, $order . " " . $type);
+list($circuitos, $totalRows) = Circuito::getCircuitos($start, $pageSize, $order . " " . $type, $search);
 
 displayPageHeader("Lista de circuitos");
 
@@ -42,19 +42,19 @@ displayPageHeader("Lista de circuitos");
         <?php
         // Definimos las columnas que queremos mostrar
         $columns = array(
-            "id_circuito" => "ID",
-            "nombre_circuito" => "Circuito",
-            "web_circuito" => "Web",
-            "direccion_circuito" => "Dirección",
-            "localidad_circuito" => "Localidad",
-            "telefono_circuito" => "Teléfono",
-            "nombre_pais" => "Pais",
-            "altitud" => "Altitud",
-            "longitud" => "Longitud",
-            "curvasizd" => "Curvas IZD",
-            "curvasdcha" => "Curvas DCHA",
-            "velocidadmax" => "Velocidad Max",
-            "silueta" => "Trazado"
+            "id_circuito"           => "ID",
+            "nombre_circuito"       => "Circuito",
+            "web_circuito"          => "Web",
+            "direccion_circuito"    => "Dirección",
+            "localidad_circuito"    => "Localidad",
+            "telefono_circuito"     => "Teléfono",
+            "nombre_pais"           => "Pais",
+            "altitud"               => "Altitud",
+            "longitud"              => "Longitud",
+            "curvasizd"             => "Curvas IZD",
+            "curvasdcha"            => "Curvas DCHA",
+            "velocidadmax"          => "Velocidad Max",
+            "silueta"               => "Trazado"
         );
 
         foreach ($columns as $colKey => $colName): 
@@ -81,10 +81,10 @@ displayPageHeader("Lista de circuitos");
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
             <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValue('id_circuito') ?>"><?php echo $circuito->getValue("id_circuito")?></a></td>
-            <td><?php echo $circuito->getValueEncoded("nombre_circuito") ?></td>
+            <td><?php echo $circuito->getValue("nombre_circuito") ?></td>
             <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Visitar</a></td>
             <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
-            <td><?php echo $circuito->getValueEncoded("localidad_circuito") ?></td>
+            <td><?php echo $circuito->getValue("localidad_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("telefono_circuito") ?></td>
             <td><?php echo $circuito->getValueEncoded("nombre_pais") ?></td>
             <td><?php echo $circuito->getValue("altitud") ?></td>

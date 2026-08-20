@@ -132,7 +132,15 @@ displayPageHeader("Detalles de la carrera");
         <div class="data-item">
             <span class="material-symbols-outlined">directions_car</span>
             <label>Modelo chasis</label>
-            <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_chasis")); ?></div>
+            <div class="value">
+                <?php if (!empty($resultado->getValue('id_chasis')) && !empty($resultado->getValue('modelo_chasis'))): ?>
+                    <a href="view_chasi.php?id_chasis=<?php echo (int)$resultado->getValue('id_chasis'); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo mostrarValor($resultado->getValue('modelo_chasis')); ?>
+                    </a>
+                <?php else: ?>
+                    <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_chasis")); ?></div>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">settings</span>

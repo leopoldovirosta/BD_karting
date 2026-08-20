@@ -18,7 +18,8 @@ class Marcas extends DataObject {
 
     public static function getMarcaChasis(): array {
         $conn = parent::connect();
-        
+        if (!$conn) return array();
+
         $sql = "SELECT * FROM " . TABLE_MARCAS . " WHERE es_marca_chasis = 1 ORDER BY nombre_marca ASC";
 
         try {
@@ -27,15 +28,16 @@ class Marcas extends DataObject {
             $rows = $st->fetchAll(PDO::FETCH_ASSOC);
             parent::disconnect($conn);
 
-            // Convertimos cada fila asociativa en un objeto Categoria
+            // Convertimos cada fila asociativa en un objeto Marcas
             $list = array();
             foreach ($rows as $row) {
-                $list[] = new Marcas($row);
+                $list[] = new static($row);
             }
 
             return $list;
         } catch (PDOException $e) {
             parent::disconnect($conn);
+            error_log("Error en getMarcaChasis: " . $e->getMessage());
             return array();
         }
     }
@@ -43,6 +45,8 @@ class Marcas extends DataObject {
     
     public static function getMarcaMotor(): array {
     $conn = parent::connect();
+    if (!$conn) return array();
+
     $sql = "SELECT * FROM " . TABLE_MARCAS . " WHERE es_marca_motor = 1 ORDER BY nombre_marca ASC";
 
     try {
@@ -53,11 +57,12 @@ class Marcas extends DataObject {
 
         $list = array();
         foreach ($rows as $row) {
-            $list[] = new Marcas($row);
+            $list[] = new static($row);
         }
         return $list;
     } catch (PDOException $e) {
         parent::disconnect($conn);
+        error_log("Error en getMarcaMotor: " . $e->getMessage());
         return array();
     }
 }

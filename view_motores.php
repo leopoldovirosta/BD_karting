@@ -2,7 +2,7 @@
 
 require_once "common.inc.php";
 require_once "config.php";
-require_once "chasis.class.php";
+require_once "motores.class.php";
  
 // 1. Detectamos el sentido (por defecto ASC)
 $type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
@@ -10,21 +10,21 @@ $type = isset($_GET["type"]) && $_GET["type"] == "DESC" ? "DESC" : "ASC";
 // 2. Limpiamos las variables
 $search = isset($_GET["search"]) ? trim($_GET["search"]) : "";
 $start = isset($_GET["start"]) ? (int)$_GET["start"] : 0;
-$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_chasis";
+$order = isset($_GET["order"]) ? preg_replace("/[^a-zA-Z_]/", "", $_GET["order"]) : "id_motor";
 $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 
 // 3. Llamamos al método
-list($lista_chasis, $totalRows) = Chasis::getChasis($start, $pageSize, $order . " " . $type, $search);
+list($lista_motores, $totalRows) = Motor::getMotores($start, $pageSize, $order . " " . $type, $search);
 
-displayPageHeader("Lista de chasis");
+displayPageHeader("Lista de motores);
 
 ?>
-    <form action="view_chasis.php" method="get" class="search-form">
+    <form action="view_motores.php" method="get" class="search-form">
         <!-- Ocultos para mantener ordenación y sentido -->
         <input type="hidden" name="order" value="<?php echo htmlspecialchars($order); ?>" />
         <input type="hidden" name="type" value="<?php echo htmlspecialchars($type); ?>" />
 
-        <label for="pageSize">Chasis por página:</label>
+        <label for="pageSize">Motores por página:</label>
         <select name="pageSize" id="pageSize" onchange="this.form.submit()">
             <?php foreach (array(5, 10, 20, 50) as $value): ?>
                <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
@@ -33,10 +33,10 @@ displayPageHeader("Lista de chasis");
             <?php endforeach; ?>
         </select>
         <br><br>
-        <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar chasis..." />
+        <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar motores..." />
         <button type="submit" class="btn-nav">Buscar</button>
         <?php if (!empty($search)): ?>
-            <a href="view_chasis.php" class="btn-nav">Limpiar filtro</a>
+            <a href="view_motores.php" class="btn-nav">Limpiar filtro</a>
         <?php endif; ?>
     </form>
     <br>
@@ -45,18 +45,18 @@ displayPageHeader("Lista de chasis");
             <tr>
             <?php
             $columns = array(
-                "id_chasis"             => "ID",
+                "id_motor"              => "ID",
                 "logo_marca"            => "Logo",
                 "nombre_marca"          => "Marca",
                 "codigo_iso"            => "País",
-                "modelo_chasis"         => "Modelo",
-                "material"              => "Material",
-                "tubo_diametro"         => "Tubo Ø",
-                "distancia_ejes"        => "Distancia ejes",
-                "eje_trasero"           => "Eje Trasero",
-                "sistema_frenado"       => "Frenos",
-                "categoria_objetivo"    => "Categorías",
-                "ano"                   => "Año",
+                "modelo"                => "Modelo",
+                "clase"                 => "Clase",
+                "cilindrada"            => "Cilindrada",
+                "admision"              => "Admision",
+                "encendido"             => "Encendido",
+                "refrigeracion"         => "Refrigeracion",
+                "starter"               => "Starter",
+                "carburador"            => "Carburador",
                 "homologacion"          => "Homologación",
                 "url_homologacion"      => "Ficha",
                 "foto_chasis"           => "Foto"
@@ -115,19 +115,17 @@ displayPageHeader("Lista de chasis");
                 <?php endif; ?>
             </td>
             <td><?php echo $chasi->getValueEncoded("modelo_chasis") ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("material")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("tubo_diametro")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("distancia_ejes")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("eje_trasero")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("sistema_frenado")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("categoria_objetivo")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("ano")); ?></td>
-            <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("homologacion")); ?></td>
-            <td class="text-center">
+            <td><?php echo $chasi->getValueEncoded("material") ?></td>
+            <td><?php echo $chasi->getValueEncoded("tubo_diametro") ?></td>
+            <td><?php echo $chasi->getValueEncoded("distancia_ejes") ?></td>
+            <td><?php echo $chasi->getValueEncoded("eje_trasero") ?></td>
+            <td><?php echo $chasi->getValueEncoded("sistema_frenado") ?></td>
+            <td><?php echo $chasi->getValueEncoded("categoria_objetivo") ?></td>
+            <td><?php echo $chasi->getValueEncoded("ano") ?></td>
+            <td class="text-center"><?php echo $chasi->getValueEncoded("homologacion") ?></td>
+            <td>
                 <?php if ($chasi->getValue('url_homologacion')): ?>
                     <a href="<?php echo $chasi->getValueEncoded('url_homologacion') ?>" target="_blank">Ficha</a>
-                <?php else: ?>
-                    ---
                 <?php endif; ?>
             </td>
             <td>

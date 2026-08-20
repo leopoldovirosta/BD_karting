@@ -5,20 +5,20 @@ require_once "config.php";
 
 class Piloto extends DataObject {
     protected $data = array(
-        "id_piloto" => "",
-        "nombre_piloto" => "",
-        "apellido_piloto" => "",
-        "fecha_nacimiento" => "",
-        "web_piloto" => "",
-        "email_piloto" => "",
-        "foto_piloto" => "",
-        "id_pais" => "",
-        "nombre_pais" => "",
-        "codigo_iso" => "",
-        "id_escuderia" => "",
-        "nombre_escuderia" => "",
-        "id_patrocinador" => "",
-        "nombre_patrocinador" => ""
+        "id_piloto"              => "",
+        "nombre_piloto"          => "",
+        "apellido_piloto"        => "",
+        "fecha_nacimiento"       => "",
+        "web_piloto"             => "",
+        "email_piloto"           => "",
+        "foto_piloto"            => "",
+        "id_pais"                => "",
+        "nombre_pais"            => "",
+        "codigo_iso"             => "",
+        "id_escuderia"           => "",
+        "nombre_escuderia"       => "",
+        "id_patrocinador"        => "",
+        "nombre_patrocinador"    => ""
     );
 
 
@@ -35,7 +35,10 @@ class Piloto extends DataObject {
         $whereClause = "";
         if (!empty($search)) {
             // Buscamos en nombre o apellido
-            $whereClause = " WHERE nombre_piloto LIKE :search OR apellido_piloto LIKE :search ";
+            $whereClause = " WHERE (nombre_piloto LIKE :search
+                                OR apellido_piloto LIKE :search
+                                OR nombre_escuderia LIKE :search
+                                OR nombre_pais LIKE :search)";
         }
         
         try {
@@ -71,7 +74,7 @@ class Piloto extends DataObject {
             $stData->execute();
             $pilotos = array();
             foreach ($stData->fetchAll() as $row) {
-                $pilotos[] = new Piloto($row);
+                $pilotos[] = new static($row);
             }
 
             parent::disconnect($conn);
@@ -80,7 +83,7 @@ class Piloto extends DataObject {
         } catch (PDOException $e) {
             parent::disconnect($conn);
             error_log("Error en getPilotos: " . $e->getMessage());
-            return [[], 0]; // Devolvemos array vacío en caso de error
+            return [[], 0];
         }
     }
 
@@ -94,10 +97,11 @@ class Piloto extends DataObject {
             $st = $conn->prepare($sql);
             $st->bindValue(":id_piloto", (int)$id_piloto, PDO::PARAM_INT);
             $st->execute();
-            $row = $st->fetch();
+            $row = $st->fetch(PDO::FETCH_ASSOC);
             parent::disconnect($conn);
+
             if ($row) {
-                return new Piloto($row);
+                return new static($row);
             } else {
                 return null;
             }
@@ -148,6 +152,7 @@ class Piloto extends DataObject {
             return $row ? (int)$row['id_piloto'] : null;
 
         } catch (Throwable $e) {
+            parent::disconnect($conn);
             error_log("Error en getNavegacionId: " . $e->getMessage());
             return null;
         }

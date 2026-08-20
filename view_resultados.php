@@ -73,183 +73,191 @@ list($lista_resultados, $totalRows) = Resultado::getResultadosFiltrados($start, 
 displayPageHeader("Lista de Resultados");
 
 ?>
-
     <form action="view_resultados.php" method="get" class="search-form">
-        <!-- Ocultos para mantener el ordenamiento en cada envio -->
-        <input type="hidden" name="order" value="<?php echo htmlspecialchars($order); ?>" />
-        <input type="hidden" name="type" value="<?php echo htmlspecialchars($type); ?>" />
+            <!-- Ocultos para mantener el ordenamiento en cada envio -->
+            <input type="hidden" name="order" value="<?php echo htmlspecialchars($order); ?>" />
+            <input type="hidden" name="type" value="<?php echo htmlspecialchars($type); ?>" />
+<!-- BARRA SUPERIOR DE CONTROLES (Resultados por página y Paginación rápida) -->
+    <div class="tabla-controles">
+        <div class="resultados-por-pagina">
+            <label for="pageSize">Resultados por página:</label>
+            <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
+                <?php foreach (array(5, 10, 20, 50) as $value): ?>
+                    <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
+                        <?php echo $value ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
 
-        <label for="pageSize">Resultados por página:</label>
-        <select name="pageSize" id="pageSize" onchange="this.form.submit()">
-            <?php foreach (array(5, 10, 20, 50) as $value): ?>
-                <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
-                    <?php echo $value ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <!-- Formulario de seleccion de campos para consulta -->
-        <table>
-        <thead>
-        <tr>
-        <?php
-        $columns = array(
-            'id_carrera'    => 'Carrera',
-            'apellido_piloto'     => 'Piloto',
-            'id_categoria'  => 'Categoria',
-            'posicion'      => 'Posicion',
-            'id_chasis'     => 'Chasis',
-            'id_motor'      => 'Motor',
-            'acciones'      => 'Acciones'
-        );
-
-        foreach ($columns as $colKey => $colName): 
-            $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
-            $icon = ($type == "ASC") ? "▲" : "▼";
+    <!-- TABLA DE RESULTADOS CON FILTROS -->
+    <div class="table-responsive">
             
-            $sortUrl = Resultado::buildSortUrl($colKey, $order, $type);
-        ?>
-                <th>
-                    <?php if ($colKey === 'acciones'): ?>
-                        <!-- Columna no ordenable: solo texto -->
-                        <?php echo htmlspecialchars($colName); ?>
-                    <?php else: ?>
-                        <a href="<?php echo htmlspecialchars($sortUrl); ?>">
-                            <?php echo htmlspecialchars($colName); ?>
-                            <?php if ($order == $colKey): ?>
-                                <span class="sort-icon"><?php echo $icon ?></span>
-                            <?php endif; ?>
-                        </a>
-                    <?php endif; ?>
-                </th>
-        <?php endforeach; ?>
-            </tr>
-
-            <!-- FILA MAESTRA DE FILTROS -->
-            <tr class="bg-light">
-                <!-- Filtro por Carrera -->
-                <th>
-                    <select name="f_carrera" id="f_carrera" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">-- Todas --</option>
-                        <?php if (!empty($carreras_opt) && (is_array($carreras_opt) || is_object($carreras_opt))): ?>
-                            <?php foreach ($carreras_opt as $c): ?>
-                                <?php 
-                                    $idC = is_object($c) ? $c->getValue('id_carrera') : ($c['id_carrera'] ?? 0);
-                                    $idE = is_object($c) ? $c->getValue('id_edicion') : ($c['id_edicion'] ?? 0);
-                                    $nombre = implode(' - ', array_filter([
-                                        is_object($c) ? $c->getValue('nombre_circuito') : ($c['nombre_circuito'] ?? ''),
-                                        !empty(is_object($c) ? $c->getValue('fecha_carrera') : ($c['fecha_carrera'] ?? '')) 
-                                            ? date('d/m/Y', strtotime(is_object($c) ? $c->getValue('fecha_carrera') : $c['fecha_carrera'])) 
-                                            : '',is_object($c) ? $c->getValue('nombre_cto') : ($c['nombre_cto'] ?? '')
-                                            ,is_object($c) ? $c->getValue('nombre_carrera_tipo') : ($c['nombre_carrera_tipo'] ?? '')
-                                            ]));
-                                    $valCombo = $idC . '-' . $idE;
-                                    $isSelected = ($f_carrera === $valCombo) ? 'selected' : '';
-                                ?>
-                                <option value="<?php echo $valCombo; ?>" <?php echo $isSelected; ?>>
-                                    <?php echo htmlspecialchars((string)$nombre); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                </th>
-
-                <!-- Filtro por Piloto -->
-                <th>
-                    <input type="text" name="f_piloto" class="form-control form-control-sm" placeholder="Buscar piloto..." 
-                        value="<?php echo htmlspecialchars($f_piloto); ?>">
-                </th>
-
-                <!-- Filtro por Categoría -->
-                <th>
-                    <select name="f_categoria" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">-- Todas --</option>
-                        <?php if (!empty($categorias_opt) && is_array($categorias_opt)): ?>
-                            <?php foreach ($categorias_opt as $cat): ?>
-                                <?php 
-                                    $idCat  = is_object($cat) ? $cat->getValue('id_categoria') : ($cat['id_categoria'] ?? '');
-                                    $nombre = is_object($cat) ? $cat->getValue('nombre_categoria') : ($cat['nombre_categoria'] ?? '');
-                                ?>
-                                <option value="<?php echo htmlspecialchars((string)$idCat); ?>" <?php echo ((string)$f_categoria === (string)$idCat && $f_categoria !== '') ? 'selected' : ''; ?>>
-                                    <?php echo htmlspecialchars((string)$nombre); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                </th>
-
-                <!-- Filtro por Posición -->
-                <th>
-                    <select name="f_posicion" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">-- Todos --</option>
-                        <option value="top3" <?php echo ($f_posicion == 'top3') ? 'selected' : ''; ?>>Podio (Top 3)</option>
-                        <option value="1" <?php echo ($f_posicion == '1') ? 'selected' : ''; ?>>Ganadores (1º)</option>
-                    </select>
-                </th>
-
-                <!-- Filtro por Marca Chasis -->
-                <th>
-                    <select name="f_chasis" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">-- Todas --</option>
-                        <?php if (!empty($chasis_opt) && is_array($chasis_opt)): ?>
-                            <?php foreach ($chasis_opt as $cha): ?>
-                                <?php 
-                                    $nombre = is_object($cha) ? $cha->getValue('nombre_marca') : ($cha['nombre_marca'] ?? '');
-                                ?>
-                                <option value="<?php echo htmlspecialchars((string)$nombre); ?>" <?php echo ((string)$f_chasis === (string)$nombre && $f_chasis !== '') ? 'selected' : ''; ?>>
-                                    <?php echo htmlspecialchars((string)$nombre); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                </th>
-
-                <!-- Filtro por Marca Motor -->
-                <th>
-                    <select name="f_motor" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">-- Todas --</option>
-                        <?php if (!empty($motor_opt) && is_array($motor_opt)): ?>
-                            <?php foreach ($motor_opt as $mot): ?>
-                                <?php 
-                                    $nombre = is_object($mot) ? $mot->getValue('nombre_marca') : ($mot['nombre_marca'] ?? '');
-                                ?>
-                                <option value="<?php echo htmlspecialchars((string)$nombre); ?>" <?php echo ((string)$f_motor === (string)$nombre && $f_motor !== '') ? 'selected' : ''; ?>>
-                                    <?php echo htmlspecialchars((string)$nombre); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                </th>
-
-                <!-- Botones de Acción -->
-                <th class="text-center">
-                    <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
-                    <a href="view_resultados.php" class="btn btn-sm btn-secundary">Limpiar</a>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
+        <table class="tabla-resultados">
+            <thead>
+            <tr>
             <?php
-                $rowCount = 0;
-                foreach ($lista_resultados as $r):
-                $rowCount++;
-            ?>
-                <tr <?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-                    <td><?php echo $r->getValueEncoded('nombre_circuito'); ?></td>
-                    <td><?php echo $r->getValueEncoded('nombre_piloto') . ' ' . $r->getValueEncoded('apellido_piloto'); ?></td>
-                    <td><?php echo $r->getValueEncoded('nombre_categoria'); ?></td>
-                    <td><?php echo $r->getValueEncoded('posicion'); ?></td>
-                    <td><?php echo $r->getValueEncoded('marca_chasis'); ?></td>
-                    <td><?php echo $r->getValueEncoded('marca_motor'); ?></td>
-                    <td>
-                        <a href="view_resultado.php?id_resultado=<?php echo $r->getValue('id_resultado'); ?>&id_piloto=<?php echo $r->getValue('id_piloto'); ?>&id_edicion=<?php echo $r->getValue('id_edicion'); ?>" class="btn btn-sm btn-info">Ver</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    </form>
+            $columns = array(
+                'id_carrera'        => 'Carrera',
+                'apellido_piloto'   => 'Piloto',
+                'id_categoria'      => 'Categoria',
+                'posicion'          => 'Posicion',
+                'id_chasis'         => 'Chasis',
+                'id_motor'          => 'Motor',
+                'acciones'          => 'Acciones'
+            );
 
+            foreach ($columns as $colKey => $colName): 
+                $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
+                $icon = ($type == "ASC") ? "▲" : "▼";
+                
+                $sortUrl = Resultado::buildSortUrl($colKey, $order, $type);
+            ?>
+                    <th>
+                        <?php if ($colKey === 'acciones'): ?>
+                            <!-- Columna no ordenable: solo texto -->
+                            <?php echo htmlspecialchars($colName); ?>
+                        <?php else: ?>
+                            <a href="<?php echo htmlspecialchars($sortUrl); ?>">
+                                <?php echo htmlspecialchars($colName); ?>
+                                <?php if ($order == $colKey): ?>
+                                    <span class="sort-icon"><?php echo $icon ?></span>
+                                <?php endif; ?>
+                            </a>
+                        <?php endif; ?>
+                    </th>
+            <?php endforeach; ?>
+                </tr>
+
+                <!-- FILA MAESTRA DE FILTROS -->
+                <tr class="bg-light">
+                    <!-- Filtro por Carrera -->
+                    <th>
+                        <div class="select-container">
+                            <select name="f_carrera" id="f_carrera" class="form-control select-expansible" onchange="this.form.submit()">
+                                <option value="">-- Todas --</option>
+                                <?php if (!empty($carreras_opt) && (is_array($carreras_opt) || is_object($carreras_opt))): ?>
+                                    <?php foreach ($carreras_opt as $c): ?>
+                                        <?php 
+                                            $idC = is_object($c) ? $c->getValue('id_carrera') : ($c['id_carrera'] ?? 0);
+                                            $idE = is_object($c) ? $c->getValue('id_edicion') : ($c['id_edicion'] ?? 0);
+                                            $nombre = implode(' - ', array_filter([
+                                                is_object($c) ? $c->getValue('nombre_circuito') : ($c['nombre_circuito'] ?? ''),
+                                                !empty(is_object($c) ? $c->getValue('fecha_carrera') : ($c['fecha_carrera'] ?? '')) 
+                                                    ? date('d/m/Y', strtotime(is_object($c) ? $c->getValue('fecha_carrera') : $c['fecha_carrera'])) 
+                                                    : '',is_object($c) ? $c->getValue('nombre_cto') : ($c['nombre_cto'] ?? '')
+                                                    ,is_object($c) ? $c->getValue('nombre_carrera_tipo') : ($c['nombre_carrera_tipo'] ?? '')
+                                                    ]));
+                                            $valCombo = $idC . '-' . $idE;
+                                            $isSelected = ($f_carrera === $valCombo) ? 'selected' : '';
+                                        ?>
+                                        <option value="<?php echo $valCombo; ?>" <?php echo $isSelected; ?>>
+                                            <?php echo htmlspecialchars((string)$nombre); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </th>
+
+                    <!-- Filtro por Piloto -->
+                    <th>
+                        <input type="text" name="f_piloto" class="form-control form-control-sm" placeholder="Buscar piloto..." 
+                            value="<?php echo htmlspecialchars($f_piloto); ?>">
+                    </th>
+
+                    <!-- Filtro por Categoría -->
+                    <th>
+                        <select name="f_categoria" class="form-control form-control-sm" onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            <?php if (!empty($categorias_opt) && is_array($categorias_opt)): ?>
+                                <?php foreach ($categorias_opt as $cat): ?>
+                                    <?php 
+                                        $idCat  = is_object($cat) ? $cat->getValue('id_categoria') : ($cat['id_categoria'] ?? '');
+                                        $nombre = is_object($cat) ? $cat->getValue('nombre_categoria') : ($cat['nombre_categoria'] ?? '');
+                                    ?>
+                                    <option value="<?php echo htmlspecialchars((string)$idCat); ?>" <?php echo ((string)$f_categoria === (string)$idCat && $f_categoria !== '') ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars((string)$nombre); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </th>
+
+                    <!-- Filtro por Posición -->
+                    <th>
+                        <select name="f_posicion" class="form-control form-control-sm" onchange="this.form.submit()">
+                            <option value="">-- Todos --</option>
+                            <option value="top3" <?php echo ($f_posicion == 'top3') ? 'selected' : ''; ?>>Podio (Top 3)</option>
+                            <option value="1" <?php echo ($f_posicion == '1') ? 'selected' : ''; ?>>Ganadores (1º)</option>
+                        </select>
+                    </th>
+
+                    <!-- Filtro por Marca Chasis -->
+                    <th>
+                        <select name="f_chasis" class="form-control form-control-sm" onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            <?php if (!empty($chasis_opt) && is_array($chasis_opt)): ?>
+                                <?php foreach ($chasis_opt as $cha): ?>
+                                    <?php 
+                                        $nombre = is_object($cha) ? $cha->getValue('nombre_marca') : ($cha['nombre_marca'] ?? '');
+                                    ?>
+                                    <option value="<?php echo htmlspecialchars((string)$nombre); ?>" <?php echo ((string)$f_chasis === (string)$nombre && $f_chasis !== '') ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars((string)$nombre); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </th>
+
+                    <!-- Filtro por Marca Motor -->
+                    <th>
+                        <select name="f_motor" class="form-control form-control-sm" onchange="this.form.submit()">
+                            <option value="">-- Todas --</option>
+                            <?php if (!empty($motor_opt) && is_array($motor_opt)): ?>
+                                <?php foreach ($motor_opt as $mot): ?>
+                                    <?php 
+                                        $nombre = is_object($mot) ? $mot->getValue('nombre_marca') : ($mot['nombre_marca'] ?? '');
+                                    ?>
+                                    <option value="<?php echo htmlspecialchars((string)$nombre); ?>" <?php echo ((string)$f_motor === (string)$nombre && $f_motor !== '') ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars((string)$nombre); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </th>
+
+                    <!-- Botones de Acción -->
+                    <th class="text-center">
+                        <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                        <a href="view_resultados.php" class="btn btn-sm btn-secundary">Limpiar</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $rowCount = 0;
+                    foreach ($lista_resultados as $r):
+                    $rowCount++;
+                ?>
+                    <tr <?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
+                        <td><?php echo $r->getValueEncoded('nombre_circuito'); ?></td>
+                        <td><?php echo $r->getValueEncoded('nombre_piloto') . ' ' . $r->getValueEncoded('apellido_piloto'); ?></td>
+                        <td><?php echo $r->getValueEncoded('nombre_categoria'); ?></td>
+                        <td><?php echo $r->getValueEncoded('posicion'); ?></td>
+                        <td class="text-center"><?php echo mostrarValor($r->getValueEncoded('marca_chasis')); ?></td>
+                        <td class="text-center"><?php echo mostrarValor($r->getValueEncoded('marca_motor')); ?></td>
+                        <td>
+                            <a href="view_resultado.php?id_resultado=<?php echo $r->getValue('id_resultado'); ?>&id_piloto=<?php echo $r->getValue('id_piloto'); ?>&id_edicion=<?php echo $r->getValue('id_edicion'); ?>" class="btn btn-sm btn-info">Ver</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+      </div>
+    </form>
+        
     <!-- PAGINACIÓN -->
     <div class="pagination-container">
         <p class="info-text">
@@ -266,7 +274,8 @@ displayPageHeader("Lista de Resultados");
             <a href="<?php echo htmlspecialchars(Resultado::buildUrl(['start' => ($start + $pageSize)])); ?>" class="btn-nav">Página siguiente &raquo;</a>
         <?php endif; ?>
     </div>
+  
 
 <?php
     displayPageFooter();
-?>
+    ?>

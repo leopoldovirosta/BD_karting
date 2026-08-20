@@ -17,14 +17,14 @@ LEFT JOIN campeonatos cam ON ec.id_cto = cam.id_cto;
 
 
 CREATE VIEW vista_chasis AS
-SELECT ch.id_chasis, m.id_marca, m.nombre_marca, m.logo_marca, m.id_pais, p.nombre_pais, p.codigo_iso, ch.modelo_chasis, ch.material, ch.tubo_diametro, ch.distancia_ejes, ch.eje_trasero, ch.sistema_frenado, ch.categoria_objetivo, ch.ano, ch.homologacion, ch.url_homologacion, ch.foto_chasis
+SELECT ch.id_chasis, m.id_marca, m.nombre_marca, m.logo_marca, m.id_pais, m.pagina_web, p.nombre_pais, p.codigo_iso, ch.modelo_chasis, ch.material, ch.tubo_diametro, ch.distancia_ejes, ch.eje_trasero, ch.sistema_frenado, ch.categoria_objetivo, ch.ano, ch.homologacion, ch.url_homologacion, ch.foto_chasis
 FROM chasis ch
 JOIN marcas m ON ch.id_marca = m.id_marca
 LEFT JOIN paises p ON m.id_pais = p.id_pais;
 
 
 CREATE VIEW vista_motores AS
-SELECT mo.id_motor, m.id_marca, m.nombre_marca, m.logo_marca, p.id_pais, p.nombre_pais, p.codigo_iso, mo.modelo, mo.descripcion, mo.clase, mo.diametro, mo.max_diametro, mo.carrera, mo.cilindrada, mo.admision, mo.lubricacion, mo.lumbreras, mo.encendido, mo.regimen_max_rpm, mo.transmision, mo.refrigeracion, mo.starter, mo.homologacion, mo.url_homologacion, mo.peso, mo.carburador, mo.potencia_max, mo.par_motor_max, mo.foto_motor
+SELECT mo.id_motor, m.id_marca, m.nombre_marca, m.logo_marca, p.id_pais, m.pagina_web, p.nombre_pais, p.codigo_iso, mo.modelo, mo.descripcion, mo.clase, mo.diametro, mo.max_diametro, mo.carrera, mo.cilindrada, mo.admision, mo.lubricacion, mo.lumbreras, mo.encendido, mo.regimen_max_rpm, mo.transmision, mo.refrigeracion, mo.starter, mo.homologacion, mo.url_homologacion, mo.peso, mo.carburador, mo.potencia_max, mo.par_motor_max, mo.foto_motor
 FROM motores mo
 JOIN marcas m ON mo.id_marca = m.id_marca
 LEFT JOIN paises p ON m.id_pais = p.id_pais;
@@ -44,7 +44,7 @@ LEFT JOIN paises p ON m.id_pais = p.id_pais;
 
 
 CREATE VIEW vista_circuitos AS
-SELECT c.id_circuito, c.nombre_circuito, c.web_circuito, c.direccion_circuito, c.localidad_circuito, c.telefono_circuito, c.altitud, c.longitud, c.curvasizd, c.curvasdcha, c.velocidadmax, c.silueta, pa.id_pais, pa.nombre_pais, pa.codigo_iso
+SELECT c.id_circuito, c.nombre_circuito, c.web_circuito, c.logo_circuito, c.direccion_circuito, c.localidad_circuito, c.telefono_circuito, c.altitud, c.longitud, c.curvasizd, c.curvasdcha, c.velocidadmax, c.silueta, pa.id_pais, pa.nombre_pais, pa.codigo_iso
 FROM circuitos c
 JOIN paises pa ON c.id_pais = pa.id_pais;
 

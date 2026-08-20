@@ -2,10 +2,10 @@
 require_once "DataObject.class.php";
 require_once "config.php";
 
-class Chasis extends DataObject {
+class Motor extends DataObject {
 
     protected $data = array(
-        "id_chasis"         => "",
+        "id_motor"          => "",
         "id_marca"          => "",
         "nombre_marca"      => "",
         "logo_marca"        => "",
@@ -13,41 +13,58 @@ class Chasis extends DataObject {
         "id_pais"           => "",
         "nombre_pais"       => "",
         "codigo_iso"        => "",
-        "modelo_chasis"     => "",
-        "material"          => "",
-        "tubo_diametro"     => "",
-        "distancia_ejes"    => "",
-        "eje_trasero"       => "",
-        "sistema_frenado"   => "",
-        "categoria_objetivo"=> "",
-        "ano"               => "",
+        "modelo"            => "",
+        "descripcion"       => "",
+        "clase"             => "",
+        "diametro"          => "",
+        "max_diametro"      => "",
+        "carrera"           => "",
+        "cilindrada"        => "",
+        "admision"          => "",
+        "lubricacion"       => "",
+        "lumbreras"         => "",
+        "encendido"         => "",
+        "regimen_max_rpm"   => "",
+        "transmision"       => "",
+        "refrigeracion"     => "",
+        "starter"           => "",
         "homologacion"      => "",
         "url_homologacion"  => "",
-        "foto_chasis"       => ""
+        "peso"              => "",
+        "carburador"        => "",
+        "potencia_max"      => "",
+        "par_motor_max"     => "",
+        "foto_motor"        => ""
     );
 
-    public static function getChasis($start = 0, $pageSize = 20, $order = "id_chasis ASC", $search = ""): array {
+    public static function getMotores($start = 0, $pageSize = 20, $order = "id_motor ASC", $search = ""): array {
         $conn = parent::connect();
         if (!$conn) return [[], 0];
 
         // 1. Limpieza de seguridad para el ORDER BY
         $orderClean = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
         if (empty($orderClean)) {
-            $orderClean = "id_chasis ASC";
+            $orderClean = "id_motor ASC";
         }
     
         // 2. Lógica del buscador (modelo o marca)
         $whereClause = "";
         $hasSearch = !empty(trim($search));
         if ($hasSearch) {
-            $whereClause = " WHERE (modelo_chasis LIKE :search
+            $whereClause = " WHERE (modelo LIKE :search
                                 OR nombre_marca LIKE :search
-                                OR categoria_objetivo LIKE :search
-                                OR ano LIKE :search)";
+                                OR clase LIKE :search
+                                OR admision LIKE :search
+                                OR encendido LIKE :search
+                                OR transmision LIKE :search
+                                OR refrigeracion LIKE :search
+                                OR starter LIKE :search
+                                OR carburador LIKE :search
+                                )";
         }
 
         // 3. Consulta SQL con paginación
-        $tablaVista = defined('VIEW_CHASIS') ? VIEW_CHASIS : 'vista_chasis';
+        $tablaVista = defined('VIEW_MOTORES') ? VIEW_MOTORES : 'vista_motores';
         $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM {$tablaVista} {$whereClause} 
                 ORDER BY {$orderClean} 
                 LIMIT :start, :pageSize";
@@ -72,7 +89,7 @@ class Chasis extends DataObject {
 
             parent::disconnect($conn);
 
-            // Convertimos cada fila en un objeto Chasis
+            // Convertimos cada fila en un objeto Motor
             $list = array();
             foreach ($rows as $row) {
                 $list[] = new static($row);
@@ -81,24 +98,24 @@ class Chasis extends DataObject {
             return array($list, (int)$totalRows);
 
             } catch (PDOException $e) {
-                parent::disconnect($iconn);
-                error_log("Error en getChasis: " . $e->getMessage());
+                parent::disconnect($conn);
+                error_log("Error en getMotores: " . $e->getMessage());
                 return array([], 0);
             }
         }
 
 
 
-    public static function getChasisById($id_chasis) {
+    public static function getMotorById($id_motor) {
         $conn = parent::connect();
         if (!$conn) return null;
 
-        $tablaVista = defined('VIEW_CHASIS') ? VIEW_CHASIS : 'vista_chasis';
-        $sql = "SELECT * FROM {$tablaVista}  WHERE id_chasis = :id_chasis LIMIT 1";
+        $tablaVista = defined('VIEW_MOTORES') ? VIEW_MOTORES : 'vista_motores';
+        $sql = "SELECT * FROM {$tablaVista}  WHERE id_motor = :id_motor LIMIT 1";
 
         try {
             $st = $conn->prepare($sql);
-            $st->bindValue(":id_chasis", (int)$id_chasis, PDO::PARAM_INT);
+            $st->bindValue(":id_motor", (int)$id_motor, PDO::PARAM_INT);
             $st->execute();
             $row = $st->fetch(PDO::FETCH_ASSOC);
             parent::disconnect($conn);
@@ -110,7 +127,7 @@ class Chasis extends DataObject {
             }
         } catch (PDOException $e) {
             parent::disconnect($conn);
-            error_log("Error en getChasisById: " . $e->getMessage());
+            error_log("Error en getMotorById: " . $e->getMessage());
             return null;
             }
     }

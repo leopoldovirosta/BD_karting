@@ -22,6 +22,19 @@ displayPageHeader("Ficha del Circuito");
         <div class="header-info">
             <span class="pais-badge"><?php echo $circuito->getValueEncoded("nombre_pais") ?></span>
             <h1><?php echo $circuito->getValue("nombre_circuito") ?></h1>
+
+            <?php 
+                $logoMarca = trim((string)$circuito->getValue('logo_circuito'));
+                $tieneLogoReal = !empty($logoMarca) && strtolower($logoMarca) !== 'default.webp';
+                $srcLogo = IMAGE_LOGOS_CIRCUITOS_DIRECTORY . ($tieneLogoReal ? $circuito->getValueEncoded('logo_circuito') : 'default.webp');
+            ?>
+
+            <?php if ($tieneLogoReal): ?>
+                <p>
+                    <img src="<?php echo $srcLogo; ?>" alt="Logo <?php echo $circuito->getValueEncoded('nombre_circuito'); ?>" />
+                </p>
+            <?php endif; ?>
+
             <p class="nombre-oficial"><?php echo $circuito->getValue("direccion_circuito") . " (" . $circuito->getValue("localidad_circuito") .")" ?></p>
             <p class="nombre-oficial">Teléfono: <?php echo $circuito->getValue("telefono_circuito") ?></p>
             <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank">Visitar</a></p>
@@ -86,30 +99,31 @@ displayPageHeader("Ficha del Circuito");
 
     </div>
     <?php endif; ?>
-</div>
 
-<?php       
-$ganadores = Resultado::getEstadisticasGanadores($id);
-if (count($ganadores) > 0):
-?>  
-             
-<div class="contenedor-seccion-podios">
-    <h2 class="text-center">Muro de los Campeones</h2>
-    <div class="podium-container">
-        <?php foreach ($ganadores as $g): ?>
-            <div class="pilot-card">
-                <div>
-                    <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.jpg' ?>"
-                        class="foto-perfil">
-                    <h2><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></h2> 
-                    <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" class="enlace-piloto" target="_blank" rel="noopener noreferrer"><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></a>
+    <?php       
+    $ganadores = Resultado::getEstadisticasGanadores($id);
+    if (count($ganadores) > 0):
+    ?>  
+                
+    <div class="contenedor-seccion-podios">
+        <h2 class="text-center">Muro de los Campeones</h2>
+        <div class="podium-container">
+            <?php foreach ($ganadores as $g): ?>
+                <div class="pilot-card">
+                    <div>
+                        <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.jpg' ?>"
+                            class="foto-perfil">
+                        <h2><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></h2> 
+                        <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" class="enlace-piloto" target="_blank" rel="noopener noreferrer"><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></a>
+                    </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-     </div>
+            <?php endforeach; ?>
+        </div>
 
-        <a href="view_circuitos.php" class="btn-back">&larr; Volver al panel de circuitos</a>
+    </div>
+    <?php endif; ?>
+    <div>
+            <a href="view_circuitos.php" class="btn btn-nav">&larr; Volver al listado de circuitos</a>
+    </div>
 </div>
-<?php endif; 
-
-displayPageFooter(); ?>
+<?php displayPageFooter(); ?>

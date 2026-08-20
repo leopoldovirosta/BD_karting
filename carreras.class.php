@@ -59,8 +59,8 @@ class Carrera extends DataObject {
             $stData->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
             $stData->execute();
             $carreras = array();
-            foreach ($stData->fetchAll() as $row) {
-                $carreras[] = new Carrera($row);
+            foreach ($stData->fetchAll(PDO::FETCH_ASSOC) as $row) {
+                $carreras[] = new static($row);
             }
 
             parent::disconnect($conn);
@@ -86,7 +86,7 @@ class Carrera extends DataObject {
             $st->execute();
             $row = $st->fetch();
             parent::disconnect($conn);
-            return ($row) ? new Carrera($row) : null;
+            return ($row) ? new static($row) : null;
             
         } catch (PDOException $e) {
             parent::disconnect($conn);
@@ -272,7 +272,7 @@ class Carrera extends DataObject {
 
         } catch (PDOException $e) {
             parent::disconnect($conn);
-            error_log("Error en getSiguienteId: " . $e->getMessage());
+            error_log("Error en getAnteriorId: " . $e->getMessage());
             return null;
         }
     }

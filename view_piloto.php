@@ -42,7 +42,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
     </div>
 
     <div class="card-body">
-        <h2>Detalles Técnicos</h2>
+        <h2>Ficha piloto</h2>
         
         <div class="info-grid">
             <div class="info-item">
