@@ -5,7 +5,6 @@ require_once "chasis.class.php";
 
 $id = isset($_GET["id_chasis"]) ? (int)$_GET["id_chasis"] : 0;
 
-// Asegúrate de tener el método getChasisById() en tu clase Chasis
 $chasis = Chasis::getChasisById($id);
 
 if (!$chasis) {
@@ -39,13 +38,13 @@ displayPageHeader("Ficha de Chasis");
             <p class="nombre-marca"><?php echo $chasis->getValueEncoded("nombre_marca"); ?></p>
             <?php if ($chasis->getValueEncoded("pagina_web")): ?>
                 <p>
-                    <a href="<?php echo $chasis->getValueEncoded("pagina_web"); ?>" target="_blank">Visitar web</a>
+                    <a href="<?php echo htmlspecialchars($chasis->getValue("pagina_web")); ?>" target="_blank">Visitar web</a>
                 </p>
             <?php endif; ?>
         </div>
             <?php
                 $fotoChasis = trim((string)$chasis->getValue('foto_chasis'));
-                $tieneFotoReal = !empty($fotoChasis) && strtolower($fotoChasis) !== 'default.jpg';
+                $tieneFotoReal = !empty($fotoChasis) && strtolower($fotoChasis) !== 'default.webp';
             ?>
 
             <?php if ($tieneFotoReal): ?>
@@ -103,7 +102,7 @@ displayPageHeader("Ficha de Chasis");
             <label>Ficha Técnica</label>
             <div class="value">
                 <?php if ($chasis->getValue("url_homologacion")): ?>
-                    <a href="<?php echo $chasis->getValueEncoded("url_homologacion"); ?>" target="_blank">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($chasis->getValue("url_homologacion")); ?>" target="_blank">Visitar</a>
                 <?php else: ?>
                     <div class="value">---</div>
                 <?php endif; ?>
@@ -114,7 +113,7 @@ displayPageHeader("Ficha de Chasis");
     <div style="margin-top: 20px;">
     <?php 
         // Definimos la URL de retorno (p. ej., usando HTTP_REFERER o una URL por defecto)
-        $url_retorno = $_SERVER['HTTP_REFERER'] ?? 'view_resultados.php';
+        $url_retorno = $_SERVER['HTTP_REFERER'] ?? 'view_chasis.php';
         ?>
 
         <a href="<?php echo htmlspecialchars($url_retorno); ?>" class="btn btn-nav">

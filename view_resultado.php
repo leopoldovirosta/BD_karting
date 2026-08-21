@@ -39,7 +39,7 @@ displayPageHeader("Detalles de la carrera");
             <h2><?php echo $resultado->getValueEncoded("nombre_circuito") ?></h2>
         </div>
         <div class="circuito-mapa">
-            <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($resultado->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto-perfil" alt="Foto del piloto">
+            <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($resultado->getValueEncoded('foto_piloto') ?: 'default.webp') ?>" class="foto-perfil" alt="Foto del piloto">
         </div>
     </div>
     
@@ -138,7 +138,7 @@ displayPageHeader("Detalles de la carrera");
                     <?php echo mostrarValor($resultado->getValue('modelo_chasis')); ?>
                     </a>
                 <?php else: ?>
-                    <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_chasis")); ?></div>
+                    ---
                 <?php endif; ?>
             </div>
         </div>
@@ -150,17 +150,33 @@ displayPageHeader("Detalles de la carrera");
         <div class="data-item">
             <span class="material-symbols-outlined">settings</span>
             <label>Modelo motor</label>
-            <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_motor")); ?></div>
+            <div class="value">
+                <?php if (!empty($resultado->getValue('id_motor')) && !empty($resultado->getValue('modelo_motor'))): ?>
+                    <a href="view_motor.php?id_motor=<?php echo (int)$resultado->getValue('id_motor'); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo mostrarValor($resultado->getValue('modelo_motor')); ?>
+                    </a>
+                <?php else: ?>
+                    ---
+                <?php endif; ?>
+            </div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">tire_repair</span>
             <label>Marca ruedas</label>
-            <div class="value"><?php echo mostrarValor($resultado->getValue("marca_ruedas")); ?></div>
+            <div class="value"><?php echo mostrarValor($resultado->getValue("marca_rueda")); ?></div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">tire_repair</span>
             <label>Modelo ruedas</label>
-            <div class="value"><?php echo mostrarValor($resultado->getValue("modelo_ruedas")); ?></div>
+            <div class="value">
+                <?php if (!empty($resultado->getValue('id_rueda')) && !empty($resultado->getValue('modelo_rueda'))): ?>
+                    <a href="view_rueda.php?id_rueda=<?php echo (int)$resultado->getValue('id_rueda'); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo mostrarValor($resultado->getValue('modelo_rueda')); ?>
+                    </a>
+                <?php else: ?>
+                    ---
+                <?php endif; ?>
+            </div>
         </div>
         
     </div>

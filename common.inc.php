@@ -16,6 +16,29 @@ function mostrarValor($valor) {
     return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
 }
 
+/**
+ * Formatea un valor numérico añadiendo su unidad de medida.
+ * Si el valor está vacío o es nulo, devuelve '---'.
+ *
+ * @param mixed $valor Valor recuperado de la base de datos
+ * @param string $unidad Unidad de medida (ej: 'mm', 'cc', 'CV', 'kg')
+ * @return string
+ */
+function formatearMedida($valor, $unidad = 'mm') {
+    // Verificamos si el valor no es nulo ni cadena vacía
+    if ($valor !== null && $valor !== '') {
+        $valorLimpio = mostrarValor($valor);
+        
+        // Si el valor resultante tras pasar por mostrarValor es '---', lo mantenemos
+        if ($valorLimpio === '---') {
+            return '---';
+        }
+        
+        return !empty($unidad) ? $valorLimpio . ' ' . $unidad : $valorLimpio;
+    }
+    
+    return '---';
+}
 function displayPageHeader($pageTitle) {
 ?>
 
@@ -24,7 +47,7 @@ function displayPageHeader($pageTitle) {
     <head>
         <meta charset="UTF-8">
         <title><?php echo $pageTitle ?></title>
-        <link rel="stylesheet" type="text/css" href="common.css" />
+        <link rel="stylesheet" type="text/css" href="common.css?v=<?php echo time(); ?>" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
     </head>
@@ -42,7 +65,8 @@ function displayPageHeader($pageTitle) {
       <div class="dropdown-content">
         <a href="view_circuitos.php">Circuitos</a>
         <a href="view_chasis.php">Chasis</a>
-        <a href="#circuitos">Motores</a>
+        <a href="view_motores.php">Motores</a>
+        <a href="view_ruedas.php">Ruedas</a>
         <a href="#escuderias">Escuderías</a>
         <a href="#pilotos">Patrocinadores</a>
       </div>

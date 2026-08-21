@@ -40,7 +40,7 @@ displayPageHeader("Ficha del Circuito");
             <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank">Visitar</a></p>
         </div>
         <div class="circuito-mapa">
-            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValue('silueta') ?: 'default.jpg') ?>" alt="Mapa del trazado">
+            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValue('silueta') ?: 'default.webp') ?>" alt="Mapa del trazado">
         </div>
     </div>
 
@@ -111,7 +111,7 @@ displayPageHeader("Ficha del Circuito");
             <?php foreach ($ganadores as $g): ?>
                 <div class="pilot-card">
                     <div>
-                        <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.jpg' ?>"
+                        <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.webp' ?>"
                             class="foto-perfil">
                         <h2><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></h2> 
                         <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" class="enlace-piloto" target="_blank" rel="noopener noreferrer"><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></a>

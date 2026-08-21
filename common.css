@@ -3,15 +3,18 @@
     th {
         background-color: green;
         transition: all 0.2s;
+        text-align: center !important;
     }
 
     th a {
         background-color: #eae0e0;
         text-decoration: none;
         color: black;
-        display: flex;
-        align-items: center;
+        display: flex !important;
+        align-items: center !important;
         gap: 5px;
+        width: 100%;
+        justify-content: center !important;
     }
 
     th a:hover {
@@ -644,7 +647,7 @@
     /* ------------------------------------------------------------------ */
     .enlace-piloto {
         color: inherit;               /* Conserva el color de texto del elemento padre */
-        text-decoration: none;        /* Quita el subrayado predeterminado */i
+        text-decoration: none;        /* Quita el subrayado predeterminado */
         font-size: 1.3rem;
         font-weight: bold;
         transition: color 0.2s ease;
@@ -791,17 +794,28 @@
 
     /* Botón secundario (Gris) */
     .btn-secondary {
-        color: #fff;
-        background-color: #6c757d;
-        border-color: #6c757d;
+        color: #212529 !important;
+        background-color: #e2e6ea !important;
+        border-color: #dae0e5 !important;
+        font-weight: 600;
     }
 
     .btn-secondary:hover {
-        color: #fff;
-        background-color: #5a6268;
-        border-color: #545b62;
+        color: #111 !important;
+        background-color: #d3d9df !important;
+        border-color: #c6cfe0 !important;
     }
 
+    /* Alineación horizontal para botones dentro de celdas de filtros o acciones */
+    .acciones-filtros {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;                  /* Espacio entre botones */
+        white-space: nowrap;        /* Evita que los botones salten de línea */
+    }
+    
     /* Efecto al hacer foco con el teclado o clic */
     .btn:focus {
         outline: 0;

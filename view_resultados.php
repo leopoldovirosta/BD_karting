@@ -230,8 +230,10 @@ displayPageHeader("Lista de Resultados");
 
                     <!-- Botones de Acción -->
                     <th class="text-center">
-                        <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
-                        <a href="view_resultados.php" class="btn btn-sm btn-secundary">Limpiar</a>
+                        <div class="acciones-filtros">
+                            <button type="submit" class="btn btn-sm btn-primary">Filtrar</button>
+                            <a href="view_resultados.php" class="btn btn-sm btn-secondary">Limpiar</a>
+                        </div>
                     </th>
                 </tr>
             </thead>

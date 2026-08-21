@@ -93,7 +93,7 @@ displayPageHeader("Lista de circuitos");
             <td><?php echo $circuito->getValue("curvasdcha") ?></td>
             <td><?php echo $circuito->getValue("velocidadmax") ?></td>
             <td>
-            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValueEncoded('silueta') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
+            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValueEncoded('silueta') ?: 'default.webp') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
             </td>
         </tr>
 <?php

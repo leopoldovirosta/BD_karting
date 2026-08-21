@@ -59,7 +59,7 @@ displayPageHeader("Lista de pilotos");
                 $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
                 $icon = ($type == "ASC") ? "▲" : "▼";
             ?>
-                <th>
+                <th class="text-center">
                     <a href="view_pilotos.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>">
                         <?php echo $colName ?>
                         <?php if ($order == $colKey): ?>
@@ -98,7 +98,7 @@ displayPageHeader("Lista de pilotos");
             <?php endif; ?>
             
             <td>
-            <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded('foto_piloto') ?: 'default.jpg') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
+            <img src="<?php echo IMAGE_PILOT_DIRECTORY . ($piloto->getValueEncoded('foto_piloto') ?: 'default.webp') ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" />
             </td>
             <td><?php echo $piloto->getValueEncoded("nombre_pais") ?></td>
             <td><?php echo $piloto->getValueEncoded("nombre_escuderia") ?></td>

@@ -16,7 +16,7 @@ $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 // 3. Llamamos al método
 list($lista_motores, $totalRows) = Motor::getMotores($start, $pageSize, $order . " " . $type, $search);
 
-displayPageHeader("Lista de motores);
+displayPageHeader("Lista de motores");
 
 ?>
     <form action="view_motores.php" method="get" class="search-form">
@@ -59,11 +59,11 @@ displayPageHeader("Lista de motores);
                 "carburador"            => "Carburador",
                 "homologacion"          => "Homologación",
                 "url_homologacion"      => "Ficha",
-                "foto_chasis"           => "Foto"
+                "foto_motor"           => "Foto"
             );
 
             // Columnas no ordenables
-            $noSortable = array("logo_marca", "url_homologacion", "foto_chasis");
+            $noSortable = array("logo_marca", "url_homologacion", "foto_motor");
 
             foreach ($columns as $colKey => $colName): 
                 $nextType = ($order == $colKey && $type == "ASC") ? "DESC" : "ASC";
@@ -73,7 +73,7 @@ displayPageHeader("Lista de motores);
                     <?php if (in_array($colKey, $noSortable)): ?>
                         <?php echo htmlspecialchars($colName); ?>
                     <?php else: ?>
-                        <a href="view_chasis.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>">
+                        <a href="view_motores.php?order=<?php echo $colKey ?>&amp;type=<?php echo $nextType ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>">
                             <?php echo htmlspecialchars($colName) ?>
                             <?php if ($order == $colKey): ?>
                                 <span class="sort-icon"><?php echo $icon ?></span>
@@ -87,56 +87,58 @@ displayPageHeader("Lista de motores);
         <tbody>
 <?php
     $rowCount = 0;
-    foreach($lista_chasis as $chasi):
+    foreach($lista_motores as $motor):
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_chasi.php?id_chasis=<?php echo $chasi->getValue('id_chasis') ?>"><?php echo $chasi->getValue("id_chasis")?></a></td>
+            <td><a href="view_motor.php?id_motor=<?php echo $motor->getValue('id_motor') ?>"><?php echo $motor->getValue("id_motor")?></a></td>
             <td>
                 <?php 
-                    $logoMarca = trim((string)$chasi->getValue('logo_marca'));
+                    $logoMarca = trim((string)$motor->getValue('logo_marca'));
                     $tieneLogoReal = !empty($logoMarca) && strtolower($logoMarca) !== 'default.webp';
-                    $srcLogo = IMAGE_LOGOS_MARCAS_DIRECTORY . ($tieneLogoReal ? $chasi->getValueEncoded('logo_marca') : 'default.webp');
+                    $srcLogo = IMAGE_LOGOS_MARCAS_DIRECTORY . ($tieneLogoReal ? $motor->getValueEncoded('logo_marca') : 'default.webp');
                 ?>
 
                 <?php if ($tieneLogoReal): ?>
-                    <img src="<?php echo $srcLogo; ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" alt="Logo <?php echo $chasi->getValueEncoded('nombre_marca'); ?>" />
+                    <img src="<?php echo $srcLogo; ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" alt="Logo <?php echo $motor->getValueEncoded('nombre_marca'); ?>" />
                 <?php else: ?>
                     <img src="<?php echo $srcLogo; ?>" class="foto" alt="------" style="cursor: default;" />
                 <?php endif; ?>
             </td>
-            <td><?php echo $chasi->getValueEncoded("nombre_marca") ?></td>
+            <td><?php echo $motor->getValueEncoded("nombre_marca") ?></td>
             <td>
                 <?php
-                    $bandera = $chasi->getValue("codigo_iso");
+                    $bandera = $motor->getValue("codigo_iso");
                     if ($bandera != 'xx'):
                 ?>
-                    <span class="fi fi-<?php echo $chasi->getValue("codigo_iso"); ?>"></span>
+                    <span class="fi fi-<?php echo $motor->getValue("codigo_iso"); ?>"></span>
                 <?php endif; ?>
             </td>
-            <td><?php echo $chasi->getValueEncoded("modelo_chasis") ?></td>
-            <td><?php echo $chasi->getValueEncoded("material") ?></td>
-            <td><?php echo $chasi->getValueEncoded("tubo_diametro") ?></td>
-            <td><?php echo $chasi->getValueEncoded("distancia_ejes") ?></td>
-            <td><?php echo $chasi->getValueEncoded("eje_trasero") ?></td>
-            <td><?php echo $chasi->getValueEncoded("sistema_frenado") ?></td>
-            <td><?php echo $chasi->getValueEncoded("categoria_objetivo") ?></td>
-            <td><?php echo $chasi->getValueEncoded("ano") ?></td>
-            <td class="text-center"><?php echo $chasi->getValueEncoded("homologacion") ?></td>
-            <td>
-                <?php if ($chasi->getValue('url_homologacion')): ?>
-                    <a href="<?php echo $chasi->getValueEncoded('url_homologacion') ?>" target="_blank">Ficha</a>
+            <td><?php echo $motor->getValueEncoded("modelo") ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("clase")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("cilindrada")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("admision")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("encendido")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("refrigeracion")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("starter")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("carburador")); ?></td>
+            <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("homologacion")); ?></td>
+            <td class="text-center">
+                <?php if ($motor->getValue('url_homologacion')): ?>
+                    <a href="<?php echo htmlspecialchars($motor->getValue('url_homologacion')); ?>" target="_blank">Ficha</a>
+                <?php else: ?>
+                    ---
                 <?php endif; ?>
             </td>
             <td>
                 <?php
-                    $fotoChasis = trim((string)$chasi->getValue('foto_chasis'));
-                    $tieneFotoReal = !empty($fotoChasis) && strtolower($fotoChasis) !== 'default.jpg';
-                    $srcFoto = IMAGE_CHASIS_DIRECTORY . ($tieneFotoReal ? $chasi->getValueEncoded('foto_chasis') : 'default.jpg');
+                    $fotoMotor = trim((string)$motor->getValue('foto_motor'));
+                    $tieneFotoReal = !empty($fotoMotor) && strtolower($fotoMotor) !== 'default.webp';
+                    $srcFoto = IMAGE_MOTORES_DIRECTORY . ($tieneFotoReal ? $motor->getValueEncoded('foto_motor') : 'default.webp');
                 ?>
 
                 <?php if ($tieneFotoReal): ?>
-                    <img src="<?php echo $srcFoto; ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" alt="Foto <?php echo $chasi->getValueEncoded('modelo_chasis'); ?>" />
+                    <img src="<?php echo $srcFoto; ?>" class="foto foto-click" onclick="openModal(this.src, this.alt)" alt="Foto <?php echo $motor->getValueEncoded('modelo'); ?>" />
                 <?php else: ?>
                     <img src="<?php echo $srcFoto; ?>" class="foto" alt="------" style="cursor: default;" />
                 <?php endif; ?>
@@ -155,13 +157,13 @@ displayPageHeader("Lista de motores);
         </p>
         
         <?php if ($start > 0): ?>
-            <a href="view_chasis.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>" class="btn-nav">&laquo; Página anterior</a>
+            <a href="view_motores.php?start=<?php echo max($start - $pageSize, 0) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>" class="btn-nav">&laquo; Página anterior</a>
         <?php endif; ?>
         
         &nbsp;
         
         <?php if ($start + $pageSize < $totalRows): ?>
-            <a href="view_chasis.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>" class="btn-nav">Página siguiente &raquo;</a>
+            <a href="view_motores.php?start=<?php echo ($start + $pageSize) ?>&amp;order=<?php echo $order ?>&amp;type=<?php echo $type ?>&amp;pageSize=<?php echo $pageSize ?>&amp;search=<?php echo urlencode($search) ?>" class="btn-nav">Página siguiente &raquo;</a>
         <?php endif; ?>
     </div> 
 

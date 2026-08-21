@@ -125,7 +125,7 @@ displayPageHeader("Lista de chasis");
             <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("homologacion")); ?></td>
             <td class="text-center">
                 <?php if ($chasi->getValue('url_homologacion')): ?>
-                    <a href="<?php echo $chasi->getValueEncoded('url_homologacion') ?>" target="_blank">Ficha</a>
+                    <a href="<?php echo htmlspecialchars($chasi->getValueEncoded('url_homologacion')); ?>" target="_blank">Ficha</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>
@@ -133,8 +133,8 @@ displayPageHeader("Lista de chasis");
             <td>
                 <?php
                     $fotoChasis = trim((string)$chasi->getValue('foto_chasis'));
-                    $tieneFotoReal = !empty($fotoChasis) && strtolower($fotoChasis) !== 'default.jpg';
-                    $srcFoto = IMAGE_CHASIS_DIRECTORY . ($tieneFotoReal ? $chasi->getValueEncoded('foto_chasis') : 'default.jpg');
+                    $tieneFotoReal = !empty($fotoChasis) && strtolower($fotoChasis) !== 'default.webp';
+                    $srcFoto = IMAGE_CHASIS_DIRECTORY . ($tieneFotoReal ? $chasi->getValueEncoded('foto_chasis') : 'default.webp');
                 ?>
 
                 <?php if ($tieneFotoReal): ?>

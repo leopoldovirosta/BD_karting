@@ -31,7 +31,7 @@ LEFT JOIN paises p ON m.id_pais = p.id_pais;
 
 
 CREATE VIEW vista_ruedas AS
-SELECT ru.id_rueda, m.id_marca, m.nombre_marca, m.logo_marca, p.id_pais, p.nombre_pais, p.codigo_iso, ru.modelo, ru.tipo, ru.compuesto, ru.categoria, ru.tam_front, ru.tam_rear, ru.max_velocidad, ru.homo_front, ru.url_homo_front, ru.homo_rear, ru.url_homo_rear, ru.foto_rueda
+SELECT ru.id_rueda, m.id_marca, m.nombre_marca, m.logo_marca, m.pagina_web, p.id_pais, p.nombre_pais, p.codigo_iso, ru.modelo, ru.tipo, ru.compuesto, ru.categoria, ru.tam_front, ru.tam_rear, ru.max_velocidad, ru.homo_front, ru.url_homo_front, ru.homo_rear, ru.url_homo_rear, ru.foto_rueda
 FROM ruedas ru
 JOIN marcas m ON ru.id_marca = m.id_marca
 LEFT JOIN paises p ON m.id_pais = p.id_pais;

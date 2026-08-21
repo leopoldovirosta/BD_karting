@@ -195,7 +195,7 @@ CREATE TABLE pilotos (
     fecha_nacimiento DATE NULL,
     web_piloto VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     email_piloto VARCHAR(60) COLLATE utf8mb4_spanish_ci NULL,
-    foto_piloto VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.jpg',
+    foto_piloto VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
     id_pais INT UNSIGNED NOT NULL DEFAULT 1,
     id_escuderia INT UNSIGNED NULL DEFAULT 1,
     id_patrocinador INT UNSIGNED NULL DEFAULT 1,
