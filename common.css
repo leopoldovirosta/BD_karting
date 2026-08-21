@@ -883,6 +883,26 @@
         min-width: 70px;
     }
 
+    .buscador-box {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Contenedor responsivo para tablas */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Desplazamiento fluido en iOS */
+        margin-bottom: 1rem;
+    }
+
+    /* Opcional: Asegura que la tabla ocupe el ancho completo y no se reduzca más de lo necesario */
+    .table-responsive > table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+    }
 
     /* Presentacion de fotos en vista Chasis y motor */
     /* --------------------------------------------- */

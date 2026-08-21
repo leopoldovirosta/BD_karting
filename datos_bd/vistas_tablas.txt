@@ -5,6 +5,15 @@ JOIN paises r ON p.id_pais = r.id_pais
 JOIN escuderias e ON p.id_escuderia = e.id_escuderia
 JOIN patrocinadores pa ON p.id_patrocinador = pa.id_patrocinador;
 
+CREATE VIEW vista_escuderias AS
+SELECT e.id_escuderia, e.nombre_escuderia, e.logo_escuderia, e.web_escuderia, e.id_pais, p.nombre_pais, p.codigo_iso
+FROM escuderias e
+JOIN paises p ON e.id_pais = p.id_pais;
+
+CREATE VIEW vista_patrocinadores AS
+SELECT e.id_patrocinador, e.nombre_patrocinador, e.logo_patrocinador, e.web_patrocinador, e.id_pais, p.nombre_pais, p.codigo_iso
+FROM patrocinadores e
+JOIN paises p ON e.id_pais = p.id_pais;
 
 CREATE VIEW vista_carreras AS
 SELECT ca.id_carrera, ca.fecha_carrera, ca.dia, ca.num_vueltas, ca.pista, ca.temperatura, ca.humedad, ca.presion, ca.viento, ca.orientacion, ca.tasfalto, ct.id_carrera_tipo, ct.nombre_carrera_tipo, cir.id_circuito, cir.nombre_circuito, cir.longitud, cam.id_cto, cam.nombre_cto, ec.id_edicion, ec.anio AS anio_edicion

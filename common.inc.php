@@ -67,8 +67,8 @@ function displayPageHeader($pageTitle) {
         <a href="view_chasis.php">Chasis</a>
         <a href="view_motores.php">Motores</a>
         <a href="view_ruedas.php">Ruedas</a>
-        <a href="#escuderias">Escuderías</a>
-        <a href="#pilotos">Patrocinadores</a>
+        <a href="view_escuderias.php">Escuderías</a>
+        <a href="view_patrocinadores.php">Patrocinadores</a>
       </div>
     </li>
     <li><a href="https://karting.blog/events/" target="_blank">Eventos</a></li>

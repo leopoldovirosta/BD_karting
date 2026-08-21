@@ -31,8 +31,6 @@ displayPageHeader("Ficha de Chasis");
 
                 <?php if ($tieneLogoReal): ?>
                     <img src="<?php echo $srcLogo; ?>" alt="Logo <?php echo $chasis->getValueEncoded('nombre_marca'); ?>" />
-                <?php else: ?>
-                    <img src="<?php echo $srcLogo; ?>" style="cursor: default;" />
                 <?php endif; ?>
             </p>
             <p class="nombre-marca"><?php echo $chasis->getValueEncoded("nombre_marca"); ?></p>
