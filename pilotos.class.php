@@ -158,6 +158,179 @@ class Piloto extends DataObject {
         }
     }
 
+    public static function getEstadisticasPiloto($idPiloto) {
+        $conn = parent::connect();
+        if (!$conn) return null;
+
+        // Subconsulta para eliminar duplicados por id_carrera
+        $sql = "SELECT 
+                    /* Total de carreras (mangas) únicas disputadas */
+                    COUNT(CASE WHEN id_carrera_tipo != 1 THEN 1 END) AS total_carreras,
+                    
+                    /* Victorias únicas (1 por evento/manga ganada) */
+                    SUM(CASE WHEN posicion = 1 AND id_carrera_tipo != 1 THEN 1 ELSE 0 END) AS victorias,
+                    
+                    /* Podios únicos */
+                    SUM(CASE WHEN posicion BETWEEN 1 AND 3 AND id_carrera_tipo != 1 THEN 1 ELSE 0 END) AS podios,
+                    
+                    /* Poles únicas */
+                    SUM(CASE WHEN posicion = 1 AND id_carrera_tipo = 1 THEN 1 ELSE 0 END) AS poles,
+                    
+                    /* Mejor posición obtenida */
+                    MIN(CASE WHEN id_carrera_tipo != 1 AND posicion > 0 THEN posicion END) AS mejor_resultado
+                FROM (
+                    -- Subconsulta que colapsa filas duplicadas de la misma carrera
+                    SELECT DISTINCT 
+                        id_carrera, 
+                        id_carrera_tipo, 
+                        posicion
+                    FROM " . VIEW_RESULTADOS . "
+                    WHERE id_piloto = :id_piloto
+                ) AS resultados_unicos";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_piloto", (int)$idPiloto, PDO::PARAM_INT);
+            $st->execute();
+            $stats = $st->fetch(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+        return $stats;
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getEstadisticasPiloto: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public static function getVictoriasPiloto($idPiloto) {
+        $conn = parent::connect();
+        if (!$conn) return [];
+
+        // Seleccionamos las carreras donde finalizó 1º (excluyendo la clasificación id_carrera_tipo = 1)
+        $sql = "SELECT DISTINCT 
+                    id_carrera,
+                    nombre_cto,
+                    nombre_circuito,
+                    fecha_carrera,
+                    nombre_carrera_tipo
+                FROM " . VIEW_RESULTADOS . "
+                WHERE id_piloto = :id_piloto 
+                AND posicion = 1 
+                AND id_carrera_tipo != 1
+                ORDER BY fecha_carrera DESC";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_piloto", (int)$idPiloto, PDO::PARAM_INT);
+            $st->execute();
+            $victorias = $st->fetchAll(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+            return $victorias;
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getVictoriasPiloto: " . $e->getMessage());
+            return [];
+        }
+    }
+
+public static function getPolesPiloto($idPiloto) {
+    $conn = parent::connect();
+    if (!$conn) return [];
+
+    // Seleccionamos las carreras donde fue 1º únicamente en la sesión de clasificación (id_carrera_tipo = 1)
+    $sql = "SELECT DISTINCT 
+                id_carrera,
+                nombre_cto,
+                nombre_circuito,
+                fecha_carrera
+            FROM " . VIEW_RESULTADOS . "
+            WHERE id_piloto = :id_piloto 
+              AND posicion = 1 
+              AND id_carrera_tipo = 1
+            ORDER BY fecha_carrera DESC";
+
+    try {
+        $st = $conn->prepare($sql);
+        $st->bindValue(":id_piloto", (int)$idPiloto, PDO::PARAM_INT);
+        $st->execute();
+        $poles = $st->fetchAll(PDO::FETCH_ASSOC);
+        parent::disconnect($conn);
+        return $poles;
+    } catch (PDOException $e) {
+        parent::disconnect($conn);
+        error_log("Error en getPolesPiloto: " . $e->getMessage());
+        return [];
+    }
+}
+
+    public static function getPodiosPiloto($idPiloto) {
+        $conn = parent::connect();
+        if (!$conn) return [];
+
+        // Seleccionamos las carreras únicas donde quedó 2º o 3º
+        $sql = "SELECT DISTINCT 
+                    id_carrera,
+                    nombre_cto,
+                    nombre_circuito,
+                    fecha_carrera,
+                    posicion
+                FROM " . VIEW_RESULTADOS . "
+                WHERE id_piloto = :id_piloto 
+                AND posicion IN (2, 3)
+                AND id_carrera_tipo != 1
+                ORDER BY fecha_carrera DESC";
+
+        try {
+            $st = $conn->prepare($sql);
+            $st->bindValue(":id_piloto", (int)$idPiloto, PDO::PARAM_INT);
+            $st->execute();
+            $podios = $st->fetchAll(PDO::FETCH_ASSOC);
+            parent::disconnect($conn);
+            return $podios;
+        } catch (PDOException $e) {
+            parent::disconnect($conn);
+            error_log("Error en getPodiosPiloto: " . $e->getMessage());
+            return [];
+        }
+    }
+
+public static function getEstadisticasPorTemporada($idPiloto) {
+    $conn = parent::connect();
+    if (!$conn) return [];
+
+    $sql = "SELECT 
+                YEAR(fecha_carrera) AS temporada,
+                COUNT(CASE WHEN id_carrera_tipo != 1 THEN 1 END) AS carreras,
+                SUM(CASE WHEN posicion = 1 AND id_carrera_tipo != 1 THEN 1 ELSE 0 END) AS victorias,
+                SUM(CASE WHEN posicion BETWEEN 1 AND 3 AND id_carrera_tipo != 1 THEN 1 ELSE 0 END) AS podios,
+                SUM(CASE WHEN posicion = 1 AND id_carrera_tipo = 1 THEN 1 ELSE 0 END) AS poles
+            FROM (
+                SELECT DISTINCT 
+                    id_carrera, 
+                    id_carrera_tipo, 
+                    posicion,
+                    fecha_carrera
+                FROM " . VIEW_RESULTADOS . "
+                WHERE id_piloto = :id_piloto
+            ) AS resultados_unicos
+            GROUP BY YEAR(fecha_carrera)
+            ORDER BY temporada DESC";
+
+    try {
+        $st = $conn->prepare($sql);
+        $st->bindValue(":id_piloto", (int)$idPiloto, PDO::PARAM_INT);
+        $st->execute();
+        $progresion = $st->fetchAll(PDO::FETCH_ASSOC);
+        parent::disconnect($conn);
+        return $progresion;
+    } catch (PDOException $e) {
+        parent::disconnect($conn);
+        error_log("Error en getEstadisticasPorTemporada: " . $e->getMessage());
+        return [];
+    }
+}
+
+
 
 
 

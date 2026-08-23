@@ -39,6 +39,19 @@ function formatearMedida($valor, $unidad = 'mm') {
     
     return '---';
 }
+
+function formatearFecha($fecha) {
+    if (empty($fecha) || $fecha === '0000-00-00') {
+        return '---';
+    }
+    
+    $date = new DateTime($fecha);
+    return $date->format('d-m-Y');
+}
+
+
+
+
 function displayPageHeader($pageTitle) {
 ?>
 
@@ -50,6 +63,7 @@ function displayPageHeader($pageTitle) {
         <link rel="stylesheet" type="text/css" href="common.css?v=<?php echo time(); ?>" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <header>

@@ -25,7 +25,7 @@ displayPageHeader("Lista de escuderías");
      <div class="tabla-controles">
         <div class="resultados-por-pagina">
             <label for="pageSize">Escuderías por página:</label>
-            <select name="pageSize" id="pageSize" onchange="this.form.submit()">
+            <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
                 <?php foreach (array(5, 10, 20, 50) as $value): ?>
                 <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
                         <?php echo $value ?>
@@ -37,7 +37,7 @@ displayPageHeader("Lista de escuderías");
             <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar escudería..." />
             <button type="submit" class="btn-nav">Buscar</button>
             <?php if (!empty($search)): ?>
-                <a href="view_escuderias.php" class="btn-nav">Limpiar filtro</a>
+                <a href="view_escuderias.php">Limpiar filtro</a>
             <?php endif; ?>
         </div>
      </div>
@@ -49,9 +49,9 @@ displayPageHeader("Lista de escuderías");
             <?php
             $columns = array(
                 "id_escuderia"      => "ID",
-                "logo_escuderia"    => "Logo",
-                "nombre_escuderia"  => "Marca",
                 "codigo_iso"        => "País",
+                "logo_escuderia"    => "Logo",
+                "nombre_escuderia"  => "Escuderia",
                 "web_escuderia"     => "Web"
             );
 
@@ -85,6 +85,16 @@ displayPageHeader("Lista de escuderías");
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
             <td><?php echo $escuderia->getValue('id_escuderia') ?></td>
+            <td class="text-center">
+                <?php
+                    $bandera = $escuderia->getValue("codigo_iso");
+                    if ($bandera && $bandera !== 'xx'):
+                ?>
+                    <span class="fi fi-<?php echo strtolower($escuderia->getValue("codigo_iso")); ?>"></span>
+                <?php else: ?>
+                    ---
+                <?php endif; ?>
+            </td>
             <td>
                 <?php 
                     $logoEscuderia = trim((string)$escuderia->getValue('logo_escuderia'));
@@ -99,16 +109,6 @@ displayPageHeader("Lista de escuderías");
                 <?php endif; ?>
             </td>
             <td><?php echo $escuderia->getValueEncoded("nombre_escuderia") ?></td>
-            <td class="text-center">
-                <?php
-                    $bandera = $escuderia->getValue("codigo_iso");
-                    if ($bandera && $bandera !== 'xx'):
-                ?>
-                    <span class="fi fi-<?php echo strtolower($escuderia->getValue("codigo_iso")); ?>"></span>
-                <?php else: ?>
-                    ---
-                <?php endif; ?>
-            </td>
             <td class="text-center">
                 <?php if ($escuderia->getValue('web_escuderia')): ?>
                     <a href="<?php echo htmlspecialchars($escuderia->getValue('web_escuderia')); ?>" target="_blank" rel="noopener noreferrer">Visitar</a>

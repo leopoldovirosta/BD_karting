@@ -6,7 +6,7 @@ JOIN escuderias e ON p.id_escuderia = e.id_escuderia
 JOIN patrocinadores pa ON p.id_patrocinador = pa.id_patrocinador;
 
 CREATE VIEW vista_escuderias AS
-SELECT e.id_escuderia, e.nombre_escuderia, e.logo_escuderia, e.web_escuderia, e.id_pais, p.nombre_pais, p.codigo_iso
+SELECT e.id_escuderia, e.nombre_escuderia, e.logo_escuderia, e.web_escuderia, e.id_pais, e.activa, p.nombre_pais, p.codigo_iso
 FROM escuderias e
 JOIN paises p ON e.id_pais = p.id_pais;
 

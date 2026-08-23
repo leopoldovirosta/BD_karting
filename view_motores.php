@@ -24,23 +24,28 @@ displayPageHeader("Lista de motores");
         <input type="hidden" name="order" value="<?php echo htmlspecialchars($order); ?>" />
         <input type="hidden" name="type" value="<?php echo htmlspecialchars($type); ?>" />
 
+    <div class="tabla-controles">
+      <div class="resultados-por-pagina">
         <label for="pageSize">Motores por página:</label>
-        <select name="pageSize" id="pageSize" onchange="this.form.submit()">
+        <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
             <?php foreach (array(5, 10, 20, 50) as $value): ?>
                <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
                     <?php echo $value ?>
                 </option>
             <?php endforeach; ?>
         </select>
-        <br><br>
+      </div>
+      <div class="buscador-box">
         <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar motores..." />
         <button type="submit" class="btn-nav">Buscar</button>
         <?php if (!empty($search)): ?>
-            <a href="view_motores.php" class="btn-nav">Limpiar filtro</a>
+            <a href="view_motores.php">Limpiar filtro</a>
         <?php endif; ?>
+      </div>
+    </div>
     </form>
-    <br>
-    <table>
+    <div class="table-responsive">
+      <table>
         <thead>
             <tr>
             <?php
@@ -148,8 +153,8 @@ displayPageHeader("Lista de motores");
     endforeach;
 ?>
         </tbody>
-    </table>
-
+      </table>
+    </div>
     <!-- PAGINACIÓN -->
     <div class="pagination-container">
         <p class="info-text">

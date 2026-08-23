@@ -28,7 +28,7 @@ class Carrera extends DataObject {
     );
 
 
-    public static function getCarreras($startRow, $numRows, $order) {
+    public static function getCarreras($startRow, $numRows, $order, $search = "") {
 
         $conn = parent::connect();
         if (!$conn) return [[], 0]; // Retorno consistente
@@ -36,11 +36,29 @@ class Carrera extends DataObject {
         // Limpieza de seguridad para el ORDER BY
         $order = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
         if (empty($order)) $order = "id_carrera ASC";
-        
+
+        // Lógica del buscador
+            $whereClause = "";
+            if (!empty($search)) {
+                // Buscamos en nombre o apellido
+                $whereClause = " WHERE (nombre_cto LIKE :search
+                                    OR nombre_circuito LIKE :search 
+                                    OR nombre_carrera_tipo LIKE :search
+                                    OR CAST(anio_edicion AS CHAR) LIKE :search
+                                    OR pista LIKE :search
+                                    OR dia LIKE :search)";
+            }
+
         try {
             // --- PRIMERA CONSULTA: Obtener el total de filas (COUNT) ---
-            $sqlCount = "SELECT COUNT(*) FROM " . VIEW_CARRERAS;
+            $sqlCount = "SELECT COUNT(*) FROM " . VIEW_CARRERAS . " $whereClause";
             $stCount = $conn->prepare($sqlCount);
+
+            // Si hay búsqueda, vinculamos el parámetro con comodines %
+            if (!empty($search)) {
+                $stCount->bindValue(":search", "%" . $search . "%", PDO::PARAM_STR);
+            }
+
             $stCount->execute();
             $totalRows = $stCount->fetchColumn();
 
@@ -51,9 +69,13 @@ class Carrera extends DataObject {
             }
 
             // --- SEGUNDA CONSULTA: Obtener los datos reales (SELECT *) ---
-            $sqlData = "SELECT * FROM " . VIEW_CARRERAS . " ORDER BY $order LIMIT :startRow, :numRows";
+            $sqlData = "SELECT * FROM " . VIEW_CARRERAS . " $whereClause ORDER BY $order LIMIT :startRow, :numRows";
             
             $stData = $conn->prepare($sqlData);
+            
+            if (!empty($search)) {
+                $stData->bindValue(":search", "%" . $search . "%", PDO::PARAM_STR);
+            }
             
             $stData->bindValue(":startRow", (int)$startRow, PDO::PARAM_INT);
             $stData->bindValue(":numRows", (int)$numRows, PDO::PARAM_INT);
@@ -221,7 +243,7 @@ class Carrera extends DataObject {
                 WHERE id_edicion = :id_edicion
                   AND ((fecha_carrera = :fecha_carrera AND id_carrera_tipo > :id_carrera_tipo)
                   OR (fecha_carrera > :fecha_carrera))
-                ORDER BY fecha_carrera ASC, id_Carrera_tipo ASC
+                ORDER BY fecha_carrera ASC, id_carrera_tipo ASC
                 LIMIT 1";
 
         try {

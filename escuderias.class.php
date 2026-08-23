@@ -24,7 +24,7 @@ class Escuderia extends DataObject {
         }
 
         // 2. Lógica del buscador (nombre de la escudería o nombre del país)
-        $whereClause = "";
+        $whereClause = " WHERE activa = 1";
         $hasSearch = !empty(trim($search));
         if ($hasSearch) {
             $whereClause = " WHERE (nombre_escuderia LIKE :search

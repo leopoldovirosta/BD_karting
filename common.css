@@ -64,6 +64,17 @@
         border-color: #004085;
     }
 
+    /* Estilo para los botones deshabilitados */
+    .btn-nav.deshabilitado,
+    .btn-nav:disabled {
+        opacity: 0.4;                     /* Aspecto apagado/grisáceo */
+        cursor: not-allowed;              /* Cursor de "prohibido" al pasar el ratón */
+        pointer-events: none;             /* Inhabilita cualquier evento de clic/hover */
+        box-shadow: none;                 /* Quita sombras si las hubiera */
+        background-color: #cccccc;        /* Color de fondo opcional para desactivado */
+        color: #666666;                   /* Color de texto opcional */
+    }
+
     .info-text {
         color: #666;
         font-size: 0.9em;
@@ -155,8 +166,9 @@
 
     /* CSS para tarjeta profesional vista piloto */
     /*--------------------------------------------------------------------------------*/
-    .card-piloto {
-        max-width: 800px;
+    .card-piloto,
+    .dashboard-piloto {
+        max-width: 1000px;
         margin: 40px auto;
         background: #fff;
         border-radius: 12px;
@@ -936,6 +948,97 @@
     .foto-ficha-container:hover img {
         transform: scale(1.08); /* Amplía la imagen un 8% */
     }
+
+
+
+    /* Resultados pilotos en Ficha Piloto */
+    /* ---------------------------------- */
+    .stats-container {
+        margin-top: 20px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .stats-container h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+
+    .stat-card {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+    font-weight: bold;
+        color: #212529;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: #6c757d;
+        text-transform: uppercase;
+        margin-top: 5px;
+    }
+
+    /* Destacados en color */
+    .stat-card.victoria .stat-value { color: #d97706; } /* Dorado */
+    .stat-card.podio .stat-value { color: #2563eb; }    /* Azul */
+    .stat-card.pole .stat-value { color: #16a34a; }     /* Verde */
+
+    /* Layout en 2 columnas */
+    .dashboard-piloto {
+        display: grid;
+        grid-template-columns: 1fr 4fr; /* Columna izquierda estrecha, derecha más ancha */
+        gap: 20px;
+        margin-top: 20px;
+        align-items: start; /* Mantiene la columna izquierda pegada arriba */
+    }
+
+    /* Apilado vertical en la columna derecha */
+    .columna-derecha {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Ajustes para tarjetas en columna izquierda */
+    .columna-izquierda .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* 2 columnas de tarjetas dentro del contenedor */
+        gap: 15px;
+    }
+
+    /* Opcional: Aumentar el padding interno de las tarjetas para darles más presencia */
+    .columna-izquierda .stat-card {
+        padding: 20px 15px;
+    }
+
+    /* Responsive: pasar a 1 sola columna en dispositivos móviles o pantallas estrechas */
+    @media (max-width: 900px) {
+        .dashboard-piloto {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
 
 
 </style>

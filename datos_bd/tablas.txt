@@ -17,7 +17,8 @@ CREATE TABLE escuderias (
     nombre_escuderia VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
     logo_escuderia VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
     web_escuderia VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    id_pais INT UNSIGNED NULL DEFAULT 1,
+    id_pais INT UNSIGNED NULL DEFAULT 2,
+    activa TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
     -- Clave Foránea (Relación con la tabla países)
     CONSTRAINT fk_escuderia_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
 
@@ -35,7 +36,8 @@ CREATE TABLE patrocinadores (
     nombre_patrocinador VARCHAR(50) COLLATE utf8mb4_spanish_ci NOT NULL,
     logo_patrocinador VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
     web_patrocinador VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
-    id_pais INT UNSIGNED NULL DEFAULT 1,
+    id_pais INT UNSIGNED NULL DEFAULT 2,
+    activa TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
     CONSTRAINT fk_patrocinador_pais FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,
 
     -- ÍNDICES Y RESTRICCIONES
@@ -196,7 +198,7 @@ CREATE TABLE pilotos (
     web_piloto VARCHAR(100) COLLATE utf8mb4_spanish_ci NULL,
     email_piloto VARCHAR(60) COLLATE utf8mb4_spanish_ci NULL,
     foto_piloto VARCHAR(255) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT 'default.webp',
-    id_pais INT UNSIGNED NOT NULL DEFAULT 1,
+    id_pais INT UNSIGNED NOT NULL DEFAULT 2,
     id_escuderia INT UNSIGNED NULL DEFAULT 1,
     id_patrocinador INT UNSIGNED NULL DEFAULT 1,
     CONSTRAINT fk_pais_pilotos FOREIGN KEY (id_pais) REFERENCES paises(id_pais) ON DELETE RESTRICT,

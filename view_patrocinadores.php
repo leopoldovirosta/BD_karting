@@ -25,7 +25,7 @@ displayPageHeader("Lista de patrocinadores");
     <div class="tabla-controles">
        <div class="resultados-por-pagina">
             <label for="pageSize">Patrocinadores por página:</label>
-            <select name="pageSize" id="pageSize" onchange="this.form.submit()">
+            <select name="pageSize" id="pageSize" class="form-control" onchange="this.form.submit()">
                 <?php foreach (array(5, 10, 20, 50) as $value): ?>
                 <option value="<?php echo $value ?>" <?php if ($pageSize == $value) echo 'selected="selected"' ?>>
                         <?php echo $value ?>
@@ -37,7 +37,7 @@ displayPageHeader("Lista de patrocinadores");
             <input type="text" name="search" value="<?php echo htmlspecialchars($search) ?>" placeholder="Buscar patrocinador..." />
             <button type="submit" class="btn-nav">Buscar</button>
             <?php if (!empty($search)): ?>
-                <a href="view_patrocinadores.php" class="btn-nav">Limpiar filtro</a>
+                <a href="view_patrocinadores.php">Limpiar filtro</a>
             <?php endif; ?>
        </div>
     </div>

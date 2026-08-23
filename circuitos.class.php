@@ -13,6 +13,7 @@ class Circuito extends DataObject {
         "localidad_circuito"    => "",
         "telefono_circuito"     => "",
         "id_pais"               => "",
+        "codigo_iso"            => "",
         "nombre_pais"           => "",
         "altitud"               => "",
         "longitud"              => "",

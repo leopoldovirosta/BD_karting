@@ -173,8 +173,28 @@ insert into paises(nombre_pais,codigo_iso) values('Vietnam','vn');
 insert into patrocinadores(nombre_patrocinador) values ('Privado');
 insert into patrocinadores(nombre_patrocinador,logo_patrocinador,web_patrocinador,id_pais) values ('Macisa Motorsports','macisa_logo.webp','https://macisamotorsport.es/',2);
 
-insert into escuderias(nombre_escuderia) values('Privado');
-insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia,id_pais) values('SRP Engines','srp-racingshop-logo.webp','https://www.srp-engines.com/',5);
+insert into escuderias(nombre_escuderia,activo) values('Privado',0);
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia,id_pais) values('Langreo motor club','langreo_motor_club.webp','https://www.langreomotorclub.com/',2);
+insert into escuderias(nombre_escuderia) values('Team Mellis');
+insert into escuderias(nombre_escuderia) values('LC Racing');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Aga Racing','aga_racing.webp','https://www.facebook.com/agaracing.store/?locale=es_ES');
+insert into escuderias(nombre_escuderia) values('Casacuberta racing');
+insert into escuderias(nombre_escuderia) values('Team First Racing');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('SLK Racing Academy','slk_racing_academy.webp','https://slkracing.com/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Kali Kart','kalikart.webp','https://www.kalikartracing.com/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('VEHILSXTREM','Vehils-Xtrem.webp','https://vehilsxtrem.com/');
+insert into escuderias(nombre_escuderia) values('D.Piñol Team');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Kids to Win','kids_to_win.webp','https://kids-to-win.com/');
+insert into escuderias(nombre_escuderia) values('Estopa Team');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('DG Motorsport','dg_motorsport.webp','https://www.instagram.com/dg_motorsport_oficial/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Bode Motorsport','bode_motorsport.webp','https://www.instagram.com/bodemotorsport/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Roandi Team','roandi_team.webp','https://roandi.com/es/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('GTP Motorsport Team','gtp_motorsport.webp','https://www.instagram.com/gtp_motorsport_team/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Gi Rental','girental.webp','https://www.gi-rental.com/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Lenzokart Spain by JL Lopez','lenzokart_by_jllopez.webp','https://www.instagram.com/lenzokart_spain_by_jl.lopez/');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('Eagle Racing Team Motorsport Club','eagle_racing_team.webp','https://www.instagram.com/eagleracingteam/?hl=es');
+insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia) values('ISB Kart Team TAG','isb_kart_team.webp','https://isbsport.com/tag/isb-kart-team/');
+
 
 
 insert into categorias(nombre_categoria,orden) values('Senior',8);
