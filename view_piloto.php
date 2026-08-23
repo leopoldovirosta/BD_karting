@@ -11,6 +11,18 @@ $sort_by   = isset($_GET['sort']) ? $_GET['sort'] : 'apellido_piloto';
 
 $piloto = Piloto::getPiloto($id);
 
+// Validar si el usuario viene de la lista de pilotos para guardar su URL exacta
+$url_volver = 'view_pilotos.php'; // URL por defecto
+
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    $referer = $_SERVER['HTTP_REFERER'];
+    
+    // Si la URL previa contiene 'view_pilotos.php', la usamos como destino
+    if (strpos($referer, 'view_pilotos.php') !== false) {
+        $url_volver = $referer;
+    }
+}
+
 // Cargar las estadísticas del piloto ACTUAL
 $stats = Piloto::getEstadisticasPiloto($id);
 
@@ -169,9 +181,11 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                                 <tr>
                                     <td><?php echo formatearFecha($vic['fecha_carrera']); ?></td>
                                     <td>
-                                        <?php echo htmlspecialchars($vic['nombre_cto']); ?>
+                                        <?php echo htmlspecialchars($vic['nombre_cto']) . " " . htmlspecialchars($vic['nombre_carrera_tipo']); ?>
                                     </td>
-                                    <td><?php echo htmlspecialchars($vic['nombre_circuito']); ?></td>
+                                    <td class="circuito-nombre" title="<?php echo htmlspecialchars($vic['nombre_circuito']); ?>">
+                                        <?php echo htmlspecialchars($vic['nombre_circuito']); ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -231,8 +245,10 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                                     </span>
                                 </td>
                                 <td><?php echo formatearFecha($podio['fecha_carrera']); ?></td>
-                                <td><?php echo htmlspecialchars($podio['nombre_cto']); ?></td>
-                                <td><?php echo htmlspecialchars($podio['nombre_circuito']); ?></td>
+                                <td><?php echo htmlspecialchars($podio['nombre_cto']) . " " . htmlspecialchars($podio['nombre_carrera_tipo']) ; ?></td>
+                                <td class="circuito-nombre" title="<?php echo htmlspecialchars($podio['nombre_circuito']); ?>">
+                                    <?php echo htmlspecialchars($podio['nombre_circuito']); ?>
+                                </td>    
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -310,7 +326,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
 
 <div class="contenedor-seccion-podios">
     <div class="info-item" style="grid-column: span 2;">
-        <a href="http://localhost:8080/view_pilotos.php" class="btn btn-nav">Volver</a>
+        <a href="<?php echo htmlspecialchars($url_volver); ?>" class="btn btn-nav">Volver al listado</a>
     </div>
 </div>
 

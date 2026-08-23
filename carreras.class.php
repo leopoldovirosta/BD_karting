@@ -145,6 +145,7 @@ class Carrera extends DataObject {
                             vr.foto_piloto,
                             vr.id_categoria,
                             vr.nombre_categoria,
+                            vr.orden,
                             vr.posicion,
                             vr.mejor_vuelta,
                             vr.comentario_posicion,
@@ -160,7 +161,7 @@ class Carrera extends DataObject {
                     ) AS sub
                 ) AS podios
                 WHERE ranking_cat <= 3
-                ORDER BY id_categoria ASC, ranking_cat ASC";
+                ORDER BY orden ASC, ranking_cat ASC";
 
         try {
             $st = $conn->prepare($sql);

@@ -8,6 +8,7 @@ class Escuderia extends DataObject {
         "nombre_escuderia"   => "",
         "logo_escuderia"     => "",
         "web_escuderia"      => "",
+        "activa"             => "",
         "id_pais"            => "",
         "nombre_pais"        => "",
         "codigo_iso"         => ""

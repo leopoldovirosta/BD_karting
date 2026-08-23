@@ -11,7 +11,7 @@ FROM escuderias e
 JOIN paises p ON e.id_pais = p.id_pais;
 
 CREATE VIEW vista_patrocinadores AS
-SELECT e.id_patrocinador, e.nombre_patrocinador, e.logo_patrocinador, e.web_patrocinador, e.id_pais, p.nombre_pais, p.codigo_iso
+SELECT e.id_patrocinador, e.nombre_patrocinador, e.logo_patrocinador, e.web_patrocinador, e.activa, e.id_pais, p.nombre_pais, p.codigo_iso
 FROM patrocinadores e
 JOIN paises p ON e.id_pais = p.id_pais;
 
@@ -69,6 +69,7 @@ SELECT
     vcar.id_edicion,
     vcar.anio_edicion,
     cat.nombre_categoria,
+    cat.orden,
     vcar.id_circuito,
     vcar.nombre_circuito,
     vcar.longitud,

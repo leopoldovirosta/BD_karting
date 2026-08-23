@@ -273,6 +273,7 @@ public static function getPolesPiloto($idPiloto) {
                     nombre_cto,
                     nombre_circuito,
                     fecha_carrera,
+                    nombre_carrera_tipo,
                     posicion
                 FROM " . VIEW_RESULTADOS . "
                 WHERE id_piloto = :id_piloto 

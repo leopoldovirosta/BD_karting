@@ -9,6 +9,18 @@ $id_carrera = isset($_GET["id_carrera"]) ? (int)$_GET["id_carrera"] : 0;
 $id_edicion = isset($_GET["id_edicion"]) ? (int)$_GET["id_edicion"] : 0;
 $carrera = Carrera::getCarrera($id_carrera, $id_edicion);
 
+// Validar si el usuario viene de la lista de carreras para guardar su URL exacta
+$url_volver = 'view_carreras.php'; // URL por defecto
+
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    $referer = $_SERVER['HTTP_REFERER'];
+    
+    // Si la URL previa contiene 'view_carreras.php', la usamos como destino
+    if (strpos($referer, 'view_carreras.php') !== false) {
+        $url_volver = $referer;
+    }
+}
+
 if (!$carrera) {
     displayPageHeader("Error");
     echo "<div>Carrera no encontrada.</div>";
@@ -241,7 +253,7 @@ $podiosPorCategoria = Carrera::getPodiosPorCategoria($id_carrera,$id_edicion);
     <?php endif; ?>
 
             <div class="info-item" style="grid-column: span 2;">
-               <a href="http://localhost:8080/view_carreras.php" class="btn btn-nav">Volver</a>
+                <a href="<?php echo htmlspecialchars($url_volver); ?>" class="btn btn-nav">Volver al listado</a>
             </div>
 </div>
 

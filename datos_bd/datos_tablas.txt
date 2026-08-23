@@ -170,10 +170,10 @@ insert into paises(nombre_pais,codigo_iso) values('Timor Oriental','tl');
 insert into paises(nombre_pais,codigo_iso) values('Vietnam','vn');
 
 
-insert into patrocinadores(nombre_patrocinador) values ('Privado');
+insert into patrocinadores(nombre_patrocinador,activa) values ('Privado',0);
 insert into patrocinadores(nombre_patrocinador,logo_patrocinador,web_patrocinador,id_pais) values ('Macisa Motorsports','macisa_logo.webp','https://macisamotorsport.es/',2);
 
-insert into escuderias(nombre_escuderia,activo) values('Privado',0);
+insert into escuderias(nombre_escuderia,activa) values('Privado',0);
 insert into escuderias(nombre_escuderia,logo_escuderia,web_escuderia,id_pais) values('Langreo motor club','langreo_motor_club.webp','https://www.langreomotorclub.com/',2);
 insert into escuderias(nombre_escuderia) values('Team Mellis');
 insert into escuderias(nombre_escuderia) values('LC Racing');
@@ -806,7 +806,7 @@ insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, c
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, peso, carburador, homologacion, foto_motor) values(16,'KK1','KZ',54,54.07,54.43,125,'Caja de laminas',5,'Digital',15000,'Caja de cambios de 6 velocidades','Agua','Arranque por empujon',18,'Dell Orto VHSH 30','1-M-21','modena_kk1.jpg');
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, peso, homologacion, url_homologacion, foto_motor) values(16,'ME-K','OK',53.93,54.07,54.40,125,'Caja de laminas',5,'Digital',16000,'Toma directa','Agua','Arranque por boton',8,'032-ES-17','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20EN-CA-SE-SI%20(2019-2021)/Aspa%20srl/Modena%20Engine_%20032-ES-17.pdf','modena_me-k.jpg');
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, peso, homologacion, url_homologacion, foto_motor) values(16,'ME-KJ','OKJ',53.93,54.07,54.40,125,'Caja de laminas',5,'Digital',14000,'Toma directa','Agua','Arranque por boton',8,'032-EJ-52','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20EN-CA-SE-SI%20(2019-2021)/Aspa%20srl/Modena%20Engine_032-EJ-52.pdf','modena_me-kj.jpg');
-insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, peso, homologacion, foto_motor) values(16,'ME-KN','OK',53.93,54.07,54.40,125,'Caja de laminas',5,'Digital',15000,'Toma directa','Agua','Arranque por boton',8,'032-EN-17','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20EN-CA-SE-SI%20%282023-2025%29/ASPA%20srl_Modena%20Engines/032-EN-17_Modena%20ME-KN_2022.pdf','modena_me-kn.jpg');
+insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, regimen_max_rpm, transmision, refrigeracion, starter, peso, homologacion, url_homologacion, foto_motor) values(16,'ME-KN','OK',53.93,54.07,54.40,125,'Caja de laminas',5,'Digital',15000,'Toma directa','Agua','Arranque por boton',8,'032-EN-17','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20EN-CA-SE-SI%20%282023-2025%29/ASPA%20srl_Modena%20Engines/032-EN-17_Modena%20ME-KN_2022.pdf','modena_me-kn.jpg');
 insert into motores (id_marca, modelo, descripcion, diametro, carrera, cilindrada, encendido, regimen_max_rpm, starter, carburador, potencia_max, foto_motor) values(21,'TPP-225RS','Cuatro tiempos',72,55,225,'Digital',6500,'Arranque por tirador','Tillotson FM-22',15,'tillotson_TPP-225RS.jpg');
 insert into motores (id_marca, modelo, descripcion, diametro, carrera, cilindrada, encendido, regimen_max_rpm, refrigeracion, starter, carburador, foto_motor) values(21,'TPP-212RS','Cuatro tiempos',70,55,212,'Digital',6000,'Aire','Arranque por tirador','Tillotson FM-22-3A','tillotson_212RS.jpg');
 insert into motores (id_marca, modelo, descripcion, cilindrada, regimen_max_rpm, refrigeracion, starter, foto_motor) values(21,'TPP-212CE','Cuatro tiempos',212,10000,'Aire','Arranque por tirador','tillotson_212CE.jpg');
@@ -962,8 +962,8 @@ insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocid
 
 
 insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');
-insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 1');
-insert into carreras_tipo(nombre_carrera_tipo) values('Carrera 2');
+insert into carreras_tipo(nombre_carrera_tipo) values('M1');
+insert into carreras_tipo(nombre_carrera_tipo) values('M2');
 
 
 insert into campeonatos(nombre_cto, id_pais) values('Campeonato Social Karting Aragon',2);

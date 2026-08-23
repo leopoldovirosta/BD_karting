@@ -8,6 +8,7 @@ class Patrocinador extends DataObject {
         "nombre_patrocinador"   => "",
         "logo_patrocinador"     => "",
         "web_patrocinador"      => "",
+        "activa"                => "",
         "id_pais"               => "",
         "nombre_pais"           => "",
         "codigo_iso"            => ""
@@ -24,7 +25,7 @@ class Patrocinador extends DataObject {
         }
 
         // 2. Lógica del buscador (nombre de la escudería o nombre del país)
-        $whereClause = "";
+        $whereClause = " WHERE activa = 1";
         $hasSearch = !empty(trim($search));
         if ($hasSearch) {
             $whereClause = " WHERE (nombre_patrocinador LIKE :search

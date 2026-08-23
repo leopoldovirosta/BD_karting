@@ -1,15 +1,37 @@
 <style>
     
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Forzamos a que el contenido principal ocupe todo el espacio disponible */
+    main.site-content {
+        flex: 1 0 auto;
+    }
+
+    /* Mantenemos el footer en el fondo sin encogerse */
+    footer {
+        flex-shrink: 0;
+    }
+    
     th {
-        background-color: green;
-        transition: all 0.2s;
-        text-align: center !important;
+        background-color: #f1f5f9; /* Cambiado a tono oscuro alineado al resto del tema */
+        color: #1e293b !important;
+        transition: all 0.2s ease;
+        padding: 10px;
     }
 
     th a {
-        background-color: #eae0e0;
+        background-color: transparent !important; /* Fondo transparente para integrar con th */
         text-decoration: none;
-        color: black;
+        color: #1e293b !important;
         display: flex !important;
         align-items: center !important;
         gap: 5px;
@@ -17,8 +39,14 @@
         justify-content: center !important;
     }
 
+    /* Cambia el fondo del encabezado completo al hacer hover */
+    th:hover {
+        background-color: #e2e8f0; /* Gris un poco más oscuro que el fondo claro base */
+        transition: background-color 0.2s ease;
+    }
+
     th a:hover {
-        color: #007bff;
+        color: #e10600;
     }
 
     .sort-icon {
@@ -28,11 +56,20 @@
 
     tr.alt td { background: #ddd; }
 
+    /* Aplicar a la celda o contenedor del nombre del circuito */
+    .circuito-nombre {
+        max-width: 180px;          /* Ajusta este ancho según tu tabla */
+        white-space: nowrap;        /* Evita que haga salto de línea */
+        overflow: hidden;           /* Oculta lo que sobresalga */
+        text-overflow: ellipsis;    /* Agrega "..." al final */
+        display: inline-block;
+        vertical-align: middle;
+    }
+
     /* Ajustar el espaciado interno de las celdas de la tabla */
     /* ------------------------------------------------------ */
     .tabla-resultados th, 
     .tabla-resultados td {
-        /* padding-left: 16px !important;  /* Relleno a la izquierda */
         padding-right: 15px !important; /* Relleno a la derecha */
     }
     

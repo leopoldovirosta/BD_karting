@@ -1,5 +1,4 @@
 <?php
-
 require_once "common.inc.php";
 require_once "config.php";
 require_once "pilotos.class.php";
