@@ -206,7 +206,7 @@ insert into categorias(nombre_categoria,orden) values('Rotax DD2',9);
 insert into categorias(nombre_categoria,orden) values('KZ',10);
 insert into categorias(nombre_categoria,orden) values('KZ Master',12);
 insert into categorias(nombre_categoria,orden,activa) values('KZ2',11,0);
-insert into categorias(nombre_categoria,orden) values('Tillotson T4',6);
+insert into categorias(nombre_categoria,orden) values('T4 Senior',6);
 insert into categorias(nombre_categoria,orden) values('Pre-Mini 64 Aire',2);
 insert into categorias(nombre_categoria,orden) values('Pre-Mini 60 Agua',1);
 
@@ -712,6 +712,8 @@ insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_e
 insert into chasis(id_marca, modelo_chasis, ano, homologacion) values(98,'Lycan','2011','79-CH-17');
 insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_ejes, eje_trasero, sistema_frenado, categoria_objetivo, ano, homologacion, foto_chasis) values(99,'SK1','Chrome Molybdenum Steel','32 mm','1040 mm','50x2x1040 mm','Hidraulico','KZ1/KZ2/KF1/KF2/KF3/Rotax','2015','85-CH-17','velox_SK1.webp');
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(100,'RS1','28/30 mm','1050 mm','KZ1/KZ2/KF1/KF2/KF3/Rotax','2012','95-CH-17','https://www.crkart.fr/chassis/liste/cik95ch17.pdf');
+insert into chasis(id_marca, modelo_chasis) values(1,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(2,'N/D');
 
 
 
@@ -849,6 +851,7 @@ insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, c
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, refrigeracion, carburador, homologacion, foto_motor) values(101,'L198','KZ',54.00,54.08,54.40,125,'Caja de laminas',5,'Electrónico','Caja de cambios de 6 velocidades','Agua','Dell Orto VHSH 30CS','201-M-06','sgm_L198.webp');
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, regimen_max_rpm, refrigeracion, carburador, foto_motor) values(101,'SL207','OK',54.00,54.08,54.40,125,'Caja de laminas',5,'Electrónico','Embrague centrífugo en seco',16000,'Agua','Dell Orto VHSH 30CS','sgm_sl207.webp');
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, refrigeracion, carburador, homologacion, foto_motor) values(101,'FE2003','Superkart',54.00,54.08,54.40,250,'Valvula rotativas',10,'Digital','Caja de cambios de 6 velocidades','Agua','2 x Dell Orto VHSB 39','27/SKM/09','sgm_fe2003.webp');
+insert into motores(id_marca, modelo) values(4,'N/D');
 
 
 
@@ -959,6 +962,8 @@ insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, 
 insert into ruedas(id_marca, modelo, compuesto, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, url_homo_front, url_homo_rear, foto_rueda) values(44,'CIK Prime 5 Slick','Prime','OK/KZ','4.5x10.0-5','7.1x11.0-5',200,'063-TP-06','063-TP-08','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20TYRES%20(2024-2026)/Shinko/Shinko%20063-TP-06.pdf','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20TYRES%20(2024-2026)/Shinko/Shinko%20063-TP-08.pdf','shinko_CIK_PRIME.webp');
 insert into ruedas(id_marca, modelo, tipo, categoria, tam_front, tam_rear, max_velocidad, homo_front, homo_rear, url_homo_front, url_homo_rear, foto_rueda) values(44,'CIK WET 5 Slick','Lluvia','OK/KZ','4.5x10.0-5','6.0x11.0-5',160,'063-TW-10','063-TW-12','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20TYRES%20(2024-2026)/Shinko/Shinko%20063-TW-10.pdf','https://www.fiakarting.com/sites/default/files/homologated/Hom.Forms%20TYRES%20(2024-2026)/Shinko/Shinko%20063-TW-12.pdf','shinko_CIK_WET.webp');
 insert into ruedas(id_marca, modelo, categoria, tam_front, tam_rear, max_velocidad, foto_rueda) values(44,'Mini Cadet Slick','Mini','4.0x10.0-5','5.0x11.0-5',160,'shinko_mini.webp');
+insert into ruedas(id_marca, modelo) values(30,'N/D');
+
 
 
 insert into carreras_tipo(nombre_carrera_tipo) values('Clasificacion');

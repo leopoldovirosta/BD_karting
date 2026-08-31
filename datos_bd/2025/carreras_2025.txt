@@ -15,6 +15,31 @@ insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, 
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',3,5);
 
 
+
+
+
+
+
+
+
+-- El Vendrell 2026
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,15,'Sureste','Seco',16,1,6);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,20,'Sureste',13,'Seco',16,2,6);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,5,'Sureste',14,'Seco',17,3,6);
+
+
+
+
+
+
+
+
+
+
+
+
+-- Camponatos Carreras
+
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,1);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,2);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,3);
@@ -33,3 +58,9 @@ insert into campeonatos_carreras(id_edicion, id_carrera) values(7,12);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,13);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,14);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,15);
+
+-- El Vendrell 2026
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,16);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,17);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,18);
+

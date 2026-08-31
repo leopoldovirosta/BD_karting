@@ -37,13 +37,14 @@ class Chasis extends DataObject {
         }
     
         // 2. Lógica del buscador (modelo o marca)
-        $whereClause = "";
+        $whereClause = "WHERE modelo_chasis != 'N/D' ";
         $hasSearch = !empty(trim($search));
         if ($hasSearch) {
-            $whereClause = " WHERE (modelo_chasis LIKE :search
+            $whereClause .= " AND (modelo_chasis LIKE :search
                                 OR nombre_marca LIKE :search
                                 OR categoria_objetivo LIKE :search
-                                OR ano LIKE :search)";
+                                OR ano LIKE :search
+                                )";
         }
 
         // 3. Consulta SQL con paginación
@@ -81,7 +82,7 @@ class Chasis extends DataObject {
             return array($list, (int)$totalRows);
 
             } catch (PDOException $e) {
-                parent::disconnect($iconn);
+                parent::disconnect($conn);
                 error_log("Error en getChasis: " . $e->getMessage());
                 return array([], 0);
             }

@@ -48,10 +48,10 @@ class Motor extends DataObject {
         }
     
         // 2. Lógica del buscador (modelo o marca)
-        $whereClause = "";
+        $whereClause = "WHERE modelo != 'N/D' ";
         $hasSearch = !empty(trim($search));
         if ($hasSearch) {
-            $whereClause = " WHERE (modelo LIKE :search
+            $whereClause .= " AND (modelo LIKE :search
                                 OR nombre_marca LIKE :search
                                 OR clase LIKE :search
                                 OR admision LIKE :search

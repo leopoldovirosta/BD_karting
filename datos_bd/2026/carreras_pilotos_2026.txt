@@ -1,0 +1,2 @@
+insert into resultados (id_carrera,id_piloto,id_chasis,id_motor,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(1,1,99,88,7,2,'00:1:05.181',6,8);
+

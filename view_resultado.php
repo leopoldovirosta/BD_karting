@@ -133,7 +133,7 @@ displayPageHeader("Detalles de la carrera");
             <span class="material-symbols-outlined">directions_car</span>
             <label>Modelo chasis</label>
             <div class="value">
-                <?php if (!empty($resultado->getValue('id_chasis')) && !empty($resultado->getValue('modelo_chasis'))): ?>
+                <?php if (!empty($resultado->getValue('id_chasis')) && !empty($resultado->getValue('modelo_chasis')) && strtoupper(trim($resultado->getValue('modelo_chasis'))) !== 'N/D'): ?>
                     <a href="view_chasi.php?id_chasis=<?php echo (int)$resultado->getValue('id_chasis'); ?>" target="_blank" rel="noopener noreferrer">
                     <?php echo mostrarValor($resultado->getValue('modelo_chasis')); ?>
                     </a>
@@ -151,7 +151,7 @@ displayPageHeader("Detalles de la carrera");
             <span class="material-symbols-outlined">settings</span>
             <label>Modelo motor</label>
             <div class="value">
-                <?php if (!empty($resultado->getValue('id_motor')) && !empty($resultado->getValue('modelo_motor'))): ?>
+                <?php if (!empty($resultado->getValue('id_motor')) && !empty($resultado->getValue('modelo_motor')) && strtoupper(trim($resultado->getValue('modelo_motor'))) !== 'N/D'): ?>
                     <a href="view_motor.php?id_motor=<?php echo (int)$resultado->getValue('id_motor'); ?>" target="_blank" rel="noopener noreferrer">
                     <?php echo mostrarValor($resultado->getValue('modelo_motor')); ?>
                     </a>
@@ -169,7 +169,7 @@ displayPageHeader("Detalles de la carrera");
             <span class="material-symbols-outlined">tire_repair</span>
             <label>Modelo ruedas</label>
             <div class="value">
-                <?php if (!empty($resultado->getValue('id_rueda')) && !empty($resultado->getValue('modelo_rueda'))): ?>
+                <?php if (!empty($resultado->getValue('id_rueda')) && !empty($resultado->getValue('modelo_rueda')) && strtoupper(trim($resultado->getValue('modelo_rueda'))) !== 'N/D'): ?>
                     <a href="view_rueda.php?id_rueda=<?php echo (int)$resultado->getValue('id_rueda'); ?>" target="_blank" rel="noopener noreferrer">
                     <?php echo mostrarValor($resultado->getValue('modelo_rueda')); ?>
                     </a>
