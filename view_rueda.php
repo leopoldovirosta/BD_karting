@@ -38,7 +38,7 @@ displayPageHeader("Ficha de rueda");
             <p class="nombre-marca"><?php echo $rueda->getValueEncoded("nombre_marca"); ?></p>
             <?php if ($rueda->getValueEncoded("pagina_web")): ?>
                 <p>
-                    <a href="<?php echo htmlspecialchars($rueda->getValue("pagina_web")); ?>" target="_blank">Visitar web</a>
+                    <a href="<?php echo htmlspecialchars($rueda->getValue("pagina_web")); ?>" target="_blank"><span class="material-symbols-outlined">web</span></a>
                 </p>
             <?php endif; ?>
         </div>
@@ -87,7 +87,7 @@ displayPageHeader("Ficha de rueda");
             <label>Ficha Técnica</label>
             <div class="value">
                 <?php if ($rueda->getValue("url_homo_front")): ?>
-                    <a href="<?php echo htmlspecialchars($rueda->getValue("url_homo_front")); ?>" target="_blank">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($rueda->getValue("url_homo_front")); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span></a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>
@@ -108,7 +108,7 @@ displayPageHeader("Ficha de rueda");
             <label>Ficha Técnica</label>
             <div class="value">
                 <?php if ($rueda->getValue("url_homo_rear")): ?>
-                    <a href="<?php echo htmlspecialchars($rueda->getValue("url_homo_rear")); ?>" target="_blank">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($rueda->getValue("url_homo_rear")); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span></a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>

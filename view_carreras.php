@@ -91,7 +91,8 @@ displayPageHeader("Lista de carreras");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_edicion=<?php echo $carrera->getValue("id_edicion")?>">Ver</a></td>
+            <td><a href="view_carrera.php?id_carrera=<?php echo $carrera->getValue('id_carrera') ?>&id_edicion=<?php echo $carrera->getValue("id_edicion")?>" title="Ver ficha de carrera">
+                <span class="material-symbols-outlined">assignment</span></a></td></a></td>
             <td><?php echo $carrera->getValueEncoded("nombre_cto") ?></td>
             <td><?php echo $carrera->getValueEncoded("anio_edicion") ?></td>
             <td><?php echo formatearFecha($carrera->getValueEncoded("fecha_carrera")); ?></td>

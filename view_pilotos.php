@@ -85,7 +85,8 @@ displayPageHeader("Lista de pilotos");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_piloto.php?id_piloto=<?php echo $piloto->getValue('id_piloto') ?>"><?php echo $piloto->getValue("id_piloto")?></a></td>
+            <td><a href="view_piloto.php?id_piloto=<?php echo $piloto->getValue('id_piloto') ?>" title="Ver ficha del piloto">
+            <span class="material-symbols-outlined">badge</span></a></td>
             <td>
                 <?php
                     $bandera = $piloto->getValue("codigo_iso");
@@ -102,15 +103,15 @@ displayPageHeader("Lista de pilotos");
                 $url = $piloto->getValueEncoded("web_piloto"); 
                 if (!empty($url)): // Si la URL no está vacía...
             ?>
-                    <td><a href="<?php echo $url ?>" target="_blank" alt="Página web">Visitar
-                    <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></td>
+                    <td class="text-center"><a href="<?php echo $url ?>" target="_blank" alt="Página web">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">web</span></a></td>
             <?php else: ?><td class="text-center">---</td>
             <?php endif; ?>
             <?php
                 $mail = $piloto->getValueEncoded("email_piloto"); 
                 if (!empty($mail)): // Si la URL no está vacía...
             ?>
-                <td><a href="mailto:<?php echo $mail ?>"><?php echo $mail ?></a></td>
+                <td class="text-center"><a href="mailto:<?php echo $mail ?>"><span class="material-symbols-outlined">alternate_email</span></a></td>
             <?php else: ?><td class="text-center">---</td>
             <?php endif; ?>
             

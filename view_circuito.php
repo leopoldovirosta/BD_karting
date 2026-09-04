@@ -37,7 +37,7 @@ displayPageHeader("Ficha del Circuito");
 
             <p class="nombre-oficial"><?php echo $circuito->getValue("direccion_circuito") . " (" . $circuito->getValue("localidad_circuito") .")" ?></p>
             <p class="nombre-oficial">Teléfono: <?php echo $circuito->getValue("telefono_circuito") ?></p>
-            <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank">Visitar</a></p>
+            <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank"><span class="material-symbols-outlined">web</span</a></p>
         </div>
         <div class="circuito-mapa">
             <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValue('silueta') ?: 'default.webp') ?>" alt="Mapa del trazado">

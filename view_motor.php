@@ -38,7 +38,7 @@ displayPageHeader("Ficha de Motor");
             <p class="nombre-marca"><?php echo $motor->getValueEncoded("nombre_marca"); ?></p>
             <?php if ($motor->getValueEncoded("pagina_web")): ?>
                 <p>
-                    <a href="<?php echo htmlspecialchars($motor->getValueEncoded("pagina_web")); ?>" target="_blank">Visitar web</a>
+                    <a href="<?php echo htmlspecialchars($motor->getValueEncoded("pagina_web")); ?>" target="_blank"><span class="material-symbols-outlined">web</span></a>
                 </p>
             <?php endif; ?>
         </div>
@@ -157,7 +157,7 @@ displayPageHeader("Ficha de Motor");
             <label>Ficha Técnica</label>
             <div class="value">
                 <?php if ($motor->getValue("url_homologacion")): ?>
-                    <a href="<?php echo htmlspecialchars($motor->getValue("url_homologacion")); ?>" target="_blank">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($motor->getValue("url_homologacion")); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span></a>
                 <?php else: ?>
                     <div class="value">---</div>
                 <?php endif; ?>

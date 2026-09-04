@@ -95,7 +95,7 @@ displayPageHeader("Lista de circuitos");
             $rowCount++;
     ?>
             <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-                <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValue('id_circuito') ?>"><?php echo $circuito->getValue("id_circuito")?></a></td>
+                <td><a href="view_circuito.php?id_circuito=<?php echo $circuito->getValue('id_circuito') ?>"><span class="material-symbols-outlined">assignment</span></a></td>
                 <td>
                     <?php
                         $bandera = $circuito->getValue("codigo_iso");
@@ -106,7 +106,7 @@ displayPageHeader("Lista de circuitos");
                 </td>
 
                 <td><?php echo $circuito->getValue("nombre_circuito") ?></td>
-                <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web">Visitar</a></td>
+                <td><a href="<?php echo $circuito->getValueEncoded('web_circuito') ?>" target="_blank" alt="Página web"><span class="material-symbols-outlined">web</span></a></td>
                 <td><?php echo $circuito->getValueEncoded("direccion_circuito") ?></td>
                 <td><?php echo $circuito->getValue("localidad_circuito") ?></td>
                 <td><?php echo $circuito->getValueEncoded("telefono_circuito") ?></td>

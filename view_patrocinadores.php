@@ -112,7 +112,7 @@ displayPageHeader("Lista de patrocinadores");
             </td>
             <td class="text-center">
                 <?php if ($patrocinador->getValue('web_patrocinador')): ?>
-                    <a href="<?php echo htmlspecialchars($patrocinador->getValue('web_patrocinador')); ?>" target="_blank" rel="noopener noreferrer">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($patrocinador->getValue('web_patrocinador')); ?>" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">web</span</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>

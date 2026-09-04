@@ -22,9 +22,6 @@ $pageSize = isset($_GET["pageSize"]) ? (int)$_GET["pageSize"] : PAGE_SIZE;
 // 3. OBTENER LOS DATOS PARA LOS DESPLEGABLES
 list($carreras_opt) = Carrera::getCarreras(0, 9999, "fecha_Carrera DESC");
 
-// Cargar las categorías para el desplegable
-$categorias_opt = Categoria::getCategorias();
-
 // Cargar las marcas de chasis y motor para el desplegable
 $chasis_opt = Marcas::getMarcaChasis();
 $motor_opt = Marcas::getMarcaMotor();
@@ -36,6 +33,7 @@ $motor_opt = Marcas::getMarcaMotor();
 $raw_carrera = $_GET['f_carrera'] ?? '';
 $id_carrera = 0;
 $id_edicion = 0;
+$id_campeonato = 0;
 
 // 2. Si viene el parámetro f_carrera con el formato "id_carrera-id_edicion"
 if (!empty($raw_carrera)) {
@@ -46,7 +44,19 @@ if (!empty($raw_carrera)) {
     } else {
         $id_carrera = (int)$raw_carrera;
     }
+
+    // AÑADIDO: Obtenemos el id_campeonato de esta carrera específica
+    if ($id_carrera > 0 && $id_edicion > 0) {
+        $objetoCarrera = Carrera::getCarrera($id_carrera, $id_edicion);
+        if ($objetoCarrera) {
+            $id_campeonato = (int)$objetoCarrera->getValue('id_cto');
+            $id_edicion    = (int)$objetoCarrera->getValue('id_edicion');
+        }
+    }
 }
+
+// Cargar las categorías filtradas dinámicamente según la carrera elegida
+$categorias_opt = Categoria::getCategorias($id_edicion, $id_campeonato);
 
 // 3. Mapeamos las entradas recibidas por GET
 $filtros = [
@@ -66,6 +76,24 @@ $f_categoria = $filtros['id_categoria'];
 $f_posicion  = $filtros['posicion'];
 $f_chasis    = $filtros['chasis'];
 $f_motor     = $filtros['motor'];
+
+// Comprobamos si la categoría seleccionada por GET sigue siendo válida dentro del subconjunto devuelto
+$categoriaValida = false;
+if (!empty($f_categoria) && !empty($categorias_opt)) {
+    foreach ($categorias_opt as $catCheck) {
+        $idCheck = is_object($catCheck) ? $catCheck->getValue('id_categoria') : ($catCheck['id_categoria'] ?? '');
+        if ((string)$idCheck === (string)$f_categoria) {
+            $categoriaValida = true;
+            break;
+        }
+    }
+    // Si cambio de carrera y la categoría anterior ya no pertenece a esta carrera, la limpiamos
+    if (!$categoriaValida) {
+        $f_categoria = '';
+        $filtros['id_categoria'] = '';
+    }
+}
+
 
 // 4. Consulta limpia a la base de datos
 list($lista_resultados, $totalRows) = Resultado::getResultadosFiltrados($start, $pageSize, $order . " " . $type, $filtros);
@@ -167,7 +195,7 @@ displayPageHeader("Lista de Resultados");
                             value="<?php echo htmlspecialchars($f_piloto); ?>">
                     </th>
 
-                    <!-- Filtro por Categoría -->
+                    <!-- Filtro por Categoría (DINÁMICO) -->
                     <th>
                         <select name="f_categoria" class="form-control form-control-sm" onchange="this.form.submit()">
                             <option value="">-- Todas --</option>
@@ -176,8 +204,9 @@ displayPageHeader("Lista de Resultados");
                                     <?php 
                                         $idCat  = is_object($cat) ? $cat->getValue('id_categoria') : ($cat['id_categoria'] ?? '');
                                         $nombre = is_object($cat) ? $cat->getValue('nombre_categoria') : ($cat['nombre_categoria'] ?? '');
+                                        $isSelected = ((string)$f_categoria === (string)$idCat && $f_categoria !== '') ? 'selected' : '';
                                     ?>
-                                    <option value="<?php echo htmlspecialchars((string)$idCat); ?>" <?php echo ((string)$f_categoria === (string)$idCat && $f_categoria !== '') ? 'selected' : ''; ?>>
+                                    <option value="<?php echo htmlspecialchars((string)$idCat); ?>" <?php echo $isSelected; ?>>
                                         <?php echo htmlspecialchars((string)$nombre); ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -251,7 +280,7 @@ displayPageHeader("Lista de Resultados");
                         <td class="text-center"><?php echo mostrarValor($r->getValueEncoded('marca_chasis')); ?></td>
                         <td class="text-center"><?php echo mostrarValor($r->getValueEncoded('marca_motor')); ?></td>
                         <td>
-                            <a href="view_resultado.php?id_resultado=<?php echo $r->getValue('id_resultado'); ?>&id_piloto=<?php echo $r->getValue('id_piloto'); ?>&id_edicion=<?php echo $r->getValue('id_edicion'); ?>" class="btn btn-sm btn-info">Ver</a>
+                            <a href="view_resultado.php?id_resultado=<?php echo $r->getValue('id_resultado'); ?>&id_piloto=<?php echo $r->getValue('id_piloto'); ?>&id_edicion=<?php echo $r->getValue('id_edicion'); ?>" class="btn btn-sm btn-info"><span class="material-symbols-outlined">assignment</span></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

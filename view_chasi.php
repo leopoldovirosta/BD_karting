@@ -36,7 +36,7 @@ displayPageHeader("Ficha de Chasis");
             <p class="nombre-marca"><?php echo $chasis->getValueEncoded("nombre_marca"); ?></p>
             <?php if ($chasis->getValueEncoded("pagina_web")): ?>
                 <p>
-                    <a href="<?php echo htmlspecialchars($chasis->getValue("pagina_web")); ?>" target="_blank">Visitar web</a>
+                    <a href="<?php echo htmlspecialchars($chasis->getValue("pagina_web")); ?>" target="_blank"><span class="material-symbols-outlined">web</span></a>
                 </p>
             <?php endif; ?>
         </div>
@@ -100,7 +100,7 @@ displayPageHeader("Ficha de Chasis");
             <label>Ficha Técnica</label>
             <div class="value">
                 <?php if ($chasis->getValue("url_homologacion")): ?>
-                    <a href="<?php echo htmlspecialchars($chasis->getValue("url_homologacion")); ?>" target="_blank">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($chasis->getValue("url_homologacion")); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span</a>
                 <?php else: ?>
                     <div class="value">---</div>
                 <?php endif; ?>

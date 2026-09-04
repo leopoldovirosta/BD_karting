@@ -99,7 +99,7 @@ insert into pilotos (nombre_piloto,apellido_piloto) values ('Cristian','Bueno');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Eliseo','Diez');
 insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Bogdan','Brie',15);
 
-insert into pilotos (nombre_piloto,apellido_piloto) values ('Joan','Sala García',2);
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Joan','Sala García');
 insert into pilotos (nombre_piloto,apellido_piloto,id_pais) values ('Stefano','Perseghin',28);
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Marçal','Creixans Clopes');
 insert into pilotos (nombre_piloto,apellido_piloto,id_pais) values ('Ricardo','Gasparin',28);
@@ -124,15 +124,30 @@ insert into pilotos (nombre_piloto,apellido_piloto) values ('Veyron','García');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Fran','Jr');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Denys','Hyritsenko');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Aarón','Melnynk');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('Pol','Casacuberta');
+insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Pol','Casacuberta',6);
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Romeo','Mies');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Aarón','Cortés');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('','');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Mario','Girones');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Adria','Povedano');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Adria','Parra');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Valentín','Hernandez');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Adam','Hamdoni');
+insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Emma','Aragón Volufer',10);
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Facundo','Facundo');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Roger','Bernal Aymerich');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Jan','Oro');
+insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Taya','Hawkins Rangihika',12);
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Santiago','Villate');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Quim','Pérez');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Ilyas','Bazi Rodríguez');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Uri','Dessereures');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Gerard','Bailo');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Lea','Hansen');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Iván','Van Egmond');
+insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Unai','Pineda González',21);
+insert into pilotos (nombre_piloto,apellido_piloto,id_pais,id_escuderia) values ('Zoe','Pavon',20,19);
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Oscar Andrés','Anello');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Ángel','Mestre Somoza');
 
 
 

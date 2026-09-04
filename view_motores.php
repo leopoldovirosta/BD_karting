@@ -96,7 +96,7 @@ displayPageHeader("Lista de motores");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_motor.php?id_motor=<?php echo $motor->getValue('id_motor') ?>"><?php echo $motor->getValue("id_motor")?></a></td>
+            <td><a href="view_motor.php?id_motor=<?php echo $motor->getValue('id_motor') ?>"><span class="material-symbols-outlined">assignment</span></a></td>
             <td>
                 <?php 
                     $logoMarca = trim((string)$motor->getValue('logo_marca'));
@@ -130,7 +130,7 @@ displayPageHeader("Lista de motores");
             <td class="text-center"><?php echo mostrarValor($motor->getValueEncoded("homologacion")); ?></td>
             <td class="text-center">
                 <?php if ($motor->getValue('url_homologacion')): ?>
-                    <a href="<?php echo htmlspecialchars($motor->getValue('url_homologacion')); ?>" target="_blank">Ficha</a>
+                    <a href="<?php echo htmlspecialchars($motor->getValue('url_homologacion')); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>

@@ -111,7 +111,7 @@ displayPageHeader("Lista de escuderías");
             <td><?php echo $escuderia->getValueEncoded("nombre_escuderia") ?></td>
             <td class="text-center">
                 <?php if ($escuderia->getValue('web_escuderia')): ?>
-                    <a href="<?php echo htmlspecialchars($escuderia->getValue('web_escuderia')); ?>" target="_blank" rel="noopener noreferrer">Visitar</a>
+                    <a href="<?php echo htmlspecialchars($escuderia->getValue('web_escuderia')); ?>" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">web</span</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>

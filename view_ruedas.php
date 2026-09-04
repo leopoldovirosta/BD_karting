@@ -94,7 +94,7 @@ displayPageHeader("Lista de ruedas");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_rueda.php?id_rueda=<?php echo $rueda->getValue('id_rueda') ?>"><?php echo $rueda->getValue("id_rueda")?></a></td>
+            <td><a href="view_rueda.php?id_rueda=<?php echo $rueda->getValue('id_rueda') ?>"><span class="material-symbols-outlined">assignment</span></a></td>
             <td>
                 <?php 
                     $logoMarca = trim((string)$rueda->getValue('logo_marca'));
@@ -125,7 +125,7 @@ displayPageHeader("Lista de ruedas");
             <td class="text-center"><?php echo mostrarValor($rueda->getValueEncoded("homo_front")); ?></td>
             <td class="text-center">
                 <?php if ($rueda->getValue('url_homo_front')): ?>
-                    <a href="<?php echo htmlspecialchars($rueda->getValue('url_homo_front')); ?>" target="_blank">Ficha</a>
+                    <a href="<?php echo htmlspecialchars($rueda->getValue('url_homo_front')); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>
@@ -134,7 +134,7 @@ displayPageHeader("Lista de ruedas");
             <td class="text-center"><?php echo mostrarValor($rueda->getValueEncoded("homo_rear")); ?></td>
             <td class="text-center">
                 <?php if ($rueda->getValue('url_homo_rear')): ?>
-                    <a href="<?php echo htmlspecialchars($rueda->getValue('url_homo_rear')); ?>" target="_blank">Ficha</a>
+                    <a href="<?php echo htmlspecialchars($rueda->getValue('url_homo_rear')); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span</a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>

@@ -92,7 +92,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                     $mail = $piloto->getValueEncoded("email_piloto");
                     if (!empty($mail)): // Si la URL no está vacía...
                 ?>
-                <span><a href="mailto:<?php echo $mail ?>" style="color: inherit; text-decoration: none;"><?php echo $mail ?></a></span>
+                <span><a href="mailto:<?php echo $mail ?>" style="color: inherit; text-decoration: none;"><span class="material-symbols-outlined">alternate_email</span></a></span>
                 <?php else: ?><td class="text-center">---</td>
                 <?php endif; ?>
             </div>
@@ -102,7 +102,7 @@ displayPageHeader("Ficha del Piloto: " . $piloto->getValueEncoded("nombre_piloto
                     $url = $piloto->getValueEncoded("web_piloto");
                     if (!empty($url)): // Si la URL no está vacía...
                 ?>
-                <span><a href="<?php echo $url ?>" style="color: inherit; text-decoration: none;" target="_blank">Visitar<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span></a></span>
+                <span><a href="<?php echo $url ?>" style="color: inherit; text-decoration: none;" target="_blank"><span class="material-symbols-outlined" style="font-size: 14px;">web</span></a></span>
                 <?php else: ?><td class="text-center">---</td>
                 <?php endif; ?>
             </div>

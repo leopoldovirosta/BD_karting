@@ -95,7 +95,7 @@ displayPageHeader("Lista de chasis");
         $rowCount++;
 ?>
         <tr<?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
-            <td><a href="view_chasi.php?id_chasis=<?php echo $chasi->getValue('id_chasis') ?>"><?php echo $chasi->getValue("id_chasis")?></a></td>
+            <td><a href="view_chasi.php?id_chasis=<?php echo $chasi->getValue('id_chasis') ?>"><span class="material-symbols-outlined">assignment</span></a></td>
             <td>
                 <?php 
                     $logoMarca = trim((string)$chasi->getValue('logo_marca'));
@@ -129,7 +129,7 @@ displayPageHeader("Lista de chasis");
             <td class="text-center"><?php echo mostrarValor($chasi->getValueEncoded("homologacion")); ?></td>
             <td class="text-center">
                 <?php if ($chasi->getValue('url_homologacion')): ?>
-                    <a href="<?php echo htmlspecialchars($chasi->getValueEncoded('url_homologacion')); ?>" target="_blank">Ficha</a>
+                    <a href="<?php echo htmlspecialchars($chasi->getValueEncoded('url_homologacion')); ?>" target="_blank"><span class="material-symbols-outlined">file_open</span></a>
                 <?php else: ?>
                     ---
                 <?php endif; ?>
