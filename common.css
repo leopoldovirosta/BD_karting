@@ -11,14 +11,109 @@
         min-height: 100vh;
     }
 
+    body.home-page {
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('images/fondo-inicio.webp');
+        background-size: cover;          /* Escala la imagen para cubrir toda la pantalla */
+        background-position: center;      /* Centra la imagen */
+        background-repeat: no-repeat;    /* Evita que la imagen se repita */
+        background-attachment: fixed;    /* Mantiene el fondo fijo al hacer scroll (opcional) */
+    }
+
+    nav {
+        position: relative;
+        z-index: 9999 !important;
+    }
+
+    /* Contenedor tipo tarjeta sobre la foto de fondo */
+    /* Pagina de Inicio */
+    /* ---------------------------------------------- */
+    .hero-card {
+        background: rgba(18, 18, 18, 0.40); /* Fondo oscuro semi-opaco para aislar el texto */
+        backdrop-filter: blur(8px);          /* Desenfoca la foto tras la tarjeta (muy útil) */
+        -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+        max-width: 700px;
+        margin: 60px auto;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1i !important;
+        text-align: center;
+    }
+
+    /* Ajustes de color para el texto dentro de la tarjeta */
+
+    .hero-card h1 {
+        color: #f0f0f0;
+        margin-bottom: 15px;
+        font-size: 2.2rem;
+    }
+
+    .hero-card p {
+        color: #ffffff;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    /* Adaptación para pantallas móviles */
+    @media (max-width: 768px) {
+        .hero-card {
+            margin: 20px 15px;
+            padding: 25px 18px;
+        }
+
+        .hero-card h1 {
+            font-size: 1.6rem;
+        }
+    }
+
+
     /* Forzamos a que el contenido principal ocupe todo el espacio disponible */
     main.site-content {
         flex: 1 0 auto;
+        position: relative;
+        z-index: 1 !important;
     }
 
-    /* Mantenemos el footer en el fondo sin encogerse */
+    /* CSS para el footer en el fondo sin encogerse */
     footer {
         flex-shrink: 0;
+
+        /* Fondo semi-transparente oscuro con desenfoque */
+        background: rgba(18, 18, 18, 0.40);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        /* Delimitación y sombra superior para separarlo del contenido */
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+
+        /* Espaciado y alineación */
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    /* Ajustes para el texto dentro del footer */
+    footer p {
+        margin: 0;
+        color: #e2e8f0;                       /* Blanco roto / Gris claro (suave) */
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Opcional: sombra leve para ganar legibilidad */
+    }
+
+    /* En caso de tener enlaces dentro del footer */
+    footer a {
+        color: #e10600;                       /* Rojo para los enlaces */
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
     }
     
     th {
@@ -279,6 +374,7 @@
         font-weight: bold;
     }
 
+
     /* Estilo base del contenedor de navegación */
     /*-------------------------------------------------*/
     .nav-links {
@@ -309,10 +405,11 @@
     .dropdown-content {
     display: none;
     position: absolute;
+    top: 100%;
     background-color: #2c3e50;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 10000 !important;
     }
 
     /* Enlaces dentro del desplegable */
@@ -520,44 +617,6 @@
     color: #ffffff;
     }
 
-    /* ==========================================================================
-    DISEÑO RESPONSIVE (Móviles y Tablets pequeñas)
-    ========================================================================== */
-    @media (max-width: 576px) {
-    .podium-container {
-        gap: 8px;
-        padding: 0;
-    }
-
-    .pilot-name { 
-        font-size: 0.8rem; 
-    }
-
-    .pilot-team, 
-    .pilot-time { 
-        font-size: 0.68rem; 
-    }
-
-    /* Reducimos ligeramente las alturas en móviles para ahorrar espacio vertical */
-    .step-1 .pedestal { height: 120px; }
-    .step-2 .pedestal { height: 85px; }
-    .step-3 .pedestal { height: 60px; }
-
-    .step-number { 
-        font-size: 1.8rem; 
-    }
-
-    .step-1 .pilot-avatar {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .pilot-avatar {
-        width: 55px;
-        height: 55px;
-    }
-    }
-
 
     /* Diseño de la seccion de circuito en vista circuito */
     /* ----------------------------------------------------- */
@@ -589,10 +648,10 @@
         font-weight: bold;
     }
 
-    .circuito-mapa img {
+    /*.circuito-mapa img {
         max-width: 250px;
         filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
-    }
+    }*/
 
     .circuito-grid {
         display: grid;
@@ -1076,6 +1135,386 @@
     }
 
 
+    /* ==========================================================================
+    ADAPTACIÓN RESPONSIVE PARA CARD-PILOTO
+    ========================================================================== */
+    @media (max-width: 768px) {
+        .card-piloto {
+            flex-direction: column; /* Cambia el layout horizontal a apilado vertical */
+            margin: 15px;           /* Reduce el margen exterior de 40px a 15px */
+            border-radius: 8px;     /* Suaviza esquinas para móviles */
+        }
+
+        .card-header-side {
+            width: 100%;            /* Ocupa todo el ancho */
+            padding: 25px 15px;     /* Reduce el relleno interno excesivo */
+            box-sizing: border-box;
+        }
+
+        .foto-perfil {
+            width: 110px;           /* Ajusta el tamaño de la foto */
+            height: 110px;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            width: 100%;            /* Ocupa todo el ancho */
+            padding: 20px 15px;     /* Reduce el relleno interno */
+            box-sizing: border-box;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr; /* Pasa de 2 columnas a 1 columna */
+            gap: 12px;
+        }
+    }
+
+
+    /* ==========================================================================
+    DISEÑO RESPONSIVE (Móviles y Tablets pequeñas)
+    ========================================================================== */
+    @media (max-width: 576px) {
+    .podium-container {
+        gap: 8px;
+        padding: 0;
+    }
+
+    .pilot-name { 
+        font-size: 0.8rem; 
+    }
+
+    .pilot-team, 
+    .pilot-time { 
+        font-size: 0.68rem; 
+    }
+
+    /* Reducimos ligeramente las alturas en móviles para ahorrar espacio vertical */
+    .step-1 .pedestal { height: 120px; }
+    .step-2 .pedestal { height: 85px; }
+    .step-3 .pedestal { height: 60px; }
+
+    .step-number { 
+        font-size: 1.8rem; 
+    }
+
+    .step-1 .pilot-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .pilot-avatar {
+        width: 55px;
+        height: 55px;
+    }
+    }
+
+
+
+    /* ==========================================================================
+    ADAPTACIÓN RESPONSIVE PARA DASHBOARD-PILOTO
+    ========================================================================== */
+    @media (max-width: 900px) {
+        .dashboard-piloto {
+            grid-template-columns: 1fr; /* Cambia de 2 columnas a 1 sola columna */
+            margin: 15px auto;          /* Reduce los márgenes exteriores */
+            gap: 15px;                  /* Reduce la separación entre bloques */
+        }
+
+        .columna-izquierda,
+        .columna-derecha {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Ajuste de tarjetas de estadísticas en móviles */
+        .columna-izquierda .stats-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas de métricas para optimizar espacio */
+            gap: 10px;
+        }
+
+        .stats-container {
+            padding: 15px; /* Relleno interno más compacto */
+        }
+
+        .stat-card {
+            padding: 10px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem; /* Reduce ligeramente el tamaño del número para evitar desbordamientos */
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+        }
+    }
+
+        /* Ajuste extra para móviles pequeños (smartphones verticales) */
+        @media (max-width: 480px) {
+            .columna-izquierda .stats-grid {
+                grid-template-columns: 1fr; /* Pasa a 1 sola métrica por fila en pantallas muy estrechas */
+            }
+    }
+
+    /* ==========================================================================
+    AJUSTE RESPONSIVE PARA TABLAS Y BLOQUE 2º Y 3º PUESTOS EN MÓVIL
+    ========================================================================== */
+
+    /* 1. Asegurar scroll horizontal suave si la tabla sobrepasa la pantalla */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 15px;
+    }
+
+    /* 2. Ajustes de tipografía y espaciado de tablas en pantallas pequeñas */
+    @media (max-width: 768px) {
+        .table-responsive table {
+            width: 100%;
+            font-size: 0.85rem; /* Reduce ligeramente la letra en móvil */
+        }
+
+        .table-responsive th, 
+        .table-responsive td {
+            padding: 8px 6px;   /* Reduce el relleno horizontal entre celdas */
+            white-space: normal; /* Permite que el texto haga salto de línea si es largo */
+            word-wrap: break-word;
+        }
+
+        /* Ajuste para la columna de Posición (P2, P3) */
+        .badge-posicion {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            display: inline-block;
+        }
+
+        /* Controlar ancho máximo de la columna de circuito/carrera */
+        .circuito-nombre {
+            max-width: 120px;
+            word-break: break-word;
+        }
+    }
+
+    /* ==========================================================================
+    ADAPTACIÓN RESPONSIVE DEL MENÚ PRINCIPAL
+    ========================================================================== */
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-wrap: wrap;             /* Permite que los elementos pasen a varias líneas */
+            justify-content: center;     /* Centra los botones en pantalla */
+        }
+
+        .nav-links li {
+            flex: 1 1 auto;              /* Permite que los botones ocupen el espacio disponible */
+            text-align: center;
+        }
+
+        .nav-links li a, 
+        .dropbtn {
+            padding: 10px 12px;          /* Reduce ligeramente el padding para ahorrar espacio */
+            font-size: 0.9rem;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Adaptación del menú desplegable de Anexos en móvil */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%); /* Centra el desplegable con respecto al botón */
+            width: 180px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-content a {
+            background-color: #2c3e50;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .dropdown-content a:hover {
+        background-color: #e10600;
+        color: white;
+        }
+
+        /* Soporte para apertura mediante toque táctil en móviles */
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+    }
+
+
+    /* ==========================================================================
+    DISEÑO MODERNO: MURO DE LOS CAMPEONES
+    ========================================================================== */
+    .muro-campeones-section {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px 20px;
+        margin: 30px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #eef2f5;
+    }
+
+    .muro-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .muro-header .emoji-trophy {
+        font-size: 2.5rem;
+        color: #f59e0b;
+        background: #fef3c7;
+        padding: 12px;
+        border-radius: 50%;
+        margin-bottom: 8px;
+    }
+
+    .muro-header h2 {
+        margin: 5px 0;
+        color: #1e293b;
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .muro-header p {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    /* Grid contenedor de campeones */
+    .muro-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 200px));
+        gap: 20px;
+        justify-content: center;
+        align-content: center;
+    }
+
+    /* Tarjeta individual de piloto */
+    .campeon-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 18px 12px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .campeon-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        background: #ffffff;
+    }
+
+    /* Destacado para el máximo ganador (primer lugar) */
+    .campeon-card.lider-absoluto {
+        border: 2px solid #f59e0b;
+        background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+    }
+
+    /* Foto y Badge de victorias */
+    .campeon-foto-wrapper {
+        position: relative;
+        width: 90px;
+        height: 90px;
+        margin-bottom: 12px;
+    }
+
+    .campeon-foto {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .badge-victorias {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background: #1e293b;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-victorias .material-symbols-outlined {
+        font-size: 0.85rem;
+        color: #f59e0b;
+    }
+
+    /* Nombre del piloto y datos */
+    .campeon-info {
+        width: 100%;
+    }
+
+    .campeon-nombre {
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        display: block;
+        line-height: 1.3;
+        margin-bottom: 4px;
+        transition: color 0.2s ease;
+    }
+
+    .campeon-nombre:hover {
+        color: #e10600;
+    }
+
+    .campeon-subtext {
+        font-size: 0.8rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    /* ==========================================================================
+    ADAPTACIÓN RESPONSIVE PARA MÓVILES
+    ========================================================================== */
+    @media (max-width: 600px) {
+        .muro-grid {
+            grid-template-columns: repeat(2, 1fr); /* Muestra 2 tarjetas por fila en móviles */
+            gap: 12px;
+        }
+
+        .muro-campeones-section {
+            padding: 20px 12px;
+        }
+
+        .campeon-card {
+            padding: 14px 8px;
+        }
+
+        .campeon-foto-wrapper {
+            width: 75px;
+            height: 75px;
+        }
+
+        .campeon-nombre {
+            font-size: 0.85rem;
+        }
+    }
 
 
 </style>

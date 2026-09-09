@@ -510,9 +510,6 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,posicion) value
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,posicion,comentario_posicion) values(15,33,6,10,3,'DNF');
 
 
--- El Vendrell Clasificacion
-
---insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,posicion,mejor_vuelta,id_chasis,id_motor) values(13,1,7,133,'00:00:47.590',4,11,29);
 
 
 

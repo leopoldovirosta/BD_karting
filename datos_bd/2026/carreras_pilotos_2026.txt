@@ -1,2 +1,6 @@
+-- El Vendrell Clasificacion
+
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,posicion,mejor_vuelta,id_chasis,id_motor) values(13,1,7,133,'00:00:47.590',4,11,29);
+
 insert into resultados (id_carrera,id_piloto,id_chasis,id_motor,id_categoria,dorsal,mejor_vuelta,num_vueltas_completadas,posicion) values(1,1,99,88,7,2,'00:1:05.181',6,8);
 

@@ -37,10 +37,10 @@ displayPageHeader("Ficha del Circuito");
 
             <p class="nombre-oficial"><?php echo $circuito->getValue("direccion_circuito") . " (" . $circuito->getValue("localidad_circuito") .")" ?></p>
             <p class="nombre-oficial">Teléfono: <?php echo $circuito->getValue("telefono_circuito") ?></p>
-            <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank"><span class="material-symbols-outlined">web</span</a></p>
+            <p class="nombre-oficial"><a href="<?php echo $circuito->getValue("web_circuito") ?>" target="_blank"><span class="material-symbols-outlined">web</span></a></p>
         </div>
-        <div class="circuito-mapa">
-            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValue('silueta') ?: 'default.webp') ?>" alt="Mapa del trazado">
+        <div class="foto-ficha-container">
+            <img src="<?php echo IMAGE_CIRCUITO_DIRECTORY . ($circuito->getValue('silueta') ?: 'default.webp') ?>" onclick="openModal(this.src, this.alt)" alt="Mapa del trazado">
         </div>
     </div>
 
@@ -100,28 +100,51 @@ displayPageHeader("Ficha del Circuito");
     </div>
     <?php endif; ?>
 
-    <?php       
+
+<?php       
     $ganadores = Resultado::getEstadisticasGanadores($id);
-    if (count($ganadores) > 0):
+    if (!empty($ganadores)):
     ?>  
-                
-    <div class="contenedor-seccion-podios">
-        <h2 class="text-center">Muro de los Campeones</h2>
-        <div class="podium-container">
-            <?php foreach ($ganadores as $g): ?>
-                <div class="pilot-card">
-                    <div>
-                        <img src="images/pilotos/<?php echo $g['foto_piloto'] ?: 'default.webp' ?>"
-                            class="foto-perfil">
-                        <h2><?php echo $g['victorias'] ?><span class="material-symbols-outlined">emoji_events</span></h2> 
-                        <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" class="enlace-piloto" target="_blank" rel="noopener noreferrer"><?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']) ?></a>
+    <div class="muro-campeones-section">
+        <div class="muro-header">
+            <span class="material-symbols-outlined emoji-trophy">emoji_events</span>
+            <h2>Muro de los Campeones</h2>
+            <p>Pilotos con más victorias en este circuito</p>
+        </div>
+        
+        <div class="muro-grid">
+            <?php foreach ($ganadores as $index => $g): 
+                $foto = !empty($g['foto_piloto']) ? $g['foto_piloto'] : 'default.webp';
+                $victorias = (int)$g['victorias'];
+            ?>
+                <div class="campeon-card <?php echo ($index === 0) ? 'lider-absoluto' : ''; ?>">
+                    <div class="campeon-foto-wrapper">
+                        <img src="<?php echo IMAGE_PILOT_DIRECTORY . htmlspecialchars($foto); ?>" 
+                             alt="<?php echo htmlspecialchars($g['nombre_piloto'] . ' ' . $g['apellido_piloto']); ?>" 
+                             class="campeon-foto" />
+                        <span class="badge-victorias" title="<?php echo $victorias; ?> victorias">
+                            <?php echo $victorias; ?> <span class="material-symbols-outlined">emoji_events</span>
+                        </span>
+                    </div>
+                    
+                    <div class="campeon-info">
+                        <a href="view_piloto.php?id_piloto=<?php echo (int)$g['id_piloto']; ?>" 
+                           class="campeon-nombre" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <?php echo htmlspecialchars($g['nombre_piloto'] . " " . $g['apellido_piloto']); ?>
+                        </a>
+                        <span class="campeon-subtext">
+                            <?php echo $victorias === 1 ? '1 Victoria' : $victorias . ' Victorias'; ?>
+                        </span>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-
     </div>
     <?php endif; ?>
+
+
     <div>
             <a href="view_circuitos.php" class="btn btn-nav">&larr; Volver al listado de circuitos</a>
     </div>

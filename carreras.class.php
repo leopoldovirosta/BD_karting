@@ -35,7 +35,7 @@ class Carrera extends DataObject {
         
         // Limpieza de seguridad para el ORDER BY
         $order = preg_replace("/[^a-zA-Z0-9\s_]/", "", $order);
-        if (empty($order)) $order = "id_carrera ASC";
+        if (empty($order)) $order = "fecha_carrera ASC";
 
         // Lógica del buscador
             $whereClause = "";

@@ -40,7 +40,9 @@ function formatearFecha($fecha) {
 
 
 
-function displayPageHeader($pageTitle) {
+function displayPageHeader($pageTitle, $bodyClass = '') {
+    // Si se le pasa una clase, la preparamos para el HTML
+    $classAttr = !empty($bodyClass) ? ' class="' . htmlspecialchars($bodyClass, ENT_QUOTES, 'UTF-8') . '"' : '';
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +56,14 @@ function displayPageHeader($pageTitle) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
-    <body>
+    <body<?php echo $classAttr; ?>>
     <nav>
         <ul class="nav-links">
+            <li>
+                <a href="index.php" title="Inicio" class="nav-icon-link">
+                    <span class="material-symbols-outlined">home</span>
+                </a>
+            </li>
             <li><a href="view_pilotos.php">Pilotos</a></li>
             <li><a href="view_carreras.php">Carreras</a></li>
             <li><a href="view_resultados.php">Resultados</a></li>
@@ -118,6 +125,24 @@ function displayPageHeader($pageTitle) {
                 modal.style.display = "none";
             }
         }    
+
+        // Activar el menú desplegable en dispositivos táctiles/móviles
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropBtn = document.querySelector(".dropbtn");
+            var dropdown = document.querySelector(".dropdown");
+
+            if (dropBtn && dropdown) {
+                dropBtn.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    dropdown.classList.toggle("active");
+                });
+
+                // Cerrar desplegable al tocar fuera
+                document.addEventListener("click", function() {
+                    dropdown.classList.remove("active");
+                });
+            }
+        });
 
     </script>
 
