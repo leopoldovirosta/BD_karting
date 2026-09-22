@@ -71,7 +71,7 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,po
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,91,12,99,'00:1:13.434',1);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,92,12,99,'00:1:13.808',2);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,93,12,19,'00:1:14.062',3);
-insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,94,11,114,'00:1:14.610',2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,94,11,114,'00:1:14.610',1);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,95,2,16,'00:1:15.636',5);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,96,3,10,'00:1:15.844',4);
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,mejor_vuelta,posicion) values(1,97,12,600,'00:1:15.952',4);
