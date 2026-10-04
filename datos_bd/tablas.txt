@@ -326,6 +326,7 @@ CREATE TABLE resultados (
     id_carrera INT UNSIGNED NOT NULL,
     id_piloto INT UNSIGNED NOT NULL,
     id_categoria INT UNSIGNED NOT NULL,
+    subcategoria VARCHAR(20) COLLATE utf8mb4_spanish_ci NULL,
     dorsal SMALLINT UNSIGNED NULL,
     posicion TINYINT UNSIGNED NOT NULL,
     comentario_posicion ENUM('OK', 'DNF', 'DSQ', 'DNS', 'EXC') COLLATE utf8mb4_spanish_ci DEFAULT 'OK',

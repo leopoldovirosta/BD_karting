@@ -15,6 +15,7 @@ class Resultado extends DataObject {
         // Campeonato / Edición / Categoría
         "id_categoria"          => "",
         "nombre_categoria"      => "",
+        "subcategoria"          => "",
         "id_edicion"            => "",
         "anio_edicion"          => "",
         "id_cto"                => "",

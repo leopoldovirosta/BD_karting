@@ -63,6 +63,7 @@ SELECT
     r.id_resultado,
     r.id_carrera,
     r.id_categoria,
+    r.subcategoria,
     vcar.fecha_carrera,
     vcar.id_carrera_tipo,
     vcar.nombre_carrera_tipo,

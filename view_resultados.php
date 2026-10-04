@@ -274,7 +274,11 @@ displayPageHeader("Lista de Resultados");
                 ?>
                     <tr <?php if ($rowCount % 2 == 0) echo " class='alt'" ?>>
                         <td><?php echo $r->getValueEncoded('nombre_circuito'); ?></td>
-                        <td><?php echo $r->getValueEncoded('nombre_piloto') . ' ' . $r->getValueEncoded('apellido_piloto'); ?></td>
+                        <td><?php echo $r->getValueEncoded('nombre_piloto') . ' ' . $r->getValueEncoded('apellido_piloto');
+                            if (!empty($r->getValueEncoded('subcategoria'))): ?>
+                                <span class="badge-master">Master</span>
+                            <?php endif; ?>
+                        </td>
                         <td><?php echo $r->getValueEncoded('nombre_categoria'); ?></td>
                         <td><?php echo $r->getValueEncoded('posicion'); ?></td>
                         <td class="text-center"><?php echo mostrarValor($r->getValueEncoded('marca_chasis')); ?></td>
