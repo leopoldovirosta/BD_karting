@@ -3,7 +3,7 @@
 require_once 'common.inc.php'; 
 
 // Renderiza el encabezado
-displayPageHeader("Inicio - Base de Datos", "home-page");
+displayPageHeader("Karting database", "home-page");
 ?>
 <div class="hero-card">
     <div style="padding: 20px;">

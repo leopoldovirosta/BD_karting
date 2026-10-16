@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <clipPath id="r"><rect width="64" height="64" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="64" height="64" fill="#1e5bd8"/>
+    <!-- banda de meta a cuadros -->
+    <g fill="#ffffff">
+      <rect x="0"  y="48" width="8" height="8"/>
+      <rect x="16" y="48" width="8" height="8"/>
+      <rect x="32" y="48" width="8" height="8"/>
+      <rect x="48" y="48" width="8" height="8"/>
+      <rect x="8"  y="56" width="8" height="8"/>
+      <rect x="24" y="56" width="8" height="8"/>
+      <rect x="40" y="56" width="8" height="8"/>
+      <rect x="56" y="56" width="8" height="8"/>
+    </g>
+  </g>
+  <!-- K cursiva: palo recto + dos brazos curvos de circuito -->
+  <g transform="translate(4 0) skewX(-8)" fill="none">
+    <!-- asfalto de los brazos -->
+    <path d="M47 8 C41 16 33 22 21 25.5" stroke="#ffffff" stroke-width="9"/>
+    <path d="M21 25.5 C33 29 41 35 47 41" stroke="#ffffff" stroke-width="9"/>
+    <!-- línea central discontinua -->
+    <path d="M47 8 C41 16 33 22 21 25.5" stroke="#1e5bd8" stroke-width="1.4" stroke-dasharray="3 3"/>
+    <path d="M21 25.5 C33 29 41 35 47 41" stroke="#1e5bd8" stroke-width="1.4" stroke-dasharray="3 3"/>
+    <!-- palo de la K -->
+    <path d="M18 8 V41" stroke="#ffffff" stroke-width="9"/>
+  </g>
+</svg>

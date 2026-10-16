@@ -54,6 +54,9 @@ function displayPageHeader($pageTitle, $bodyClass = '') {
         <link rel="stylesheet" type="text/css" href="common.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+        <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/images/favicon.ico" sizes="any">
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body<?php echo $classAttr; ?>>
