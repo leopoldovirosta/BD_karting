@@ -52,7 +52,7 @@ displayPageHeader("Ficha de carrera: " . $carrera->getValueEncoded("fecha_carrer
     <div class="card-header-side">
     <div style="font-size: 3rem; margin-bottom: 10px;">🏁</div>
         <h3><?php echo $carrera->getValueEncoded("anio_edicion") ?></h3>
-        <h3><?php echo $carrera->getValueEncoded("fecha_carrera") ?></h3>
+        <h3><?php echo formatearFecha($carrera->getValueEncoded("fecha_carrera")) ?></h3>
         <p style="color: #3498db; font-weight: bold;"><?php echo $carrera->getValueEncoded("nombre_circuito") ?></p>
         <div class="badge-pista" style="margin-top: 20px; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px;">
             <?php echo $carrera->getValueEncoded("pista") ?>

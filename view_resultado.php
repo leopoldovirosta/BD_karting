@@ -47,7 +47,7 @@ displayPageHeader("Detalles de la carrera");
         <div class="data-item">
             <span class="material-symbols-outlined">calendar_month</span>
             <label>Fecha</label>
-            <div class="value"><?php echo $resultado->getValueEncoded("fecha_carrera") ?></div>
+            <div class="value"><?php echo formatearFecha($resultado->getValueEncoded("fecha_carrera")) ?></div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">calendar_month</span>

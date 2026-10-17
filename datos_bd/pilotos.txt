@@ -113,7 +113,7 @@ insert into pilotos (nombre_piloto,apellido_piloto) values ('Aray','Guillen Fern
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Rene','Waree');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Carlos','Freixes');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Hugo','Navas');
-insert into pilotos (nombre_piloto,apellido_piloto) values ('Adriano','Gómez');
+insert into pilotos (nombre_piloto,apellido_piloto) values ('Abel Adriano','Gómez');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Aleix','Vivanco');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Mouad','Mouad');
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Juan Pablo','Martínez');
