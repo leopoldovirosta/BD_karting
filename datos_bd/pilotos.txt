@@ -100,7 +100,7 @@ insert into pilotos (nombre_piloto,apellido_piloto) values ('Eliseo','Diez');
 insert into pilotos (nombre_piloto,apellido_piloto,id_escuderia) values ('Bogdan','Brie',15);
 
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Joan','Sala García');
-insert into pilotos (nombre_piloto,apellido_piloto,id_pais) values ('Stefano','Perseghin',28);
+insert into pilotos (nombre_piloto,apellido_piloto,id_pais) values ('Stefano','Perseguin',28);
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Marçal','Creixans Clopes');
 insert into pilotos (nombre_piloto,apellido_piloto,id_pais) values ('Ricardo','Gasparin',28);
 insert into pilotos (nombre_piloto,apellido_piloto) values ('Thiago','Pais');

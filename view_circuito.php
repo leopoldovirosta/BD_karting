@@ -90,7 +90,7 @@ displayPageHeader("Ficha del Circuito");
             <div class="time-main"><?php echo $tiempo_limpio; ?></div>
             <div class="driver-info">
                 <span class="driver-name"><?php echo $record['nombre_piloto'] . " " . $record['apellido_piloto'] ?></span>
-                <span class="record-date"><?php echo $record['fecha_carrera'] ?></span>
+                <span class="record-date"><?php echo formatearFecha($record['fecha_carrera'])?></span>
             </div>
         </div>
         <div class="avg-speed-tag">
