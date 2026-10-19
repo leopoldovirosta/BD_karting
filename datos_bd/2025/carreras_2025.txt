@@ -1,32 +1,18 @@
-insert into carreras(fecha_carrera, dia, pista, temperatura, humedad, presion, viento, orientacion, id_carrera_tipo, id_circuito) values('2025/03/30','Parcialmente nublado','Seco',14,59,1016,19,'Oeste',1,1);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/03/30','Parcialmente nublado',14,59,1016,19,'Oeste',13,'Seco',2,1);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/03/30','Parcialmente nublado',14,59,1016,19,'Oeste',13,'Seco',3,1);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025/04/27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste','Seco',1,4);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/04/27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste',17,'Seco',2,4);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/04/27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste',17,'Seco',3,4);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025/06/08','Despejado',31,38,1014,14,'Sureste','Seco',1,3);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/06/08','Despejado',31,38,1014,14,'Sureste',15,'Seco',2,3);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/06/08','Despejado',31,38,1014,14,'Sureste',15,'Seco',3,3);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025/10/19','Despejado',22,52,1017,11,'Oeste/Noroeste','Seco',1,2);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/10/19','Despejado',22,52,1017,11,'Oeste/Noroeste',13,'Seco',2,2);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/10/19','Despejado',22,52,1017,11,'Oeste/Noroeste',15,'Seco',3,2);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste','Seco',1,5);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',2,5);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025/11/23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',3,5);
-
--- El Vendrell 2026
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,15,'Sureste','Seco',16,1,6);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,20,'Sureste',13,'Seco',16,2,6);
-insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026/02/08','Parcialmente nublado',14,80,1008,5,'Sureste',14,'Seco',17,3,6);
-
-
-
-
-
-
-
-
-
+insert into carreras(fecha_carrera, dia, pista, temperatura, humedad, presion, viento, orientacion, id_carrera_tipo, id_circuito) values('2025-03-30','Parcialmente nublado','Seco',14,59,1016,19,'Oeste',1,1);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-03-30','Parcialmente nublado',14,59,1016,19,'Oeste',13,'Seco',2,1);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-03-30','Parcialmente nublado',14,59,1016,19,'Oeste',13,'Seco',3,1);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025-04-27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste','Seco',1,4);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-04-27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste',17,'Seco',2,4);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-04-27','Parcialmente nublado',17,55,1018,15,'Norte/Noroeste',17,'Seco',3,4);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025-06-08','Despejado',31,38,1014,14,'Sureste','Seco',1,3);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-06-08','Despejado',31,38,1014,14,'Sureste',15,'Seco',2,3);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-06-08','Despejado',31,38,1014,14,'Sureste',15,'Seco',3,3);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025-10-19','Despejado',22,52,1017,11,'Oeste/Noroeste','Seco',1,2);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-10-19','Despejado',22,52,1017,11,'Oeste/Noroeste',13,'Seco',2,2);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-10-19','Despejado',22,52,1017,11,'Oeste/Noroeste',15,'Seco',3,2);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2025-11-23','Despejado',15,62,1021,13,'Noroeste','Seco',1,5);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-11-23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',2,5);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, id_carrera_tipo, id_circuito) values('2025-11-23','Despejado',15,62,1021,13,'Noroeste',17,'Seco',3,5);
 
 
 
@@ -51,8 +37,4 @@ insert into campeonatos_carreras(id_edicion, id_carrera) values(7,13);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,14);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(7,15);
 
--- El Vendrell 2026
-insert into campeonatos_carreras(id_edicion, id_carrera) values(10,16);
-insert into campeonatos_carreras(id_edicion, id_carrera) values(10,17);
-insert into campeonatos_carreras(id_edicion, id_carrera) values(10,18);
 
