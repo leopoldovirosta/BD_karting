@@ -228,6 +228,60 @@ insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,me
 insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,128,11,67,'00:09:51.814','00:01:21.092',7,4);
 
 
+-- Junior
+
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,88,5,2,'00:12:20.913','00:00:57.856',13,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,78,5,15,'00:12:24.152','00:00:57.955',13,2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,82,5,5,'00:12:32.475','00:00:57.862',13,3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,80,5,913,'00:12:36.495','00:00:58.660',13,4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,134,5,16,'00:12:38.548','00:00:58.799',13,5);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,132,5,43,'00:12:40.571','00:00:58.811',13,6);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,136,5,23,'00:12:37.493','00:00:58.513',13,7);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,135,5,66,'00:12:44.300','00:00:59.077',13,8);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,133,5,54,'00:12:44.640','00:00:58.804',13,9);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,137,5,92,'00:13:01.529','00:01:00.208',13,10);
+
+-- DD2
+
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,129,6,12,'00:12:29.918','00:00:56.936',13,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,130,6,7,'00:12:49.328','00:00:58.488',13,2);
+insert into resultados (id_carrera,id_piloto,id_categoria,subcategoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,131,6,'Master',25,'00:12:58.545','00:00:59.160',13,3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,comentario_posicion) values(18,65,6,55,'00:06:27.317','00:00:56.959',4,4,'DNF');
+
+-- Senior
+
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,58,1,45,'00:12:38.389','00:00:57.336',13,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,54,1,25,'00:12:39.209','00:00:57.332',13,2);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,56,1,16,'00:12:42.164','00:00:57.607',13,3);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,139,1,53,'00:12:45.020','00:00:57.745',13,4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,138,1,46,'00:12:45.214','00:00:57.676',13,5);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,59,1,14,'00:12:48.877','00:00:57.818',13,6);
+insert into resultados (id_carrera,id_piloto,id_categoria,subcategoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,66,1,'Master',3,'00:12:50.095','00:00:58.144',13,7);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,142,1,8,'00:12:53.036','00:00:58.340',13,8);
+insert into resultados (id_carrera,id_piloto,id_categoria,subcategoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,72,1,'Master',22,'00:12:53.448','00:00:58.282',13,9);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,140,1,23,'00:12:55.999','00:00:58.344',13,10);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,69,1,147,'00:13:05.019','00:00:59.047',13,11);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,41,1,11,'00:13:12.559','00:00:58.511',13,12);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,144,1,5,'00:13:13.911','00:00:59.690',13,13,'Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,73,1,54,'00:13:14.290','00:00:58.611',13,14,'Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,comentario_posicion,subcategoria) values(18,143,1,17,'00:06:05.771','00:00:59.010',6,15,'DNF','Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,comentario_posicion) values(18,141,1,99,'00:03:08.074','00:00:58.582',3,16,'DNF');
+
+-- KZ
+
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,6,7,52,'00:13:07.177','00:00:54.777',14,1);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,149,7,25,'00:13:22.424','00:00:56.042',14,2,'Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,20,7,12,'00:13:22.725','00:00:56.098',14,3,'Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,12,7,1,'00:13:23.091','00:00:55.895',14,4);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,146,7,911,'00:13:23.393','00:00:55.491',14,5,'Master');
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion,subcategoria) values(18,148,7,78,'00:13:29.807','00:00:56.524',14,6,'Master');
+insert into resultados (id_carrera,id_piloto,id_chasis,id_motor,id_rueda,id_categoria,subcategoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,1,11,29,13,7,'Master',133,'00:14:03.934','00:00:58.648',14,7);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,mejor_vuelta,num_vueltas_completadas,posicion) values(18,7,7,49,'00:13:19.842','00:00:56.490',13,8);
+insert into resultados (id_carrera,id_piloto,id_categoria,dorsal,tiempo_total,num_vueltas_completadas,posicion,comentario_posicion) values(18,147,7,18,'00:02:31.313',1,9,'DNF');
+
+
+
+
 
 
 

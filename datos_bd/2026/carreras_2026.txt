@@ -4,8 +4,11 @@ insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, 
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026-02-08','Parcialmente nublado',14,80,1008,20,'Sureste',13,'Seco',16,2,6);
 insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, num_vueltas, pista, tasfalto, id_carrera_tipo, id_circuito) values('2026-02-08','Parcialmente nublado',14,80,1008,5,'Sureste',14,'Seco',17,3,6);
 
+-- Zuera 2026
 
-
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito) values('2026-03-29','Parcialmente nublado',8,40,1016,35,'Noroeste','Seco',1,1);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito, num_vueltas) values('2026-03-29','Parcialmente nublado',11,40,1016,41,'Noroeste','Seco',2,1,13);
+insert into carreras(fecha_carrera, dia, temperatura, humedad, presion, viento, orientacion, pista, id_carrera_tipo, id_circuito, num_vueltas) values('2026-03-29','Parcialmente nublado',13,40,1016,52,'Noroeste','Seco',3,1,13);
 
 
 
@@ -21,3 +24,11 @@ insert into campeonatos_carreras(id_edicion, id_carrera) values(10,16);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(10,17);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(10,18);
 
+-- Zuera 2026
+
+insert into campeonatos_carreras(id_edicion, id_carrera) values(9,19);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(9,20);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(9,21);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,19);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,20);
+insert into campeonatos_carreras(id_edicion, id_carrera) values(10,21);
