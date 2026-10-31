@@ -714,7 +714,23 @@ insert into chasis(id_marca, modelo_chasis, material, tubo_diametro, distancia_e
 insert into chasis(id_marca, modelo_chasis, tubo_diametro, distancia_ejes, categoria_objetivo, ano, homologacion, url_homologacion) values(100,'RS1','28/30 mm','1050 mm','KZ1/KZ2/KF1/KF2/KF3/Rotax','2012','95-CH-17','https://www.crkart.fr/chassis/liste/cik95ch17.pdf');
 insert into chasis(id_marca, modelo_chasis) values(1,'N/D');
 insert into chasis(id_marca, modelo_chasis) values(2,'N/D');
-
+insert into chasis(id_marca, modelo_chasis) values(3,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(5,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(9,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(10,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(17,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(20,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(22,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(23,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(26,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(27,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(28,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(40,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(53,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(67,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(69,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(84,'N/D');
+insert into chasis(id_marca, modelo_chasis) values(87,'N/D');
 
 
 
@@ -852,6 +868,9 @@ insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, c
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, regimen_max_rpm, refrigeracion, carburador, foto_motor) values(101,'SL207','OK',54.00,54.08,54.40,125,'Caja de laminas',5,'Electrónico','Embrague centrífugo en seco',16000,'Agua','Dell Orto VHSH 30CS','sgm_sl207.webp');
 insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, lumbreras, encendido, transmision, refrigeracion, carburador, homologacion, foto_motor) values(101,'FE2003','Superkart',54.00,54.08,54.40,250,'Valvula rotativas',10,'Digital','Caja de cambios de 6 velocidades','Agua','2 x Dell Orto VHSB 39','27/SKM/09','sgm_fe2003.webp');
 insert into motores(id_marca, modelo) values(4,'N/D');
+insert into motores(id_marca, modelo) values(13,'N/D');
+insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, encendido, transmision, regimen_max_rpm, refrigeracion, carburador, foto_motor) values(4,'Puma 85cc','Mini',48.20,48.50,46.00,83.93,'Admision por piston','Analógica 2 polos con rotor interno','Embrague centrífugo en seco',13500,'Aire','Membrana Tillotson','iame_puma85.webp');
+insert into motores (id_marca, modelo, clase, diametro, max_diametro, carrera, cilindrada, admision, encendido, transmision, refrigeracion, carburador, foto_motor) values(4,'Puma 64cc','Mini',41.80,42.08,46.00,63.12,'Admision por piston','Selettra','Embrague centrífugo en seco','Aire','Tillotson HL 352A','iame_puma85.webp');
 
 
 
