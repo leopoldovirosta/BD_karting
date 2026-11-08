@@ -87,6 +87,12 @@ SELECT
     vcar.num_vueltas,
     r.posicion,
     r.comentario_posicion,
+    r.irregularidad,
+    r.sancion,
+    r.sector1_mv,
+    r.sector2_mv,
+    r.sector3_mv,
+
     -- LÓGICA DE PROTECCIÓN DE PUNTOS
     CASE 
         WHEN r.comentario_posicion IN ('DNS', 'DSQ') THEN 0

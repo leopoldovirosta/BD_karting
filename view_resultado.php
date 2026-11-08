@@ -17,6 +17,10 @@ if (!$resultado) {
 
 $tiempo_total_formateado = Resultado::formatearTiempo($resultado->getValue("tiempo_total"));
 $mejor_vuelta_formateada = Resultado::formatearTiempo($resultado->getValue("mejor_vuelta"));
+$mejor_sector1_formateada = Resultado::formatearTiempo($resultado->getValue("sector1_mv"));
+$mejor_sector2_formateada = Resultado::formatearTiempo($resultado->getValue("sector2_mv"));
+$mejor_sector3_formateada = Resultado::formatearTiempo($resultado->getValue("sector3_mv"));
+
 
 $v_media_carrera = Resultado::calcularVelocidadMediaCarrera(
     $resultado->getValue("longitud"),
@@ -100,6 +104,21 @@ displayPageHeader("Detalles de la carrera");
             <div class="value"><?php echo ($v_media_vuelta > 0) ? $v_media_vuelta . ' <small>km/h</small>' : '---'; ?></div>
         </div>
         <div class="data-item">
+            <span class="material-symbols-outlined">timer</span>
+            <label>Mejor sector 1</label>
+            <div class="value"><?php echo $mejor_sector1_formateada ?></div>
+        </div>
+        <div class="data-item">
+            <span class="material-symbols-outlined">timer</span>
+            <label>Mejor sector 2</label>
+            <div class="value"><?php echo $mejor_sector2_formateada ?></div>
+        </div>
+        <div class="data-item">
+            <span class="material-symbols-outlined">timer</span>
+            <label>Mejor sector 3</label>
+            <div class="value"><?php echo $mejor_sector3_formateada ?></div>
+        </div>
+        <div class="data-item">
             <span class="material-symbols-outlined">conversion_path</span> 
             <label>Vueltas totales</label>
             <div class="value"><?php echo mostrarValor($resultado->getValue("num_vueltas")); ?></div>
@@ -118,6 +137,16 @@ displayPageHeader("Detalles de la carrera");
             <span class="material-symbols-outlined">comment</span>
             <label>Observaciones</label>
             <div class="value"><?php echo mostrarValor($resultado->getValue("comentario_posicion")); ?></div>
+        </div>
+        <div class="data-item">
+            <span class="material-symbols-outlined">comment</span>
+            <label>Irregularidades</label>
+            <div class="value"><?php echo mostrarValor($resultado->getValue("irregularidad")); ?></div>
+        </div>
+        <div class="data-item">
+            <span class="material-symbols-outlined">comment</span>
+            <label>Sanción</label>
+            <div class="value"><?php echo mostrarValor($resultado->getValue("sancion")); ?></div>
         </div>
         <div class="data-item">
             <span class="material-symbols-outlined">format_list_numbered</span>

@@ -41,6 +41,11 @@ class Resultado extends DataObject {
         "posicion"              => "",
         "comentario_posicion"   => "",
         "puntos"                => "",
+        "irregularidad"         => "",
+        "sancion"               => "",
+        "sector1_mv"            => "",
+        "sector2_mv"            => "",
+        "sector3_mv"            => "",
 
         // Material
         "id_chasis"             => "",
@@ -272,6 +277,10 @@ class Resultado extends DataObject {
         if (isset($filtros['id_edicion']) && (int)$filtros['id_edicion'] > 0) {
             $whereClauses[] = "id_edicion = :id_edicion";
             $params[':id_edicion'] = (int)$filtros['id_edicion'];
+
+            // NUEVO: Aseguramos que la categoría pertenezca a esta edición (evita mezclas en carreras compartidas)
+            $whereClauses[] = "id_categoria IN (SELECT id_categoria FROM ediciones_categorias WHERE id_edicion = :id_edicion_cat)";
+            $params[':id_edicion_cat'] = (int)$filtros['id_edicion'];
         }
 
         // 2. Filtro por Carrera

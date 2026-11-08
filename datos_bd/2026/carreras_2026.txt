@@ -32,3 +32,5 @@ insert into campeonatos_carreras(id_edicion, id_carrera) values(9,21);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(10,19);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(10,20);
 insert into campeonatos_carreras(id_edicion, id_carrera) values(10,21);
+
+
